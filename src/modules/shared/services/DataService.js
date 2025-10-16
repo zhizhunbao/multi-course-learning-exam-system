@@ -1,21 +1,15 @@
 /**
  * 统一数据服务层
  * 提供题目和考试数据的统一访问接口
+ * 支持从 public 目录动态加载数据文件
  */
-
-// 导入所有数据文件
-import cst8503QuestionsZh from '../data/questions/cst8503-zh.json';
-import cst8503QuestionsEn from '../data/questions/cst8503-en.json';
 
 class DataService {
   constructor() {
     this.cache = new Map();
-    
-    // 预加载数据
-    this.questionData = {
-      'cst8503-zh': cst8503QuestionsZh,
-      'cst8503-en': cst8503QuestionsEn,
-    };
+    this.baseUrl = import.meta.env.PROD
+      ? "/multi-course-learning-exam-system/data"
+      : "/multi-course-learning-exam-system/data";
   }
 
   /**
@@ -32,26 +26,56 @@ class DataService {
     }
 
     try {
-      // 从预加载的数据中获取
-      const dataKey = `${courseId}-${language}`;
-      if (this.questionData[dataKey]) {
-        const data = this.questionData[dataKey];
+      // 尝试加载指定语言的数据
+      const data = await this.loadDataFromFile(
+        `questions/${courseId}-${language}.json`
+      );
+      if (data) {
         this.cache.set(cacheKey, data);
         return data;
       }
-      
-      // 如果预加载数据中没有，尝试其他语言
-      const fallbackKey = `${courseId}-${language === 'zh' ? 'en' : 'zh'}`;
-      if (this.questionData[fallbackKey]) {
-        const data = this.questionData[fallbackKey];
-        this.cache.set(cacheKey, data);
-        return data;
+
+      // 如果指定语言的数据不存在，尝试其他语言
+      const fallbackLanguage = language === "zh" ? "en" : "zh";
+      const fallbackData = await this.loadDataFromFile(
+        `questions/${courseId}-${fallbackLanguage}.json`
+      );
+      if (fallbackData) {
+        this.cache.set(cacheKey, fallbackData);
+        return fallbackData;
       }
-      
-      throw new Error(`No questions found for course ${courseId} in language ${language}`);
+
+      throw new Error(
+        `No questions found for course ${courseId} in language ${language}`
+      );
     } catch (error) {
       console.error("Error loading questions:", error);
       throw error;
+    }
+  }
+
+  /**
+   * 从文件加载数据
+   * @param {string} filePath - 文件路径（相对于 data 目录）
+   * @returns {Promise<Object|null>} 数据对象或 null
+   */
+  async loadDataFromFile(filePath) {
+    try {
+      const url = `${this.baseUrl}/${filePath}`;
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        if (response.status === 404) {
+          return null; // 文件不存在
+        }
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.warn(`Failed to load data from ${filePath}:`, error);
+      return null;
     }
   }
 
@@ -67,24 +91,36 @@ class DataService {
       return this.cache.get(cacheKey);
     }
 
-    // 暂时返回默认考试配置
-    const defaultConfig = {
-      exams: [
-        {
-          id: 'midterm',
-          title: 'Midterm Exam',
-          description: 'Midterm examination',
-          questionSelection: {
-            strategy: 'random',
-            count: 20,
-            filters: {}
-          }
-        }
-      ]
-    };
-    
-    this.cache.set(cacheKey, defaultConfig);
-    return defaultConfig;
+    try {
+      // 尝试从文件加载考试配置
+      const data = await this.loadDataFromFile(`exams/${courseId}.json`);
+      if (data) {
+        this.cache.set(cacheKey, data);
+        return data;
+      }
+
+      // 如果文件不存在，返回默认配置
+      const defaultConfig = {
+        exams: [
+          {
+            id: "midterm",
+            title: "Midterm Exam",
+            description: "Midterm examination",
+            questionSelection: {
+              strategy: "random",
+              count: 20,
+              filters: {},
+            },
+          },
+        ],
+      };
+
+      this.cache.set(cacheKey, defaultConfig);
+      return defaultConfig;
+    } catch (error) {
+      console.error("Error loading exam config:", error);
+      throw error;
+    }
   }
 
   /**
@@ -127,13 +163,13 @@ class DataService {
     const defaultContent = {
       modules: [
         {
-          id: 'module1',
-          title: 'Introduction',
-          content: 'Course introduction content...'
-        }
-      ]
+          id: "module1",
+          title: "Introduction",
+          content: "Course introduction content...",
+        },
+      ],
     };
-    
+
     this.cache.set(cacheKey, defaultContent);
     return defaultContent;
   }
@@ -154,13 +190,13 @@ class DataService {
     const defaultExperiments = {
       experiments: [
         {
-          id: 'exp1',
-          title: 'Basic Experiment',
-          description: 'Basic experiment description...'
-        }
-      ]
+          id: "exp1",
+          title: "Basic Experiment",
+          description: "Basic experiment description...",
+        },
+      ],
     };
-    
+
     this.cache.set(cacheKey, defaultExperiments);
     return defaultExperiments;
   }
