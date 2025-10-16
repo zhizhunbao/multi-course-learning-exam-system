@@ -1,0 +1,285 @@
+/* Form 组件样式 */
+.form {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* 表单字段组 */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.form-row .form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+/* 表单标签 */
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #374151;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.form-label.required::after {
+  content: " *";
+  color: #dc2626;
+}
+
+/* 表单输入字段 */
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  background: #ffffff;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-input:disabled {
+  background: #f9fafb;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.form-input.error {
+  border-color: #dc2626;
+}
+
+.form-input.error:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* 文本域 */
+.form-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  background: #ffffff;
+}
+
+.form-textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-textarea:disabled {
+  background: #f9fafb;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.form-textarea.error {
+  border-color: #dc2626;
+}
+
+.form-textarea.error:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* 选择框 */
+.form-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-select:disabled {
+  background: #f9fafb;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.form-select.error {
+  border-color: #dc2626;
+}
+
+.form-select.error:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* 复选框和单选按钮 */
+.form-checkbox,
+.form-radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.form-checkbox input,
+.form-radio input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.form-checkbox label,
+.form-radio label {
+  margin: 0;
+  cursor: pointer;
+  color: #374151;
+  font-size: 0.875rem;
+}
+
+/* 错误消息 */
+.form-error {
+  margin-top: 6px;
+  color: #dc2626;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.form-error::before {
+  content: "⚠";
+  font-size: 0.75rem;
+}
+
+/* 帮助文本 */
+.form-help {
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+/* 表单按钮组 */
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.form-actions.justify-center {
+  justify-content: center;
+}
+
+.form-actions.justify-end {
+  justify-content: flex-end;
+}
+
+.form-actions.justify-between {
+  justify-content: space-between;
+}
+
+/* 表单验证状态 */
+.form-group.valid .form-input,
+.form-group.valid .form-textarea,
+.form-group.valid .form-select {
+  border-color: #10b981;
+}
+
+.form-group.valid .form-input:focus,
+.form-group.valid .form-textarea:focus,
+.form-group.valid .form-select:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.form-group.touched .form-input,
+.form-group.touched .form-textarea,
+.form-group.touched .form-select {
+  border-color: #6b7280;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+}
+
+/* 表单加载状态 */
+.form.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.form.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  border: 2px solid #e5e7eb;
+  border-top: 2px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* 表单成功状态 */
+.form.success {
+  border: 2px solid #10b981;
+  border-radius: 8px;
+  padding: 16px;
+  background: #f0fdf4;
+}
+
+.form.success::before {
+  content: "✓ Form submitted successfully!";
+  color: #10b981;
+  font-weight: 500;
+  margin-bottom: 16px;
+  display: block;
+}

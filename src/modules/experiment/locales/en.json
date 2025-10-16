@@ -1,0 +1,26 @@
+{
+  "title": "Experiment Lab",
+  "codeEditor": {
+    "run": "Run",
+    "save": "Save",
+    "format": "Format",
+    "clear": "Clear",
+    "output": "Output",
+    "error": "Error",
+    "placeholder": "Enter your code here..."
+  },
+  "languages": {
+    "javascript": "JavaScript",
+    "python": "Python",
+    "java": "Java",
+    "cpp": "C++"
+  },
+  "experiments": {
+    "title": "Experiments",
+    "create": "Create New Experiment",
+    "edit": "Edit Experiment",
+    "delete": "Delete Experiment",
+    "run": "Run Experiment",
+    "results": "Results"
+  }
+}

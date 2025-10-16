@@ -1,0 +1,39 @@
+{
+  "title": "系统管理",
+  "dashboard": {
+    "title": "仪表板",
+    "totalUsers": "总用户数",
+    "activeCourses": "活跃课程",
+    "completedExams": "已完成考试",
+    "systemUptime": "系统运行时间",
+    "recentActivity": "最近活动",
+    "systemHealth": "系统健康"
+  },
+  "userManagement": {
+    "title": "用户管理",
+    "addUser": "添加新用户",
+    "editUser": "编辑用户",
+    "deleteUser": "删除用户",
+    "activateUser": "激活用户",
+    "deactivateUser": "停用用户",
+    "searchUsers": "搜索用户...",
+    "confirmDelete": "您确定要删除用户 {name} 吗？",
+    "deleteWarning": "此操作无法撤销。"
+  },
+  "roles": {
+    "student": "学生",
+    "instructor": "教师",
+    "admin": "管理员"
+  },
+  "status": {
+    "active": "活跃",
+    "inactive": "非活跃",
+    "pending": "待审核"
+  },
+  "actions": {
+    "export": "导出数据",
+    "backup": "备份系统",
+    "save": "保存更改",
+    "cancel": "取消"
+  }
+}

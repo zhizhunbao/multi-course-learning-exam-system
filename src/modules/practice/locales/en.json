@@ -1,0 +1,105 @@
+{
+  "title": "Practice Center",
+  "selectCourse": "Select a course to practice",
+  "selectCourseDesc": "Please select a course to start practicing",
+  "defaultCourseTitle": "React Fundamentals",
+  "defaultCourseDescription": "Learn the basics and core concepts of React framework",
+  "startPractice": "Start Practice",
+  "practiceQuestions": "Practice Questions",
+  "loading": "Loading practice questions...",
+  "practiceComplete": "Practice Complete!",
+  "practiceCompleteDesc": "You have completed the practice questions for {{courseTitle}}",
+  "score": "Score",
+  "totalQuestions": "Total Questions",
+  "correctAnswers": "Correct Answers",
+  "timeSpent": "Time Spent",
+  "questionReview": "Question Review",
+  "questionNumber": "Question {{number}}",
+  "correct": "Correct",
+  "incorrect": "Incorrect",
+  "yourAnswer": "Your Answer:",
+  "correctAnswer": "Correct Answer:",
+  "restartPractice": "Restart Practice",
+  "backToCourse": "Back to Course",
+  "questionProgress": "Question {{current}} of {{total}}",
+  "previousQuestion": "Previous",
+  "nextQuestion": "Next",
+  "submitPractice": "Submit Practice",
+  "questionTypes": {
+    "multipleChoice": "Multiple Choice",
+    "multiple-choice": "Multiple Choice",
+    "fillBlank": "Fill in the Blank",
+    "fill-blank": "Fill in the Blank",
+    "shortAnswer": "Short Answer",
+    "short-answer": "Short Answer",
+    "programming": "Programming",
+    "text": "Text Question",
+    "trueFalse": "True/False",
+    "true-false": "True/False",
+    "unsupported": "Unsupported Question Type"
+  },
+  "actions": {
+    "submit": "Submit Answer",
+    "next": "Next",
+    "previous": "Previous",
+    "continue": "Continue",
+    "submitPractice": "Submit Practice",
+    "restartPractice": "Restart Practice",
+    "backToCourses": "Back to Courses",
+    "backToCourse": "Back to Course",
+    "showAnswer": "Show Answer",
+    "hideAnswer": "Hide Answer"
+  },
+  "feedback": {
+    "correct": "Correct!",
+    "incorrect": "Incorrect. Try again.",
+    "noAnswer": "Please select an answer"
+  },
+  "progress": {
+    "question": "Question",
+    "of": "of",
+    "answered": "Answered",
+    "total": "Total",
+    "questionNumber": "Question {{current}} of {{total}}"
+  },
+  "stats": {
+    "totalQuestions": "Total Questions",
+    "correctAnswers": "Correct Answers",
+    "timeSpent": "Time Spent"
+  },
+  "review": {
+    "title": "Question Review",
+    "questionNumber": "Question {{number}}",
+    "yourAnswer": "Your answer: {{answer}}",
+    "correctAnswer": "Correct answer: {{answer}}",
+    "correct": "Correct",
+    "incorrect": "Incorrect"
+  },
+  "placeholders": {
+    "enterAnswer": "Enter your answer here...",
+    "writeCode": "Write your code here...",
+    "yourAnswer": "Your answer"
+  },
+  "answer": {
+    "correctAnswer": "Correct Answer",
+    "explanation": "Explanation"
+  },
+  "filter": {
+    "category": "Filter by Chapter",
+    "allCategories": "All Chapters",
+    "showingResults": "Showing {{count}} questions from {{category}} chapter"
+  },
+  "questions": "questions",
+  "chapters": {
+    "chapter1-knowledge-representation": "Chapter 1: Knowledge Representation Introduction",
+    "chapter2-prolog-basics": "Chapter 2: Prolog Basics",
+    "chapter3-prolog-debugging": "Chapter 3: Prolog Debugging",
+    "chapter4-prolog-structures": "Chapter 4: Prolog Structures & Matching",
+    "chapter5-prolog-lists-operators": "Chapter 5: Prolog Lists, Operators & Arithmetic",
+    "chapter6-prolog-negation": "Chapter 6: Prolog Negation & Cut",
+    "chapter7-midterm-review": "Chapter 7: Midterm Review"
+  },
+  "time": {
+    "format": "{{minutes}}:{{seconds}}"
+  }
+}

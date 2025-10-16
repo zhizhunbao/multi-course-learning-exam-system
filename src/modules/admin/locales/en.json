@@ -1,0 +1,39 @@
+{
+  "title": "System Administration",
+  "dashboard": {
+    "title": "Dashboard",
+    "totalUsers": "Total Users",
+    "activeCourses": "Active Courses",
+    "completedExams": "Completed Exams",
+    "systemUptime": "System Uptime",
+    "recentActivity": "Recent Activity",
+    "systemHealth": "System Health"
+  },
+  "userManagement": {
+    "title": "User Management",
+    "addUser": "Add New User",
+    "editUser": "Edit User",
+    "deleteUser": "Delete User",
+    "activateUser": "Activate User",
+    "deactivateUser": "Deactivate User",
+    "searchUsers": "Search users...",
+    "confirmDelete": "Are you sure you want to delete user {name}?",
+    "deleteWarning": "This action cannot be undone."
+  },
+  "roles": {
+    "student": "Student",
+    "instructor": "Instructor",
+    "admin": "Administrator"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "pending": "Pending"
+  },
+  "actions": {
+    "export": "Export Data",
+    "backup": "Backup System",
+    "save": "Save Changes",
+    "cancel": "Cancel"
+  }
+}

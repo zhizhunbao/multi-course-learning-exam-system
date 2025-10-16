@@ -1,0 +1,72 @@
+{
+  "courseId": "cst8503",
+  "title": "知识表示与推理",
+  "description": "知识表示方法和推理技术",
+  "lastUpdated": "2025-10-16",
+  "experiments": [
+    {
+      "id": 1,
+      "title": "Prolog基础编程",
+      "description": "学习Prolog语言的基本语法和编程技巧",
+      "order": 1,
+      "instructions": [
+        "定义事实和规则",
+        "编写简单的查询",
+        "使用列表操作",
+        "实现递归规则",
+        "测试程序逻辑"
+      ],
+      "hints": [
+        "事实以小写字母开头",
+        "规则使用 :- 符号",
+        "变量以大写字母开头",
+        "使用递归处理列表"
+      ],
+      "template": "% 在这里编写你的Prolog代码\n\n% 1. 定义事实\n% parent(john, mary).\n% parent(mary, tom).\n\n% 2. 定义规则\n% grandparent(X, Y) :- parent(X, Z), parent(Z, Y).\n\n% 3. 列表操作\n% member(X, [X|_]).\n% member(X, [_|T]) :- member(X, T).\n\n% 4. 递归规则\n% length([], 0).\n% length([_|T], N) :- length(T, M), N is M + 1.\n\n% 查询示例:\n% ?- grandparent(john, tom).\n% ?- member(3, [1,2,3,4]).",
+      "testCases": [
+        {
+          "description": "测试事实查询",
+          "input": { "query": "parent(john, mary)" },
+          "expected": "true"
+        },
+        {
+          "description": "测试规则推理",
+          "input": { "query": "grandparent(john, tom)" },
+          "expected": "true"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "专家系统设计",
+      "description": "设计一个简单的专家系统",
+      "order": 2,
+      "instructions": [
+        "定义知识库",
+        "编写推理规则",
+        "实现查询接口",
+        "测试系统功能",
+        "优化推理效率"
+      ],
+      "hints": [
+        "使用规则表示知识",
+        "实现前向推理",
+        "处理不确定性",
+        "提供解释功能"
+      ],
+      "template": "% 专家系统 - 医疗诊断\n\n% 症状定义\n% symptom(fever).\n% symptom(cough).\n% symptom(headache).\n\n% 疾病定义\n% disease(cold).\n% disease(flu).\n% disease(migraine).\n\n% 诊断规则\n% diagnose(cold) :- symptom(fever), symptom(cough).\n% diagnose(flu) :- symptom(fever), symptom(cough), symptom(headache).\n% diagnose(migraine) :- symptom(headache), not(symptom(fever)).\n\n% 查询示例:\n% ?- diagnose(X).",
+      "testCases": [
+        {
+          "description": "测试诊断功能",
+          "input": { "symptoms": ["fever", "cough"] },
+          "expected": "cold"
+        },
+        {
+          "description": "测试多症状诊断",
+          "input": { "symptoms": ["fever", "cough", "headache"] },
+          "expected": "flu"
+        }
+      ]
+    }
+  ]
+}

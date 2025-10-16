@@ -1,0 +1,26 @@
+{
+  "title": "实验实验室",
+  "codeEditor": {
+    "run": "运行",
+    "save": "保存",
+    "format": "格式化",
+    "clear": "清空",
+    "output": "输出",
+    "error": "错误",
+    "placeholder": "在这里输入您的代码..."
+  },
+  "languages": {
+    "javascript": "JavaScript",
+    "python": "Python",
+    "java": "Java",
+    "cpp": "C++"
+  },
+  "experiments": {
+    "title": "实验",
+    "create": "创建新实验",
+    "edit": "编辑实验",
+    "delete": "删除实验",
+    "run": "运行实验",
+    "results": "结果"
+  }
+}

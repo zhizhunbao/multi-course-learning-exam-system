@@ -1,0 +1,178 @@
+/* CodeEditor 组件样式 */
+.code-editor {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.editor-container {
+  margin-bottom: 20px;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.editor-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.language-badge {
+  background: #3b82f6;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.line-count {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.editor-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.editor-content {
+  position: relative;
+  display: flex;
+  background: #f8fafc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.line-numbers {
+  background: #e5e7eb;
+  padding: 16px 8px;
+  font-family: "Courier New", monospace;
+  font-size: 0.875rem;
+  color: #6b7280;
+  user-select: none;
+  min-width: 50px;
+  text-align: right;
+}
+
+.line-number {
+  height: 20px;
+  line-height: 20px;
+}
+
+.code-textarea {
+  flex: 1;
+  border: none;
+  padding: 16px;
+  font-family: "Courier New", monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  resize: vertical;
+  background: #ffffff;
+  color: #1f2937;
+  outline: none;
+  min-height: 300px;
+}
+
+.code-textarea:focus {
+  background: #ffffff;
+}
+
+.code-textarea::placeholder {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* 主题样式 */
+.code-textarea.light {
+  background: #ffffff;
+  color: #1f2937;
+}
+
+.code-textarea.dark {
+  background: #1f2937;
+  color: #f9fafb;
+}
+
+/* 输出容器样式 */
+.output-container {
+  margin-top: 20px;
+}
+
+.output-header {
+  margin-bottom: 12px;
+}
+
+.output-header h4 {
+  margin: 0;
+  color: #374151;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.output-content {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.output-text {
+  margin: 0;
+  font-family: "Courier New", monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #1f2937;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .editor-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .editor-actions {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .editor-content {
+    flex-direction: column;
+  }
+
+  .line-numbers {
+    display: none;
+  }
+
+  .code-textarea {
+    min-height: 200px;
+  }
+}
+
+/* 禁用状态 */
+.code-textarea:disabled {
+  background: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* 错误状态 */
+.code-textarea.error {
+  border: 2px solid #ef4444;
+}
+
+.code-textarea.error:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}

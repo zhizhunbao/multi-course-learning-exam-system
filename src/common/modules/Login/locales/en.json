@@ -1,0 +1,14 @@
+{
+  "title": "Multi-Course Learning & Exam System",
+  "subtitle": "Algonquin College Online Learning Platform",
+  "enterName": "Please enter your name",
+  "namePlaceholder": "Enter your name",
+  "loginButton": "Start Learning",
+  "welcome": "Welcome to our learning platform!",
+  "username": "Username",
+  "password": "Password",
+  "rememberMe": "Remember Me",
+  "forgotPassword": "Forgot Password?",
+  "registerLink": "Don't have an account? Register here",
+  "loginError": "Invalid username or password"
+}

@@ -1,0 +1,33 @@
+{
+  "button": {
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "close": "Close",
+    "confirm": "Confirm"
+  },
+  "input": {
+    "placeholder": "Please enter...",
+    "required": "This field is required",
+    "invalid": "Invalid input"
+  },
+  "modal": {
+    "title": "Confirmation",
+    "message": "Are you sure?",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "alert": {
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Information"
+  },
+  "loading": {
+    "text": "Loading...",
+    "pleaseWait": "Please wait"
+  }
+}

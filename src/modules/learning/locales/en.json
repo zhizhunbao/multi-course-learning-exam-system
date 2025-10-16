@@ -1,0 +1,31 @@
+{
+  "title": "Learning Center",
+  "videoPlayer": {
+    "play": "Play",
+    "pause": "Pause",
+    "bookmark": "Bookmark",
+    "volume": "Volume",
+    "speed": "Speed",
+    "loading": "Loading video...",
+    "error": "Failed to load video"
+  },
+  "progress": {
+    "completed": "Completed",
+    "inProgress": "In Progress",
+    "notStarted": "Not Started",
+    "lastPosition": "Last Position"
+  },
+  "notes": {
+    "title": "Notes",
+    "addNote": "Add Note",
+    "editNote": "Edit Note",
+    "deleteNote": "Delete Note",
+    "placeholder": "Add your notes here..."
+  },
+  "bookmarks": {
+    "title": "Bookmarks",
+    "addBookmark": "Add Bookmark",
+    "removeBookmark": "Remove Bookmark",
+    "noBookmarks": "No bookmarks yet"
+  }
+}

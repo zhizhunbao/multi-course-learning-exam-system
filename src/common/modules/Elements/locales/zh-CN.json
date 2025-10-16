@@ -1,0 +1,33 @@
+{
+  "button": {
+    "submit": "提交",
+    "cancel": "取消",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "add": "添加",
+    "close": "关闭",
+    "confirm": "确认"
+  },
+  "input": {
+    "placeholder": "请输入...",
+    "required": "此字段为必填项",
+    "invalid": "输入无效"
+  },
+  "modal": {
+    "title": "确认",
+    "message": "您确定吗？",
+    "confirm": "确认",
+    "cancel": "取消"
+  },
+  "alert": {
+    "success": "成功",
+    "error": "错误",
+    "warning": "警告",
+    "info": "信息"
+  },
+  "loading": {
+    "text": "加载中...",
+    "pleaseWait": "请稍候"
+  }
+}

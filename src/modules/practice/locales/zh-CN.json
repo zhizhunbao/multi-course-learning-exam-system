@@ -1,0 +1,105 @@
+{
+  "title": "练习中心",
+  "selectCourse": "选择课程进行练习",
+  "selectCourseDesc": "请选择一个课程开始练习",
+  "defaultCourseTitle": "React 基础开发",
+  "defaultCourseDescription": "学习React框架的基础知识和核心概念",
+  "startPractice": "开始练习",
+  "practiceQuestions": "练习题",
+  "loading": "练习题加载中...",
+  "practiceComplete": "练习完成！",
+  "practiceCompleteDesc": "您已完成 {{courseTitle}} 的练习题",
+  "score": "得分",
+  "totalQuestions": "总题数",
+  "correctAnswers": "正确题数",
+  "timeSpent": "用时",
+  "questionReview": "题目回顾",
+  "questionNumber": "第 {{number}} 题",
+  "correct": "正确",
+  "incorrect": "错误",
+  "yourAnswer": "您的答案：",
+  "correctAnswer": "正确答案：",
+  "restartPractice": "重新练习",
+  "backToCourse": "返回课程",
+  "questionProgress": "第 {{current}} 题，共 {{total}} 题",
+  "previousQuestion": "上一题",
+  "nextQuestion": "下一题",
+  "submitPractice": "提交练习",
+  "questionTypes": {
+    "multipleChoice": "选择题",
+    "multiple-choice": "选择题",
+    "fillBlank": "填空题",
+    "fill-blank": "填空题",
+    "shortAnswer": "简答题",
+    "short-answer": "简答题",
+    "programming": "编程题",
+    "text": "文本题",
+    "trueFalse": "判断题",
+    "true-false": "判断题",
+    "unsupported": "不支持的题目类型"
+  },
+  "actions": {
+    "submit": "提交答案",
+    "next": "下一题",
+    "previous": "上一题",
+    "continue": "继续",
+    "submitPractice": "提交练习",
+    "restartPractice": "重新练习",
+    "backToCourses": "返回课程",
+    "backToCourse": "返回课程",
+    "showAnswer": "显示答案",
+    "hideAnswer": "隐藏答案"
+  },
+  "feedback": {
+    "correct": "正确！",
+    "incorrect": "错误，请重试。",
+    "noAnswer": "请选择一个答案"
+  },
+  "progress": {
+    "question": "题目",
+    "of": "共",
+    "answered": "已答",
+    "total": "总计",
+    "questionNumber": "第 {{current}} 题，共 {{total}} 题"
+  },
+  "stats": {
+    "totalQuestions": "总题数",
+    "correctAnswers": "正确题数",
+    "timeSpent": "用时"
+  },
+  "review": {
+    "title": "题目回顾",
+    "questionNumber": "第 {{number}} 题",
+    "yourAnswer": "您的答案：{{answer}}",
+    "correctAnswer": "正确答案：{{answer}}",
+    "correct": "正确",
+    "incorrect": "错误"
+  },
+  "placeholders": {
+    "enterAnswer": "请输入您的答案...",
+    "writeCode": "Write your code here...",
+    "yourAnswer": "Your answer"
+  },
+  "answer": {
+    "correctAnswer": "正确答案",
+    "explanation": "解析"
+  },
+  "filter": {
+    "category": "按章节筛选",
+    "allCategories": "所有章节",
+    "showingResults": "显示第 {{category}} 章的 {{count}} 道题目"
+  },
+  "questions": "题",
+  "chapters": {
+    "chapter1-knowledge-representation": "第1章：知识表示介绍",
+    "chapter2-prolog-basics": "第2章：Prolog基础",
+    "chapter3-prolog-debugging": "第3章：Prolog调试",
+    "chapter4-prolog-structures": "第4章：Prolog结构与匹配",
+    "chapter5-prolog-lists-operators": "第5章：Prolog列表、操作符与算术",
+    "chapter6-prolog-negation": "第6章：Prolog否定与截断",
+    "chapter7-midterm-review": "第7章：期中复习"
+  },
+  "time": {
+    "format": "{{minutes}}:{{seconds}}"
+  }
+}

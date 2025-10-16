@@ -1,0 +1,39 @@
+{
+  "title": "Multi-Course Learning & Exam System",
+  "subtitle": "Algonquin College Online Learning Platform",
+  "description": "Providing high-quality programming courses and exam systems",
+  "quickLinks": {
+    "title": "Quick Links",
+    "courses": "Course Center",
+    "practice": "Practice Questions",
+    "exams": "Exam Center",
+    "experiments": "Lab Environment"
+  },
+  "resources": {
+    "title": "Learning Resources",
+    "help": "Help Center",
+    "tutorials": "User Tutorials",
+    "faq": "FAQ",
+    "contact": "Contact Us"
+  },
+  "support": {
+    "title": "Technical Support",
+    "support": "Technical Support",
+    "feedback": "Feedback",
+    "bugReport": "Bug Report",
+    "featureRequest": "Feature Request"
+  },
+  "legal": {
+    "copyright": "© 2024 Algonquin College. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Policy"
+  },
+  "social": {
+    "followUs": "Follow Us:",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "linkedin": "LinkedIn",
+    "youtube": "YouTube"
+  }
+}

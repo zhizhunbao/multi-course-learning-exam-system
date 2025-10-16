@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-slate-50 to-blue-50 text-gray-900;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-algonquin-blue hover:bg-blue-800 text-white py-3 px-6 rounded-lg transition-colors duration-200 text-lg font-semibold shadow-lg hover:shadow-xl;
+  }
+
+  .btn-secondary {
+    @apply bg-algonquin-red hover:bg-algonquin-dark-red text-white py-3 px-6 rounded-lg transition-colors duration-200 text-lg font-semibold shadow-lg hover:shadow-xl;
+  }
+
+  .btn-outline {
+    @apply border-2 border-algonquin-blue text-algonquin-blue hover:bg-algonquin-blue hover:text-white py-3 px-6 rounded-lg transition-colors duration-200 text-lg font-semibold shadow-lg hover:shadow-xl;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-xl border border-gray-100 backdrop-blur-sm;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-algonquin-blue focus:border-transparent shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+
+  .sidebar-link {
+    @apply flex items-center px-4 py-3 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg;
+  }
+
+  .sidebar-link.active {
+    @apply bg-blue-600 text-white;
+  }
+
+  .sidebar-sub-item {
+    @apply flex items-center px-4 py-2.5 text-gray-500 hover:bg-blue-50 hover:text-blue-600 rounded-lg text-sm;
+  }
+
+  .sidebar-sub-item.active {
+    @apply bg-blue-600 text-white;
+  }
+
+  .sidebar-sub-item.disabled {
+    @apply cursor-not-allowed opacity-50 hover:bg-transparent hover:text-gray-500;
+  }
+}

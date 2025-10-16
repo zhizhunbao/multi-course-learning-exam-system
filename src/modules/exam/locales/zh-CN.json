@@ -1,0 +1,33 @@
+{
+  "title": "考试中心",
+  "examPaper": {
+    "timeRemaining": "剩余时间",
+    "question": "题目",
+    "of": "共",
+    "answered": "已答",
+    "submit": "提交考试",
+    "confirmSubmit": "您确定要提交考试吗？此操作无法撤销。",
+    "timeUp": "时间到！",
+    "warning": "警告：仅剩 {time}！"
+  },
+  "actions": {
+    "start": "开始考试",
+    "submit": "提交",
+    "pause": "暂停",
+    "resume": "继续"
+  },
+  "status": {
+    "notStarted": "未开始",
+    "inProgress": "进行中",
+    "completed": "已完成",
+    "timeUp": "时间到"
+  },
+  "results": {
+    "score": "分数",
+    "correct": "正确",
+    "incorrect": "错误",
+    "timeSpent": "用时",
+    "passed": "通过",
+    "failed": "未通过"
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "courses": [
+    {
+      "id": "cst8502",
+      "name": "机器学习",
+      "nameEn": "Machine Learning",
+      "code": "CST8502",
+      "description": "机器学习基础理论与实践",
+      "descriptionEn": "Machine Learning Fundamentals and Practice",
+      "instructor": "Dr. Smith",
+      "credits": 3,
+      "duration": "12 weeks",
+      "level": "graduate",
+      "prerequisites": ["CST8101", "MAT8001"],
+      "topics": [
+        "数据预处理",
+        "监督学习",
+        "无监督学习",
+        "模型评估",
+        "深度学习基础"
+      ],
+      "topicsEn": [
+        "Data Preprocessing",
+        "Supervised Learning",
+        "Unsupervised Learning",
+        "Model Evaluation",
+        "Deep Learning Fundamentals"
+      ],
+      "resources": {
+        "lectures": 12,
+        "labs": 8,
+        "assignments": 4,
+        "exams": 2
+      },
+      "isActive": true,
+      "startDate": "2024-01-15",
+      "endDate": "2024-04-15"
+    },
+    {
+      "id": "cst8503",
+      "name": "知识表示与推理",
+      "nameEn": "Knowledge Representation and Reasoning",
+      "code": "CST8503",
+      "description": "知识表示方法和推理技术",
+      "descriptionEn": "Knowledge Representation Methods and Reasoning Techniques",
+      "instructor": "Dr. Johnson",
+      "credits": 3,
+      "duration": "12 weeks",
+      "level": "graduate",
+      "prerequisites": ["CST8101", "LOG8001"],
+      "topics": ["谓词逻辑", "Prolog编程", "知识图谱", "推理引擎", "专家系统"],
+      "topicsEn": [
+        "Predicate Logic",
+        "Prolog Programming",
+        "Knowledge Graphs",
+        "Inference Engines",
+        "Expert Systems"
+      ],
+      "resources": {
+        "lectures": 12,
+        "labs": 8,
+        "assignments": 4,
+        "exams": 2
+      },
+      "isActive": true,
+      "startDate": "2024-01-15",
+      "endDate": "2024-04-15"
+    },
+    {
+      "id": "cst8504",
+      "name": "人工智能技术",
+      "nameEn": "AI Techniques",
+      "code": "CST8504",
+      "description": "人工智能核心技术和应用",
+      "descriptionEn": "Core AI Technologies and Applications",
+      "instructor": "Dr. Brown",
+      "credits": 3,
+      "duration": "12 weeks",
+      "level": "graduate",
+      "prerequisites": ["CST8502", "CST8503"],
+      "topics": [
+        "Python编程",
+        "NumPy和Pandas",
+        "数据可视化",
+        "算法优化",
+        "AI应用开发"
+      ],
+      "topicsEn": [
+        "Python Programming",
+        "NumPy and Pandas",
+        "Data Visualization",
+        "Algorithm Optimization",
+        "AI Application Development"
+      ],
+      "resources": {
+        "lectures": 12,
+        "labs": 8,
+        "assignments": 4,
+        "exams": 2
+      },
+      "isActive": true,
+      "startDate": "2024-01-15",
+      "endDate": "2024-04-15"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "title": "Exam Center",
+  "examPaper": {
+    "timeRemaining": "Time Remaining",
+    "question": "Question",
+    "of": "of",
+    "answered": "Answered",
+    "submit": "Submit Exam",
+    "confirmSubmit": "Are you sure you want to submit the exam? This action cannot be undone.",
+    "timeUp": "Time's up!",
+    "warning": "Warning: Only {time} remaining!"
+  },
+  "actions": {
+    "start": "Start Exam",
+    "submit": "Submit",
+    "pause": "Pause",
+    "resume": "Resume"
+  },
+  "status": {
+    "notStarted": "Not Started",
+    "inProgress": "In Progress",
+    "completed": "Completed",
+    "timeUp": "Time Up"
+  },
+  "results": {
+    "score": "Score",
+    "correct": "Correct",
+    "incorrect": "Incorrect",
+    "timeSpent": "Time Spent",
+    "passed": "Passed",
+    "failed": "Failed"
+  }
+}

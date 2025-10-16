@@ -1,0 +1,14 @@
+{
+  "title": "多课程学习考试系统",
+  "subtitle": "Algonquin College 在线学习平台",
+  "enterName": "请输入您的姓名",
+  "namePlaceholder": "请输入您的姓名",
+  "loginButton": "开始学习",
+  "welcome": "欢迎使用我们的学习平台！",
+  "username": "用户名",
+  "password": "密码",
+  "rememberMe": "记住我",
+  "forgotPassword": "忘记密码？",
+  "registerLink": "没有账户？点击这里注册",
+  "loginError": "用户名或密码错误"
+}
