@@ -136,13 +136,13 @@ class DataService {
       this.getExamConfig(courseId),
     ]);
 
-    const examConfig = examConfigData.exams.find((exam) => exam.id === examId);
+    const examConfig = examConfigData?.exams?.find((exam) => exam.id === examId);
     if (!examConfig) {
       throw new Error(`Exam ${examId} not found for course ${courseId}`);
     }
 
     return this.selectQuestions(
-      questionsData.questions,
+      questionsData?.questions || [],
       examConfig.questionSelection
     );
   }
@@ -208,6 +208,11 @@ class DataService {
    * @returns {Array} 选中的题目
    */
   selectQuestions(questions, selection) {
+    if (!questions || !Array.isArray(questions)) {
+      console.warn('selectQuestions: questions is not an array:', questions);
+      return [];
+    }
+
     let filteredQuestions = questions;
 
     // 应用过滤器

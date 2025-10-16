@@ -92,7 +92,7 @@ const QuestionCard = ({
 
   const renderMultipleChoice = () => (
     <div className="answer-options">
-      {question.options.map((option, index) => (
+      {question.options && question.options.map((option, index) => (
         <label key={index} className="option-label">
           <input
             type="radio"
@@ -111,7 +111,7 @@ const QuestionCard = ({
   const renderFillBlank = () => (
     <div className="fill-blank">
       <p className="question-text">
-        {question.text.split("___").map((part, index) => (
+        {question.text && question.text.split("___").map((part, index) => (
           <span key={index}>
             {part}
             {index < question.text.split("___").length - 1 && (
@@ -145,7 +145,7 @@ const QuestionCard = ({
 
   const renderTrueFalse = () => (
     <div className="answer-options">
-      {question.options.map((option, index) => (
+      {question.options && question.options.map((option, index) => (
         <label key={index} className="option-label">
           <input
             type="radio"
