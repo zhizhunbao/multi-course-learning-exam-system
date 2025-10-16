@@ -539,7 +539,7 @@ const ExamModule = () => {
           {/* 选择题 */}
           {currentQuestion.type === "multiple-choice" && (
             <div className="space-y-3">
-              {currentQuestion.options.map((option, index) => (
+              {currentQuestion.options && currentQuestion.options.map((option, index) => (
                 <label
                   key={index}
                   className="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"
@@ -561,7 +561,7 @@ const ExamModule = () => {
           {/* 判断题 */}
           {currentQuestion.type === "true-false" && (
             <div className="space-y-3">
-              {currentQuestion.options.map((option, index) => (
+              {currentQuestion.options && currentQuestion.options.map((option, index) => (
                 <label
                   key={index}
                   className="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"

@@ -92,40 +92,42 @@ const QuestionCard = ({
 
   const renderMultipleChoice = () => (
     <div className="answer-options">
-      {question.options && question.options.map((option, index) => (
-        <label key={index} className="option-label">
-          <input
-            type="radio"
-            name="answer"
-            value={option}
-            checked={selectedAnswer === option}
-            onChange={(e) => handleAnswerSelect(e.target.value)}
-            disabled={showResult}
-          />
-          <span className="option-text">{option}</span>
-        </label>
-      ))}
+      {question.options &&
+        question.options.map((option, index) => (
+          <label key={index} className="option-label">
+            <input
+              type="radio"
+              name="answer"
+              value={option}
+              checked={selectedAnswer === option}
+              onChange={(e) => handleAnswerSelect(e.target.value)}
+              disabled={showResult}
+            />
+            <span className="option-text">{option}</span>
+          </label>
+        ))}
     </div>
   );
 
   const renderFillBlank = () => (
     <div className="fill-blank">
       <p className="question-text">
-        {question.text && question.text.split("___").map((part, index) => (
-          <span key={index}>
-            {part}
-            {index < question.text.split("___").length - 1 && (
-              <input
-                type="text"
-                value={selectedAnswer || ""}
-                onChange={(e) => handleAnswerSelect(e.target.value)}
-                disabled={showResult}
-                className="blank-input"
-                placeholder={t("placeholders.yourAnswer")}
-              />
-            )}
-          </span>
-        ))}
+        {question.text &&
+          question.text.split("___").map((part, index) => (
+            <span key={index}>
+              {part}
+              {index < question.text.split("___").length - 1 && (
+                <input
+                  type="text"
+                  value={selectedAnswer || ""}
+                  onChange={(e) => handleAnswerSelect(e.target.value)}
+                  disabled={showResult}
+                  className="blank-input"
+                  placeholder={t("placeholders.yourAnswer")}
+                />
+              )}
+            </span>
+          ))}
       </p>
     </div>
   );
@@ -145,19 +147,20 @@ const QuestionCard = ({
 
   const renderTrueFalse = () => (
     <div className="answer-options">
-      {question.options && question.options.map((option, index) => (
-        <label key={index} className="option-label">
-          <input
-            type="radio"
-            name="answer"
-            value={index}
-            checked={selectedAnswer === index}
-            onChange={(e) => handleAnswerSelect(parseInt(e.target.value))}
-            disabled={showResult}
-          />
-          <span className="option-text">{option}</span>
-        </label>
-      ))}
+      {question.options &&
+        question.options.map((option, index) => (
+          <label key={index} className="option-label">
+            <input
+              type="radio"
+              name="answer"
+              value={index}
+              checked={selectedAnswer === index}
+              onChange={(e) => handleAnswerSelect(parseInt(e.target.value))}
+              disabled={showResult}
+            />
+            <span className="option-text">{option}</span>
+          </label>
+        ))}
     </div>
   );
 
