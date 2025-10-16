@@ -3,9 +3,19 @@
  * 提供题目和考试数据的统一访问接口
  */
 
+// 导入所有数据文件
+import cst8503QuestionsZh from '../data/questions/cst8503-zh.json';
+import cst8503QuestionsEn from '../data/questions/cst8503-en.json';
+
 class DataService {
   constructor() {
     this.cache = new Map();
+    
+    // 预加载数据
+    this.questionData = {
+      'cst8503-zh': cst8503QuestionsZh,
+      'cst8503-en': cst8503QuestionsEn,
+    };
   }
 
   /**
@@ -22,38 +32,26 @@ class DataService {
     }
 
     try {
-      // 尝试加载语言特定的文件
-      const fileName =
-        language === "zh" ? `${courseId}-zh.json` : `${courseId}-en.json`;
-      const response = await fetch(
-        `/src/modules/shared/data/questions/${fileName}`
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      this.cache.set(cacheKey, data);
-      return data;
-    } catch (error) {
-      // 如果语言特定文件不存在，尝试加载原始文件
-      try {
-        const response = await fetch(
-          `/src/modules/shared/data/questions/${courseId}.json`
-        );
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
+      // 从预加载的数据中获取
+      const dataKey = `${courseId}-${language}`;
+      if (this.questionData[dataKey]) {
+        const data = this.questionData[dataKey];
         this.cache.set(cacheKey, data);
         return data;
-      } catch (fallbackError) {
-        console.error("Error loading questions:", error);
-        throw error;
       }
+      
+      // 如果预加载数据中没有，尝试其他语言
+      const fallbackKey = `${courseId}-${language === 'zh' ? 'en' : 'zh'}`;
+      if (this.questionData[fallbackKey]) {
+        const data = this.questionData[fallbackKey];
+        this.cache.set(cacheKey, data);
+        return data;
+      }
+      
+      throw new Error(`No questions found for course ${courseId} in language ${language}`);
+    } catch (error) {
+      console.error("Error loading questions:", error);
+      throw error;
     }
   }
 
@@ -69,22 +67,24 @@ class DataService {
       return this.cache.get(cacheKey);
     }
 
-    try {
-      const response = await fetch(
-        `/src/modules/shared/data/exams/${courseId}.json`
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      this.cache.set(cacheKey, data);
-      return data;
-    } catch (error) {
-      console.error("Error loading exam config:", error);
-      throw error;
-    }
+    // 暂时返回默认考试配置
+    const defaultConfig = {
+      exams: [
+        {
+          id: 'midterm',
+          title: 'Midterm Exam',
+          description: 'Midterm examination',
+          questionSelection: {
+            strategy: 'random',
+            count: 20,
+            filters: {}
+          }
+        }
+      ]
+    };
+    
+    this.cache.set(cacheKey, defaultConfig);
+    return defaultConfig;
   }
 
   /**
@@ -123,22 +123,19 @@ class DataService {
       return this.cache.get(cacheKey);
     }
 
-    try {
-      const response = await fetch(
-        `/src/modules/shared/data/content/${courseId}.json`
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      this.cache.set(cacheKey, data);
-      return data;
-    } catch (error) {
-      console.error("Error loading course content:", error);
-      throw error;
-    }
+    // 暂时返回默认课程内容
+    const defaultContent = {
+      modules: [
+        {
+          id: 'module1',
+          title: 'Introduction',
+          content: 'Course introduction content...'
+        }
+      ]
+    };
+    
+    this.cache.set(cacheKey, defaultContent);
+    return defaultContent;
   }
 
   /**
@@ -153,22 +150,19 @@ class DataService {
       return this.cache.get(cacheKey);
     }
 
-    try {
-      const response = await fetch(
-        `/src/modules/shared/data/experiments/${courseId}.json`
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      this.cache.set(cacheKey, data);
-      return data;
-    } catch (error) {
-      console.error("Error loading experiments:", error);
-      throw error;
-    }
+    // 暂时返回默认实验数据
+    const defaultExperiments = {
+      experiments: [
+        {
+          id: 'exp1',
+          title: 'Basic Experiment',
+          description: 'Basic experiment description...'
+        }
+      ]
+    };
+    
+    this.cache.set(cacheKey, defaultExperiments);
+    return defaultExperiments;
   }
 
   /**
