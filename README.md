@@ -169,6 +169,10 @@ npm run preview
 - GitHub Issues: [项目 Issues 页面]
 - 邮箱: [联系邮箱]
 
+## 更新日志
+
+- **2024-12-19**: 修复了 ExamModule 中 undefined options 导致的 map 错误，提升了系统稳定性
+
 ---
 
 © 2024 亚岗昆学院. All rights reserved.
