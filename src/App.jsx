@@ -14,6 +14,7 @@ function App() {
   return (
     <AppProvider>
       <Router
+        basename="/multi-course-learning-exam-system"
         future={{
           v7_startTransition: true,
           v7_relativeSplatPath: true,
