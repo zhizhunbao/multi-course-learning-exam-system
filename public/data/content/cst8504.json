@@ -1,0 +1,82 @@
+{
+  "courseId": "cst8504",
+  "title": "人工智能技术",
+  "description": "人工智能核心技术和应用",
+  "lastUpdated": "2025-10-16",
+  "chapters": [
+    {
+      "id": 1,
+      "title": "第一章：Python编程基础",
+      "order": 1,
+      "lessons": [
+        {
+          "id": 1,
+          "title": "Python环境搭建",
+          "type": "text",
+          "duration": "15分钟",
+          "order": 1,
+          "content": "学习如何安装和配置Python开发环境，包括Anaconda和Jupyter Notebook的使用。",
+          "resources": [
+            {
+              "name": "Python环境配置",
+              "type": "text",
+              "url": "https://example.com/python-setup"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "Python基础语法",
+          "type": "text",
+          "duration": "25分钟",
+          "order": 2,
+          "content": "复习Python的基本语法，包括变量、数据类型、控制结构和函数。",
+          "resources": [
+            {
+              "name": "Python语法速览",
+              "type": "video",
+              "url": "https://example.com/python-syntax"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "第二章：NumPy和Pandas",
+      "order": 2,
+      "lessons": [
+        {
+          "id": 3,
+          "title": "NumPy数组操作",
+          "type": "text",
+          "duration": "30分钟",
+          "order": 1,
+          "content": "学习NumPy库的基本用法，包括数组创建、索引、切片和数学运算。",
+          "resources": [
+            {
+              "name": "NumPy教程",
+              "type": "text",
+              "url": "https://example.com/numpy-tutorial"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "title": "Pandas数据处理",
+          "type": "text",
+          "duration": "35分钟",
+          "order": 2,
+          "content": "学习Pandas库的使用，包括DataFrame和Series的操作、数据清洗和分析。",
+          "resources": [
+            {
+              "name": "Pandas数据处理",
+              "type": "video",
+              "url": "https://example.com/pandas-tutorial"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

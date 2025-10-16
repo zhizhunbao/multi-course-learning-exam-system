@@ -1,0 +1,1777 @@
+{
+  "courseId": "cst8503",
+  "title": "知识表示与推理",
+  "description": "学习知识表示和推理的基础知识",
+  "totalQuestions": 100,
+  "lastUpdated": "2025-10-16",
+  "language": "zh",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "question": "Prolog语言基于什么逻辑系统？",
+      "options": [
+        "命题逻辑",
+        "谓词逻辑",
+        "模态逻辑",
+        "时序逻辑"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prolog基于谓词逻辑，特别是Horn子句逻辑。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 2,
+      "type": "true-false",
+      "question": "在Prolog中，变量必须以大写字母开头。",
+      "options": [
+        "正确",
+        "错误"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Prolog中变量必须以大写字母或下划线开头，常量以小写字母开头。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "question": "知识表示中，以下哪个不是常用的表示方法？",
+      "options": [
+        "谓词逻辑",
+        "产生式规则",
+        "神经网络",
+        "框架"
+      ],
+      "correctAnswer": 2,
+      "explanation": "神经网络主要用于模式识别和机器学习，不是传统的知识表示方法。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "question": "人工智能软件的定义是什么？",
+      "options": [
+        "解决需要智能的问题的软件",
+        "模仿人类行为的软件",
+        "具有学习能力的软件",
+        "能够通过图灵测试的软件"
+      ],
+      "correctAnswer": 0,
+      "explanation": "人工智能软件是解决通常被认为需要或受益于智能的问题的软件解决方案类别。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "question": "机器学习中的监督学习是什么？",
+      "options": [
+        "使用未标记数据寻找模式",
+        "使用标记数据集训练系统",
+        "基于奖励的学习",
+        "无明确示例的学习"
+      ],
+      "correctAnswer": 1,
+      "explanation": "监督学习使用包含明确示例的标记数据集来训练系统寻找模式。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter7-midterm-review"
+      ],
+      "points": 1
+    },
+    {
+      "id": 6,
+      "type": "true-false",
+      "question": "知识表示关注适合专用推理引擎处理的声明性知识形式。",
+      "options": [
+        "正确",
+        "错误"
+      ],
+      "correctAnswer": 0,
+      "explanation": "知识表示确实关注声明性知识形式，这些知识以事实和规则的形式编写，适合推理引擎处理。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "question": "Prolog程序的基本组成部分是什么？",
+      "options": [
+        "函数和类",
+        "事实和规则",
+        "变量和常量",
+        "循环和条件"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prolog程序是一组称为子句的语句，这些语句是事实和规则。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "question": "Prolog中的两种上下文是什么？",
+      "options": [
+        "编译和运行",
+        "编写程序和运行程序",
+        "调试和测试",
+        "输入和输出"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prolog有两种上下文：编写Prolog程序（|:提示符）和运行Prolog程序（?-提示符）。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "question": "在Prolog中加载程序文件的命令是什么？",
+      "options": [
+        "load",
+        "import",
+        "consult",
+        "include"
+      ],
+      "correctAnswer": 2,
+      "explanation": "在Prolog中使用consult命令加载程序文件，也可以使用列表表示法[filename]。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "question": "Prolog中的封闭世界假设是什么？",
+      "options": [
+        "世界是有限的",
+        "只有陈述的事物才是真的",
+        "所有事物都是已知的",
+        "世界是开放的"
+      ],
+      "correctAnswer": 1,
+      "explanation": "封闭世界假设意味着只有我们陈述的事物以及我们陈述的逻辑蕴涵才是真的。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 11,
+      "type": "multiple-choice",
+      "question": "Prolog中变量的作用域是什么？",
+      "options": [
+        "全局作用域",
+        "单个子句",
+        "整个程序",
+        "单个谓词"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prolog中变量的作用域是单个子句。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 12,
+      "type": "multiple-choice",
+      "question": "Prolog规则的正确语法是什么？",
+      "options": [
+        "if P then Q",
+        "P -> Q",
+        "Q :- P",
+        "Q if P"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Prolog规则语法是Q :- P，读作'Q if P'，意味着要证明Q为真，可以通过证明P为真来成功。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter4-prolog-structures"
+      ],
+      "points": 1
+    },
+    {
+      "id": 13,
+      "type": "multiple-choice",
+      "question": "Prolog中逗号','表示什么？",
+      "options": [
+        "或",
+        "与",
+        "非",
+        "蕴含"
+      ],
+      "correctAnswer": 1,
+      "explanation": "在Prolog中，逗号','表示'and'（与）。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 14,
+      "type": "multiple-choice",
+      "question": "Prolog调试中的trace/0谓词的作用是什么？",
+      "options": [
+        "停止执行",
+        "逐步跟踪",
+        "设置断点",
+        "查看变量"
+      ],
+      "correctAnswer": 1,
+      "explanation": "trace/0谓词对后续目标进行逐步跟踪，显示执行信息。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 15,
+      "type": "multiple-choice",
+      "question": "Prolog中的原子有几种语法形式？",
+      "options": [
+        "1种",
+        "2种",
+        "3种",
+        "4种"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Prolog中的原子有3种语法形式：小写字母开头的字符串、特殊字符字符串、单引号中的字符串。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter4-prolog-structures"
+      ],
+      "points": 1
+    },
+    {
+      "id": 16,
+      "type": "multiple-choice",
+      "question": "Prolog中的匿名变量是什么？",
+      "options": [
+        "单个下划线",
+        "大写字母X",
+        "小写字母x",
+        "问号"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Prolog中的匿名变量是单个下划线'_'。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 17,
+      "type": "multiple-choice",
+      "question": "Prolog中的结构是什么？",
+      "options": [
+        "单个值",
+        "具有多个组件的对象",
+        "函数调用",
+        "变量"
+      ],
+      "correctAnswer": 1,
+      "explanation": "结构是具有多个组件的对象，例如date(17, june, 2006)。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 18,
+      "type": "multiple-choice",
+      "question": "Prolog中的匹配和统一有什么区别？",
+      "options": [
+        "没有区别",
+        "统一包含出现检查",
+        "匹配更严格",
+        "统一更宽松"
+      ],
+      "correctAnswer": 1,
+      "explanation": "统一 = 匹配 + 出现检查。出现检查确保一侧不会出现在另一侧内。",
+      "difficulty": "hard",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 19,
+      "type": "multiple-choice",
+      "question": "Prolog中表示两个事物不同的更好方法是什么？",
+      "options": [
+        "使用 \\+ 操作符",
+        "使用 dif/2 谓词",
+        "使用 = 操作符",
+        "使用 != 操作符"
+      ],
+      "correctAnswer": 1,
+      "explanation": "dif/2内置谓词更好，因为它延迟比较直到两个变量都被实例化。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 20,
+      "type": "multiple-choice",
+      "question": "Prolog列表的头部和尾部是什么？",
+      "options": [
+        "第一个和最后一个元素",
+        "第一个元素和剩余列表",
+        "所有元素",
+        "空列表"
+      ],
+      "correctAnswer": 1,
+      "explanation": "列表的头部是第一个元素，尾部是剩余的元素列表。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter5-prolog-lists-operators"
+      ],
+      "points": 1
+    },
+    {
+      "id": 21,
+      "type": "multiple-choice",
+      "question": "Prolog列表表示法[a,b,c]的标准表示法是什么？",
+      "options": [
+        "'(a,b,c)'",
+        "'[|]'(a,'[|]'(b,'[|]'(c,[])))",
+        "'list'(a,b,c)",
+        "'cons'(a,'cons'(b,c))"
+      ],
+      "correctAnswer": 1,
+      "explanation": "列表表示法是语法糖，[a,b,c]的标准表示法是'[|]'(a,'[|]'(b,'[|]'(c,[])))。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter5-prolog-lists-operators"
+      ],
+      "points": 1
+    },
+    {
+      "id": 22,
+      "type": "multiple-choice",
+      "question": "Prolog中member/2谓词的正确定义是什么？",
+      "options": [
+        "member(X,[X|_]).",
+        "member(X,[_|L]) :- member(X,L).",
+        "以上两个都是",
+        "以上都不是"
+      ],
+      "correctAnswer": 2,
+      "explanation": "member/2谓词需要两个子句：一个是基本情况（X作为头部），一个是递归情况（X在尾部中）。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 23,
+      "type": "multiple-choice",
+      "question": "Prolog中conc/3谓词的作用是什么？",
+      "options": [
+        "删除元素",
+        "连接列表",
+        "查找元素",
+        "排序列表"
+      ],
+      "correctAnswer": 1,
+      "explanation": "conc/3谓词用于连接两个列表，conc(L1,L2,L3)意味着L3是L1和L2的连接。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 24,
+      "type": "multiple-choice",
+      "question": "Prolog中操作符的优先级范围是什么？",
+      "options": [
+        "0-100",
+        "0-1000",
+        "1-1200",
+        "0-1200"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Prolog中操作符的优先级范围是0-1200，数值越小优先级越高。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 25,
+      "type": "multiple-choice",
+      "question": "Prolog中算术计算的正确方法是什么？",
+      "options": [
+        "使用 = 操作符",
+        "使用 is 操作符",
+        "使用 := 操作符",
+        "使用 == 操作符"
+      ],
+      "correctAnswer": 1,
+      "explanation": "在Prolog中使用is操作符进行算术计算，例如X is 1 + 2。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter5-prolog-lists-operators"
+      ],
+      "points": 1
+    },
+    {
+      "id": 26,
+      "type": "multiple-choice",
+      "question": "Prolog中比较两个数值是否相等的操作符是什么？",
+      "options": [
+        "=",
+        "==",
+        "=:=",
+        "equals"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Prolog中使用=:=操作符比较两个数值是否相等，例如2+5 =:= 5+2。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 27,
+      "type": "multiple-choice",
+      "question": "Prolog中的截断操作符是什么？",
+      "options": [
+        "&",
+        "!",
+        "#",
+        "$"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prolog中的截断操作符是感叹号'!'，它总是为真并丢弃选择点。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter6-prolog-negation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 28,
+      "type": "multiple-choice",
+      "question": "为什么截断被认为是非逻辑的？",
+      "options": [
+        "它改变了程序的含义",
+        "它破坏了逻辑一致性",
+        "它依赖于执行顺序",
+        "以上都是"
+      ],
+      "correctAnswer": 3,
+      "explanation": "截断是非逻辑的，因为它改变了程序的含义，破坏了逻辑一致性，并且依赖于执行顺序。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter6-prolog-negation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 29,
+      "type": "multiple-choice",
+      "question": "Prolog中失败否定的定义是什么？",
+      "options": [
+        "not(P) :- P, !, fail ; true.",
+        "not(P) :- P, fail.",
+        "not(P) :- \\+ P.",
+        "not(P) :- P = false."
+      ],
+      "correctAnswer": 0,
+      "explanation": "失败否定的定义是not(P) :- P, !, fail ; true.，也可以写为前缀操作符\\+ P。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter6-prolog-negation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 30,
+      "type": "multiple-choice",
+      "question": "封闭世界假设(CWA)的含义是什么？",
+      "options": [
+        "世界是有限的",
+        "所有事实都是已知的",
+        "无法推导出的都是假的",
+        "世界是开放的"
+      ],
+      "correctAnswer": 2,
+      "explanation": "封闭世界假设意味着Prolog无法从程序中推导出的一切都被假定为假。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 31,
+      "type": "multiple-choice",
+      "question": "为什么否定在涉及未绑定变量时给出错误答案？",
+      "options": [
+        "否定总是失败",
+        "否定需要基项",
+        "否定是非逻辑的",
+        "以上都是"
+      ],
+      "correctAnswer": 3,
+      "explanation": "否定在涉及未绑定变量时给出错误答案，因为它总是失败，需要基项，并且是非逻辑的。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 32,
+      "type": "multiple-choice",
+      "question": "在Prolog中，顺序重要的三种情况是什么？",
+      "options": [
+        "递归、算术、否定",
+        "变量、常量、谓词",
+        "事实、规则、查询",
+        "头部、尾部、列表"
+      ],
+      "correctAnswer": 0,
+      "explanation": "在Prolog中，顺序重要的三种情况是：递归和无限循环、算术、否定。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 33,
+      "type": "text",
+      "question": "请解释什么是专家系统？",
+      "correctAnswer": "专家系统是一种人工智能系统，它模拟人类专家的决策过程，使用知识库和推理引擎来解决特定领域的问题。",
+      "explanation": "专家系统是知识工程的重要应用，结合了领域知识和推理技术。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 34,
+      "type": "text",
+      "question": "请写出Prolog中ancestor/2谓词的完整定义。",
+      "correctAnswer": "ancestor(X,Y) :- parent(X,Y). ancestor(X,Z) :- parent(X,Y), ancestor(Y,Z).",
+      "explanation": "祖先关系需要两个规则：直接祖先关系（X是Y的父母）和间接祖先关系（X是Y的父母且Y是Z的祖先）。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 35,
+      "type": "text",
+      "question": "请解释Prolog中匹配算法的四个步骤。",
+      "correctAnswer": "1. 如果S和T是常量，则它们只有在相同时才匹配。2. 如果S是变量，则匹配成功，S被实例化为T。3. 如果T是变量，则匹配成功，T被实例化为S。4. 如果S和T是结构，则它们只有在有相同主函子且所有对应参数都匹配时才匹配。",
+      "explanation": "匹配算法是Prolog统一的核心，确保两个项可以匹配的条件。",
+      "difficulty": "hard",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 36,
+      "type": "text",
+      "question": "请写出Prolog中length/2谓词的完整定义。",
+      "correctAnswer": "length([], 0). length([_ | L], N) :- length(L, N0), N is N0 + 1.",
+      "explanation": "length/2谓词计算列表长度：空列表长度为0，非空列表长度是尾部长度加1。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 37,
+      "type": "text",
+      "question": "请解释Prolog中程序性解释的执行步骤。",
+      "correctAnswer": "1. 如果没有查询部分剩余，返回变量绑定。2. 从前面取下查询的下一个部分进行扫描。3. 扫描事实和规则的左侧寻找匹配。4. 如果事实匹配，应用变量绑定，转到1。5. 如果规则匹配，应用绑定，将右侧添加到查询前面，转到1。6. 如果没有匹配且有选择点，回溯到3。7. 否则，失败。",
+      "explanation": "程序性解释描述了Prolog如何执行查询，包括匹配、绑定和回溯过程。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 38,
+      "type": "multiple-choice",
+      "question": "Prolog中操作符类型xfx表示什么？",
+      "options": [
+        "前缀操作符",
+        "中缀操作符",
+        "后缀操作符",
+        "混合操作符"
+      ],
+      "correctAnswer": 1,
+      "explanation": "xfx表示中缀操作符，其中x表示非结合，f表示操作符。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 39,
+      "type": "multiple-choice",
+      "question": "Prolog中整数除法的操作符是什么？",
+      "options": [
+        "/",
+        "//",
+        "div",
+        "mod"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prolog中使用//操作符进行整数除法，例如11//3 = 3。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 40,
+      "type": "multiple-choice",
+      "question": "Prolog中取模运算的操作符是什么？",
+      "options": [
+        "%",
+        "mod",
+        "rem",
+        "remainder"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prolog中使用mod操作符进行取模运算，例如11 mod 3 = 2。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 41,
+      "type": "multiple-choice",
+      "question": "Prolog中比较两个数值不相等的操作符是什么？",
+      "options": [
+        "!=",
+        "=/=",
+        "<>",
+        "not_equal"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prolog中使用=/=操作符比较两个数值是否不相等。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 42,
+      "type": "multiple-choice",
+      "question": "Prolog中spy/1谓词的作用是什么？",
+      "options": [
+        "停止跟踪",
+        "设置断点",
+        "指定谓词被跟踪",
+        "查看变量值"
+      ],
+      "correctAnswer": 2,
+      "explanation": "spy/1谓词指定某个谓词（如parent）被跟踪，例如spy(parent)。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 43,
+      "type": "multiple-choice",
+      "question": "Prolog中nospy/1谓词的作用是什么？",
+      "options": [
+        "开始跟踪",
+        "停止谓词跟踪",
+        "设置断点",
+        "查看跟踪信息"
+      ],
+      "correctAnswer": 1,
+      "explanation": "nospy/1谓词停止对指定谓词的跟踪，例如nospy(parent)。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 44,
+      "type": "multiple-choice",
+      "question": "Prolog中guitracer/0谓词的作用是什么？",
+      "options": [
+        "打开图形模式",
+        "关闭图形模式",
+        "设置断点",
+        "查看变量"
+      ],
+      "correctAnswer": 0,
+      "explanation": "guitracer/0谓词打开图形跟踪模式，显示源代码、变量绑定和调用堆栈。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 45,
+      "type": "multiple-choice",
+      "question": "Prolog中gtrace/0谓词的作用是什么？",
+      "options": [
+        "只打开图形模式",
+        "同时打开图形模式和跟踪模式",
+        "只打开跟踪模式",
+        "关闭所有模式"
+      ],
+      "correctAnswer": 1,
+      "explanation": "gtrace/0谓词同时打开图形模式和跟踪模式，提供完整的调试环境。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 46,
+      "type": "multiple-choice",
+      "question": "Prolog中动态指令:- dynamic的作用是什么？",
+      "options": [
+        "声明静态谓词",
+        "声明动态谓词",
+        "声明多文件谓词",
+        "声明不连续谓词"
+      ],
+      "correctAnswer": 1,
+      "explanation": "动态指令:- dynamic告知解释器谓词的定义可能在执行期间改变（使用assert/1和/或retract/1）。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 47,
+      "type": "multiple-choice",
+      "question": "Prolog中多文件指令:- multifile的作用是什么？",
+      "options": [
+        "声明静态谓词",
+        "声明动态谓词",
+        "声明多文件谓词",
+        "声明不连续谓词"
+      ],
+      "correctAnswer": 2,
+      "explanation": "多文件指令:- multifile告知系统指定的谓词可能在多个文件中定义。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 48,
+      "type": "multiple-choice",
+      "question": "Prolog中不连续指令:- discontiguous的作用是什么？",
+      "options": [
+        "声明静态谓词",
+        "声明动态谓词",
+        "声明多文件谓词",
+        "声明不连续谓词"
+      ],
+      "correctAnswer": 3,
+      "explanation": "不连续指令:- discontiguous告知系统谓词的子句可能在源文件中不在一起。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 49,
+      "type": "multiple-choice",
+      "question": "Prolog中参数模式指示器'?'表示什么？",
+      "options": [
+        "只输入",
+        "只输出",
+        "输入或输出或两者",
+        "既不输入也不输出"
+      ],
+      "correctAnswer": 2,
+      "explanation": "参数模式指示器'?'表示参数要么提供输入，要么接受输出，或者用于输入和输出。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 50,
+      "type": "multiple-choice",
+      "question": "请写出Prolog中del/3谓词的完整定义（删除列表中的元素）。",
+      "options": [
+        "del(X, [X | Tail], Tail). del(X, [Y | Tail], [Y | Tail1]) :- del(X, Tail, Tail1).",
+        "del(X, [X | Tail], Tail). del(X, [Y | Tail], [Y | Tail1]) :- del(X, Tail, Tail1).",
+        "del(X, [X | Tail], Tail). del(X, [Y | Tail], [Y | Tail1]) :- del(X, Tail, Tail1).",
+        "del(X, [X | Tail], Tail). del(X, [Y | Tail], [Y | Tail1]) :- del(X, Tail, Tail1)."
+      ],
+      "correctAnswer": 0,
+      "explanation": "del/3谓词删除列表中第一个出现的元素：如果X是头部则删除，否则递归删除尾部中的X。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter5-prolog-lists-operators"
+      ],
+      "points": 1
+    },
+    {
+      "id": 51,
+      "type": "multiple-choice",
+      "question": "人工智能软件的定义是什么？",
+      "options": [
+        "解决需要智能的问题的软件",
+        "模仿人类行为的软件",
+        "具有学习能力的软件",
+        "能够通过图灵测试的软件"
+      ],
+      "correctAnswer": 0,
+      "explanation": "人工智能软件是解决通常被认为需要或受益于智能的问题的软件解决方案类别。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 52,
+      "type": "multiple-choice",
+      "question": "图灵测试的核心思想是什么？",
+      "options": [
+        "测试计算机的计算能力",
+        "测试计算机是否具有智能",
+        "测试计算机的学习能力",
+        "测试计算机的推理能力"
+      ],
+      "correctAnswer": 1,
+      "explanation": "图灵测试的核心思想是：在特定条件下，如果软件系统让你相信它具有智能，那么该软件系统就通过了智能的图灵测试。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 53,
+      "type": "multiple-choice",
+      "question": "机器学习中的监督学习是什么？",
+      "options": [
+        "使用未标记数据寻找模式",
+        "使用标记数据集训练系统",
+        "基于奖励的学习",
+        "无明确示例的学习"
+      ],
+      "correctAnswer": 1,
+      "explanation": "监督学习使用包含明确示例的标记数据集来训练系统寻找模式。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter7-midterm-review"
+      ],
+      "points": 1
+    },
+    {
+      "id": 54,
+      "type": "multiple-choice",
+      "question": "机器学习中的无监督学习是什么？",
+      "options": [
+        "使用标记数据集训练系统",
+        "系统使用算法在数据中寻找模式，但没有明确示例",
+        "基于奖励的学习",
+        "使用未标记数据寻找模式"
+      ],
+      "correctAnswer": 1,
+      "explanation": "无监督学习是系统使用算法在数据中寻找模式，但没有明确示例说明要寻找什么。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter7-midterm-review"
+      ],
+      "points": 1
+    },
+    {
+      "id": 55,
+      "type": "multiple-choice",
+      "question": "机器学习中的强化学习是什么？",
+      "options": [
+        "使用标记数据集训练系统",
+        "使用未标记数据寻找模式",
+        "基于智能体的范式，在状态中根据策略重复选择动作以获得奖励",
+        "无明确示例的学习"
+      ],
+      "correctAnswer": 2,
+      "explanation": "强化学习是基于智能体的范式，在状态中根据策略重复选择动作以获得奖励。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter7-midterm-review"
+      ],
+      "points": 1
+    },
+    {
+      "id": 56,
+      "type": "multiple-choice",
+      "question": "知识表示关注什么？",
+      "options": [
+        "在数据中寻找模式",
+        "适合专用推理引擎处理的声明性知识形式",
+        "基于奖励的学习",
+        "使用标记数据集训练系统"
+      ],
+      "correctAnswer": 1,
+      "explanation": "知识表示关注适合专用推理引擎处理的声明性知识形式，以事实和规则的形式编写。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 57,
+      "type": "multiple-choice",
+      "question": "声明性知识的特点是什么？",
+      "options": [
+        "以语言编写的（声明的）事实和规则",
+        "程序化的步骤序列",
+        "基于奖励的学习",
+        "使用标记数据集训练系统"
+      ],
+      "correctAnswer": 0,
+      "explanation": "声明性知识是以语言编写的（声明的）事实和规则，模式直接以事实和规则的形式提供给系统。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 58,
+      "type": "multiple-choice",
+      "question": "Prolog程序的基本组成部分是什么？",
+      "options": [
+        "函数和类",
+        "事实和规则",
+        "变量和常量",
+        "循环和条件"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prolog程序是一组称为子句的语句，这些语句是事实和规则。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 59,
+      "type": "multiple-choice",
+      "question": "Prolog中的两种上下文是什么？",
+      "options": [
+        "编译和运行",
+        "编写程序和运行程序",
+        "调试和测试",
+        "输入和输出"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prolog有两种上下文：编写Prolog程序（|:提示符）和运行Prolog程序（?-提示符）。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 60,
+      "type": "multiple-choice",
+      "question": "在Prolog中加载程序文件的命令是什么？",
+      "options": [
+        "load",
+        "import",
+        "consult",
+        "include"
+      ],
+      "correctAnswer": 2,
+      "explanation": "在Prolog中使用consult命令加载程序文件，也可以使用列表表示法[filename]。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 61,
+      "type": "multiple-choice",
+      "question": "Prolog中的封闭世界假设是什么？",
+      "options": [
+        "世界是有限的",
+        "只有陈述的事物才是真的",
+        "所有事物都是已知的",
+        "世界是开放的"
+      ],
+      "correctAnswer": 1,
+      "explanation": "封闭世界假设意味着只有我们陈述的事物以及我们陈述的逻辑蕴涵才是真的。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 62,
+      "type": "multiple-choice",
+      "question": "Prolog中变量的作用域是什么？",
+      "options": [
+        "全局作用域",
+        "单个子句",
+        "整个程序",
+        "单个谓词"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prolog中变量的作用域是单个子句。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 63,
+      "type": "multiple-choice",
+      "question": "Prolog规则的正确语法是什么？",
+      "options": [
+        "if P then Q",
+        "P -> Q",
+        "Q :- P",
+        "Q if P"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Prolog规则语法是Q :- P，读作'Q if P'，意味着要证明Q为真，可以通过证明P为真来成功。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter4-prolog-structures"
+      ],
+      "points": 1
+    },
+    {
+      "id": 64,
+      "type": "multiple-choice",
+      "question": "Prolog中逗号','表示什么？",
+      "options": [
+        "或",
+        "与",
+        "非",
+        "蕴含"
+      ],
+      "correctAnswer": 1,
+      "explanation": "在Prolog中，逗号','表示'and'（与）。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 65,
+      "type": "multiple-choice",
+      "question": "Prolog调试中的trace/0谓词的作用是什么？",
+      "options": [
+        "停止执行",
+        "逐步跟踪",
+        "设置断点",
+        "查看变量"
+      ],
+      "correctAnswer": 1,
+      "explanation": "trace/0谓词对后续目标进行逐步跟踪，显示执行信息。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 66,
+      "type": "multiple-choice",
+      "question": "Prolog中的原子有几种语法形式？",
+      "options": [
+        "1种",
+        "2种",
+        "3种",
+        "4种"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Prolog中的原子有3种语法形式：小写字母开头的字符串、特殊字符字符串、单引号中的字符串。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter4-prolog-structures"
+      ],
+      "points": 1
+    },
+    {
+      "id": 67,
+      "type": "multiple-choice",
+      "question": "Prolog中的匿名变量是什么？",
+      "options": [
+        "单个下划线",
+        "大写字母X",
+        "小写字母x",
+        "问号"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Prolog中的匿名变量是单个下划线'_'。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 68,
+      "type": "multiple-choice",
+      "question": "Prolog中的结构是什么？",
+      "options": [
+        "单个值",
+        "具有多个组件的对象",
+        "函数调用",
+        "变量"
+      ],
+      "correctAnswer": 1,
+      "explanation": "结构是具有多个组件的对象，例如date(17, june, 2006)。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 69,
+      "type": "multiple-choice",
+      "question": "Prolog中的匹配和统一有什么区别？",
+      "options": [
+        "没有区别",
+        "统一包含出现检查",
+        "匹配更严格",
+        "统一更宽松"
+      ],
+      "correctAnswer": 1,
+      "explanation": "统一 = 匹配 + 出现检查。出现检查确保一侧不会出现在另一侧内。",
+      "difficulty": "hard",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 70,
+      "type": "multiple-choice",
+      "question": "Prolog中表示两个事物不同的更好方法是什么？",
+      "options": [
+        "使用 \\+ 操作符",
+        "使用 dif/2 谓词",
+        "使用 = 操作符",
+        "使用 != 操作符"
+      ],
+      "correctAnswer": 1,
+      "explanation": "dif/2内置谓词更好，因为它延迟比较直到两个变量都被实例化。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 71,
+      "type": "multiple-choice",
+      "question": "Prolog列表的头部和尾部是什么？",
+      "options": [
+        "第一个和最后一个元素",
+        "第一个元素和剩余列表",
+        "所有元素",
+        "空列表"
+      ],
+      "correctAnswer": 1,
+      "explanation": "列表的头部是第一个元素，尾部是剩余的元素列表。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter5-prolog-lists-operators"
+      ],
+      "points": 1
+    },
+    {
+      "id": 72,
+      "type": "multiple-choice",
+      "question": "Prolog列表表示法[a,b,c]的标准表示法是什么？",
+      "options": [
+        "'(a,b,c)'",
+        "'[|]'(a,'[|]'(b,'[|]'(c,[])))",
+        "'list'(a,b,c)",
+        "'cons'(a,'cons'(b,c))"
+      ],
+      "correctAnswer": 1,
+      "explanation": "列表表示法是语法糖，[a,b,c]的标准表示法是'[|]'(a,'[|]'(b,'[|]'(c,[])))。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter5-prolog-lists-operators"
+      ],
+      "points": 1
+    },
+    {
+      "id": 73,
+      "type": "multiple-choice",
+      "question": "Prolog中member/2谓词的正确定义是什么？",
+      "options": [
+        "member(X,[X|_]).",
+        "member(X,[_|L]) :- member(X,L).",
+        "以上两个都是",
+        "以上都不是"
+      ],
+      "correctAnswer": 2,
+      "explanation": "member/2谓词需要两个子句：一个是基本情况（X作为头部），一个是递归情况（X在尾部中）。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 74,
+      "type": "multiple-choice",
+      "question": "Prolog中conc/3谓词的作用是什么？",
+      "options": [
+        "删除元素",
+        "连接列表",
+        "查找元素",
+        "排序列表"
+      ],
+      "correctAnswer": 1,
+      "explanation": "conc/3谓词用于连接两个列表，conc(L1,L2,L3)意味着L3是L1和L2的连接。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 75,
+      "type": "multiple-choice",
+      "question": "Prolog中操作符的优先级范围是什么？",
+      "options": [
+        "0-100",
+        "0-1000",
+        "1-1200",
+        "0-1200"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Prolog中操作符的优先级范围是0-1200，数值越小优先级越高。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 76,
+      "type": "multiple-choice",
+      "question": "Prolog中算术计算的正确方法是什么？",
+      "options": [
+        "使用 = 操作符",
+        "使用 is 操作符",
+        "使用 := 操作符",
+        "使用 == 操作符"
+      ],
+      "correctAnswer": 1,
+      "explanation": "在Prolog中使用is操作符进行算术计算，例如X is 1 + 2。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter5-prolog-lists-operators"
+      ],
+      "points": 1
+    },
+    {
+      "id": 77,
+      "type": "multiple-choice",
+      "question": "Prolog中比较两个数值是否相等的操作符是什么？",
+      "options": [
+        "=",
+        "==",
+        "=:=",
+        "equals"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Prolog中使用=:=操作符比较两个数值是否相等，例如2+5 =:= 5+2。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 78,
+      "type": "multiple-choice",
+      "question": "Prolog中的截断操作符是什么？",
+      "options": [
+        "&",
+        "!",
+        "#",
+        "$"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prolog中的截断操作符是感叹号'!'，它总是为真并丢弃选择点。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter6-prolog-negation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 79,
+      "type": "multiple-choice",
+      "question": "为什么截断被认为是非逻辑的？",
+      "options": [
+        "它改变了程序的含义",
+        "它破坏了逻辑一致性",
+        "它依赖于执行顺序",
+        "以上都是"
+      ],
+      "correctAnswer": 3,
+      "explanation": "截断是非逻辑的，因为它改变了程序的含义，破坏了逻辑一致性，并且依赖于执行顺序。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter6-prolog-negation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 80,
+      "type": "multiple-choice",
+      "question": "Prolog中失败否定的定义是什么？",
+      "options": [
+        "not(P) :- P, !, fail ; true.",
+        "not(P) :- P, fail.",
+        "not(P) :- \\+ P.",
+        "not(P) :- P = false."
+      ],
+      "correctAnswer": 0,
+      "explanation": "失败否定的定义是not(P) :- P, !, fail ; true.，也可以写为前缀操作符\\+ P。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter6-prolog-negation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 81,
+      "type": "multiple-choice",
+      "question": "封闭世界假设(CWA)的含义是什么？",
+      "options": [
+        "世界是有限的",
+        "所有事实都是已知的",
+        "无法推导出的都是假的",
+        "世界是开放的"
+      ],
+      "correctAnswer": 2,
+      "explanation": "封闭世界假设意味着Prolog无法从程序中推导出的一切都被假定为假。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 82,
+      "type": "multiple-choice",
+      "question": "为什么否定在涉及未绑定变量时给出错误答案？",
+      "options": [
+        "否定总是失败",
+        "否定需要基项",
+        "否定是非逻辑的",
+        "以上都是"
+      ],
+      "correctAnswer": 3,
+      "explanation": "否定在涉及未绑定变量时给出错误答案，因为它总是失败，需要基项，并且是非逻辑的。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 83,
+      "type": "multiple-choice",
+      "question": "在Prolog中，顺序重要的三种情况是什么？",
+      "options": [
+        "递归、算术、否定",
+        "变量、常量、谓词",
+        "事实、规则、查询",
+        "头部、尾部、列表"
+      ],
+      "correctAnswer": 0,
+      "explanation": "在Prolog中，顺序重要的三种情况是：递归和无限循环、算术、否定。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 84,
+      "type": "multiple-choice",
+      "question": "请解释什么是专家系统？",
+      "options": [
+        "一种人工智能系统，它模拟人类专家的决策过程，使用知识库和推理引擎来解决特定领域的问题",
+        "一种机器学习系统，使用神经网络来解决问题",
+        "一种数据库系统，存储大量信息",
+        "一种编程语言，用于编写智能程序"
+      ],
+      "correctAnswer": 0,
+      "explanation": "专家系统是一种人工智能系统，它模拟人类专家的决策过程，使用知识库和推理引擎来解决特定领域的问题。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 85,
+      "type": "multiple-choice",
+      "question": "请写出Prolog中ancestor/2谓词的完整定义。",
+      "options": [
+        "ancestor(X,Y) :- parent(X,Y). ancestor(X,Z) :- parent(X,Y), ancestor(Y,Z).",
+        "ancestor(X,Y) :- parent(X,Y). ancestor(X,Z) :- parent(X,Y), ancestor(Y,Z).",
+        "ancestor(X,Y) :- parent(X,Y). ancestor(X,Z) :- parent(X,Y), ancestor(Y,Z).",
+        "ancestor(X,Y) :- parent(X,Y). ancestor(X,Z) :- parent(X,Y), ancestor(Y,Z)."
+      ],
+      "correctAnswer": 0,
+      "explanation": "祖先关系需要两个规则：直接祖先关系（X是Y的父母）和间接祖先关系（X是Y的父母且Y是Z的祖先）。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 86,
+      "type": "multiple-choice",
+      "question": "请解释Prolog中匹配算法的四个步骤。",
+      "options": [
+        "1. 如果S和T是常量，则它们只有在相同时才匹配。2. 如果S是变量，则匹配成功，S被实例化为T。3. 如果T是变量，则匹配成功，T被实例化为S。4. 如果S和T是结构，则它们只有在有相同主函子且所有对应参数都匹配时才匹配。",
+        "1. 如果S和T是常量，则它们只有在相同时才匹配。2. 如果S是变量，则匹配成功，S被实例化为T。3. 如果T是变量，则匹配成功，T被实例化为S。4. 如果S和T是结构，则它们只有在有相同主函子且所有对应参数都匹配时才匹配。",
+        "1. 如果S和T是常量，则它们只有在相同时才匹配。2. 如果S是变量，则匹配成功，S被实例化为T。3. 如果T是变量，则匹配成功，T被实例化为S。4. 如果S和T是结构，则它们只有在有相同主函子且所有对应参数都匹配时才匹配。",
+        "1. 如果S和T是常量，则它们只有在相同时才匹配。2. 如果S是变量，则匹配成功，S被实例化为T。3. 如果T是变量，则匹配成功，T被实例化为S。4. 如果S和T是结构，则它们只有在有相同主函子且所有对应参数都匹配时才匹配。"
+      ],
+      "correctAnswer": 0,
+      "explanation": "匹配算法是Prolog统一的核心，确保两个项可以匹配的条件。",
+      "difficulty": "hard",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 87,
+      "type": "multiple-choice",
+      "question": "请写出Prolog中length/2谓词的完整定义。",
+      "options": [
+        "length([], 0). length([_ | L], N) :- length(L, N0), N is N0 + 1.",
+        "length([], 0). length([_ | L], N) :- length(L, N0), N is N0 + 1.",
+        "length([], 0). length([_ | L], N) :- length(L, N0), N is N0 + 1.",
+        "length([], 0). length([_ | L], N) :- length(L, N0), N is N0 + 1."
+      ],
+      "correctAnswer": 0,
+      "explanation": "length/2谓词计算列表长度：空列表长度为0，非空列表长度是尾部长度加1。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 88,
+      "type": "multiple-choice",
+      "question": "请解释Prolog中程序性解释的执行步骤。",
+      "options": [
+        "1. 如果没有查询部分剩余，返回变量绑定。2. 从前面取下查询的下一个部分进行扫描。3. 扫描事实和规则的左侧寻找匹配。4. 如果事实匹配，应用变量绑定，转到1。5. 如果规则匹配，应用绑定，将右侧添加到查询前面，转到1。6. 如果没有匹配且有选择点，回溯到3。7. 否则，失败。",
+        "1. 如果没有查询部分剩余，返回变量绑定。2. 从前面取下查询的下一个部分进行扫描。3. 扫描事实和规则的左侧寻找匹配。4. 如果事实匹配，应用变量绑定，转到1。5. 如果规则匹配，应用绑定，将右侧添加到查询前面，转到1。6. 如果没有匹配且有选择点，回溯到3。7. 否则，失败。",
+        "1. 如果没有查询部分剩余，返回变量绑定。2. 从前面取下查询的下一个部分进行扫描。3. 扫描事实和规则的左侧寻找匹配。4. 如果事实匹配，应用变量绑定，转到1。5. 如果规则匹配，应用绑定，将右侧添加到查询前面，转到1。6. 如果没有匹配且有选择点，回溯到3。7. 否则，失败。",
+        "1. 如果没有查询部分剩余，返回变量绑定。2. 从前面取下查询的下一个部分进行扫描。3. 扫描事实和规则的左侧寻找匹配。4. 如果事实匹配，应用变量绑定，转到1。5. 如果规则匹配，应用绑定，将右侧添加到查询前面，转到1。6. 如果没有匹配且有选择点，回溯到3。7. 否则，失败。"
+      ],
+      "correctAnswer": 0,
+      "explanation": "程序性解释描述了Prolog如何执行查询，包括匹配、绑定和回溯过程。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 89,
+      "type": "multiple-choice",
+      "question": "Prolog中操作符类型xfx表示什么？",
+      "options": [
+        "前缀操作符",
+        "中缀操作符",
+        "后缀操作符",
+        "混合操作符"
+      ],
+      "correctAnswer": 1,
+      "explanation": "xfx表示中缀操作符，其中x表示非结合，f表示操作符。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 90,
+      "type": "multiple-choice",
+      "question": "Prolog中整数除法的操作符是什么？",
+      "options": [
+        "/",
+        "//",
+        "div",
+        "mod"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prolog中使用//操作符进行整数除法，例如11//3 = 3。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 91,
+      "type": "multiple-choice",
+      "question": "Prolog中取模运算的操作符是什么？",
+      "options": [
+        "%",
+        "mod",
+        "rem",
+        "remainder"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prolog中使用mod操作符进行取模运算，例如11 mod 3 = 2。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 92,
+      "type": "multiple-choice",
+      "question": "Prolog中比较两个数值不相等的操作符是什么？",
+      "options": [
+        "!=",
+        "=/=",
+        "<>",
+        "not_equal"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prolog中使用=/=操作符比较两个数值是否不相等。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 93,
+      "type": "multiple-choice",
+      "question": "Prolog中spy/1谓词的作用是什么？",
+      "options": [
+        "停止跟踪",
+        "设置断点",
+        "指定谓词被跟踪",
+        "查看变量值"
+      ],
+      "correctAnswer": 2,
+      "explanation": "spy/1谓词指定某个谓词（如parent）被跟踪，例如spy(parent)。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 94,
+      "type": "multiple-choice",
+      "question": "Prolog中nospy/1谓词的作用是什么？",
+      "options": [
+        "开始跟踪",
+        "停止谓词跟踪",
+        "设置断点",
+        "查看跟踪信息"
+      ],
+      "correctAnswer": 1,
+      "explanation": "nospy/1谓词停止对指定谓词的跟踪，例如nospy(parent)。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 95,
+      "type": "multiple-choice",
+      "question": "Prolog中guitracer/0谓词的作用是什么？",
+      "options": [
+        "打开图形模式",
+        "关闭图形模式",
+        "设置断点",
+        "查看变量"
+      ],
+      "correctAnswer": 0,
+      "explanation": "guitracer/0谓词打开图形跟踪模式，显示源代码、变量绑定和调用堆栈。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 96,
+      "type": "multiple-choice",
+      "question": "Prolog中gtrace/0谓词的作用是什么？",
+      "options": [
+        "只打开图形模式",
+        "同时打开图形模式和跟踪模式",
+        "只打开跟踪模式",
+        "关闭所有模式"
+      ],
+      "correctAnswer": 1,
+      "explanation": "gtrace/0谓词同时打开图形模式和跟踪模式，提供完整的调试环境。",
+      "difficulty": "medium",
+      "tags": [
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 97,
+      "type": "multiple-choice",
+      "question": "Prolog中动态指令:- dynamic的作用是什么？",
+      "options": [
+        "声明静态谓词",
+        "声明动态谓词",
+        "声明多文件谓词",
+        "声明不连续谓词"
+      ],
+      "correctAnswer": 1,
+      "explanation": "动态指令:- dynamic告知解释器谓词的定义可能在执行期间改变（使用assert/1和/或retract/1）。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 98,
+      "type": "multiple-choice",
+      "question": "Prolog中多文件指令:- multifile的作用是什么？",
+      "options": [
+        "声明静态谓词",
+        "声明动态谓词",
+        "声明多文件谓词",
+        "声明不连续谓词"
+      ],
+      "correctAnswer": 2,
+      "explanation": "多文件指令:- multifile告知系统指定的谓词可能在多个文件中定义。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 99,
+      "type": "multiple-choice",
+      "question": "Prolog中不连续指令:- discontiguous的作用是什么？",
+      "options": [
+        "声明静态谓词",
+        "声明动态谓词",
+        "声明多文件谓词",
+        "声明不连续谓词"
+      ],
+      "correctAnswer": 3,
+      "explanation": "不连续指令:- discontiguous告知系统谓词的子句可能在源文件中不在一起。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 100,
+      "type": "multiple-choice",
+      "question": "Prolog中参数模式指示器'?'表示什么？",
+      "options": [
+        "只输入",
+        "只输出",
+        "输入或输出或两者",
+        "既不输入也不输出"
+      ],
+      "correctAnswer": 2,
+      "explanation": "参数模式指示器'?'表示参数要么提供输入，要么接受输出，或者用于输入和输出。",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    }
+  ]
+}

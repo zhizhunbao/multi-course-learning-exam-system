@@ -1,0 +1,1802 @@
+{
+  "courseId": "cst8503",
+  "title": "Knowledge Representation and Reasoning",
+  "description": "Learn the fundamentals of knowledge representation and reasoning",
+  "totalQuestions": 100,
+  "lastUpdated": "2025-10-16",
+  "language": "en",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "question": "What logical system is Prolog based on?",
+      "options": [
+        "Propositional Logic",
+        "Predicate Logic",
+        "Modal Logic",
+        "Temporal Logic"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prolog is based on predicate logic, specifically Horn clause logic.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 2,
+      "type": "true-false",
+      "question": "In Prolog, variables must start with uppercase letters.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "In Prolog, variables must start with uppercase letters or underscore, constants start with lowercase letters.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "question": "Which of the following is NOT a common knowledge representation method?",
+      "options": [
+        "Predicate Logic",
+        "Production Rules",
+        "Neural Networks",
+        "Frames"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Neural networks are mainly used for pattern recognition and machine learning, not traditional knowledge representation methods.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "question": "What is the definition of artificial intelligence software?",
+      "options": [
+        "Software that solves problems requiring intelligence",
+        "Software that mimics human behavior",
+        "Software with learning capabilities",
+        "Software that can pass the Turing test"
+      ],
+      "correctAnswer": 0,
+      "explanation": "AI software is a category of software solutions that solve problems typically considered to require or benefit from intelligence.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "question": "What is supervised learning in machine learning?",
+      "options": [
+        "Using unlabeled data to find patterns",
+        "Using labeled datasets to train systems",
+        "Learning based on rewards",
+        "Learning without explicit examples"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Supervised learning uses labeled datasets containing explicit examples to train systems to find patterns.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter7-midterm-review"
+      ],
+      "points": 1
+    },
+    {
+      "id": 6,
+      "type": "true-false",
+      "question": "Knowledge representation focuses on declarative knowledge forms suitable for specialized reasoning engines.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Knowledge representation indeed focuses on declarative knowledge forms written as facts and rules, suitable for reasoning engines.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "question": "What are the basic components of a Prolog program?",
+      "options": [
+        "Functions and classes",
+        "Facts and rules",
+        "Variables and constants",
+        "Loops and conditions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A Prolog program is a set of statements called clauses, which are facts and rules.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "question": "What are the two contexts in Prolog?",
+      "options": [
+        "Compilation and execution",
+        "Writing programs and running programs",
+        "Debugging and testing",
+        "Input and output"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prolog has two contexts: writing Prolog programs (|: prompt) and running Prolog programs (?- prompt).",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "question": "What is the command to load program files in Prolog?",
+      "options": [
+        "load",
+        "import",
+        "consult",
+        "include"
+      ],
+      "correctAnswer": 2,
+      "explanation": "In Prolog, use the consult command to load program files, or use list notation [filename].",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "question": "What is the closed world assumption in Prolog?",
+      "options": [
+        "The world is finite",
+        "Only stated things are true",
+        "All things are known",
+        "The world is open"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The closed world assumption means only the things we state and their logical implications are true.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 11,
+      "type": "multiple-choice",
+      "question": "What is the scope of variables in Prolog?",
+      "options": [
+        "Global scope",
+        "Single clause",
+        "Entire program",
+        "Single predicate"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The scope of variable names in Prolog is a single clause.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 12,
+      "type": "multiple-choice",
+      "question": "What is the correct syntax for Prolog rules?",
+      "options": [
+        "if P then Q",
+        "P -> Q",
+        "Q :- P",
+        "Q if P"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Prolog rule syntax is Q :- P, read as 'Q if P', meaning to prove Q is true, we can succeed by proving P is true.",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 13,
+      "type": "multiple-choice",
+      "question": "What does the comma ',' represent in Prolog?",
+      "options": [
+        "OR",
+        "AND",
+        "NOT",
+        "IMPLIES"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In Prolog, the comma ',' represents 'and'.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 14,
+      "type": "multiple-choice",
+      "question": "What is the purpose of the trace/0 predicate in Prolog debugging?",
+      "options": [
+        "Stop execution",
+        "Step-by-step tracing",
+        "Set breakpoints",
+        "View variables"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The trace/0 predicate steps through subsequent goals, showing execution information.",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 15,
+      "type": "multiple-choice",
+      "question": "How many syntactic forms do atoms have in Prolog?",
+      "options": [
+        "1 form",
+        "2 forms",
+        "3 forms",
+        "4 forms"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Atoms in Prolog have 3 syntactic forms: strings starting with lowercase letters, special character strings, and strings in single quotes.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 16,
+      "type": "multiple-choice",
+      "question": "What is the anonymous variable in Prolog?",
+      "options": [
+        "Single underscore",
+        "Uppercase X",
+        "Lowercase x",
+        "Question mark"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The anonymous variable in Prolog is a single underscore '_'.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 17,
+      "type": "multiple-choice",
+      "question": "What is a structure in Prolog?",
+      "options": [
+        "Single value",
+        "Object with multiple components",
+        "Function call",
+        "Variable"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A structure is an object with multiple components, such as date(17, june, 2006).",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 18,
+      "type": "multiple-choice",
+      "question": "What is the difference between matching and unification in Prolog?",
+      "options": [
+        "No difference",
+        "Unification includes occurs check",
+        "Matching is stricter",
+        "Unification is looser"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Unification = matching + occurs check. The occurs check ensures one side doesn't occur within the other.",
+      "difficulty": "hard",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 19,
+      "type": "multiple-choice",
+      "question": "What is the better way to represent that two things are different in Prolog?",
+      "options": [
+        "Use \\+ operator",
+        "Use dif/2 predicate",
+        "Use = operator",
+        "Use != operator"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The dif/2 built-in predicate is better because it delays comparison until both variables are instantiated.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 20,
+      "type": "multiple-choice",
+      "question": "What are the head and tail of a Prolog list?",
+      "options": [
+        "First and last elements",
+        "First element and remaining list",
+        "All elements",
+        "Empty list"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The head of a list is the first element, and the tail is the remaining list of elements.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter5-prolog-lists-operators"
+      ],
+      "points": 1
+    },
+    {
+      "id": 21,
+      "type": "multiple-choice",
+      "question": "What is the standard notation for Prolog list [a,b,c]?",
+      "options": [
+        "'(a,b,c)'",
+        "'[|]'(a,'[|]'(b,'[|]'(c,[])))",
+        "'list'(a,b,c)",
+        "'cons'(a,'cons'(b,c))"
+      ],
+      "correctAnswer": 1,
+      "explanation": "List notation is syntactic sugar, the standard notation for [a,b,c] is '[|]'(a,'[|]'(b,'[|]'(c,[]))).",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter5-prolog-lists-operators"
+      ],
+      "points": 1
+    },
+    {
+      "id": 22,
+      "type": "multiple-choice",
+      "question": "What is the correct definition of the member/2 predicate in Prolog?",
+      "options": [
+        "member(X,[X|_]).",
+        "member(X,[_|L]) :- member(X,L).",
+        "Both of the above",
+        "None of the above"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The member/2 predicate needs two clauses: one base case (X as head) and one recursive case (X in tail).",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 23,
+      "type": "multiple-choice",
+      "question": "What is the purpose of the conc/3 predicate in Prolog?",
+      "options": [
+        "Delete elements",
+        "Concatenate lists",
+        "Find elements",
+        "Sort lists"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The conc/3 predicate is used to concatenate two lists, conc(L1,L2,L3) means L3 is the concatenation of L1 and L2.",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 24,
+      "type": "multiple-choice",
+      "question": "What is the priority range for operators in Prolog?",
+      "options": [
+        "0-100",
+        "0-1000",
+        "1-1200",
+        "0-1200"
+      ],
+      "correctAnswer": 3,
+      "explanation": "The priority range for operators in Prolog is 0-1200, with lower numbers having higher precedence.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 25,
+      "type": "multiple-choice",
+      "question": "What is the correct way to perform arithmetic calculations in Prolog?",
+      "options": [
+        "Use = operator",
+        "Use is operator",
+        "Use := operator",
+        "Use == operator"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Use the is operator for arithmetic calculations in Prolog, e.g., X is 1 + 2.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter5-prolog-lists-operators"
+      ],
+      "points": 1
+    },
+    {
+      "id": 26,
+      "type": "multiple-choice",
+      "question": "What operator compares if two numeric values are equal in Prolog?",
+      "options": [
+        "=",
+        "==",
+        "=:=",
+        "equals"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Use the =:= operator to compare if two numeric values are equal in Prolog, e.g., 2+5 =:= 5+2.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 27,
+      "type": "multiple-choice",
+      "question": "What is the cut operator in Prolog?",
+      "options": [
+        "&",
+        "!",
+        "#",
+        "$"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The cut operator in Prolog is the exclamation mark '!', which always succeeds and discards choice points.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 28,
+      "type": "multiple-choice",
+      "question": "Why is cut considered non-logical?",
+      "options": [
+        "It changes the meaning of the program",
+        "It breaks logical consistency",
+        "It depends on execution order",
+        "All of the above"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Cut is non-logical because it changes program meaning, breaks logical consistency, and depends on execution order.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 29,
+      "type": "multiple-choice",
+      "question": "What is the definition of negation by failure in Prolog?",
+      "options": [
+        "not(P) :- P, !, fail ; true.",
+        "not(P) :- P, fail.",
+        "not(P) :- \\+ P.",
+        "not(P) :- P = false."
+      ],
+      "correctAnswer": 0,
+      "explanation": "Negation by failure is defined as not(P) :- P, !, fail ; true., which can also be written as prefix operator \\+ P.",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 30,
+      "type": "multiple-choice",
+      "question": "What is the meaning of the Closed World Assumption (CWA)?",
+      "options": [
+        "The world is finite",
+        "All facts are known",
+        "What cannot be derived is false",
+        "The world is open"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The Closed World Assumption means everything that Prolog cannot derive from the program is assumed to be false.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 31,
+      "type": "multiple-choice",
+      "question": "Why does negation give wrong answers when involving unbound variables?",
+      "options": [
+        "Negation always fails",
+        "Negation requires ground terms",
+        "Negation is non-logical",
+        "All of the above"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Negation gives wrong answers with unbound variables because it always fails, requires ground terms, and is non-logical.",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 32,
+      "type": "multiple-choice",
+      "question": "What are the three cases where order is important in Prolog?",
+      "options": [
+        "Recursion, arithmetic, negation",
+        "Variables, constants, predicates",
+        "Facts, rules, queries",
+        "Head, tail, list"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The three cases where order is important in Prolog are: recursion and infinite loops, arithmetic, and negation.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 33,
+      "type": "text",
+      "question": "Please explain what an expert system is?",
+      "correctAnswer": "An expert system is an AI system that mimics human expert decision-making processes, using knowledge bases and inference engines to solve domain-specific problems.",
+      "explanation": "Expert systems are important applications of knowledge engineering, combining domain knowledge and reasoning techniques.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 34,
+      "type": "text",
+      "question": "Please write the complete definition of the ancestor/2 predicate in Prolog.",
+      "correctAnswer": "ancestor(X,Y) :- parent(X,Y). ancestor(X,Z) :- parent(X,Y), ancestor(Y,Z).",
+      "explanation": "Ancestor relationship needs two rules: direct ancestor (X is parent of Y) and indirect ancestor (X is parent of Y and Y is ancestor of Z).",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 35,
+      "type": "text",
+      "question": "Please explain the four steps of the matching algorithm in Prolog.",
+      "correctAnswer": "1. If S and T are constants, they match only if identical. 2. If S is variable, match succeeds, S is instantiated to T. 3. If T is variable, match succeeds, T is instantiated to S. 4. If S and T are structures, they match only if same functor and all corresponding arguments match.",
+      "explanation": "The matching algorithm is the core of Prolog unification, ensuring conditions for two terms to match.",
+      "difficulty": "hard",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 36,
+      "type": "text",
+      "question": "Please write the complete definition of the length/2 predicate in Prolog.",
+      "correctAnswer": "length([], 0). length([_ | L], N) :- length(L, N0), N is N0 + 1.",
+      "explanation": "The length/2 predicate calculates list length: empty list has length 0, non-empty list has length of tail plus 1.",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 37,
+      "type": "text",
+      "question": "Please explain the execution steps of procedural interpretation in Prolog.",
+      "correctAnswer": "1. If no query parts remain, return variable bindings. 2. Take next query part from front for scanning. 3. Scan left sides of facts and rules for matches. 4. If fact matches, apply bindings, go to 1. 5. If rule matches, apply bindings, add right side to front of query, go to 1. 6. If no match and choice points exist, backtrack to 3. 7. Otherwise, fail.",
+      "explanation": "Procedural interpretation describes how Prolog executes queries, including matching, binding, and backtracking processes.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 38,
+      "type": "multiple-choice",
+      "question": "What does the operator type xfx represent in Prolog?",
+      "options": [
+        "Prefix operator",
+        "Infix operator",
+        "Postfix operator",
+        "Mixed operator"
+      ],
+      "correctAnswer": 1,
+      "explanation": "xfx represents an infix operator, where x means non-associative and f means the operator.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 39,
+      "type": "multiple-choice",
+      "question": "What is the operator for integer division in Prolog?",
+      "options": [
+        "/",
+        "//",
+        "div",
+        "mod"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Use the // operator for integer division in Prolog, e.g., 11//3 = 3.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 40,
+      "type": "multiple-choice",
+      "question": "What is the operator for modulo operation in Prolog?",
+      "options": [
+        "%",
+        "mod",
+        "rem",
+        "remainder"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Use the mod operator for modulo operation in Prolog, e.g., 11 mod 3 = 2.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 41,
+      "type": "multiple-choice",
+      "question": "What operator compares if two numeric values are not equal in Prolog?",
+      "options": [
+        "!=",
+        "=/=",
+        "<>",
+        "not_equal"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Use the =/= operator to compare if two numeric values are not equal in Prolog.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 42,
+      "type": "multiple-choice",
+      "question": "What is the purpose of the spy/1 predicate in Prolog?",
+      "options": [
+        "Stop tracing",
+        "Set breakpoints",
+        "Specify predicate to be traced",
+        "View variable values"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The spy/1 predicate specifies a predicate (e.g., parent) to be traced, e.g., spy(parent).",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 43,
+      "type": "multiple-choice",
+      "question": "What is the purpose of the nospy/1 predicate in Prolog?",
+      "options": [
+        "Start tracing",
+        "Stop predicate tracing",
+        "Set breakpoints",
+        "View trace information"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The nospy/1 predicate stops tracing the specified predicate, e.g., nospy(parent).",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 44,
+      "type": "multiple-choice",
+      "question": "What is the purpose of the guitracer/0 predicate in Prolog?",
+      "options": [
+        "Open graphical mode",
+        "Close graphical mode",
+        "Set breakpoints",
+        "View variables"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The guitracer/0 predicate opens graphical tracing mode, showing source code, variable bindings, and call stack.",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 45,
+      "type": "multiple-choice",
+      "question": "What is the purpose of the gtrace/0 predicate in Prolog?",
+      "options": [
+        "Only open graphical mode",
+        "Open both graphical and trace modes",
+        "Only open trace mode",
+        "Close all modes"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The gtrace/0 predicate opens both graphical and trace modes, providing a complete debugging environment.",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 46,
+      "type": "multiple-choice",
+      "question": "What is the purpose of the dynamic directive :- dynamic in Prolog?",
+      "options": [
+        "Declare static predicates",
+        "Declare dynamic predicates",
+        "Declare multifile predicates",
+        "Declare discontiguous predicates"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The dynamic directive :- dynamic tells the interpreter that predicate definitions may change during execution (using assert/1 and/or retract/1).",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 47,
+      "type": "multiple-choice",
+      "question": "What is the purpose of the multifile directive :- multifile in Prolog?",
+      "options": [
+        "Declare static predicates",
+        "Declare dynamic predicates",
+        "Declare multifile predicates",
+        "Declare discontiguous predicates"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The multifile directive :- multifile tells the system that the specified predicate may be defined in multiple files.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 48,
+      "type": "multiple-choice",
+      "question": "What is the purpose of the discontiguous directive :- discontiguous in Prolog?",
+      "options": [
+        "Declare static predicates",
+        "Declare dynamic predicates",
+        "Declare multifile predicates",
+        "Declare discontiguous predicates"
+      ],
+      "correctAnswer": 3,
+      "explanation": "The discontiguous directive :- discontiguous tells the system that predicate clauses may not be together in the source file.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 49,
+      "type": "multiple-choice",
+      "question": "What does the parameter mode indicator '?' represent in Prolog?",
+      "options": [
+        "Input only",
+        "Output only",
+        "Input or output or both",
+        "Neither input nor output"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The parameter mode indicator '?' means the parameter either provides input, accepts output, or is used for both input and output.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 50,
+      "type": "multiple-choice",
+      "question": "Please write the complete definition of the del/3 predicate in Prolog (delete element from list).",
+      "options": [
+        "del(X, [X | Tail], Tail). del(X, [Y | Tail], [Y | Tail1]) :- del(X, Tail, Tail1).",
+        "del(X, [X | Tail], Tail). del(X, [Y | Tail], [Y | Tail1]) :- del(X, Tail, Tail1).",
+        "del(X, [X | Tail], Tail). del(X, [Y | Tail], [Y | Tail1]) :- del(X, Tail, Tail1).",
+        "del(X, [X | Tail], Tail). del(X, [Y | Tail], [Y | Tail1]) :- del(X, Tail, Tail1)."
+      ],
+      "correctAnswer": 0,
+      "explanation": "The del/3 predicate deletes the first occurrence of an element from a list: if X is the head then delete it, otherwise recursively delete X from the tail.",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter3-prolog-debugging",
+        "chapter5-prolog-lists-operators"
+      ],
+      "points": 1
+    },
+    {
+      "id": 51,
+      "type": "multiple-choice",
+      "question": "What is the definition of artificial intelligence software?",
+      "options": [
+        "Software that solves problems requiring intelligence",
+        "Software that mimics human behavior",
+        "Software with learning capabilities",
+        "Software that can pass the Turing test"
+      ],
+      "correctAnswer": 0,
+      "explanation": "AI software is a category of software solutions that solve problems typically considered to require or benefit from intelligence.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 52,
+      "type": "multiple-choice",
+      "question": "What is the core idea of the Turing test?",
+      "options": [
+        "Test computer's computational power",
+        "Test if computer has intelligence",
+        "Test computer's learning ability",
+        "Test computer's reasoning ability"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The core idea of Turing test is: under specific conditions, if a software system makes you believe it has intelligence, then that system passes the Turing test for intelligence.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 53,
+      "type": "multiple-choice",
+      "question": "What is supervised learning in machine learning?",
+      "options": [
+        "Using unlabeled data to find patterns",
+        "Using labeled datasets to train systems",
+        "Learning based on rewards",
+        "Learning without explicit examples"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Supervised learning uses labeled datasets containing explicit examples to train systems to find patterns.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter7-midterm-review"
+      ],
+      "points": 1
+    },
+    {
+      "id": 54,
+      "type": "multiple-choice",
+      "question": "What is unsupervised learning in machine learning?",
+      "options": [
+        "Using labeled datasets to train systems",
+        "System uses algorithms to find patterns in data without explicit examples",
+        "Learning based on rewards",
+        "Using unlabeled data to find patterns"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Unsupervised learning is when the system uses algorithms to find patterns in data, but without explicit examples of what to look for.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter7-midterm-review"
+      ],
+      "points": 1
+    },
+    {
+      "id": 55,
+      "type": "multiple-choice",
+      "question": "What is reinforcement learning in machine learning?",
+      "options": [
+        "Using labeled datasets to train systems",
+        "Using unlabeled data to find patterns",
+        "Agent-based paradigm that repeatedly selects actions based on policy in states to obtain rewards",
+        "Learning without explicit examples"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Reinforcement learning is an agent-based paradigm that repeatedly selects actions based on policy in states to obtain rewards.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter7-midterm-review"
+      ],
+      "points": 1
+    },
+    {
+      "id": 56,
+      "type": "multiple-choice",
+      "question": "What does knowledge representation focus on?",
+      "options": [
+        "Finding patterns in data",
+        "Declarative knowledge forms suitable for specialized reasoning engines",
+        "Learning based on rewards",
+        "Using labeled datasets to train systems"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Knowledge representation focuses on declarative knowledge forms suitable for specialized reasoning engines, written as facts and rules.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 57,
+      "type": "multiple-choice",
+      "question": "What are the characteristics of declarative knowledge?",
+      "options": [
+        "Facts and rules written in language (declared)",
+        "Programmed sequence of steps",
+        "Learning based on rewards",
+        "Using labeled datasets to train systems"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Declarative knowledge is facts and rules written in language (declared), with patterns provided directly to the system in the form of facts and rules.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 58,
+      "type": "multiple-choice",
+      "question": "What are the basic components of a Prolog program?",
+      "options": [
+        "Functions and classes",
+        "Facts and rules",
+        "Variables and constants",
+        "Loops and conditions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A Prolog program is a set of statements called clauses, which are facts and rules.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 59,
+      "type": "multiple-choice",
+      "question": "What are the two contexts in Prolog?",
+      "options": [
+        "Compilation and execution",
+        "Writing programs and running programs",
+        "Debugging and testing",
+        "Input and output"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prolog has two contexts: writing Prolog programs (|: prompt) and running Prolog programs (?- prompt).",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 60,
+      "type": "multiple-choice",
+      "question": "What is the command to load program files in Prolog?",
+      "options": [
+        "load",
+        "import",
+        "consult",
+        "include"
+      ],
+      "correctAnswer": 2,
+      "explanation": "In Prolog, use the consult command to load program files, or use list notation [filename].",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 61,
+      "type": "multiple-choice",
+      "question": "What is the closed world assumption in Prolog?",
+      "options": [
+        "The world is finite",
+        "Only stated things are true",
+        "All things are known",
+        "The world is open"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The closed world assumption means only the things we state and their logical implications are true.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 62,
+      "type": "multiple-choice",
+      "question": "What is the scope of variables in Prolog?",
+      "options": [
+        "Global scope",
+        "Single clause",
+        "Entire program",
+        "Single predicate"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The scope of variable names in Prolog is a single clause.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 63,
+      "type": "multiple-choice",
+      "question": "What is the correct syntax for Prolog rules?",
+      "options": [
+        "if P then Q",
+        "P -> Q",
+        "Q :- P",
+        "Q if P"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Prolog rule syntax is Q :- P, read as 'Q if P', meaning to prove Q is true, we can succeed by proving P is true.",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 64,
+      "type": "multiple-choice",
+      "question": "What does the comma ',' represent in Prolog?",
+      "options": [
+        "OR",
+        "AND",
+        "NOT",
+        "IMPLIES"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In Prolog, the comma ',' represents 'and'.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 65,
+      "type": "multiple-choice",
+      "question": "What is the purpose of the trace/0 predicate in Prolog debugging?",
+      "options": [
+        "Stop execution",
+        "Step-by-step tracing",
+        "Set breakpoints",
+        "View variables"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The trace/0 predicate steps through subsequent goals, showing execution information.",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 66,
+      "type": "multiple-choice",
+      "question": "How many syntactic forms do atoms have in Prolog?",
+      "options": [
+        "1 form",
+        "2 forms",
+        "3 forms",
+        "4 forms"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Atoms in Prolog have 3 syntactic forms: strings starting with lowercase letters, special character strings, and strings in single quotes.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 67,
+      "type": "multiple-choice",
+      "question": "What is the anonymous variable in Prolog?",
+      "options": [
+        "Single underscore",
+        "Uppercase X",
+        "Lowercase x",
+        "Question mark"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The anonymous variable in Prolog is a single underscore '_'.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 68,
+      "type": "multiple-choice",
+      "question": "What is a structure in Prolog?",
+      "options": [
+        "Single value",
+        "Object with multiple components",
+        "Function call",
+        "Variable"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A structure is an object with multiple components, such as date(17, june, 2006).",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 69,
+      "type": "multiple-choice",
+      "question": "What is the difference between matching and unification in Prolog?",
+      "options": [
+        "No difference",
+        "Unification includes occurs check",
+        "Matching is stricter",
+        "Unification is looser"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Unification = matching + occurs check. The occurs check ensures one side doesn't occur within the other.",
+      "difficulty": "hard",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 70,
+      "type": "multiple-choice",
+      "question": "What is the better way to represent that two things are different in Prolog?",
+      "options": [
+        "Use \\+ operator",
+        "Use dif/2 predicate",
+        "Use = operator",
+        "Use != operator"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The dif/2 built-in predicate is better because it delays comparison until both variables are instantiated.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 71,
+      "type": "multiple-choice",
+      "question": "What are the head and tail of a Prolog list?",
+      "options": [
+        "First and last elements",
+        "First element and remaining list",
+        "All elements",
+        "Empty list"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The head of a list is the first element, and the tail is the remaining list of elements.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter5-prolog-lists-operators"
+      ],
+      "points": 1
+    },
+    {
+      "id": 72,
+      "type": "multiple-choice",
+      "question": "What is the standard notation for Prolog list [a,b,c]?",
+      "options": [
+        "'(a,b,c)'",
+        "'[|]'(a,'[|]'(b,'[|]'(c,[])))",
+        "'list'(a,b,c)",
+        "'cons'(a,'cons'(b,c))"
+      ],
+      "correctAnswer": 1,
+      "explanation": "List notation is syntactic sugar, the standard notation for [a,b,c] is '[|]'(a,'[|]'(b,'[|]'(c,[]))).",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter5-prolog-lists-operators"
+      ],
+      "points": 1
+    },
+    {
+      "id": 73,
+      "type": "multiple-choice",
+      "question": "What is the correct definition of the member/2 predicate in Prolog?",
+      "options": [
+        "member(X,[X|_]).",
+        "member(X,[_|L]) :- member(X,L).",
+        "Both of the above",
+        "None of the above"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The member/2 predicate needs two clauses: one base case (X as head) and one recursive case (X in tail).",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 74,
+      "type": "multiple-choice",
+      "question": "What is the purpose of the conc/3 predicate in Prolog?",
+      "options": [
+        "Delete elements",
+        "Concatenate lists",
+        "Find elements",
+        "Sort lists"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The conc/3 predicate is used to concatenate two lists, conc(L1,L2,L3) means L3 is the concatenation of L1 and L2.",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 75,
+      "type": "multiple-choice",
+      "question": "What is the priority range for operators in Prolog?",
+      "options": [
+        "0-100",
+        "0-1000",
+        "1-1200",
+        "0-1200"
+      ],
+      "correctAnswer": 3,
+      "explanation": "The priority range for operators in Prolog is 0-1200, with lower numbers having higher precedence.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 76,
+      "type": "multiple-choice",
+      "question": "What is the correct way to perform arithmetic calculations in Prolog?",
+      "options": [
+        "Use = operator",
+        "Use is operator",
+        "Use := operator",
+        "Use == operator"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Use the is operator for arithmetic calculations in Prolog, e.g., X is 1 + 2.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter5-prolog-lists-operators"
+      ],
+      "points": 1
+    },
+    {
+      "id": 77,
+      "type": "multiple-choice",
+      "question": "What operator compares if two numeric values are equal in Prolog?",
+      "options": [
+        "=",
+        "==",
+        "=:=",
+        "equals"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Use the =:= operator to compare if two numeric values are equal in Prolog, e.g., 2+5 =:= 5+2.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 78,
+      "type": "multiple-choice",
+      "question": "What is the cut operator in Prolog?",
+      "options": [
+        "&",
+        "!",
+        "#",
+        "$"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The cut operator in Prolog is the exclamation mark '!', which always succeeds and discards choice points.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 79,
+      "type": "multiple-choice",
+      "question": "Why is cut considered non-logical?",
+      "options": [
+        "It changes the meaning of the program",
+        "It breaks logical consistency",
+        "It depends on execution order",
+        "All of the above"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Cut is non-logical because it changes program meaning, breaks logical consistency, and depends on execution order.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 80,
+      "type": "multiple-choice",
+      "question": "What is the definition of negation by failure in Prolog?",
+      "options": [
+        "not(P) :- P, !, fail ; true.",
+        "not(P) :- P, fail.",
+        "not(P) :- \\+ P.",
+        "not(P) :- P = false."
+      ],
+      "correctAnswer": 0,
+      "explanation": "Negation by failure is defined as not(P) :- P, !, fail ; true., which can also be written as prefix operator \\+ P.",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 81,
+      "type": "multiple-choice",
+      "question": "What is the meaning of the Closed World Assumption (CWA)?",
+      "options": [
+        "The world is finite",
+        "All facts are known",
+        "What cannot be derived is false",
+        "The world is open"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The Closed World Assumption means everything that Prolog cannot derive from the program is assumed to be false.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 82,
+      "type": "multiple-choice",
+      "question": "Why does negation give wrong answers when involving unbound variables?",
+      "options": [
+        "Negation always fails",
+        "Negation requires ground terms",
+        "Negation is non-logical",
+        "All of the above"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Negation gives wrong answers with unbound variables because it always fails, requires ground terms, and is non-logical.",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 83,
+      "type": "multiple-choice",
+      "question": "What are the three cases where order is important in Prolog?",
+      "options": [
+        "Recursion, arithmetic, negation",
+        "Variables, constants, predicates",
+        "Facts, rules, queries",
+        "Head, tail, list"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The three cases where order is important in Prolog are: recursion and infinite loops, arithmetic, and negation.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 84,
+      "type": "multiple-choice",
+      "question": "Please explain what an expert system is?",
+      "options": [
+        "An AI system that mimics human expert decision-making processes, using knowledge bases and inference engines to solve domain-specific problems",
+        "A machine learning system that uses neural networks to solve problems",
+        "A database system that stores large amounts of information",
+        "A programming language for writing intelligent programs"
+      ],
+      "correctAnswer": 0,
+      "explanation": "An expert system is an AI system that mimics human expert decision-making processes, using knowledge bases and inference engines to solve domain-specific problems.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter1-knowledge-representation"
+      ],
+      "points": 1
+    },
+    {
+      "id": 85,
+      "type": "multiple-choice",
+      "question": "Please write the complete definition of the ancestor/2 predicate in Prolog.",
+      "options": [
+        "ancestor(X,Y) :- parent(X,Y). ancestor(X,Z) :- parent(X,Y), ancestor(Y,Z).",
+        "ancestor(X,Y) :- parent(X,Y). ancestor(X,Z) :- parent(X,Y), ancestor(Y,Z).",
+        "ancestor(X,Y) :- parent(X,Y). ancestor(X,Z) :- parent(X,Y), ancestor(Y,Z).",
+        "ancestor(X,Y) :- parent(X,Y). ancestor(X,Z) :- parent(X,Y), ancestor(Y,Z)."
+      ],
+      "correctAnswer": 0,
+      "explanation": "Ancestor relationship needs two rules: direct ancestor (X is parent of Y) and indirect ancestor (X is parent of Y and Y is ancestor of Z).",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 86,
+      "type": "multiple-choice",
+      "question": "Please explain the four steps of the matching algorithm in Prolog.",
+      "options": [
+        "1. If S and T are constants, they match only if identical. 2. If S is variable, match succeeds, S is instantiated to T. 3. If T is variable, match succeeds, T is instantiated to S. 4. If S and T are structures, they match only if same functor and all corresponding arguments match.",
+        "1. If S and T are constants, they match only if identical. 2. If S is variable, match succeeds, S is instantiated to T. 3. If T is variable, match succeeds, T is instantiated to S. 4. If S and T are structures, they match only if same functor and all corresponding arguments match.",
+        "1. If S and T are constants, they match only if identical. 2. If S is variable, match succeeds, S is instantiated to T. 3. If T is variable, match succeeds, T is instantiated to S. 4. If S and T are structures, they match only if same functor and all corresponding arguments match.",
+        "1. If S and T are constants, they match only if identical. 2. If S is variable, match succeeds, S is instantiated to T. 3. If T is variable, match succeeds, T is instantiated to S. 4. If S and T are structures, they match only if same functor and all corresponding arguments match."
+      ],
+      "correctAnswer": 0,
+      "explanation": "The matching algorithm is the core of Prolog unification, ensuring conditions for two terms to match.",
+      "difficulty": "hard",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 87,
+      "type": "multiple-choice",
+      "question": "Please write the complete definition of the length/2 predicate in Prolog.",
+      "options": [
+        "length([], 0). length([_ | L], N) :- length(L, N0), N is N0 + 1.",
+        "length([], 0). length([_ | L], N) :- length(L, N0), N is N0 + 1.",
+        "length([], 0). length([_ | L], N) :- length(L, N0), N is N0 + 1.",
+        "length([], 0). length([_ | L], N) :- length(L, N0), N is N0 + 1."
+      ],
+      "correctAnswer": 0,
+      "explanation": "The length/2 predicate calculates list length: empty list has length 0, non-empty list has length of tail plus 1.",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 88,
+      "type": "multiple-choice",
+      "question": "Please explain the execution steps of procedural interpretation in Prolog.",
+      "options": [
+        "1. If no query parts remain, return variable bindings. 2. Take next query part from front for scanning. 3. Scan left sides of facts and rules for matches. 4. If fact matches, apply bindings, go to 1. 5. If rule matches, apply bindings, add right side to front of query, go to 1. 6. If no match and choice points exist, backtrack to 3. 7. Otherwise, fail.",
+        "1. If no query parts remain, return variable bindings. 2. Take next query part from front for scanning. 3. Scan left sides of facts and rules for matches. 4. If fact matches, apply bindings, go to 1. 5. If rule matches, apply bindings, add right side to front of query, go to 1. 6. If no match and choice points exist, backtrack to 3. 7. Otherwise, fail.",
+        "1. If no query parts remain, return variable bindings. 2. Take next query part from front for scanning. 3. Scan left sides of facts and rules for matches. 4. If fact matches, apply bindings, go to 1. 5. If rule matches, apply bindings, add right side to front of query, go to 1. 6. If no match and choice points exist, backtrack to 3. 7. Otherwise, fail.",
+        "1. If no query parts remain, return variable bindings. 2. Take next query part from front for scanning. 3. Scan left sides of facts and rules for matches. 4. If fact matches, apply bindings, go to 1. 5. If rule matches, apply bindings, add right side to front of query, go to 1. 6. If no match and choice points exist, backtrack to 3. 7. Otherwise, fail."
+      ],
+      "correctAnswer": 0,
+      "explanation": "Procedural interpretation describes how Prolog executes queries, including matching, binding, and backtracking processes.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 89,
+      "type": "multiple-choice",
+      "question": "What does the operator type xfx represent in Prolog?",
+      "options": [
+        "Prefix operator",
+        "Infix operator",
+        "Postfix operator",
+        "Mixed operator"
+      ],
+      "correctAnswer": 1,
+      "explanation": "xfx represents an infix operator, where x means non-associative and f means the operator.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 90,
+      "type": "multiple-choice",
+      "question": "What is the operator for integer division in Prolog?",
+      "options": [
+        "/",
+        "//",
+        "div",
+        "mod"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Use the // operator for integer division in Prolog, e.g., 11//3 = 3.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 91,
+      "type": "multiple-choice",
+      "question": "What is the operator for modulo operation in Prolog?",
+      "options": [
+        "%",
+        "mod",
+        "rem",
+        "remainder"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Use the mod operator for modulo operation in Prolog, e.g., 11 mod 3 = 2.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 92,
+      "type": "multiple-choice",
+      "question": "What operator compares if two numeric values are not equal in Prolog?",
+      "options": [
+        "!=",
+        "=/=",
+        "<>",
+        "not_equal"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Use the =/= operator to compare if two numeric values are not equal in Prolog.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 93,
+      "type": "multiple-choice",
+      "question": "What is the purpose of the spy/1 predicate in Prolog?",
+      "options": [
+        "Stop tracing",
+        "Set breakpoints",
+        "Specify predicate to be traced",
+        "View variable values"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The spy/1 predicate specifies a predicate (e.g., parent) to be traced, e.g., spy(parent).",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 94,
+      "type": "multiple-choice",
+      "question": "What is the purpose of the nospy/1 predicate in Prolog?",
+      "options": [
+        "Start tracing",
+        "Stop predicate tracing",
+        "Set breakpoints",
+        "View trace information"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The nospy/1 predicate stops tracing the specified predicate, e.g., nospy(parent).",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 95,
+      "type": "multiple-choice",
+      "question": "What is the purpose of the guitracer/0 predicate in Prolog?",
+      "options": [
+        "Open graphical mode",
+        "Close graphical mode",
+        "Set breakpoints",
+        "View variables"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The guitracer/0 predicate opens graphical tracing mode, showing source code, variable bindings, and call stack.",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 96,
+      "type": "multiple-choice",
+      "question": "What is the purpose of the gtrace/0 predicate in Prolog?",
+      "options": [
+        "Only open graphical mode",
+        "Open both graphical and trace modes",
+        "Only open trace mode",
+        "Close all modes"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The gtrace/0 predicate opens both graphical and trace modes, providing a complete debugging environment.",
+      "difficulty": "medium",
+      "tags": [
+        "chapter2-prolog-basics",
+        "chapter3-prolog-debugging"
+      ],
+      "points": 1
+    },
+    {
+      "id": 97,
+      "type": "multiple-choice",
+      "question": "What is the purpose of the dynamic directive :- dynamic in Prolog?",
+      "options": [
+        "Declare static predicates",
+        "Declare dynamic predicates",
+        "Declare multifile predicates",
+        "Declare discontiguous predicates"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The dynamic directive :- dynamic tells the interpreter that predicate definitions may change during execution (using assert/1 and/or retract/1).",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 98,
+      "type": "multiple-choice",
+      "question": "What is the purpose of the multifile directive :- multifile in Prolog?",
+      "options": [
+        "Declare static predicates",
+        "Declare dynamic predicates",
+        "Declare multifile predicates",
+        "Declare discontiguous predicates"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The multifile directive :- multifile tells the system that the specified predicate may be defined in multiple files.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 99,
+      "type": "multiple-choice",
+      "question": "What is the purpose of the discontiguous directive :- discontiguous in Prolog?",
+      "options": [
+        "Declare static predicates",
+        "Declare dynamic predicates",
+        "Declare multifile predicates",
+        "Declare discontiguous predicates"
+      ],
+      "correctAnswer": 3,
+      "explanation": "The discontiguous directive :- discontiguous tells the system that predicate clauses may not be together in the source file.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    },
+    {
+      "id": 100,
+      "type": "multiple-choice",
+      "question": "What does the parameter mode indicator '?' represent in Prolog?",
+      "options": [
+        "Input only",
+        "Output only",
+        "Input or output or both",
+        "Neither input nor output"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The parameter mode indicator '?' means the parameter either provides input, accepts output, or is used for both input and output.",
+      "difficulty": "easy",
+      "tags": [
+        "chapter2-prolog-basics"
+      ],
+      "points": 1
+    }
+  ]
+}
