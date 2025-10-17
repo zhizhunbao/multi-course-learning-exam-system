@@ -1,0 +1,134 @@
+{
+  "courseId": "cst8503",
+  "title": "Knowledge Representation and Reasoning",
+  "description": "Knowledge representation methods and reasoning techniques",
+  "language": "en",
+  "lastUpdated": "2025-01-16",
+  "chapters": [
+    {
+      "id": 1,
+      "title": "Chapter 1: Introduction to Knowledge Representation",
+      "order": 1,
+      "description": "Introduction to basic concepts of knowledge representation, including the differences between AI, machine learning, and knowledge representation, and the importance of declarative knowledge",
+      "duration": "2 hours",
+      "difficulty": "Beginner",
+      "lessons": [
+        {
+          "id": 1,
+          "title": "1.1 Knowledge Representation vs Machine Learning vs Artificial Intelligence",
+          "type": "theory",
+          "duration": "30 minutes",
+          "order": 1,
+          "content": "Knowledge representation is how real-world knowledge is encoded into forms that computers can process in artificial intelligence. Learn various knowledge representation methods.",
+          "resources": [
+            {
+              "name": "Knowledge Representation Overview",
+              "type": "text",
+              "url": "https://example.com/kr-overview"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "1.2 Declarative Knowledge vs Procedural Knowledge",
+          "type": "theory",
+          "duration": "25 minutes",
+          "order": 2,
+          "content": "Learn the basic concepts, syntax and semantics of first-order predicate logic, understand how to represent knowledge using logic.",
+          "resources": [
+            {
+              "name": "Predicate Logic Tutorial",
+              "type": "video",
+              "url": "https://example.com/predicate-logic"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Chapter 2: Prolog Basics",
+      "order": 2,
+      "description": "Learn the basics of Prolog programming language, including syntax, facts, rules and queries",
+      "duration": "3 hours",
+      "difficulty": "Beginner",
+      "lessons": [
+        {
+          "id": 3,
+          "title": "2.1 Prolog Syntax Basics",
+          "type": "theory",
+          "duration": "25 minutes",
+          "order": 1,
+          "content": "Learn the basic syntax of Prolog language, including writing facts, rules and queries.",
+          "resources": [
+            {
+              "name": "Prolog Syntax Guide",
+              "type": "text",
+              "url": "https://example.com/prolog-syntax"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "title": "2.2 Facts and Rules",
+          "type": "theory",
+          "duration": "30 minutes",
+          "order": 2,
+          "content": "Learn the representation and operations of lists in Prolog, including recursion and pattern matching.",
+          "resources": [
+            {
+              "name": "Prolog List Operations",
+              "type": "video",
+              "url": "https://example.com/prolog-lists"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Chapter 3: Prolog Debugging",
+      "order": 3,
+      "description": "Learn debugging techniques and common errors in Prolog programs",
+      "duration": "2 hours",
+      "difficulty": "Intermediate",
+      "lessons": []
+    },
+    {
+      "id": 4,
+      "title": "Chapter 4: Prolog Structures and Matching",
+      "order": 4,
+      "description": "In-depth study of compound structures and pattern matching in Prolog",
+      "duration": "2.5 hours",
+      "difficulty": "Intermediate",
+      "lessons": []
+    },
+    {
+      "id": 5,
+      "title": "Chapter 5: Prolog Lists and Operators",
+      "order": 5,
+      "description": "Learn list representation, operations and operator usage in Prolog",
+      "duration": "3 hours",
+      "difficulty": "Intermediate",
+      "lessons": []
+    },
+    {
+      "id": 6,
+      "title": "Chapter 6: Prolog Negation",
+      "order": 6,
+      "description": "Learn negation operations in Prolog and negation handling in logic programming",
+      "duration": "2 hours",
+      "difficulty": "Advanced",
+      "lessons": []
+    },
+    {
+      "id": 7,
+      "title": "Chapter 7: Midterm Review",
+      "order": 7,
+      "description": "Comprehensive review of the first six chapters, preparing for midterm exam",
+      "duration": "3 hours",
+      "difficulty": "Comprehensive",
+      "lessons": []
+    }
+  ]
+}

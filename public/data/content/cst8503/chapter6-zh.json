@@ -1,0 +1,108 @@
+{
+  "courseId": "cst8503",
+  "chapterId": 6,
+  "title": "第6章：Prolog否定和截断",
+  "description": "学习Prolog中的否定、截断操作符及其对程序执行和效率的影响",
+  "duration": "3小时",
+  "difficulty": "高级",
+  "lastUpdated": "2025-01-16",
+  "learningObjectives": [
+    "理解Prolog中的否定即失败",
+    "学习有效使用截断操作符",
+    "掌握绿色和红色截断",
+    "理解截断对回溯的影响",
+    "练习使用截断编写高效的Prolog程序"
+  ],
+  "lessons": [
+    {
+      "id": 1,
+      "title": "6.1 否定即失败",
+      "type": "theory",
+      "duration": "40分钟",
+      "order": 1,
+      "content": {
+        "overview": "理解Prolog中的否定以及它与逻辑否定的区别",
+        "sections": [
+          {
+            "title": "否定操作符",
+            "content": "Prolog使用'not'或'\\+'进行否定，它实现'否定即失败'——如果目标无法被证明，则目标为真。",
+            "keyPoints": [
+              "否定操作符：not/1或\\+/1",
+              "否定即失败语义",
+              "如果目标无法被证明则为真",
+              "与逻辑否定不同"
+            ]
+          }
+        ]
+      },
+      "exercises": [
+        {
+          "type": "multiple_choice",
+          "question": "Prolog中的否定即失败意味着什么？",
+          "options": [
+            "如果目标可以被证明则为真",
+            "如果目标无法被证明则为真",
+            "目标总是假",
+            "目标总是真"
+          ],
+          "correct": 1,
+          "explanation": "否定即失败意味着如果目标无法被证明（即失败），则目标为真。"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "6.2 截断介绍",
+      "type": "theory",
+      "duration": "35分钟",
+      "order": 2,
+      "content": {
+        "overview": "介绍截断操作符及其对Prolog执行的影响",
+        "sections": [
+          {
+            "title": "什么是截断？",
+            "content": "截断操作符(!)使Prolog承诺当前选择，防止回溯到替代解。",
+            "keyPoints": [
+              "截断操作符：!",
+              "承诺当前选择",
+              "防止回溯",
+              "提高效率"
+            ]
+          }
+        ]
+      },
+      "exercises": [
+        {
+          "type": "coding",
+          "question": "编写规则使用截断查找列表中的第一个偶数。",
+          "hint": "在找到第一个偶数后使用截断防止回溯",
+          "solution": "first_even([H|_], H) :- 0 is H mod 2, !.\nfirst_even([_|T], X) :- first_even(T, X).",
+          "explanation": "截断在找到第一个偶数后防止回溯，确保只返回第一个偶数。"
+        }
+      ]
+    }
+  ],
+  "assessment": {
+    "quiz": {
+      "questions": [
+        {
+          "id": 1,
+          "type": "multiple_choice",
+          "question": "Prolog中的截断操作符(!)做什么？",
+          "options": [
+            "终止程序",
+            "承诺当前选择并防止回溯",
+            "创建新变量",
+            "计算算术表达式"
+          ],
+          "correct": 1,
+          "points": 2
+        }
+      ],
+      "totalPoints": 2,
+      "passingScore": 1
+    }
+  },
+  "prerequisites": [5],
+  "nextChapter": 7
+}

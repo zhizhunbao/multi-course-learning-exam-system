@@ -1,0 +1,238 @@
+{
+  "courseId": "cst8503",
+  "chapterId": "chapter2-prolog-basics",
+  "title": "Prolog基础",
+  "description": "Prolog基础相关题目",
+  "totalQuestions": 20,
+  "lastUpdated": "2025-10-16",
+  "language": "zh",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "question": "Prolog基于什么逻辑系统？",
+      "options": ["命题逻辑", "谓词逻辑", "模态逻辑", "时序逻辑"],
+      "correctAnswer": 1,
+      "explanation": "Prolog基于谓词逻辑，特别是Horn子句逻辑。",
+      "difficulty": "easy",
+      "tags": ["chapter2-prolog-basics"],
+      "points": 1
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "question": "Prolog程序的基本组成部分是什么？",
+      "options": ["函数和类", "事实和规则", "变量和常量", "循环和条件"],
+      "correctAnswer": 1,
+      "explanation": "Prolog程序是一组称为子句的语句，即事实和规则。",
+      "difficulty": "easy",
+      "tags": ["chapter2-prolog-basics"],
+      "points": 1
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "question": "Prolog中的两个上下文是什么？",
+      "options": [
+        "编译和执行",
+        "编写程序和运行程序",
+        "调试和测试",
+        "输入和输出"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prolog有两个上下文：编写Prolog程序（|:提示符）和运行Prolog程序（?-提示符）。",
+      "difficulty": "easy",
+      "tags": ["chapter2-prolog-basics"],
+      "points": 1
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "question": "在Prolog中加载程序文件的命令是什么？",
+      "options": ["load", "import", "consult", "include"],
+      "correctAnswer": 2,
+      "explanation": "在Prolog中，使用consult命令加载程序文件，或使用列表表示法[filename]。",
+      "difficulty": "easy",
+      "tags": ["chapter2-prolog-basics"],
+      "points": 1
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "question": "Prolog中的封闭世界假设是什么？",
+      "options": [
+        "世界是有限的",
+        "只有陈述的事物是真的",
+        "所有事物都是已知的",
+        "世界是开放的"
+      ],
+      "correctAnswer": 1,
+      "explanation": "封闭世界假设意味着只有我们陈述的事物及其逻辑含义是真的。",
+      "difficulty": "easy",
+      "tags": ["chapter2-prolog-basics"],
+      "points": 1
+    },
+    {
+      "id": 11,
+      "type": "multiple-choice",
+      "question": "Prolog中变量的作用域是什么？",
+      "options": ["全局作用域", "单个子句", "整个程序", "单个谓词"],
+      "correctAnswer": 1,
+      "explanation": "Prolog中变量名的作用域是单个子句。",
+      "difficulty": "easy",
+      "tags": ["chapter2-prolog-basics"],
+      "points": 1
+    },
+    {
+      "id": 12,
+      "type": "multiple-choice",
+      "question": "Prolog规则的正确语法是什么？",
+      "options": ["if P then Q", "P -> Q", "Q :- P", "Q if P"],
+      "correctAnswer": 2,
+      "explanation": "Prolog规则语法是Q :- P，读作'Q如果P'，意思是证明Q为真，我们可以通过证明P为真来成功。",
+      "difficulty": "medium",
+      "tags": ["chapter2-prolog-basics"],
+      "points": 1
+    },
+    {
+      "id": 13,
+      "type": "multiple-choice",
+      "question": "Prolog中逗号','表示什么？",
+      "options": ["OR", "AND", "NOT", "IMPLIES"],
+      "correctAnswer": 1,
+      "explanation": "在Prolog中，逗号','表示'和'。",
+      "difficulty": "easy",
+      "tags": ["chapter2-prolog-basics"],
+      "points": 1
+    },
+    {
+      "id": 15,
+      "type": "multiple-choice",
+      "question": "Prolog中原子有多少种语法形式？",
+      "options": ["1种形式", "2种形式", "3种形式", "4种形式"],
+      "correctAnswer": 2,
+      "explanation": "Prolog中的原子有3种语法形式：以小写字母开头的字符串、特殊字符字符串和单引号中的字符串。",
+      "difficulty": "easy",
+      "tags": ["chapter2-prolog-basics"],
+      "points": 1
+    },
+    {
+      "id": 16,
+      "type": "multiple-choice",
+      "question": "Prolog中的匿名变量是什么？",
+      "options": ["单个下划线", "大写X", "小写x", "问号"],
+      "correctAnswer": 0,
+      "explanation": "Prolog中的匿名变量是单个下划线'_'。",
+      "difficulty": "easy",
+      "tags": ["chapter2-prolog-basics"],
+      "points": 1
+    },
+    {
+      "id": 17,
+      "type": "multiple-choice",
+      "question": "Prolog中的结构是什么？",
+      "options": ["单个值", "具有多个组件的对象", "函数调用", "变量"],
+      "correctAnswer": 1,
+      "explanation": "结构是具有多个组件的对象，例如date(17, june, 2006)。",
+      "difficulty": "easy",
+      "tags": ["chapter2-prolog-basics"],
+      "points": 1
+    },
+    {
+      "id": 18,
+      "type": "multiple-choice",
+      "question": "Prolog中匹配和合一的区别是什么？",
+      "options": ["没有区别", "合一包括出现检查", "匹配更严格", "合一更宽松"],
+      "correctAnswer": 1,
+      "explanation": "合一 = 匹配 + 出现检查。出现检查确保一边不会出现在另一边内部。",
+      "difficulty": "hard",
+      "tags": ["chapter2-prolog-basics"],
+      "points": 1
+    },
+    {
+      "id": 19,
+      "type": "multiple-choice",
+      "question": "在Prolog中表示两个事物不同的更好方法是什么？",
+      "options": [
+        "使用\\+操作符",
+        "使用dif/2谓词",
+        "使用=操作符",
+        "使用!=操作符"
+      ],
+      "correctAnswer": 1,
+      "explanation": "dif/2内置谓词更好，因为它延迟比较直到两个变量都被实例化。",
+      "difficulty": "easy",
+      "tags": ["chapter2-prolog-basics"],
+      "points": 1
+    },
+    {
+      "id": 24,
+      "type": "multiple-choice",
+      "question": "Prolog中操作符的优先级范围是什么？",
+      "options": ["0-100", "0-1000", "1-1200", "0-1200"],
+      "correctAnswer": 3,
+      "explanation": "Prolog中操作符的优先级范围是0-1200，数字越小优先级越高。",
+      "difficulty": "easy",
+      "tags": ["chapter2-prolog-basics"],
+      "points": 1
+    },
+    {
+      "id": 26,
+      "type": "multiple-choice",
+      "question": "Prolog中比较两个数值是否相等的操作符是什么？",
+      "options": ["=", "==", "=:=", "equals"],
+      "correctAnswer": 2,
+      "explanation": "使用=:=操作符比较Prolog中两个数值是否相等，例如2+5 =:= 5+2。",
+      "difficulty": "easy",
+      "tags": ["chapter2-prolog-basics"],
+      "points": 1
+    },
+    {
+      "id": 31,
+      "type": "multiple-choice",
+      "question": "为什么否定在涉及未绑定变量时给出错误答案？",
+      "options": ["否定总是失败", "否定需要基项", "否定是非逻辑的", "以上都是"],
+      "correctAnswer": 3,
+      "explanation": "否定在涉及未绑定变量时给出错误答案，因为它总是失败，需要基项，并且是非逻辑的。",
+      "difficulty": "medium",
+      "tags": ["chapter2-prolog-basics"],
+      "points": 1
+    },
+    {
+      "id": 32,
+      "type": "multiple-choice",
+      "question": "Prolog中顺序重要的三种情况是什么？",
+      "options": [
+        "递归、算术、否定",
+        "变量、常量、谓词",
+        "事实、规则、查询",
+        "头、尾、列表"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Prolog中顺序重要的三种情况是：递归和无限循环、算术和否定。",
+      "difficulty": "easy",
+      "tags": ["chapter2-prolog-basics"],
+      "points": 1
+    },
+    {
+      "id": 35,
+      "type": "coding",
+      "question": "编写一个Prolog程序来实现匹配算法的四个步骤。创建谓词来演示：1）常量匹配，2）变量实例化，3）相同函子的结构匹配，4）不同函子的结构匹配。",
+      "correctAnswer": "% 常量匹配\nequal_constants(X, X).\n\n% 变量实例化\ninstantiate_var(X, Y) :- var(X), nonvar(Y), X = Y.\n\n% 相同函子的结构匹配\nmatch_structure(f(X), f(Y)) :- X = Y.\nmatch_structure(g(X,Y), g(A,B)) :- X = A, Y = B.\n\n% 不同函子的结构匹配（应该失败）\nmatch_different(f(X), g(Y)) :- fail.\n\n% 示例事实\nperson(john).\nperson(mary).\n\n% 示例查询：\n% ?- equal_constants(5, 5).\n% ?- instantiate_var(X, john).\n% ?- match_structure(f(john), f(X)).",
+      "explanation": "这演示了Prolog匹配算法的四个步骤：常量匹配、变量实例化、相同函子的结构匹配和处理不同函子。",
+      "difficulty": "hard",
+      "tags": ["chapter2-prolog-basics"],
+      "points": 3
+    },
+    {
+      "id": 37,
+      "type": "coding",
+      "question": "编写一个Prolog程序来演示过程解释执行步骤。创建一个简单的家谱，包含事实和规则，然后编写查询来显示：1）直接事实匹配，2）带目标添加的规则应用，3）找不到匹配时的回溯。",
+      "correctAnswer": "% 家谱事实\nparent(john, mary).\nparent(mary, tom).\nparent(tom, lisa).\n\n% 规则\nancestor(X, Y) :- parent(X, Y).\nancestor(X, Z) :- parent(X, Y), ancestor(Y, Z).\n\n% 演示过程解释的示例查询：\n% ?- parent(john, mary).  % 直接事实匹配\n% ?- ancestor(john, tom).  % 规则应用：parent(john, mary), ancestor(mary, tom)\n% ?- ancestor(john, lisa). % 多次规则应用和回溯\n\n% 更复杂回溯的额外事实\nparent(john, sarah).\nparent(sarah, lisa).",
+      "explanation": "这演示了过程解释：直接事实匹配、带目标添加到查询前端的规则应用，以及找不到匹配时的回溯。",
+      "difficulty": "medium",
+      "tags": ["chapter2-prolog-basics"],
+      "points": 2
+    }
+  ]
+}

@@ -1,6 +1,6 @@
-/* Card Component Styles */
+/* Card Component Styles - ChatGPT Style */
 .card {
-  @apply bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-200;
+  @apply bg-white rounded-lg border border-gray-200 overflow-hidden transition-all duration-200;
 }
 
 /* Card Variants */
@@ -34,28 +34,20 @@
 
 /* Card States */
 .card-hoverable {
-  @apply hover:shadow-lg hover:border-gray-300 cursor-pointer;
-}
-
-.card-hoverable:hover {
-  @apply transform translate-y-[-2px];
+  @apply hover:shadow-md hover:border-gray-300 cursor-pointer;
 }
 
 .card-clickable {
-  @apply cursor-pointer;
-}
-
-.card-clickable:active {
-  @apply transform scale-[0.98];
+  @apply cursor-pointer active:scale-[0.99];
 }
 
 /* Card Structure */
 .card-header {
-  @apply px-6 py-4 border-b border-gray-200 bg-gray-50;
+  @apply px-4 py-3 border-b border-gray-200;
 }
 
 .card-title {
-  @apply text-lg font-semibold text-gray-900 mb-1;
+  @apply text-base font-semibold text-gray-900 mb-0.5;
 }
 
 .card-subtitle {
@@ -63,26 +55,11 @@
 }
 
 .card-body {
-  @apply px-6 py-4;
+  @apply px-4 py-3;
 }
 
 .card-footer {
-  @apply px-6 py-4 border-t border-gray-200 bg-gray-50;
-}
-
-/* Card with no header */
-.card:not(:has(.card-header)) .card-body {
-  @apply pt-6;
-}
-
-/* Card with no footer */
-.card:not(:has(.card-footer)) .card-body {
-  @apply pb-6;
-}
-
-/* Card with both header and footer */
-.card:has(.card-header):has(.card-footer) .card-body {
-  @apply py-4;
+  @apply px-4 py-3 border-t border-gray-200 bg-gray-50;
 }
 
 /* Responsive adjustments */
@@ -90,11 +67,15 @@
   .card-header,
   .card-body,
   .card-footer {
-    @apply px-4 py-3;
+    @apply px-3 py-2.5;
   }
-  
+
   .card-title {
-    @apply text-base;
+    @apply text-sm;
+  }
+
+  .card-subtitle {
+    @apply text-xs;
   }
 }
 
@@ -103,61 +84,21 @@
   .card {
     @apply bg-gray-800 border-gray-700;
   }
-  
+
   .card-default {
     @apply bg-gray-800 border-gray-700;
   }
-  
-  .card-primary {
-    @apply bg-blue-900/20 border-blue-700;
-  }
-  
-  .card-secondary {
-    @apply bg-gray-700 border-gray-600;
-  }
-  
-  .card-success {
-    @apply bg-green-900/20 border-green-700;
-  }
-  
-  .card-danger {
-    @apply bg-red-900/20 border-red-700;
-  }
-  
-  .card-warning {
-    @apply bg-yellow-900/20 border-yellow-700;
-  }
-  
-  .card-info {
-    @apply bg-blue-900/20 border-blue-700;
-  }
-  
+
   .card-header,
   .card-footer {
     @apply bg-gray-700 border-gray-600;
   }
-  
+
   .card-title {
     @apply text-gray-100;
   }
-  
+
   .card-subtitle {
     @apply text-gray-400;
   }
-}
-
-/* Animation for card appearance */
-@keyframes cardFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.card {
-  animation: cardFadeIn 0.3s ease-out;
 }

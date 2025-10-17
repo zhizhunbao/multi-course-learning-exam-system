@@ -1,0 +1,69 @@
+{
+  "courseId": "cst8503",
+  "chapterId": "chapter1-knowledge-representation",
+  "title": "知识表示",
+  "description": "知识表示相关题目",
+  "totalQuestions": 4,
+  "lastUpdated": "2025-10-16",
+  "language": "en",
+  "questions": [
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "question": "Which of the following is NOT a common knowledge representation method?",
+      "options": [
+        "Predicate Logic",
+        "Production Rules",
+        "Neural Networks",
+        "Frames"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Neural networks are mainly used for pattern recognition and machine learning, not traditional knowledge representation methods.",
+      "difficulty": "easy",
+      "tags": ["chapter1-knowledge-representation"],
+      "points": 1
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "question": "What is the definition of artificial intelligence software?",
+      "options": [
+        "Software that solves problems requiring intelligence",
+        "Software that mimics human behavior",
+        "Software with learning capabilities",
+        "Software that can pass the Turing test"
+      ],
+      "correctAnswer": 0,
+      "explanation": "AI software is a category of software solutions that solve problems typically considered to require or benefit from intelligence.",
+      "difficulty": "easy",
+      "tags": ["chapter1-knowledge-representation"],
+      "points": 1
+    },
+    {
+      "id": 30,
+      "type": "multiple-choice",
+      "question": "What is the meaning of the Closed World Assumption (CWA)?",
+      "options": [
+        "The world is finite",
+        "All facts are known",
+        "What cannot be derived is false",
+        "The world is open"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The Closed World Assumption means everything that Prolog cannot derive from the program is assumed to be false.",
+      "difficulty": "easy",
+      "tags": ["chapter1-knowledge-representation"],
+      "points": 1
+    },
+    {
+      "id": 33,
+      "type": "coding",
+      "question": "Write a Prolog knowledge base that represents the following expert system rules: If a patient has fever and cough, then they might have flu. If a patient has fever and headache, then they might have migraine. Define the facts and rules for this medical diagnosis system.",
+      "correctAnswer": "patient_fever(john).\npatient_cough(john).\npatient_headache(mary).\npatient_fever(mary).\n\nmight_have_flu(Patient) :- patient_fever(Patient), patient_cough(Patient).\nmight_have_migraine(Patient) :- patient_fever(Patient), patient_headache(Patient).",
+      "explanation": "This demonstrates knowledge representation using Prolog facts and rules for a simple medical diagnosis expert system.",
+      "difficulty": "medium",
+      "tags": ["chapter1-knowledge-representation"],
+      "points": 2
+    }
+  ]
+}

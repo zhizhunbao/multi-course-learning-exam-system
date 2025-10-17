@@ -1,0 +1,477 @@
+/* MarkdownRenderer 专用样式 */
+
+/* 代码块样式 - 极客风格 */
+.markdown-renderer .code-block-wrapper {
+  position: relative;
+  margin: 1.5rem 0;
+  border-radius: 0.75rem;
+  background: linear-gradient(145deg, #1e1e1e 0%, #2d2d2d 100%);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3),
+    0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.markdown-renderer .code-block-wrapper:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4),
+    0 4px 6px -2px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* 代码块头部 - macOS 风格 */
+.markdown-renderer .code-block-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(180deg, #2d2d2d 0%, #252525 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* macOS 三个点 */
+.markdown-renderer .code-block-dots {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.markdown-renderer .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.markdown-renderer .dot-red {
+  background: linear-gradient(135deg, #ff5f56 0%, #e0443e 100%);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.markdown-renderer .dot-yellow {
+  background: linear-gradient(135deg, #ffbd2e 0%, #e6a824 100%);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.markdown-renderer .dot-green {
+  background: linear-gradient(135deg, #27c93f 0%, #20b436 100%);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.markdown-renderer .code-block-wrapper:hover .dot {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+/* 语言标签 */
+.markdown-renderer .code-block-lang {
+  font-size: 0.75rem;
+  color: #888;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.25rem 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 复制按钮 */
+.markdown-renderer .code-block-copy {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #a0a0a0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.markdown-renderer .code-block-copy:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.markdown-renderer .code-block-copy:active {
+  transform: translateY(0);
+}
+
+.markdown-renderer .code-block-copy svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2;
+}
+
+/* pre 标签 */
+.markdown-renderer pre {
+  overflow-x: auto;
+  padding: 1.25rem 1rem !important;
+  margin: 0 !important;
+  background: #282c34 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  tab-size: 2;
+}
+
+.markdown-renderer code {
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+}
+
+.markdown-renderer pre code {
+  font-size: 1rem;
+}
+
+/* 行内代码样式 - 极客风格 */
+.markdown-renderer :not(pre) > code {
+  background: linear-gradient(135deg, #2d2d2d 0%, #1e1e1e 100%);
+  color: #61dafb;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.875em;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.markdown-renderer :not(pre) > code:hover {
+  background: linear-gradient(135deg, #353535 0%, #252525 100%);
+  border-color: rgba(97, 218, 251, 0.3);
+  box-shadow: 0 0 8px rgba(97, 218, 251, 0.2);
+}
+
+/* 表格样式 */
+.markdown-renderer .table-wrapper {
+  overflow-x: auto;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+}
+
+.markdown-renderer table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.markdown-renderer th {
+  background-color: #f9fafb;
+  border: 1px solid #d1d5db;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.markdown-renderer td {
+  border: 1px solid #e5e7eb;
+  padding: 0.75rem 1rem;
+  color: #374151;
+}
+
+.markdown-renderer tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+/* 链接样式 */
+.markdown-renderer a {
+  color: #2563eb;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease-in-out;
+}
+
+.markdown-renderer a:hover {
+  color: #1e40af;
+}
+
+/* 图片样式 */
+.markdown-renderer .image-wrapper {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.markdown-renderer .image-wrapper img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.markdown-renderer .image-caption {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+/* 引用块样式 */
+.markdown-renderer blockquote {
+  border-left: 4px solid #3b82f6;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background-color: #eff6ff;
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-style: italic;
+  color: #374151;
+}
+
+.markdown-renderer blockquote p {
+  margin: 0.5rem 0;
+}
+
+/* 任务列表样式 */
+.markdown-renderer .task-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 1rem 0;
+}
+
+.markdown-renderer .task-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.markdown-renderer .task-checkbox {
+  margin-top: 0.25rem;
+  height: 1rem;
+  width: 1rem;
+  color: #2563eb;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  cursor: default;
+}
+
+.markdown-renderer .task-checkbox:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.markdown-renderer .task-text-checked {
+  text-decoration: line-through;
+  color: #6b7280;
+}
+
+.markdown-renderer .task-text {
+  color: #374151;
+}
+
+/* 标题样式 */
+.markdown-renderer h1,
+.markdown-renderer h2,
+.markdown-renderer h3,
+.markdown-renderer h4,
+.markdown-renderer h5,
+.markdown-renderer h6 {
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.markdown-renderer h1 {
+  font-size: 2rem;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+
+.markdown-renderer h2 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.375rem;
+}
+
+.markdown-renderer h3 {
+  font-size: 1.25rem;
+}
+
+.markdown-renderer h4 {
+  font-size: 1.125rem;
+}
+
+/* 列表样式 */
+.markdown-renderer ul,
+.markdown-renderer ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.markdown-renderer li {
+  margin: 0.5rem 0;
+  line-height: 1.75;
+  color: #374151;
+}
+
+.markdown-renderer ul {
+  list-style-type: disc;
+}
+
+.markdown-renderer ul ul {
+  list-style-type: circle;
+}
+
+.markdown-renderer ol {
+  list-style-type: decimal;
+}
+
+/* 段落样式 */
+.markdown-renderer p {
+  margin: 1rem 0;
+  line-height: 1.75;
+  color: #374151;
+}
+
+/* 水平线样式 */
+.markdown-renderer hr {
+  border: none;
+  border-top: 2px solid #e5e7eb;
+  margin: 2rem 0;
+}
+
+/* 强调文本样式 */
+.markdown-renderer strong {
+  font-weight: 600;
+  color: #111827;
+}
+
+.markdown-renderer em {
+  font-style: italic;
+}
+
+/* 删除线样式 */
+.markdown-renderer del {
+  text-decoration: line-through;
+  color: #6b7280;
+}
+
+/* KaTeX 数学公式样式调整 */
+.markdown-renderer .katex {
+  font-size: 1.1em;
+}
+
+.markdown-renderer .katex-display {
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* 加载状态样式 */
+.markdown-renderer .loading {
+  text-align: center;
+  padding: 2rem;
+  color: #6b7280;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .markdown-renderer {
+    font-size: 0.875rem;
+  }
+
+  .markdown-renderer h1 {
+    font-size: 1.5rem;
+  }
+
+  .markdown-renderer h2 {
+    font-size: 1.25rem;
+  }
+
+  .markdown-renderer h3 {
+    font-size: 1.125rem;
+  }
+
+  .markdown-renderer pre {
+    font-size: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .markdown-renderer .code-block-lang {
+    font-size: 0.625rem;
+  }
+}
+
+/* 自定义滚动条样式 */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db #f3f4f6;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* 代码块滚动条 - 极客风格 */
+.markdown-renderer pre::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.markdown-renderer pre::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.markdown-renderer pre::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.markdown-renderer pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+  background-clip: padding-box;
+}
+
+.markdown-renderer pre::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* 打印样式 */
+@media print {
+  .markdown-renderer .code-block-lang {
+    display: none;
+  }
+
+  .markdown-renderer a {
+    text-decoration: underline;
+    color: #000;
+  }
+
+  .markdown-renderer blockquote {
+    border-left: 4px solid #000;
+    background-color: #f5f5f5;
+  }
+}

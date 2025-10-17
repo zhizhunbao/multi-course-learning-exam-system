@@ -58,13 +58,10 @@ const Alert = ({
 
   return (
     <div className={classes} {...props}>
+      <div className="alert-icon">{icons[type] || icons.info}</div>
       <div className="alert-content">
-        <div className="alert-icon">{icons[type] || icons.info}</div>
-        <div className="alert-body">
-          {title && <div className="alert-title">{title}</div>}
-          {message && <div className="alert-message">{message}</div>}
-          {children}
-        </div>
+        {title && <div className="alert-title">{title}</div>}
+        <div className="alert-message">{message || children}</div>
       </div>
       {dismissible && (
         <button

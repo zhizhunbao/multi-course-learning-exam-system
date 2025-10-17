@@ -1,0 +1,134 @@
+/* Login Component Styles - ChatGPT Style */
+.login-container {
+  @apply min-h-screen bg-white flex items-center justify-center p-4 relative;
+}
+
+.login-lang-btn {
+  @apply absolute top-4 right-4 flex items-center gap-2 px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors duration-200;
+}
+
+.login-content {
+  @apply w-full max-w-md;
+}
+
+.login-header {
+  @apply text-center mb-8;
+}
+
+.login-logo {
+  @apply w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center mx-auto mb-4 text-white;
+}
+
+.login-title {
+  @apply text-2xl font-semibold text-gray-900 mb-2;
+}
+
+.login-subtitle {
+  @apply text-sm text-gray-600;
+}
+
+.login-form-wrapper {
+  @apply bg-white rounded-lg border border-gray-200 p-6;
+}
+
+.login-form {
+  @apply space-y-4;
+}
+
+.login-form-group {
+  @apply space-y-2;
+}
+
+.login-label {
+  @apply block text-sm font-medium text-gray-700;
+}
+
+.login-input {
+  @apply w-full px-3 py-2 text-sm border border-gray-300 rounded-lg transition-all duration-200 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400;
+}
+
+.login-input-error {
+  @apply border-red-500 focus:border-red-500 focus:ring-red-500;
+}
+
+.login-error {
+  @apply text-xs text-red-500 mt-1;
+}
+
+.login-submit-btn {
+  @apply w-full bg-gray-900 text-white py-2.5 px-4 rounded-lg text-sm font-medium hover:bg-gray-800 active:bg-gray-950 transition-colors duration-200;
+}
+
+.login-footer {
+  @apply mt-4 pt-4 border-t border-gray-200 text-center;
+}
+
+.login-footer-text {
+  @apply text-xs text-gray-500;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .login-content {
+    @apply max-w-sm;
+  }
+
+  .login-title {
+    @apply text-xl;
+  }
+
+  .login-form-wrapper {
+    @apply p-4;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .login-container {
+    @apply bg-gray-900;
+  }
+
+  .login-lang-btn {
+    @apply text-gray-300 hover:bg-gray-800;
+  }
+
+  .login-logo {
+    @apply bg-gray-100 text-gray-900;
+  }
+
+  .login-title {
+    @apply text-gray-100;
+  }
+
+  .login-subtitle {
+    @apply text-gray-400;
+  }
+
+  .login-form-wrapper {
+    @apply bg-gray-800 border-gray-700;
+  }
+
+  .login-label {
+    @apply text-gray-300;
+  }
+
+  .login-input {
+    @apply bg-gray-700 text-gray-100 border-gray-600 placeholder-gray-500;
+  }
+
+  .login-input:focus {
+    @apply border-gray-400;
+  }
+
+  .login-submit-btn {
+    @apply bg-gray-100 text-gray-900 hover:bg-gray-200 active:bg-gray-300;
+  }
+
+  .login-footer {
+    @apply border-gray-700;
+  }
+
+  .login-footer-text {
+    @apply text-gray-400;
+  }
+}

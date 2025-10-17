@@ -1,0 +1,95 @@
+{
+  "courseId": "cst8503",
+  "chapterId": "chapter5-prolog-lists-operators",
+  "title": "Prolog列表和操作符",
+  "description": "Prolog列表和操作符相关题目",
+  "totalQuestions": 6,
+  "lastUpdated": "2025-10-16",
+  "language": "zh",
+  "questions": [
+    {
+      "id": 20,
+      "type": "multiple-choice",
+      "question": "Prolog列表的头和尾是什么？",
+      "options": [
+        "第一个和最后一个元素",
+        "第一个元素和剩余列表",
+        "所有元素",
+        "空列表"
+      ],
+      "correctAnswer": 1,
+      "explanation": "列表的头是第一个元素，尾是剩余的元素列表。",
+      "difficulty": "easy",
+      "tags": ["chapter5-prolog-lists-operators"],
+      "points": 1
+    },
+    {
+      "id": 21,
+      "type": "multiple-choice",
+      "question": "Prolog列表[a,b,c]的标准表示法是什么？",
+      "options": [
+        "'(a,b,c)'",
+        "'[|]'(a,'[|]'(b,'[|]'(c,[])))",
+        "'list'(a,b,c)",
+        "'cons'(a,'cons'(b,c))"
+      ],
+      "correctAnswer": 1,
+      "explanation": "列表表示法是语法糖，[a,b,c]的标准表示法是'[|]'(a,'[|]'(b,'[|]'(c,[])))。",
+      "difficulty": "easy",
+      "tags": ["chapter5-prolog-lists-operators"],
+      "points": 1
+    },
+    {
+      "id": 25,
+      "type": "multiple-choice",
+      "question": "在Prolog中执行算术计算的正确方法是什么？",
+      "options": [
+        "使用=操作符",
+        "使用is操作符",
+        "使用:=操作符",
+        "使用==操作符"
+      ],
+      "correctAnswer": 1,
+      "explanation": "在Prolog中使用is操作符进行算术计算，例如X is 1 + 2。",
+      "difficulty": "easy",
+      "tags": ["chapter5-prolog-lists-operators"],
+      "points": 1
+    },
+    {
+      "id": 50,
+      "type": "multiple-choice",
+      "question": "Prolog中del/3谓词的正确定义是什么（从列表中删除元素）？",
+      "options": [
+        "del(X, [X | Tail], Tail). del(X, [Y | Tail], [Y | Tail1]) :- del(X, Tail, Tail1).",
+        "del(X, [X | Tail], Tail). del(X, [Y | Tail], [Y | Tail1]) :- del(X, Tail, Tail1).",
+        "del(X, [X | Tail], Tail). del(X, [Y | Tail], [Y | Tail1]) :- del(X, Tail, Tail1).",
+        "del(X, [X | Tail], Tail). del(X, [Y | Tail], [Y | Tail1]) :- del(X, Tail, Tail1)."
+      ],
+      "correctAnswer": 0,
+      "explanation": "del/3谓词从列表中删除元素的第一次出现：如果X是头则删除它，否则递归地从尾中删除X。",
+      "difficulty": "medium",
+      "tags": ["chapter5-prolog-lists-operators"],
+      "points": 1
+    },
+    {
+      "id": 51,
+      "type": "coding",
+      "question": "编写一个完整的Prolog程序来实现列表操作，包括：1）append/3谓词来连接两个列表，2）reverse/2谓词来反转列表，3）sum_list/2谓词来计算列表中数字的总和。为每个谓词包含测试用例。",
+      "correctAnswer": "% Append谓词 - 连接两个列表\nappend([], L, L).\nappend([X | L1], L2, [X | L3]) :- append(L1, L2, L3).\n\n% Reverse谓词 - 反转列表\nreverse([], []).\nreverse([X | L], R) :- reverse(L, RL), append(RL, [X], R).\n\n% Sum list谓词 - 列表中数字的总和\nsum_list([], 0).\nsum_list([X | L], Sum) :- sum_list(L, SumTail), Sum is X + SumTail.\n\n% 测试用例：\n% ?- append([1,2], [3,4], Result).\n% ?- reverse([1,2,3,4], Result).\n% ?- sum_list([1,2,3,4], Sum).\n\n% 使用累加器的替代reverse：\nreverse_acc([], Acc, Acc).\nreverse_acc([X | L], Acc, Result) :- reverse_acc(L, [X | Acc], Result).\nreverse_alt(L, R) :- reverse_acc(L, [], R).",
+      "explanation": "这演示了Prolog中的基本列表操作：连接、反转和列表上的算术操作。显示了递归和基于累加器的方法。",
+      "difficulty": "medium",
+      "tags": ["chapter5-prolog-lists-operators"],
+      "points": 2
+    },
+    {
+      "id": 52,
+      "type": "coding",
+      "question": "编写一个Prolog程序来演示自定义操作符定义和算术操作。定义操作符用于：1）自定义算术操作（add, multiply），2）列表操作（cons, head, tail），3）比较操作。包含显示操作符优先级和结合性的示例。",
+      "correctAnswer": "% 定义自定义操作符\n:- op(500, xfx, add).\n:- op(400, xfx, multiply).\n:- op(300, xfy, cons).\n:- op(200, xfx, equals).\n\n% 自定义算术操作\nX add Y is Z :- Z is X + Y.\nX multiply Y is Z :- Z is X * Y.\n\n% 列表操作\nhead([X | _], X).\ntail([_ | L], L).\ncons(X, L, [X | L]).\n\n% 比较操作\nX equals Y :- X =:= Y.\n\n% 示例：\n% ?- 5 add 3 is Result.\n% ?- 4 multiply 6 is Result.\n% ?- head([1,2,3], H).\n% ?- tail([1,2,3], T).\n% ?- cons(0, [1,2,3], NewList).\n% ?- 5 equals 5.\n\n% 操作符优先级演示：\n% ?- 2 add 3 multiply 4 is Result.  % 等价于: 2 add (3 multiply 4)\n% ?- (2 add 3) multiply 4 is Result.  % 显式优先级",
+      "explanation": "这演示了Prolog中的自定义操作符定义，显示了如何定义具有不同优先级级别和结合性的操作符，以及如何在算术和列表操作中使用它们。",
+      "difficulty": "hard",
+      "tags": ["chapter5-prolog-lists-operators"],
+      "points": 3
+    }
+  ]
+}

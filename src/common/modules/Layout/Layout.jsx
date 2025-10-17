@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useApp } from "../../../context/AppContext";
 import Sidebar from "../Sidebar/Sidebar";
@@ -8,6 +8,7 @@ import NotificationContainer from "../Elements/NotificationContainer";
 const Layout = () => {
   const { isAuthenticated, isInitialized } = useApp();
   const navigate = useNavigate();
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   // 如果用户未登录，重定向到登录页面
   React.useEffect(() => {
@@ -34,18 +35,21 @@ const Layout = () => {
   }
 
   return (
-    <div className="min-h-screen">
-      <div className="flex">
-        {/* 侧边栏 */}
-        <Sidebar />
+    <div className="min-h-screen bg-gray-50">
+      <div className="flex h-screen">
+        {/* 侧边栏 - ChatGPT 风格，桌面端固定显示，移动端可切换 */}
+        <Sidebar
+          isMobileOpen={isMobileSidebarOpen}
+          onMobileClose={() => setIsMobileSidebarOpen(false)}
+        />
 
-        {/* 主内容区域 */}
-        <div className="flex-1 flex flex-col ml-64">
+        {/* 主内容区域 - 自动调整宽度 */}
+        <div className="flex-1 flex flex-col min-w-0">
           {/* 顶部导航栏 */}
-          <Header />
+          <Header onMenuClick={() => setIsMobileSidebarOpen(true)} />
 
           {/* 页面内容 */}
-          <main className="flex-1 p-6">
+          <main className="flex-1 p-6 overflow-auto relative scrollbar-hide">
             <Outlet />
           </main>
         </div>

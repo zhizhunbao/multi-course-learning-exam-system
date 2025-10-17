@@ -1,0 +1,63 @@
+{
+  "courseId": "cst8503",
+  "chapterId": "chapter7-midterm-review",
+  "title": "期中复习",
+  "description": "期中复习相关题目",
+  "totalQuestions": 4,
+  "lastUpdated": "2025-10-16",
+  "language": "zh",
+  "questions": [
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "question": "机器学习中的监督学习是什么？",
+      "options": [
+        "使用无标签数据寻找模式",
+        "使用标签数据集训练系统",
+        "基于奖励的学习",
+        "没有明确示例的学习"
+      ],
+      "correctAnswer": 1,
+      "explanation": "监督学习使用包含明确示例的标签数据集来训练系统寻找模式。",
+      "difficulty": "easy",
+      "tags": ["chapter7-midterm-review"],
+      "points": 1
+    },
+    {
+      "id": 55,
+      "type": "multiple-choice",
+      "question": "以下哪项最好地描述了知识表示和Prolog之间的关系？",
+      "options": [
+        "Prolog是实现知识表示概念的编程语言",
+        "知识表示只在Prolog中使用",
+        "Prolog与知识表示无关",
+        "知识表示是Prolog的子集"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Prolog是实现知识表示概念（如事实、规则和逻辑推理）的编程语言。",
+      "difficulty": "medium",
+      "tags": ["chapter7-midterm-review"],
+      "points": 1
+    },
+    {
+      "id": 56,
+      "type": "coding",
+      "question": "编写一个综合的Prolog程序，演示课程中涵盖的所有主要概念。包括：1）带有事实和规则的知识表示，2）列表操作（append, reverse, member），3）算术操作，4）使用trace调试，5）否定和截断操作符。创建一个学生成绩管理系统作为应用领域。",
+      "correctAnswer": "% 学生成绩管理系统\n% 知识表示 - 事实\nstudent(john, 85).\nstudent(mary, 92).\nstudent(tom, 78).\nstudent(sarah, 88).\n\ncourse(cst8503, '知识表示').\ncourse(cst8504, 'AI系统').\n\n% 成绩分类规则\nexcellent_grade(Student) :- student(Student, Grade), Grade >= 90.\ngood_grade(Student) :- student(Student, Grade), Grade >= 80, Grade < 90.\naverage_grade(Student) :- student(Student, Grade), Grade >= 70, Grade < 80.\npoor_grade(Student) :- student(Student, Grade), Grade < 70.\n\n% 列表操作\n% 连接列表\ngrade_list([85, 92, 78, 88]).\n\nappend([], L, L).\nappend([X | L1], L2, [X | L3]) :- append(L1, L2, L3).\n\n% 反转列表\nreverse([], []).\nreverse([X | L], R) :- reverse(L, RL), append(RL, [X], R).\n\n% Member谓词\nmember(X, [X | _]).\nmember(X, [_ | L]) :- member(X, L).\n\n% 算术操作\nsum_grades([], 0).\nsum_grades([X | L], Sum) :- sum_grades(L, SumTail), Sum is X + SumTail.\n\naverage_grades(GradeList, Average) :-\n    sum_grades(GradeList, Sum),\n    length(GradeList, Count),\n    Average is Sum / Count.\n\n% 调试示例\nfind_student_grade(Student, Grade) :-\n    student(Student, Grade).\n\n% 否定和截断\npassing_student(Student) :-\n    student(Student, Grade),\n    Grade >= 70, !.\n\nfailing_student(Student) :-\n    student(Student, Grade),\n    \\+ (Grade >= 70).\n\n% 测试查询：\n% ?- excellent_grade(mary).\n% ?- append([85, 92], [78, 88], Result).\n% ?- reverse([85, 92, 78], R).\n% ?- member(85, [85, 92, 78]).\n% ?- average_grades([85, 92, 78, 88], Avg).\n% ?- trace, find_student_grade(john, Grade).\n% ?- passing_student(john).\n% ?- failing_student(tom).",
+      "explanation": "这个综合程序演示了所有主要的Prolog概念：带有事实和规则的知识表示、列表操作、算术、调试以及否定/截断。学生成绩管理系统提供了实际的应用领域。",
+      "difficulty": "hard",
+      "tags": ["chapter7-midterm-review"],
+      "points": 4
+    },
+    {
+      "id": 57,
+      "type": "coding",
+      "question": "创建一个Prolog课程推荐专家系统，结合多个概念。包括：1）带有偏好和先修课程的学生档案，2）带有要求的课程信息，3）使用截断和否定的推荐规则，4）列表操作来管理课程列表，5）调试功能。系统应该根据学生背景和偏好推荐课程。",
+      "correctAnswer": "% 课程推荐专家系统\n\n% 学生档案\nstudent_profile(john, beginner, [math, programming]).\nstudent_profile(mary, advanced, [ai, logic]).\nstudent_profile(tom, intermediate, [databases, web]).\n\n% 课程信息\ncourse_info(cst8503, '知识表示', intermediate, [logic, programming]).\ncourse_info(cst8504, 'AI系统', advanced, [ai, math]).\ncourse_info(cst8505, 'Web开发', beginner, [programming]).\ncourse_info(cst8506, '数据库系统', intermediate, [databases]).\n\n% 先修课程\nhas_prerequisite(Student, Prereq) :-\n    student_profile(Student, _, Skills),\n    member(Prereq, Skills).\n\n% 使用截断的推荐规则\nrecommend_course(Student, Course) :-\n    student_profile(Student, Level, Skills),\n    course_info(Course, _, RequiredLevel, RequiredSkills),\n    Level = RequiredLevel, !,\n    check_prerequisites(Skills, RequiredSkills).\n\nrecommend_course(Student, Course) :-\n    student_profile(Student, Level, Skills),\n    course_info(Course, _, RequiredLevel, RequiredSkills),\n    Level = beginner,\n    RequiredLevel = intermediate,\n    check_prerequisites(Skills, RequiredSkills), !.\n\n% 先修课程检查\ncheck_prerequisites(StudentSkills, RequiredSkills) :-\n    subset(RequiredSkills, StudentSkills).\n\n% 课程管理的列表操作\ncourse_list([cst8503, cst8504, cst8505, cst8506]).\n\n% 按级别过滤课程\nfilter_by_level(Level, FilteredCourses) :-\n    course_list(AllCourses),\n    filter_courses_by_level(AllCourses, Level, FilteredCourses).\n\nfilter_courses_by_level([], _, []).\nfilter_courses_by_level([Course | Rest], Level, [Course | Filtered]) :-\n    course_info(Course, _, Level, _), !,\n    filter_courses_by_level(Rest, Level, Filtered).\nfilter_courses_by_level([_ | Rest], Level, Filtered) :-\n    filter_courses_by_level(Rest, Level, Filtered).\n\n% 调试助手\ndebug_recommendation(Student) :-\n    write('学生: '), write(Student), nl,\n    student_profile(Student, Level, Skills),\n    write('级别: '), write(Level), nl,\n    write('技能: '), write(Skills), nl,\n    recommend_course(Student, Course),\n    write('推荐: '), write(Course), nl.\n\n% 测试查询：\n% ?- recommend_course(john, Course).\n% ?- filter_by_level(beginner, Courses).\n% ?- trace, debug_recommendation(mary).\n% ?- has_prerequisite(john, programming).",
+      "explanation": "这个专家系统演示了高级Prolog概念，包括复杂的基于规则的推理、用于控制回溯的截断、用于异常处理的否定、用于数据管理的列表操作和调试技术。显示了所有课程概念的实际应用。",
+      "difficulty": "hard",
+      "tags": ["chapter7-midterm-review"],
+      "points": 4
+    }
+  ]
+}

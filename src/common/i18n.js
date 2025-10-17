@@ -2,14 +2,11 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 
-// 使用 PathUtil 动态导入各个模块的语言资源
 // Common modules
 import elementsZhCN from "./modules/Elements/locales/zh-CN.json";
 import elementsEn from "./modules/Elements/locales/en.json";
 import headerZhCN from "./modules/Header/locales/zh-CN.json";
 import headerEn from "./modules/Header/locales/en.json";
-import footerZhCN from "./modules/Footer/locales/zh-CN.json";
-import footerEn from "./modules/Footer/locales/en.json";
 import sidebarZhCN from "./modules/Sidebar/locales/zh-CN.json";
 import sidebarEn from "./modules/Sidebar/locales/en.json";
 import navigatorZhCN from "./modules/Navigator/locales/zh-CN.json";
@@ -19,7 +16,7 @@ import loginEn from "./modules/Login/locales/en.json";
 import layoutZhCN from "./modules/Layout/locales/zh-CN.json";
 import layoutEn from "./modules/Layout/locales/en.json";
 
-// Feature modules - 使用 PathUtil 管理路径
+// Feature modules
 import courseManagementZhCN from "../modules/course-management/locales/zh-CN.json";
 import courseManagementEn from "../modules/course-management/locales/en.json";
 import learningZhCN from "../modules/learning/locales/zh-CN.json";
@@ -39,7 +36,6 @@ const resources = {
     login: loginZhCN,
     elements: elementsZhCN,
     header: headerZhCN,
-    footer: footerZhCN,
     sidebar: sidebarZhCN,
     navigator: navigatorZhCN,
     layout: layoutZhCN,
@@ -54,7 +50,6 @@ const resources = {
     login: loginEn,
     elements: elementsEn,
     header: headerEn,
-    footer: footerEn,
     sidebar: sidebarEn,
     navigator: navigatorEn,
     layout: layoutEn,
@@ -79,7 +74,6 @@ i18n
       "login",
       "elements",
       "header",
-      "footer",
       "sidebar",
       "navigator",
       "layout",

@@ -1,9 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { useApp } from "../../../context/AppContext";
-import { LogOut, Globe, User } from "lucide-react";
+import { LogOut, Globe, User, Menu } from "lucide-react";
+import "./Header.css";
 
-const Header = () => {
+const Header = ({ onMenuClick }) => {
   const { t, i18n } = useTranslation([
     "header",
     "sidebar",
@@ -61,51 +62,59 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white/90 backdrop-blur-sm shadow-lg border-b border-gray-100">
-      <div className="px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* 左侧：页面标题 */}
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">
-              {getPageTitle()}
-            </h1>
-            <p className="text-sm text-gray-500">
-              {t("header:welcome")}, {user?.name}
-            </p>
-          </div>
-
-          {/* 右侧：操作按钮 */}
-          <div className="flex items-center space-x-4">
-            {/* 语言切换 */}
+    <header className="header-container">
+      <div className="header-content">
+        {/* 左侧：移动端菜单按钮 + 页面标题 */}
+        <div className="header-left">
+          {/* 移动端菜单按钮 */}
+          {onMenuClick && (
             <button
-              onClick={toggleLanguage}
-              className="p-2 text-gray-500 hover:text-algonquin-blue hover:bg-white rounded-lg transition-all duration-200 shadow-sm hover:shadow-md"
-              title="语言切换"
+              onClick={onMenuClick}
+              className="header-menu-btn"
+              aria-label="Toggle menu"
+              title="Toggle menu"
             >
-              <Globe className="w-5 h-5" />
+              <Menu className="w-5 h-5" />
             </button>
+          )}
 
-            {/* 用户菜单 */}
-            <div className="flex items-center space-x-3">
-              <div className="flex items-center space-x-2">
-                <div className="w-10 h-10 bg-algonquin-blue rounded-xl flex items-center justify-center shadow-lg">
-                  <User className="w-5 h-5 text-white" />
-                </div>
-                <div className="text-sm">
-                  <p className="font-semibold text-gray-900">{user?.name}</p>
-                </div>
-              </div>
-
-              {/* 退出登录 */}
-              <button
-                onClick={handleLogout}
-                className="p-2 text-gray-500 hover:text-red-600 hover:bg-white rounded-lg transition-all duration-200 shadow-sm hover:shadow-md"
-                title={t("header:logout")}
-              >
-                <LogOut className="w-5 h-5" />
-              </button>
-            </div>
+          {/* 页面标题 */}
+          <div className="header-title-wrapper">
+            <h1 className="header-title">{getPageTitle()}</h1>
           </div>
+        </div>
+
+        {/* 右侧：操作按钮 */}
+        <div className="header-actions">
+          {/* 语言切换 */}
+          <button
+            onClick={toggleLanguage}
+            className="header-action-btn"
+            aria-label="Toggle language"
+            title={
+              i18n.language === "zh-CN" ? "Switch to English" : "切换到中文"
+            }
+          >
+            <Globe className="w-5 h-5" />
+          </button>
+
+          {/* 用户信息 */}
+          <div className="header-user">
+            <div className="header-user-avatar">
+              <User className="w-4 h-4" />
+            </div>
+            <span className="header-user-name">{user?.name}</span>
+          </div>
+
+          {/* 退出登录 */}
+          <button
+            onClick={handleLogout}
+            className="header-action-btn header-logout-btn"
+            aria-label="Logout"
+            title={t("header:logout")}
+          >
+            <LogOut className="w-5 h-5" />
+          </button>
         </div>
       </div>
     </header>

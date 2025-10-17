@@ -4,9 +4,6 @@ export { Layout } from "./Layout";
 // Header components
 export { Header } from "./Header";
 
-// Footer components
-export { Footer } from "./Footer";
-
 // Sidebar components
 export { Sidebar } from "./Sidebar";
 
@@ -15,6 +12,14 @@ export { Navigator } from "./Navigator";
 
 // Login components
 export { Login } from "./Login";
+
+// Markdown components
+export { default as MarkdownRenderer } from "./Markdown/MarkdownRenderer.jsx";
+export { default as TableOfContents } from "./Markdown/TableOfContents.jsx";
+export { default as MindMap } from "./Markdown/MindMap.jsx";
+
+// MDX components
+export { MDXRenderer } from "./MDX";
 
 // UI Elements
 export {

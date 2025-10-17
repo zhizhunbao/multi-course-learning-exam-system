@@ -1,0 +1,74 @@
+{
+  "courseId": "cst8503",
+  "chapterId": "chapter6-prolog-negation",
+  "title": "Prolog否定",
+  "description": "Prolog否定相关题目",
+  "totalQuestions": 5,
+  "lastUpdated": "2025-10-16",
+  "language": "en",
+  "questions": [
+    {
+      "id": 27,
+      "type": "multiple-choice",
+      "question": "What is the cut operator in Prolog?",
+      "options": ["&", "!", "#", "$"],
+      "correctAnswer": 1,
+      "explanation": "The cut operator in Prolog is the exclamation mark '!', which always succeeds and discards choice points.",
+      "difficulty": "easy",
+      "tags": ["chapter6-prolog-negation"],
+      "points": 1
+    },
+    {
+      "id": 28,
+      "type": "multiple-choice",
+      "question": "Why is cut considered non-logical?",
+      "options": [
+        "It changes the meaning of the program",
+        "It breaks logical consistency",
+        "It depends on execution order",
+        "All of the above"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Cut is non-logical because it changes program meaning, breaks logical consistency, and depends on execution order.",
+      "difficulty": "easy",
+      "tags": ["chapter6-prolog-negation"],
+      "points": 1
+    },
+    {
+      "id": 29,
+      "type": "multiple-choice",
+      "question": "What is the definition of negation by failure in Prolog?",
+      "options": [
+        "not(P) :- P, !, fail ; true.",
+        "not(P) :- P, fail.",
+        "not(P) :- \\+ P.",
+        "not(P) :- P = false."
+      ],
+      "correctAnswer": 0,
+      "explanation": "Negation by failure is defined as not(P) :- P, !, fail ; true., which can also be written as prefix operator \\+ P.",
+      "difficulty": "medium",
+      "tags": ["chapter6-prolog-negation"],
+      "points": 1
+    },
+    {
+      "id": 53,
+      "type": "coding",
+      "question": "Write a Prolog program that demonstrates the use of cut (!) operator and negation by failure. Include: 1) A predicate that uses cut to prevent backtracking, 2) A predicate that implements negation by failure using \\+ operator, 3) Examples showing the difference between cut and negation. Include test cases that demonstrate the behavior.",
+      "correctAnswer": "% Facts\nstudent(john).\nstudent(mary).\nstudent(tom).\n\n% Cut example - first student only\nfirst_student(X) :- student(X), !.\n\n% Negation by failure example\nnot_student(X) :- \\+ student(X).\n\n% Alternative negation definition\nnot_student_alt(X) :- student(X), !, fail ; true.\n\n% Cut in conditional\npass_grade(Score) :- Score >= 60, !, write('Passed').\npass_grade(Score) :- write('Failed').\n\n% Test cases:\n% ?- first_student(X).  % Returns only john, no backtracking\n% ?- not_student(alice).  % true (alice is not a student)\n% ?- not_student(john).   % false (john is a student)\n% ?- pass_grade(75).     % Passed\n% ?- pass_grade(45).     % Failed\n\n% Demonstrating cut vs negation:\n% ?- student(X), write(X), nl, fail.  % Lists all students\n% ?- first_student(X), write(X), nl, fail.  % Only john (cut prevents backtracking)",
+      "explanation": "This demonstrates the cut operator (!) for preventing backtracking and negation by failure using \\+ operator. Shows practical examples of when to use each and their different behaviors.",
+      "difficulty": "medium",
+      "tags": ["chapter6-prolog-negation"],
+      "points": 2
+    },
+    {
+      "id": 54,
+      "type": "coding",
+      "question": "Write a Prolog program that implements a simple expert system using negation and cut. Create rules for: 1) Animal classification with cut to prevent multiple classifications, 2) Rule-based decision making with negation, 3) Exception handling using cut. Include facts about animals and demonstrate the expert system in action.",
+      "correctAnswer": "% Animal facts\nhas_feathers(penguin).\nhas_feathers(eagle).\ncan_fly(eagle).\ncan_fly(sparrow).\ncan_swim(penguin).\ncan_swim(duck).\nhas_fur(cat).\nhas_fur(dog).\nhas_scales(fish).\nhas_scales(snake).\n\n% Animal classification with cut\nbird(X) :- has_feathers(X), !.\nmammal(X) :- has_fur(X), !.\nfish_animal(X) :- has_scales(X), !.\nfish_animal(X) :- can_swim(X), \\+ has_feathers(X), \\+ has_fur(X), !.\n\n% Decision making with negation\ncan_pet(X) :- mammal(X), \\+ dangerous(X).\ncan_pet(X) :- bird(X), \\+ dangerous(X).\n\n% Exception handling\ndangerous(snake).\ndangerous(eagle).\n\n% Safe animals (negation)\nsafe_animal(X) :- \\+ dangerous(X).\n\n% Test cases:\n% ?- bird(penguin).  % true\n% ?- mammal(cat).    % true\n% ?- fish_animal(fish).  % true\n% ?- can_pet(cat).   % true\n% ?- can_pet(snake). % false (dangerous)\n% ?- safe_animal(cat).  % true\n% ?- safe_animal(snake). % false\n\n% Expert system query:\n% ?- bird(X), can_pet(X).  % Find birds that can be petted",
+      "explanation": "This demonstrates a practical expert system using cut for classification, negation for decision making, and exception handling. Shows how cut prevents multiple classifications and negation handles exceptions.",
+      "difficulty": "hard",
+      "tags": ["chapter6-prolog-negation"],
+      "points": 3
+    }
+  ]
+}

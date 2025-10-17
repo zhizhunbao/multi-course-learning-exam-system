@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useApp } from "../../../context/AppContext";
-import { GraduationCap, User, Globe } from "lucide-react";
+import { GraduationCap, Globe } from "lucide-react";
+import "./Login.css";
 
 const Login = () => {
   const { t, i18n } = useTranslation("login");
@@ -76,11 +77,11 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center p-4 relative">
+    <div className="login-container">
       {/* 语言切换按钮 */}
       <button
         onClick={toggleLanguage}
-        className="absolute top-4 right-4 flex items-center space-x-2 bg-white hover:bg-gray-50 text-gray-700 px-3 py-2 rounded-lg shadow-md transition-colors duration-200"
+        className="login-lang-btn"
         title={i18n.language === "en" ? "Switch to Chinese" : "切换到英文"}
       >
         <Globe className="w-4 h-4" />
@@ -89,28 +90,21 @@ const Login = () => {
         </span>
       </button>
 
-      <div className="max-w-md w-full">
+      <div className="login-content">
         {/* Logo和标题 */}
-        <div className="text-center mb-8">
-          <div className="w-20 h-20 bg-algonquin-blue rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-            <GraduationCap className="w-10 h-10 text-white" />
+        <div className="login-header">
+          <div className="login-logo">
+            <GraduationCap className="w-8 h-8" />
           </div>
-          <h1 className="text-3xl font-bold text-algonquin-blue mb-2">
-            {t("title")}
-          </h1>
-          <p className="text-gray-600">{t("subtitle")}</p>
+          <h1 className="login-title">{t("title")}</h1>
+          <p className="login-subtitle">{t("subtitle")}</p>
         </div>
 
         {/* 登录表单 */}
-        <div className="bg-white rounded-lg shadow-xl p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* 姓名输入 */}
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                <User className="w-4 h-4 inline mr-2" />
+        <div className="login-form-wrapper">
+          <form onSubmit={handleSubmit} className="login-form">
+            <div className="login-form-group">
+              <label htmlFor="name" className="login-label">
                 {t("enterName")}
               </label>
               <input
@@ -120,34 +114,23 @@ const Login = () => {
                 value={formData.name}
                 onChange={handleInputChange}
                 placeholder={t("namePlaceholder")}
-                className={`input-field ${errors.name ? "border-red-500" : ""}`}
+                className={`login-input ${
+                  errors.name ? "login-input-error" : ""
+                }`}
                 autoComplete="name"
+                autoFocus
               />
-              {errors.name && (
-                <p className="mt-1 text-sm text-red-600">{errors.name}</p>
-              )}
+              {errors.name && <p className="login-error">{errors.name}</p>}
             </div>
 
-            {/* 登录按钮 */}
-            <button
-              type="submit"
-              className="w-full bg-algonquin-blue hover:bg-blue-800 text-white py-3 px-4 rounded-lg transition-colors duration-200 text-lg font-semibold"
-            >
+            <button type="submit" className="login-submit-btn">
               {t("loginButton")}
             </button>
           </form>
 
-          {/* 说明文字 */}
-          <div className="mt-6 text-center">
-            <p className="text-sm text-gray-500">{t("welcome")}</p>
+          <div className="login-footer">
+            <p className="login-footer-text">{t("welcome")}</p>
           </div>
-        </div>
-
-        {/* 底部信息 */}
-        <div className="text-center mt-8">
-          <p className="text-gray-500 text-sm">
-            © 2024 {t("subtitle")}. All rights reserved.
-          </p>
         </div>
       </div>
     </div>

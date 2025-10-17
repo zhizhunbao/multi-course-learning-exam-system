@@ -1,0 +1,63 @@
+{
+  "courseId": "cst8503",
+  "chapterId": "chapter7-midterm-review",
+  "title": "期中复习",
+  "description": "期中复习相关题目",
+  "totalQuestions": 4,
+  "lastUpdated": "2025-10-16",
+  "language": "en",
+  "questions": [
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "question": "What is supervised learning in machine learning?",
+      "options": [
+        "Using unlabeled data to find patterns",
+        "Using labeled datasets to train systems",
+        "Learning based on rewards",
+        "Learning without explicit examples"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Supervised learning uses labeled datasets containing explicit examples to train systems to find patterns.",
+      "difficulty": "easy",
+      "tags": ["chapter7-midterm-review"],
+      "points": 1
+    },
+    {
+      "id": 55,
+      "type": "multiple-choice",
+      "question": "Which of the following best describes the relationship between knowledge representation and Prolog?",
+      "options": [
+        "Prolog is a programming language that implements knowledge representation concepts",
+        "Knowledge representation is only used in Prolog",
+        "Prolog has nothing to do with knowledge representation",
+        "Knowledge representation is a subset of Prolog"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Prolog is a programming language that implements knowledge representation concepts like facts, rules, and logical inference.",
+      "difficulty": "medium",
+      "tags": ["chapter7-midterm-review"],
+      "points": 1
+    },
+    {
+      "id": 56,
+      "type": "coding",
+      "question": "Write a comprehensive Prolog program that demonstrates all major concepts covered in the course. Include: 1) Knowledge representation with facts and rules, 2) List operations (append, reverse, member), 3) Arithmetic operations, 4) Debugging with trace, 5) Negation and cut operators. Create a student grade management system as the application domain.",
+      "correctAnswer": "% Student Grade Management System\n% Knowledge representation - facts\nstudent(john, 85).\nstudent(mary, 92).\nstudent(tom, 78).\nstudent(sarah, 88).\n\ncourse(cst8503, 'Knowledge Representation').\ncourse(cst8504, 'AI Systems').\n\n% Rules for grade classification\nexcellent_grade(Student) :- student(Student, Grade), Grade >= 90.\ngood_grade(Student) :- student(Student, Grade), Grade >= 80, Grade < 90.\naverage_grade(Student) :- student(Student, Grade), Grade >= 70, Grade < 80.\npoor_grade(Student) :- student(Student, Grade), Grade < 70.\n\n% List operations\n% Append lists\ngrade_list([85, 92, 78, 88]).\n\nappend([], L, L).\nappend([X | L1], L2, [X | L3]) :- append(L1, L2, L3).\n\n% Reverse list\nreverse([], []).\nreverse([X | L], R) :- reverse(L, RL), append(RL, [X], R).\n\n% Member predicate\nmember(X, [X | _]).\nmember(X, [_ | L]) :- member(X, L).\n\n% Arithmetic operations\nsum_grades([], 0).\nsum_grades([X | L], Sum) :- sum_grades(L, SumTail), Sum is X + SumTail.\n\naverage_grades(GradeList, Average) :-\n    sum_grades(GradeList, Sum),\n    length(GradeList, Count),\n    Average is Sum / Count.\n\n% Debugging example\nfind_student_grade(Student, Grade) :-\n    student(Student, Grade).\n\n% Negation and cut\npassing_student(Student) :-\n    student(Student, Grade),\n    Grade >= 70, !.\n\nfailing_student(Student) :-\n    student(Student, Grade),\n    \\+ (Grade >= 70).\n\n% Test queries:\n% ?- excellent_grade(mary).\n% ?- append([85, 92], [78, 88], Result).\n% ?- reverse([85, 92, 78], R).\n% ?- member(85, [85, 92, 78]).\n% ?- average_grades([85, 92, 78, 88], Avg).\n% ?- trace, find_student_grade(john, Grade).\n% ?- passing_student(john).\n% ?- failing_student(tom).",
+      "explanation": "This comprehensive program demonstrates all major Prolog concepts: knowledge representation with facts and rules, list operations, arithmetic, debugging, and negation/cut. The student grade management system provides a practical application domain.",
+      "difficulty": "hard",
+      "tags": ["chapter7-midterm-review"],
+      "points": 4
+    },
+    {
+      "id": 57,
+      "type": "coding",
+      "question": "Create a Prolog expert system for course recommendation that combines multiple concepts. Include: 1) Student profiles with preferences and prerequisites, 2) Course information with requirements, 3) Recommendation rules using cut and negation, 4) List operations to manage course lists, 5) Debugging capabilities. The system should recommend courses based on student background and preferences.",
+      "correctAnswer": "% Course Recommendation Expert System\n\n% Student profiles\nstudent_profile(john, beginner, [math, programming]).\nstudent_profile(mary, advanced, [ai, logic]).\nstudent_profile(tom, intermediate, [databases, web]).\n\n% Course information\ncourse_info(cst8503, 'Knowledge Representation', intermediate, [logic, programming]).\ncourse_info(cst8504, 'AI Systems', advanced, [ai, math]).\ncourse_info(cst8505, 'Web Development', beginner, [programming]).\ncourse_info(cst8506, 'Database Systems', intermediate, [databases]).\n\n% Prerequisites\nhas_prerequisite(Student, Prereq) :-\n    student_profile(Student, _, Skills),\n    member(Prereq, Skills).\n\n% Recommendation rules with cut\nrecommend_course(Student, Course) :-\n    student_profile(Student, Level, Skills),\n    course_info(Course, _, RequiredLevel, RequiredSkills),\n    Level = RequiredLevel, !,\n    check_prerequisites(Skills, RequiredSkills).\n\nrecommend_course(Student, Course) :-\n    student_profile(Student, Level, Skills),\n    course_info(Course, _, RequiredLevel, RequiredSkills),\n    Level = beginner,\n    RequiredLevel = intermediate,\n    check_prerequisites(Skills, RequiredSkills), !.\n\n% Prerequisite checking\ncheck_prerequisites(StudentSkills, RequiredSkills) :-\n    subset(RequiredSkills, StudentSkills).\n\n% List operations for course management\ncourse_list([cst8503, cst8504, cst8505, cst8506]).\n\n% Filter courses by level\nfilter_by_level(Level, FilteredCourses) :-\n    course_list(AllCourses),\n    filter_courses_by_level(AllCourses, Level, FilteredCourses).\n\nfilter_courses_by_level([], _, []).\nfilter_courses_by_level([Course | Rest], Level, [Course | Filtered]) :-\n    course_info(Course, _, Level, _), !,\n    filter_courses_by_level(Rest, Level, Filtered).\nfilter_courses_by_level([_ | Rest], Level, Filtered) :-\n    filter_courses_by_level(Rest, Level, Filtered).\n\n% Debugging helper\ndebug_recommendation(Student) :-\n    write('Student: '), write(Student), nl,\n    student_profile(Student, Level, Skills),\n    write('Level: '), write(Level), nl,\n    write('Skills: '), write(Skills), nl,\n    recommend_course(Student, Course),\n    write('Recommended: '), write(Course), nl.\n\n% Test queries:\n% ?- recommend_course(john, Course).\n% ?- filter_by_level(beginner, Courses).\n% ?- trace, debug_recommendation(mary).\n% ?- has_prerequisite(john, programming).",
+      "explanation": "This expert system demonstrates advanced Prolog concepts including complex rule-based reasoning, cut for controlling backtracking, negation for exception handling, list operations for data management, and debugging techniques. Shows practical application of all course concepts.",
+      "difficulty": "hard",
+      "tags": ["chapter7-midterm-review"],
+      "points": 4
+    }
+  ]
+}

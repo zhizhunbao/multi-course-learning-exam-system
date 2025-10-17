@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useApp } from "../../context/AppContext";
-import dataService from "../shared/services/DataService";
+import dataService from "../../services/DataService";
 import {
   FileText,
   Clock,
@@ -539,44 +539,46 @@ const ExamModule = () => {
           {/* 选择题 */}
           {currentQuestion.type === "multiple-choice" && (
             <div className="space-y-3">
-              {currentQuestion.options && currentQuestion.options.map((option, index) => (
-                <label
-                  key={index}
-                  className="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"
-                >
-                  <input
-                    type="radio"
-                    name={`question-${currentQuestion.id}`}
-                    value={index}
-                    checked={userAnswers[currentQuestion.id] === index}
-                    onChange={() => handleAnswerChange(index)}
-                    className="mr-3"
-                  />
-                  <span className="text-gray-700">{option}</span>
-                </label>
-              ))}
+              {currentQuestion.options &&
+                currentQuestion.options.map((option, index) => (
+                  <label
+                    key={index}
+                    className="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"
+                  >
+                    <input
+                      type="radio"
+                      name={`question-${currentQuestion.id}`}
+                      value={index}
+                      checked={userAnswers[currentQuestion.id] === index}
+                      onChange={() => handleAnswerChange(index)}
+                      className="mr-3"
+                    />
+                    <span className="text-gray-700">{option}</span>
+                  </label>
+                ))}
             </div>
           )}
 
           {/* 判断题 */}
           {currentQuestion.type === "true-false" && (
             <div className="space-y-3">
-              {currentQuestion.options && currentQuestion.options.map((option, index) => (
-                <label
-                  key={index}
-                  className="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"
-                >
-                  <input
-                    type="radio"
-                    name={`question-${currentQuestion.id}`}
-                    value={index}
-                    checked={userAnswers[currentQuestion.id] === index}
-                    onChange={() => handleAnswerChange(index)}
-                    className="mr-3"
-                  />
-                  <span className="text-gray-700">{option}</span>
-                </label>
-              ))}
+              {currentQuestion.options &&
+                currentQuestion.options.map((option, index) => (
+                  <label
+                    key={index}
+                    className="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"
+                  >
+                    <input
+                      type="radio"
+                      name={`question-${currentQuestion.id}`}
+                      value={index}
+                      checked={userAnswers[currentQuestion.id] === index}
+                      onChange={() => handleAnswerChange(index)}
+                      className="mr-3"
+                    />
+                    <span className="text-gray-700">{option}</span>
+                  </label>
+                ))}
             </div>
           )}
 

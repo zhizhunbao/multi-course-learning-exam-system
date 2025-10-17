@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useApp } from "../../context/AppContext";
-import dataService from "../shared/services/DataService";
+import dataService from "../../services/DataService";
 import {
   FlaskConical,
   Play,

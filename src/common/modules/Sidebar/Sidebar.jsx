@@ -1,6 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useApp } from "../../../context/AppContext";
+import PropTypes from "prop-types";
 import {
   BookOpen,
   Target,
@@ -8,9 +9,15 @@ import {
   FileText,
   Settings,
   GraduationCap,
+  X,
+  PanelLeftClose,
+  PanelLeft,
 } from "lucide-react";
+import { useState } from "react";
+import "./Sidebar.css";
 
-const Sidebar = () => {
+const Sidebar = ({ isMobileOpen = false, onMobileClose = () => {} }) => {
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const { t } = useTranslation(["sidebar", "login", "admin"]);
   const { user } = useApp();
   const location = useLocation();
@@ -54,65 +61,116 @@ const Sidebar = () => {
   const allItems = [...navigationItems, ...courseManagementItems];
 
   return (
-    <div className="w-64 bg-white shadow-lg h-screen fixed left-0 top-0 z-40 border-r border-gray-200">
-      {/* Logo区域 */}
-      <div className="p-6 border-b border-gray-200 bg-white">
-        <div className="flex items-center space-x-3">
-          <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-            <GraduationCap className="w-7 h-7 text-white" />
-          </div>
-          <div>
-            <h1 className="text-lg font-bold text-blue-600">
-              {t("login:subtitle")}
-            </h1>
-            <p className="text-sm text-gray-500 font-medium">
-              {t("login:title")}
-            </p>
-          </div>
-        </div>
-      </div>
+    <>
+      {/* 移动端遮罩层 */}
+      {isMobileOpen && (
+        <div className="sidebar-mobile-overlay" onClick={onMobileClose} />
+      )}
 
-      {/* 导航菜单 */}
-      <nav className="mt-6 px-4">
-        <div className="space-y-2">
-          {allItems.map((item) => {
-            const Icon = item.icon;
-            const isActive =
-              location.pathname === item.href ||
-              (item.href !== "/" && location.pathname.startsWith(item.href));
+      <div
+        className={`sidebar-container ${isMobileOpen ? "mobile-open" : ""} ${
+          isCollapsed ? "collapsed" : ""
+        }`}
+      >
+        {/* Logo区域 */}
+        <div className="sidebar-logo-area">
+          {/* 展开状态：显示Logo和折叠按钮 */}
+          {!isCollapsed && (
+            <>
+              <div className="sidebar-logo-wrapper">
+                <GraduationCap className="w-6 h-6" />
+                <span className="sidebar-logo-text">Learning Platform</span>
+              </div>
 
-            return (
-              <NavLink
-                key={item.name}
-                to={item.href}
-                className={`sidebar-link ${isActive ? "active" : ""}`}
+              {/* 移动端关闭按钮 */}
+              <button
+                onClick={onMobileClose}
+                className="sidebar-close-btn md:hidden"
+                aria-label="Close sidebar"
+                title="Close sidebar"
               >
-                <Icon className="w-5 h-5 mr-3" />
-                <span className="font-medium flex-1">{item.name}</span>
-              </NavLink>
-            );
-          })}
-        </div>
-      </nav>
+                <X className="w-4 h-4" />
+              </button>
 
-      {/* 用户信息 */}
-      <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 bg-white">
-        <div className="flex items-center space-x-3 p-3 rounded-lg bg-gray-50">
-          <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-            <span className="text-white text-sm font-bold">
-              {user?.name?.charAt(0)?.toUpperCase()}
-            </span>
+              {/* 桌面端折叠按钮 */}
+              <button
+                onClick={() => setIsCollapsed(!isCollapsed)}
+                className="sidebar-toggle-btn hidden md:flex"
+                aria-label="Collapse sidebar"
+                title="Collapse sidebar"
+              >
+                <PanelLeftClose className="w-4 h-4" />
+              </button>
+            </>
+          )}
+
+          {/* 折叠状态：只显示合并的按钮 */}
+          {isCollapsed && (
+            <button
+              onClick={() => setIsCollapsed(!isCollapsed)}
+              className="sidebar-toggle-btn collapsed"
+              aria-label="Expand sidebar"
+              title="Expand sidebar"
+            >
+              <GraduationCap className="w-5 h-5 sidebar-icon-default" />
+              <PanelLeft className="w-5 h-5 sidebar-icon-hover" />
+            </button>
+          )}
+        </div>
+
+        {/* 导航菜单 */}
+        <nav className="sidebar-nav">
+          <div className="sidebar-nav-list">
+            {allItems.map((item) => {
+              const Icon = item.icon;
+              const isActive =
+                location.pathname === item.href ||
+                (item.href !== "/" && location.pathname.startsWith(item.href));
+
+              return (
+                <NavLink
+                  key={item.name}
+                  to={item.href}
+                  className={`sidebar-link ${isActive ? "active" : ""}`}
+                  title={isCollapsed ? item.name : ""}
+                >
+                  <Icon className="sidebar-link-icon" />
+                  {!isCollapsed && (
+                    <span className="sidebar-link-text">{item.name}</span>
+                  )}
+                </NavLink>
+              );
+            })}
           </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-bold text-gray-900 truncate">
-              {user?.name}
-            </p>
-            <p className="text-xs text-gray-500 font-medium">{user?.name}</p>
+        </nav>
+
+        {/* 用户信息 */}
+        <div className="sidebar-user-area">
+          <div
+            className="sidebar-user-wrapper"
+            title={isCollapsed ? user?.name : ""}
+          >
+            <div className="sidebar-user-avatar">
+              <span className="sidebar-user-avatar-text">
+                {user?.name?.charAt(0)?.toUpperCase()}
+              </span>
+            </div>
+            {!isCollapsed && (
+              <div className="sidebar-user-info">
+                <p className="sidebar-user-name">{user?.name}</p>
+                <p className="sidebar-user-role">{user?.role || "Student"}</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
+};
+
+Sidebar.propTypes = {
+  isMobileOpen: PropTypes.bool,
+  onMobileClose: PropTypes.func,
 };
 
 export default Sidebar;
