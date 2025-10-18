@@ -262,7 +262,7 @@ const ExperimentModule = () => {
               <Clock className="w-4 h-4 mr-1" />
               {formatTime(timeSpent)}
             </div>
-            <button onClick={() => navigate("/")} className="btn-outline">
+            <button onClick={() => navigate("/experiment")} className="btn-outline">
               返回课程
             </button>
           </div>

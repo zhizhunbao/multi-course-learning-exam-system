@@ -3,7 +3,6 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useApp } from "../../../context/AppContext";
 import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
-import NotificationContainer from "../Elements/NotificationContainer";
 
 const Layout = () => {
   const { isAuthenticated, isInitialized } = useApp();
@@ -54,9 +53,6 @@ const Layout = () => {
           </main>
         </div>
       </div>
-
-      {/* 通知容器 */}
-      <NotificationContainer />
     </div>
   );
 };

@@ -2,6 +2,10 @@
   "title": "练习中心",
   "selectCourse": "选择课程进行练习",
   "selectCourseDesc": "请选择一个课程开始练习",
+  "selectQuestionSet": "选择题库",
+  "selectQuestionSetDesc": "请选择一套题库开始练习",
+  "changeQuestionSet": "切换题库",
+  "questionBank": "题库",
   "defaultCourseTitle": "React 基础开发",
   "defaultCourseDescription": "学习React框架的基础知识和核心概念",
   "startPractice": "开始练习",
@@ -20,11 +24,13 @@
   "yourAnswer": "您的答案：",
   "correctAnswer": "正确答案：",
   "restartPractice": "重新练习",
-  "backToCourse": "返回课程",
+  "backToCourse": "返回",
   "questionProgress": "第 {{current}} 题，共 {{total}} 题",
   "previousQuestion": "上一题",
   "nextQuestion": "下一题",
   "submitPractice": "提交练习",
+  "markdownView": "题库视图",
+  "examQuestionBank": "综合考试题库",
   "questionTypes": {
     "multipleChoice": "选择题",
     "multiple-choice": "选择题",
@@ -46,9 +52,10 @@
     "submitPractice": "提交练习",
     "restartPractice": "重新练习",
     "backToCourses": "返回课程",
-    "backToCourse": "返回课程",
+    "backToCourse": "返回",
     "showAnswer": "显示答案",
-    "hideAnswer": "隐藏答案"
+    "hideAnswer": "隐藏答案",
+    "startPractice": "开始练习"
   },
   "feedback": {
     "correct": "正确！",

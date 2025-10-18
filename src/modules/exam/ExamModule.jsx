@@ -384,7 +384,7 @@ const ExamModule = () => {
               重新考试
             </button>
             <button
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/exam")}
               className="btn-primary flex items-center"
             >
               <BookOpen className="w-4 h-4 mr-2" />

@@ -116,7 +116,7 @@ const LearningModule = () => {
   return (
     <div className="absolute inset-0 flex flex-col bg-gray-50">
       {/* 顶部导航栏 */}
-      <LearningHeader onBack={() => navigate("/")} />
+      <LearningHeader onBack={() => navigate("/learning")} />
 
       {/* 学习内容区域 */}
       <LessonContent

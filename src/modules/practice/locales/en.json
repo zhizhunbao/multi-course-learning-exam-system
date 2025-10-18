@@ -2,6 +2,10 @@
   "title": "Practice Center",
   "selectCourse": "Select a course to practice",
   "selectCourseDesc": "Please select a course to start practicing",
+  "selectQuestionSet": "Select Question Set",
+  "selectQuestionSetDesc": "Please select a question set to begin practicing",
+  "changeQuestionSet": "Change Question Set",
+  "questionBank": "Question Bank",
   "defaultCourseTitle": "React Fundamentals",
   "defaultCourseDescription": "Learn the basics and core concepts of React framework",
   "startPractice": "Start Practice",
@@ -20,11 +24,13 @@
   "yourAnswer": "Your Answer:",
   "correctAnswer": "Correct Answer:",
   "restartPractice": "Restart Practice",
-  "backToCourse": "Back to Course",
+  "backToCourse": "Back",
   "questionProgress": "Question {{current}} of {{total}}",
   "previousQuestion": "Previous",
   "nextQuestion": "Next",
   "submitPractice": "Submit Practice",
+  "markdownView": "Question Bank View",
+  "examQuestionBank": "Comprehensive Exam Question Bank",
   "questionTypes": {
     "multipleChoice": "Multiple Choice",
     "multiple-choice": "Multiple Choice",
@@ -46,9 +52,10 @@
     "submitPractice": "Submit Practice",
     "restartPractice": "Restart Practice",
     "backToCourses": "Back to Courses",
-    "backToCourse": "Back to Course",
+    "backToCourse": "Back",
     "showAnswer": "Show Answer",
-    "hideAnswer": "Hide Answer"
+    "hideAnswer": "Hide Answer",
+    "startPractice": "Start Practice"
   },
   "feedback": {
     "correct": "Correct!",

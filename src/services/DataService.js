@@ -8,8 +8,8 @@ class DataService {
   constructor() {
     this.cache = new Map();
     // 使用 Vite 的 BASE_URL 环境变量
-    const base = import.meta.env.BASE_URL || '/';
-    this.baseUrl = `${base}data`.replace(/\/+/g, '/');
+    const base = import.meta.env.BASE_URL || "/";
+    this.baseUrl = `${base}data`.replace(/\/+/g, "/");
   }
 
   /**
@@ -19,13 +19,14 @@ class DataService {
    * @param {Object} options - 选项参数
    * @param {string} options.chapter - 章节ID (可选)
    * @param {string} options.type - 题型 (可选)
+   * @param {string} options.format - 格式类型 'json' | 'markdown' (可选)
    * @returns {Promise<Object>} 题目数据
    */
   async getQuestions(courseId, language = "zh", options = {}) {
-    const { chapter, type } = options;
+    const { chapter, type, format } = options;
     const cacheKey = `questions_${courseId}_${language}_${chapter || "all"}_${
       type || "all"
-    }`;
+    }_${format || "json"}`;
 
     if (this.cache.has(cacheKey)) {
       return this.cache.get(cacheKey);
@@ -33,6 +34,15 @@ class DataService {
 
     try {
       let data = null;
+
+      // 如果请求 markdown 格式，尝试加载 markdown 题库
+      if (format === "markdown") {
+        data = await this.getMarkdownQuestions(courseId, language);
+        if (data) {
+          this.cache.set(cacheKey, data);
+          return data;
+        }
+      }
 
       // 如果指定了章节，尝试加载对应的文件
       if (chapter) {
@@ -77,6 +87,119 @@ class DataService {
       console.error("Error loading questions:", error);
       throw error;
     }
+  }
+
+  /**
+   * 获取 Markdown 格式的题库
+   * @param {string} courseId - 课程ID
+   * @param {string} language - 语言代码 (zh/en)
+   * @param {string} setId - 题库套数 (set1/set2/...)，可选
+   * @returns {Promise<Object|null>} 题库数据，包含 markdown 内容
+   */
+  async getMarkdownQuestions(courseId, language = "zh", setId = null) {
+    try {
+      // 构建文件名：根据语言和题库套数选择对应的文件
+      const fileNames = [];
+
+      if (setId) {
+        // 如果指定了题库套数
+        if (language === "en") {
+          fileNames.push(
+            `questions/${courseId}/exam-questions-${setId}-en.md`,
+            `questions/${courseId}/exam-questions-${setId}.md`
+          );
+        } else {
+          fileNames.push(
+            `questions/${courseId}/exam-questions-${setId}.md`,
+            `questions/${courseId}/exam-questions-${setId}-en.md`
+          );
+        }
+      } else {
+        // 默认加载第一套题库
+        if (language === "en") {
+          fileNames.push(
+            `questions/${courseId}/exam-questions-en.md`,
+            `questions/${courseId}/exam-questions.md`
+          );
+        } else {
+          fileNames.push(
+            `questions/${courseId}/exam-questions.md`,
+            `questions/${courseId}/exam-questions-en.md`
+          );
+        }
+      }
+
+      // 尝试加载指定语言的文件，如果失败则尝试备用语言
+      let markdownContent = null;
+      for (const fileName of fileNames) {
+        markdownContent = await this.loadMarkdownFile(fileName);
+        if (markdownContent) break;
+      }
+
+      if (markdownContent) {
+        const setLabel = setId ? ` (${setId.toUpperCase()})` : "";
+        const titles = {
+          zh: `${courseId} 综合考试题库${setLabel}`,
+          en: `${courseId} Comprehensive Exam Question Bank${setLabel}`,
+        };
+
+        const descriptions = {
+          zh: `完整的考试题库${setLabel}（Markdown 格式）`,
+          en: `Complete Exam Question Bank${setLabel} (Markdown Format)`,
+        };
+
+        return {
+          courseId,
+          language,
+          format: "markdown",
+          setId,
+          content: markdownContent,
+          title: titles[language] || titles.zh,
+          description: descriptions[language] || descriptions.zh,
+        };
+      }
+
+      return null;
+    } catch (error) {
+      console.warn(`Failed to load markdown questions for ${courseId}:`, error);
+      return null;
+    }
+  }
+
+  /**
+   * 获取所有可用的题库列表
+   * @param {string} courseId - 课程ID
+   * @param {string} language - 语言代码 (zh/en)
+   * @returns {Promise<Array>} 可用题库列表
+   */
+  async getAvailableQuestionSets(courseId, language = "zh") {
+    const sets = [];
+
+    // 尝试加载默认题库（第一套）
+    const set1 = await this.getMarkdownQuestions(courseId, language);
+    if (set1) {
+      sets.push({
+        id: "set1",
+        title: language === "en" ? "Question Set 1" : "第一套题",
+        description:
+          language === "en" ? "Original exam questions" : "原始考试题库",
+        ...set1,
+      });
+    }
+
+    // 尝试加载第二套题库
+    const set2 = await this.getMarkdownQuestions(courseId, language, "set2");
+    if (set2) {
+      sets.push({
+        id: "set2",
+        title: language === "en" ? "Question Set 2" : "第二套题",
+        description:
+          language === "en" ? "Additional exam questions" : "新增考试题库",
+        ...set2,
+      });
+    }
+
+    return sets;
   }
 
   /**

@@ -16,7 +16,6 @@ export { Login } from "./Login";
 // Markdown components
 export { default as MarkdownRenderer } from "./Markdown/MarkdownRenderer.jsx";
 export { default as TableOfContents } from "./Markdown/TableOfContents.jsx";
-export { default as MindMap } from "./Markdown/MindMap.jsx";
 
 // MDX components
 export { MDXRenderer } from "./MDX";
@@ -24,7 +23,6 @@ export { MDXRenderer } from "./MDX";
 // UI Elements
 export {
   CourseCard,
-  NotificationContainer,
   Button,
   Input,
   Modal,

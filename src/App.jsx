@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { AppProvider } from "./context/AppContext";
 import Layout from "./common/modules/Layout/Layout";
 import Login from "./common/modules/Login/Login";
@@ -14,7 +14,7 @@ function App() {
   return (
     <AppProvider>
       <Router
-        basename="/multi-course-learning-exam-system"
+        basename={import.meta.env.BASE_URL}
         future={{
           v7_startTransition: true,
           v7_relativeSplatPath: true,
@@ -24,7 +24,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<Layout />}>
-              <Route index element={<LearningModule />} />
+              <Route index element={<Navigate to="/learning" replace />} />
               <Route path="learning" element={<LearningModule />} />
               <Route path="learning/:courseId" element={<LearningModule />} />
               <Route path="practice" element={<PracticeModule />} />

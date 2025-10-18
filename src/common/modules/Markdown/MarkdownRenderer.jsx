@@ -23,7 +23,7 @@ const CodeBlock = ({ inline, className, children, ...props }) => {
     );
   }
 
-  // 代码块
+  // 普通代码块
   return (
     <code className={className} {...props}>
       {children}
