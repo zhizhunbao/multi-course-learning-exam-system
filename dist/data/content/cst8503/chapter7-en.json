@@ -1,0 +1,465 @@
+{
+  "courseId": "cst8503",
+  "chapterId": 7,
+  "title": "Chapter 7: Midterm Review",
+  "description": "Comprehensive review of all topics covered in the first half of the course, including knowledge representation, Prolog basics, debugging, structures, lists, arithmetic, negation, and cut",
+  "duration": "4 hours",
+  "difficulty": "Review",
+  "lastUpdated": "2025-01-16",
+  "learningObjectives": [
+    "Review fundamental concepts of knowledge representation",
+    "Consolidate understanding of Prolog syntax and execution",
+    "Practice debugging techniques and tools",
+    "Review structure manipulation and pattern matching",
+    "Consolidate list operations and arithmetic",
+    "Review negation and cut concepts",
+    "Prepare for midterm examination"
+  ],
+  "lessons": [
+    {
+      "id": 1,
+      "title": "7.1 Knowledge Representation Review",
+      "type": "review",
+      "duration": "45 minutes",
+      "order": 1,
+      "content": {
+        "overview": "Comprehensive review of knowledge representation concepts and their applications",
+        "sections": [
+          {
+            "title": "AI, ML, and KR Differences",
+            "content": "Review the key differences between artificial intelligence, machine learning, and knowledge representation approaches.",
+            "keyPoints": [
+              "AI: solves problems requiring intelligence",
+              "ML: learns patterns from data",
+              "KR: provides patterns directly as facts and rules",
+              "Each approach has different strengths"
+            ]
+          },
+          {
+            "title": "Declarative Knowledge",
+            "content": "Review declarative knowledge concepts and their advantages over procedural approaches.",
+            "keyPoints": [
+              "Declarative: describes 'what is'",
+              "Procedural: describes 'how to do'",
+              "Declarative knowledge is easier to understand",
+              "Supports automatic reasoning"
+            ]
+          },
+          {
+            "title": "Prolog as Theorem Prover",
+            "content": "Review how Prolog implements declarative programming through theorem proving.",
+            "keyPoints": [
+              "Prolog derives conditions for query truth",
+              "Uses reasoning engines",
+              "Achieves variable binding",
+              "Supports declarative programming paradigm"
+            ]
+          }
+        ]
+      },
+      "resources": [
+        {
+          "name": "Knowledge Representation Summary",
+          "type": "summary",
+          "url": "#",
+          "description": "Comprehensive summary of knowledge representation concepts"
+        }
+      ],
+      "exercises": [
+        {
+          "type": "multiple_choice",
+          "question": "What is the main advantage of knowledge representation over machine learning?",
+          "options": [
+            "Requires less data",
+            "Provides patterns directly in the form of facts and rules",
+            "Is easier to implement",
+            "Works faster"
+          ],
+          "correct": 1,
+          "explanation": "Knowledge representation provides patterns directly in the form of facts and rules, while machine learning needs to learn these patterns from data."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "7.2 Prolog Fundamentals Review",
+      "type": "review",
+      "duration": "50 minutes",
+      "order": 2,
+      "content": {
+        "overview": "Review of Prolog syntax, facts, rules, queries, and execution model",
+        "sections": [
+          {
+            "title": "Prolog Syntax",
+            "content": "Review of Prolog syntax including atoms, variables, predicates, and arity.",
+            "keyPoints": [
+              "Atoms: lowercase letters",
+              "Variables: uppercase letters or underscore",
+              "Predicates: relationships or properties",
+              "Arity: number of arguments"
+            ]
+          },
+          {
+            "title": "Facts and Rules",
+            "content": "Review of how to write facts and rules in Prolog.",
+            "keyPoints": [
+              "Facts: statements ending with period",
+              "Rules: Head :- Body.",
+              "Comma represents logical AND",
+              "Rules define logical relationships"
+            ]
+          },
+          {
+            "title": "Queries and Execution",
+            "content": "Review of how Prolog executes queries and uses backtracking.",
+            "keyPoints": [
+              "Queries ask questions about knowledge base",
+              "Backtracking finds alternative solutions",
+              "Variables can be bound to values",
+              "Execution uses depth-first search"
+            ]
+          }
+        ]
+      },
+      "resources": [
+        {
+          "name": "Prolog Syntax Cheat Sheet",
+          "type": "reference",
+          "url": "#",
+          "description": "Quick reference for Prolog syntax and basic operations"
+        }
+      ],
+      "exercises": [
+        {
+          "type": "coding",
+          "question": "Write Prolog facts and rules for a family tree with at least 3 generations.",
+          "hint": "Include parent facts and rules for ancestor, sibling, and grandparent relationships",
+          "solution": "% Family facts\nparent(john, mary).\nparent(john, tom).\nparent(susan, mary).\nparent(susan, tom).\nparent(mary, alice).\nparent(tom, bob).\n\n% Rules\nancestor(X, Y) :- parent(X, Y).\nancestor(X, Y) :- parent(X, Z), ancestor(Z, Y).\nsibling(X, Y) :- parent(Z, X), parent(Z, Y), X \\= Y.\ngrandparent(X, Y) :- parent(X, Z), parent(Z, Y).",
+          "explanation": "This creates a family tree with facts and rules for various relationships. The ancestor rule uses recursion to find ancestors at any level."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "7.3 Debugging and Execution Review",
+      "type": "review",
+      "duration": "45 minutes",
+      "order": 3,
+      "content": {
+        "overview": "Review of debugging techniques and understanding Prolog execution",
+        "sections": [
+          {
+            "title": "Debugging Tools",
+            "content": "Review of trace and spy debugging tools.",
+            "keyPoints": [
+              "trace/0: shows step-by-step execution",
+              "spy/1: sets breakpoints on predicates",
+              "notrace/0: stops tracing",
+              "nospy/1: removes spy points"
+            ]
+          },
+          {
+            "title": "Execution Model",
+            "content": "Review of how Prolog executes programs and uses backtracking.",
+            "keyPoints": [
+              "Depth-first search with backtracking",
+              "Goals resolved left-to-right",
+              "Backtracking when goals fail",
+              "Variable binding and unbinding"
+            ]
+          },
+          {
+            "title": "Common Debugging Techniques",
+            "content": "Review of common debugging strategies and techniques.",
+            "keyPoints": [
+              "Test rules individually",
+              "Use trace to follow execution",
+              "Check for logic errors",
+              "Verify variable bindings"
+            ]
+          }
+        ]
+      },
+      "resources": [
+        {
+          "name": "Debugging Checklist",
+          "type": "reference",
+          "url": "#",
+          "description": "Systematic checklist for debugging Prolog programs"
+        }
+      ],
+      "exercises": [
+        {
+          "type": "coding",
+          "question": "Debug the following faulty rule: ancestor(X, Y) :- ancestor(X, Z), parent(Z, Y). What's wrong and how do you fix it?",
+          "hint": "Consider the order of goals and what happens when X is not an ancestor of Z",
+          "solution": "% Problem: wrong order causes infinite recursion\n% Fix: correct order\nancestor(X, Y) :- parent(X, Y).\nancestor(X, Y) :- parent(X, Z), ancestor(Z, Y).",
+          "explanation": "The original rule has the wrong order. It should first check if X is a direct parent of Y, then check if X is a parent of someone who is an ancestor of Y."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "7.4 Structures and Lists Review",
+      "type": "review",
+      "duration": "50 minutes",
+      "order": 4,
+      "content": {
+        "overview": "Review of structures, pattern matching, lists, and list operations",
+        "sections": [
+          {
+            "title": "Structures and Pattern Matching",
+            "content": "Review of structures, unification, and pattern matching.",
+            "keyPoints": [
+              "Structures: functor(arg1, arg2, ...)",
+              "Unification makes terms identical",
+              "Pattern matching in rule heads",
+              "Nested structures support complex data"
+            ]
+          },
+          {
+            "title": "Lists and List Operations",
+            "content": "Review of list syntax, operations, and processing techniques.",
+            "keyPoints": [
+              "List syntax: [a, b, c] or [Head|Tail]",
+              "Basic operations: head, tail, length, member",
+              "append/3 for concatenation",
+              "Recursive list processing"
+            ]
+          },
+          {
+            "title": "Arithmetic Operations",
+            "content": "Review of arithmetic operations and numeric computations.",
+            "keyPoints": [
+              "Arithmetic operators: +, -, *, /, mod",
+              "is/2 for arithmetic evaluation",
+              "Comparison operators: <, >, =<, >=, =:=, =\\=",
+              "Arithmetic in rules and computations"
+            ]
+          }
+        ]
+      },
+      "resources": [
+        {
+          "name": "Structures and Lists Summary",
+          "type": "summary",
+          "url": "#",
+          "description": "Comprehensive summary of structures and list operations"
+        }
+      ],
+      "exercises": [
+        {
+          "type": "coding",
+          "question": "Write a rule to find the sum of all numbers in a list.",
+          "hint": "Use recursion and arithmetic operations",
+          "solution": "sum([], 0).\nsum([H|T], Total) :-\n    sum(T, TailSum),\n    Total is H + TailSum.",
+          "explanation": "The sum rule uses recursion: empty list has sum 0, non-empty list has sum of head plus sum of tail."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "7.5 Negation and Cut Review",
+      "type": "review",
+      "duration": "45 minutes",
+      "order": 5,
+      "content": {
+        "overview": "Review of negation and cut concepts and their applications",
+        "sections": [
+          {
+            "title": "Negation as Failure",
+            "content": "Review of negation in Prolog and its semantics.",
+            "keyPoints": [
+              "Negation operator: not/1 or \\+/1",
+              "Negation as failure semantics",
+              "Goal is true if it cannot be proven",
+              "Use with ground goals"
+            ]
+          },
+          {
+            "title": "Cut Operator",
+            "content": "Review of cut operator and its effects on execution.",
+            "keyPoints": [
+              "Cut operator: !",
+              "Commits to current choice",
+              "Prevents backtracking",
+              "Improves efficiency"
+            ]
+          },
+          {
+            "title": "Green vs Red Cut",
+            "content": "Review of the difference between green and red cuts.",
+            "keyPoints": [
+              "Green cut: improves efficiency only",
+              "Red cut: changes logical meaning",
+              "Green cut is safe to add/remove",
+              "Red cut is essential for correctness"
+            ]
+          }
+        ]
+      },
+      "resources": [
+        {
+          "name": "Negation and Cut Summary",
+          "type": "summary",
+          "url": "#",
+          "description": "Comprehensive summary of negation and cut concepts"
+        }
+      ],
+      "exercises": [
+        {
+          "type": "coding",
+          "question": "Write a rule to find the maximum of two numbers using cut.",
+          "hint": "Use cut to commit to the first solution",
+          "solution": "max(X, Y, X) :- X >= Y, !.\nmax(X, Y, Y).",
+          "explanation": "The cut ensures that when X >= Y, we commit to returning X and don't backtrack to try the second rule."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "7.6 Practice Problems",
+      "type": "practice",
+      "duration": "55 minutes",
+      "order": 6,
+      "content": {
+        "overview": "Comprehensive practice problems covering all course topics",
+        "sections": [
+          {
+            "title": "Problem Set 1: Basic Prolog",
+            "content": "Problems covering facts, rules, and basic queries.",
+            "keyPoints": [
+              "Writing facts and rules",
+              "Basic queries and variable binding",
+              "Simple family relationships",
+              "Basic arithmetic operations"
+            ]
+          },
+          {
+            "title": "Problem Set 2: Structures and Lists",
+            "content": "Problems involving structures, pattern matching, and list operations.",
+            "keyPoints": [
+              "Structure manipulation",
+              "List processing",
+              "Pattern matching",
+              "Recursive list operations"
+            ]
+          },
+          {
+            "title": "Problem Set 3: Advanced Topics",
+            "content": "Problems involving debugging, negation, and cut.",
+            "keyPoints": [
+              "Debugging techniques",
+              "Negation applications",
+              "Cut usage",
+              "Complex program design"
+            ]
+          }
+        ]
+      },
+      "resources": [
+        {
+          "name": "Practice Problem Solutions",
+          "type": "solutions",
+          "url": "#",
+          "description": "Complete solutions to all practice problems"
+        }
+      ],
+      "exercises": [
+        {
+          "type": "coding",
+          "question": "Create a Prolog program for a simple library system with books and borrowers. Include rules to check out books, return books, and find overdue books.",
+          "hint": "Use structures for books and borrowers, lists for collections, and rules for operations",
+          "solution": "% Book structure: book(title, author, isbn)\n% Borrower structure: borrower(name, id)\n% Checkout structure: checkout(book, borrower, date)\n\n% Facts\nbook(book('1984', 'Orwell', '123')).\nbook(book('Hamlet', 'Shakespeare', '456')).\nborrower(borrower('John', '001')).\nborrower(borrower('Mary', '002')).\n\n% Rules\ncheckout(Book, Borrower, Date) :-\n    book(Book),\n    borrower(Borrower),\n    not(checked_out(Book)),\n    assert(checked_out(Book, Borrower, Date)).\n\nreturn_book(Book) :-\n    checked_out(Book, _, _),\n    retract(checked_out(Book, _, _)).\n\noverdue_books(Book, Borrower) :-\n    checked_out(Book, Borrower, Date),\n    current_date(CurrentDate),\n    days_overdue(Date, CurrentDate, Days),\n    Days > 14.",
+          "explanation": "This program uses structures for books and borrowers, dynamic facts for checkouts, and rules for library operations including overdue book detection."
+        }
+      ]
+    }
+  ],
+  "assessment": {
+    "quiz": {
+      "questions": [
+        {
+          "id": 1,
+          "type": "multiple_choice",
+          "question": "What is the main difference between knowledge representation and machine learning?",
+          "options": [
+            "Knowledge representation requires more data",
+            "Knowledge representation provides patterns directly as facts and rules",
+            "Machine learning is easier to understand",
+            "There is no difference"
+          ],
+          "correct": 1,
+          "points": 2
+        },
+        {
+          "id": 2,
+          "type": "multiple_choice",
+          "question": "What does the cut operator (!) do in Prolog?",
+          "options": [
+            "Terminates the program",
+            "Commits to the current choice and prevents backtracking",
+            "Creates a new variable",
+            "Evaluates arithmetic expressions"
+          ],
+          "correct": 1,
+          "points": 2
+        },
+        {
+          "id": 3,
+          "type": "true_false",
+          "question": "Negation as failure means a goal is true if it cannot be proven.",
+          "correct": true,
+          "points": 1
+        },
+        {
+          "id": 4,
+          "type": "multiple_choice",
+          "question": "What is the head of the list [a, b, c]?",
+          "options": ["[b, c]", "a", "b", "c"],
+          "correct": 1,
+          "points": 2
+        },
+        {
+          "id": 5,
+          "type": "multiple_choice",
+          "question": "Which operator is used for arithmetic evaluation in Prolog?",
+          "options": ["=", "is", "==", "eval"],
+          "correct": 1,
+          "points": 2
+        }
+      ],
+      "totalPoints": 9,
+      "passingScore": 6
+    }
+  },
+  "resources": {
+    "readings": [
+      {
+        "title": "Midterm Review Guide",
+        "author": "Todd Kelley",
+        "type": "course_notes",
+        "url": "#",
+        "description": "Comprehensive review guide for midterm examination"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Midterm Review Session",
+        "duration": "60 minutes",
+        "url": "#",
+        "description": "Comprehensive review session covering all course topics"
+      }
+    ],
+    "tools": [
+      {
+        "name": "Midterm Practice Environment",
+        "type": "programming",
+        "url": "#",
+        "description": "Online environment for midterm practice and review"
+      }
+    ]
+  },
+  "prerequisites": [6],
+  "nextChapter": null
+}

@@ -1,0 +1,129 @@
+{
+  "courseId": "cst8502",
+  "title": "机器学习",
+  "description": "机器学习基础理论与实践",
+  "language": "zh",
+  "lastUpdated": "2025-10-16",
+  "chapters": [
+    {
+      "id": 1,
+      "title": "第1章：机器学习导论",
+      "order": 1,
+      "description": "介绍机器学习的基本概念、定义、类型和发展历程",
+      "duration": "2小时",
+      "difficulty": "初级",
+      "markdownFile": "chapter1.md",
+      "objectives": [
+        "理解机器学习的基本定义和核心概念",
+        "掌握监督学习、无监督学习和强化学习的区别",
+        "了解机器学习的发展历史和里程碑",
+        "理解机器学习的实际应用场景"
+      ],
+      "resources": [
+        {
+          "name": "机器学习导论PPT",
+          "type": "pdf",
+          "url": "/pdfs/machine-learning/01_CST8502_Introduction_AI_ML.pdf"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "第2章：数据预处理与k近邻算法",
+      "order": 2,
+      "description": "学习数据预处理技术和k近邻分类算法",
+      "duration": "3小时",
+      "difficulty": "初级",
+      "markdownFile": "chapter2.md",
+      "objectives": [
+        "掌握数据预处理的基本技术",
+        "理解k近邻算法的工作原理",
+        "学会选择合适的距离度量方法",
+        "能够使用Python实现k-NN算法"
+      ],
+      "resources": [
+        {
+          "name": "k-NN算法讲义",
+          "type": "pdf",
+          "url": "/pdfs/machine-learning/02_CST8502_kNN.pdf"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "第3章：分类与决策树",
+      "order": 3,
+      "description": "深入学习决策树算法、信息熊和剪枝技术",
+      "duration": "3小时",
+      "difficulty": "中级",
+      "markdownFile": "chapter3.md",
+      "objectives": [
+        "理解决策树的结构和工作原理",
+        "掌握熵、基尼不纯度和信息增益的计算",
+        "学会构建和剪枝决策树",
+        "能够使用scikit-learn实现决策树"
+      ],
+      "resources": [
+        {
+          "name": "决策树理论",
+          "type": "pdf",
+          "url": "/pdfs/machine-learning/03_CST8502_Classification_DecisionTrees1.pdf"
+        },
+        {
+          "name": "天气数据集实践",
+          "type": "pdf",
+          "url": "/pdfs/machine-learning/WeatherDataset_DecisionTree_Creation.pdf"
+        },
+        {
+          "name": "剪枝技术对比",
+          "type": "pdf",
+          "url": "/pdfs/machine-learning/A_Comparative_analysis_of_methods_for_pruning_decision_trees.pdf"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "第5章：异常值检测",
+      "order": 5,
+      "description": "学习异常值检测的方法和技术",
+      "duration": "2.5小时",
+      "difficulty": "中级",
+      "markdownFile": "chapter5.md",
+      "objectives": [
+        "理解异常值的定义和类型",
+        "掌握统计方法和机器学习方法进行异常检测",
+        "学会使用Isolation Forest和LOF算法",
+        "能够评估异常检测模型的性能"
+      ],
+      "resources": [
+        {
+          "name": "异常检测讲义",
+          "type": "pdf",
+          "url": "/pdfs/machine-learning/05_CST8502_OutlierDetection.pdf"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "第6章：聚类与k-Means算法",
+      "order": 6,
+      "description": "学习聚类算法和k-Means算法的原理与应用",
+      "duration": "3小时",
+      "difficulty": "中级",
+      "markdownFile": "chapter6.md",
+      "objectives": [
+        "理解聚类分析的基本概念和应用",
+        "掌握k-Means算法的工作原理",
+        "学会使用肘部法则和轮廓系数选择k值",
+        "了解层次聚类和DBSCAN等其他聚类方法"
+      ],
+      "resources": [
+        {
+          "name": "聚类算法讲义",
+          "type": "pdf",
+          "url": "/pdfs/machine-learning/06_CST8502_Clustering.pdf"
+        }
+      ]
+    }
+  ]
+}

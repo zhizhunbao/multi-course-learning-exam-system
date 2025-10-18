@@ -1,0 +1,100 @@
+{
+  "courseId": "cst8503",
+  "title": "知识表示与推理",
+  "description": "Knowledge Representation and Reasoning",
+  "exams": [
+    {
+      "id": "midterm",
+      "title": "期中考试",
+      "description": "测试基础知识掌握程度",
+      "duration": 30,
+      "passScore": 70,
+      "maxAttempts": 3,
+      "questionSelection": {
+        "strategy": "random",
+        "count": 20,
+        "filters": {
+          "difficulty": ["easy", "medium"],
+          "tags": ["prolog", "basics", "knowledge-representation"]
+        }
+      },
+      "instructions": [
+        "考试时间为30分钟",
+        "及格分数为70%",
+        "可以尝试3次",
+        "题目随机选择"
+      ]
+    },
+    {
+      "id": "final",
+      "title": "期末考试",
+      "description": "综合测试所有知识点",
+      "duration": 60,
+      "passScore": 75,
+      "maxAttempts": 2,
+      "questionSelection": {
+        "strategy": "mixed",
+        "count": 40,
+        "filters": {
+          "difficulty": ["easy", "medium", "hard"],
+          "tags": [
+            "prolog",
+            "knowledge-representation",
+            "machine-learning",
+            "ai"
+          ]
+        }
+      },
+      "instructions": [
+        "考试时间为60分钟",
+        "及格分数为75%",
+        "可以尝试2次",
+        "包含所有难度题目"
+      ]
+    },
+    {
+      "id": "quiz1",
+      "title": "Prolog基础测验",
+      "description": "测试Prolog基础知识",
+      "duration": 15,
+      "passScore": 60,
+      "maxAttempts": 5,
+      "questionSelection": {
+        "strategy": "sequential",
+        "count": 10,
+        "filters": {
+          "difficulty": ["easy"],
+          "tags": ["prolog", "basics"]
+        }
+      },
+      "instructions": [
+        "测验时间为15分钟",
+        "及格分数为60%",
+        "可以尝试5次",
+        "按顺序出题"
+      ]
+    },
+    {
+      "id": "quiz2",
+      "title": "知识表示测验",
+      "description": "测试知识表示概念",
+      "duration": 20,
+      "passScore": 65,
+      "maxAttempts": 4,
+      "questionSelection": {
+        "strategy": "random",
+        "count": 15,
+        "filters": {
+          "difficulty": ["easy", "medium"],
+          "tags": ["knowledge-representation", "ai"]
+        }
+      },
+      "instructions": [
+        "测验时间为20分钟",
+        "及格分数为65%",
+        "可以尝试4次",
+        "题目随机选择"
+      ]
+    }
+  ]
+}

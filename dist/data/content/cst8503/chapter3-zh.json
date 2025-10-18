@@ -1,0 +1,353 @@
+{
+  "courseId": "cst8503",
+  "chapterId": 3,
+  "title": "第3章：Prolog调试",
+  "description": "学习Prolog中的调试技术和工具，包括trace、spy和逻辑程序的常见调试策略",
+  "duration": "2.5小时",
+  "difficulty": "中级",
+  "lastUpdated": "2025-01-16",
+  "learningObjectives": [
+    "理解Prolog的执行模型和回溯",
+    "学习使用trace和spy进行调试",
+    "掌握常见的调试技术",
+    "理解如何调试递归程序",
+    "练习调试真实的Prolog程序"
+  ],
+  "lessons": [
+    {
+      "id": 1,
+      "title": "3.1 理解Prolog执行",
+      "type": "theory",
+      "duration": "30分钟",
+      "order": 1,
+      "content": {
+        "overview": "理解Prolog如何执行查询以及回溯的作用",
+        "sections": [
+          {
+            "title": "执行模型",
+            "content": "Prolog使用深度优先搜索和回溯来寻找解。理解这个模型对有效调试至关重要。",
+            "keyPoints": [
+              "深度优先搜索与回溯",
+              "目标从左到右解析",
+              "目标失败时发生回溯",
+              "变量在执行过程中绑定和解绑"
+            ]
+          },
+          {
+            "title": "回溯过程",
+            "content": "当目标失败时，Prolog回溯到最近的选择点并尝试替代解。",
+            "keyPoints": [
+              "回溯到选择点",
+              "尝试替代解",
+              "解绑变量",
+              "继续直到成功或失败"
+            ]
+          }
+        ]
+      },
+      "resources": [
+        {
+          "name": "Prolog执行可视化",
+          "type": "animation",
+          "url": "#",
+          "description": "Prolog执行和回溯的可视化表示"
+        }
+      ],
+      "exercises": [
+        {
+          "type": "multiple_choice",
+          "question": "当Prolog目标失败时会发生什么？",
+          "options": [
+            "程序终止",
+            "Prolog回溯到最近的选择点",
+            "所有变量被解绑",
+            "查询被重新执行"
+          ],
+          "correct": 1,
+          "explanation": "当目标失败时，Prolog回溯到最近的选择点并尝试替代解。"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "3.2 使用Trace进行调试",
+      "type": "practice",
+      "duration": "40分钟",
+      "order": 2,
+      "content": {
+        "overview": "学习使用trace工具调试Prolog程序",
+        "sections": [
+          {
+            "title": "Trace命令",
+            "content": "trace命令显示Prolog查询的逐步执行，包括目标调用、成功和失败。",
+            "keyPoints": [
+              "trace/0开始跟踪",
+              "notrace/0停止跟踪",
+              "显示目标调用和退出",
+              "显示变量绑定"
+            ]
+          },
+          {
+            "title": "Trace输出解释",
+            "content": "理解trace输出对有效调试至关重要。",
+            "codeExample": {
+              "language": "prolog",
+              "code": "?- trace.\n?- parent(X, mary).\n   Call: (7) parent(_G123, mary) ? creep\n   Exit: (7) parent(john, mary) ? creep\nX = john ;\n   Redo: (7) parent(_G123, mary) ? creep\n   Exit: (7) parent(susan, mary) ? creep\nX = susan",
+              "explanation": "Trace显示目标执行的调用、退出和重做步骤以及变量绑定。"
+            }
+          }
+        ]
+      },
+      "resources": [
+        {
+          "name": "Trace练习环境",
+          "type": "tool",
+          "url": "#",
+          "description": "练习trace调试的交互式环境"
+        }
+      ],
+      "exercises": [
+        {
+          "type": "coding",
+          "question": "使用trace调试为什么查询?- ancestor(john, alice).失败。trace输出显示了什么？",
+          "hint": "启用trace，运行查询，观察执行步骤",
+          "solution": "?- trace.\n?- ancestor(john, alice).\n% Trace将显示执行步骤和失败位置",
+          "explanation": "Trace将显示逐步执行，揭示ancestor规则在哪里失败找不到解。"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "3.3 使用断点",
+      "type": "practice",
+      "duration": "35分钟",
+      "order": 3,
+      "content": {
+        "overview": "学习使用断点对特定谓词进行选择性调试",
+        "sections": [
+          {
+            "title": "断点",
+            "content": "断点允许你在特定谓词上设置断点，使调试更加专注和高效。",
+            "keyPoints": [
+              "spy/1在谓词上设置断点",
+              "nospy/1移除断点",
+              "nospyall/0移除所有断点",
+              "比完整trace更高效"
+            ]
+          },
+          {
+            "title": "断点使用",
+            "content": "在特定谓词上设置断点有助于专注于有问题的区域进行调试。",
+            "codeExample": {
+              "language": "prolog",
+              "code": "?- spy(ancestor/2).\n?- ancestor(john, alice).\n   Spy point on ancestor/2\n   Call: (7) ancestor(john, alice) ? creep",
+              "explanation": "断点在ancestor/2谓词被调用时停止执行，允许专注调试。"
+            }
+          }
+        ]
+      },
+      "resources": [
+        {
+          "name": "断点教程",
+          "type": "tutorial",
+          "url": "#",
+          "description": "使用断点的分步教程"
+        }
+      ],
+      "exercises": [
+        {
+          "type": "coding",
+          "question": "在parent/2谓词上设置断点并运行使用它的查询。会发生什么？",
+          "hint": "使用spy(parent/2)然后运行涉及parent的查询",
+          "solution": "?- spy(parent/2).\n?- ancestor(john, alice).\n% 执行将在parent/2调用时停止",
+          "explanation": "在parent/2上设置断点将导致执行在parent/2被调用时停止，允许你检查调用。"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "3.4 常见调试技术",
+      "type": "practice",
+      "duration": "45分钟",
+      "order": 4,
+      "content": {
+        "overview": "学习Prolog程序的常见调试技术和策略",
+        "sections": [
+          {
+            "title": "调试递归程序",
+            "content": "递归程序可能难以调试。理解递归深度和基本情况至关重要。",
+            "keyPoints": [
+              "首先检查基本情况",
+              "验证递归情况",
+              "监控递归深度",
+              "使用trace跟踪递归"
+            ]
+          },
+          {
+            "title": "变量绑定问题",
+            "content": "变量绑定问题在Prolog中很常见。理解变量何时以及如何绑定是必要的。",
+            "keyPoints": [
+              "变量在统一过程中绑定",
+              "检查意外的变量绑定",
+              "使用write/1检查变量",
+              "验证谓词参数"
+            ]
+          },
+          {
+            "title": "逻辑错误",
+            "content": "规则中的逻辑错误可能导致意外行为。系统测试有助于识别这些问题。",
+            "keyPoints": [
+              "用简单情况测试规则",
+              "逐步验证规则逻辑",
+              "检查缺失条件",
+              "系统使用测试用例"
+            ]
+          }
+        ]
+      },
+      "resources": [
+        {
+          "name": "调试清单",
+          "type": "reference",
+          "url": "#",
+          "description": "调试Prolog程序的系统清单"
+        }
+      ],
+      "exercises": [
+        {
+          "type": "coding",
+          "question": "调试以下有问题的规则：sibling(X, Y) :- parent(Z, X), parent(Z, Y).有什么问题以及如何修复？",
+          "hint": "考虑当X和Y是同一个人时会发生什么",
+          "solution": "% 问题：允许X成为自己的兄弟姐妹\n% 修复：添加X \\= Y条件\nsibling(X, Y) :- parent(Z, X), parent(Z, Y), X \\= Y.",
+          "explanation": "原始规则允许一个人成为自己的兄弟姐妹。添加X \\= Y防止这种逻辑错误。"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "3.5 实际调试会话",
+      "type": "practice",
+      "duration": "40分钟",
+      "order": 5,
+      "content": {
+        "overview": "使用真实Prolog程序进行实际调试会话",
+        "sections": [
+          {
+            "title": "调试家谱程序",
+            "content": "调试具有多个规则和关系的复杂家谱程序。",
+            "codeExample": {
+              "language": "prolog",
+              "code": "% 有问题的家谱程序\nparent(john, mary).\nparent(john, tom).\nparent(susan, mary).\nparent(susan, tom).\n\n% 有问题的规则\nancestor(X, Y) :- parent(X, Y).\nancestor(X, Y) :- ancestor(X, Z), parent(Z, Y).\nsibling(X, Y) :- parent(Z, X), parent(Z, Y).",
+              "explanation": "这个程序有几个错误：ancestor规则顺序问题和sibling规则缺少X \\= Y。"
+            }
+          },
+          {
+            "title": "逐步调试",
+            "content": "在家谱程序中查找和修复错误的系统方法。",
+            "keyPoints": [
+              "单独测试每个规则",
+              "使用trace跟踪执行",
+              "识别错误来源",
+              "系统修复错误"
+            ]
+          }
+        ]
+      },
+      "resources": [
+        {
+          "name": "调试工作坊",
+          "type": "workshop",
+          "url": "#",
+          "description": "使用真实示例的交互式调试工作坊"
+        }
+      ],
+      "exercises": [
+        {
+          "type": "coding",
+          "question": "调试家谱程序。你发现了什么错误以及如何修复它们？",
+          "hint": "用各种查询测试ancestor和sibling规则",
+          "solution": "% 修复版本\nancestor(X, Y) :- parent(X, Y).\nancestor(X, Y) :- parent(X, Z), ancestor(Z, Y).\nsibling(X, Y) :- parent(Z, X), parent(Z, Y), X \\= Y.",
+          "explanation": "主要错误：ancestor规则顺序错误（应该是parent(X,Z), ancestor(Z,Y)而不是ancestor(X,Z), parent(Z,Y)），sibling规则缺少X \\= Y条件。"
+        }
+      ]
+    }
+  ],
+  "assessment": {
+    "quiz": {
+      "questions": [
+        {
+          "id": 1,
+          "type": "multiple_choice",
+          "question": "Prolog中的trace命令做什么？",
+          "options": ["编译程序", "显示查询的逐步执行", "优化程序", "创建文档"],
+          "correct": 1,
+          "points": 2
+        },
+        {
+          "id": 2,
+          "type": "multiple_choice",
+          "question": "使用断点相比完整trace的主要优势是什么？",
+          "options": [
+            "断点更快",
+            "断点允许对特定谓词进行选择性调试",
+            "断点适用于所有Prolog系统",
+            "断点不需要调试"
+          ],
+          "correct": 1,
+          "points": 2
+        },
+        {
+          "id": 3,
+          "type": "true_false",
+          "question": "当Prolog目标失败时，程序立即终止。",
+          "correct": false,
+          "points": 1
+        },
+        {
+          "id": 4,
+          "type": "multiple_choice",
+          "question": "递归Prolog规则中的常见错误是什么？",
+          "options": [
+            "使用太多变量",
+            "规则体中目标顺序错误",
+            "使用大写字母",
+            "缺少分号"
+          ],
+          "correct": 1,
+          "points": 2
+        }
+      ],
+      "totalPoints": 7,
+      "passingScore": 4
+    }
+  },
+  "resources": {
+    "readings": [
+      {
+        "title": "Prolog调试技术",
+        "author": "Todd Kelley",
+        "type": "course_notes",
+        "url": "#",
+        "description": "调试Prolog程序的综合指南"
+      }
+    ],
+    "videos": [
+      {
+        "title": "使用Trace和Spy调试",
+        "duration": "25分钟",
+        "url": "#",
+        "description": "trace和spy调试技术的演示"
+      }
+    ],
+    "tools": [
+      {
+        "name": "Prolog调试环境",
+        "type": "programming",
+        "url": "#",
+        "description": "带有调试工具的在线环境"
+      }
+    ]
+  },
+  "prerequisites": [2],
+  "nextChapter": 4
+}
