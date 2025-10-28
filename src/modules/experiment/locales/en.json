@@ -1,5 +1,57 @@
 {
   "title": "Experiment Lab",
+  "selectCourse": {
+    "title": "Select a course to start experiments",
+    "subtitle": "Please select a course to begin experiments",
+    "courseExperiments": "Course Experiments",
+    "startExperiment": "Start Experiment"
+  },
+  "loading": {
+    "experimentContent": "Loading experiment content..."
+  },
+  "error": {
+    "loadFailed": "Failed to load experiment data",
+    "noContent": "No experiment content available",
+    "reload": "Reload"
+  },
+  "module": {
+    "title": "Experiment Module"
+  },
+  "navigation": {
+    "backToCourse": "Back to Courses",
+    "experiment": "Experiment"
+  },
+  "experiment": {
+    "steps": "Experiment Steps",
+    "hints": "Tips"
+  },
+  "codeEditor": {
+    "title": "Code Editor",
+    "reset": "Reset",
+    "running": "Running...",
+    "runCode": "Run Code",
+    "placeholder": "Enter your code here..."
+  },
+  "testResults": {
+    "title": "Test Results",
+    "empty": "Click 'Run Code' to view test results",
+    "passed": "Passed",
+    "failed": "Failed",
+    "expected": "Expected Output",
+    "actual": "Actual Output",
+    "caseFailed": "Case not correctly implemented",
+    "useStateIncorrect": "useState not correctly used"
+  },
+  "navigationButtons": {
+    "previousExperiment": "Previous Experiment",
+    "nextExperiment": "Next Experiment",
+    "submitExperiment": "Submit Experiment",
+    "experimentCompleted": "Experiment completed! Passed {passed}/{total} test cases"
+  },
+  "notifications": {
+    "loadFailed": "Failed to load experiment data",
+    "submitSuccess": "Experiment submitted successfully"
+  },
   "codeEditor": {
     "run": "Run",
     "save": "Save",

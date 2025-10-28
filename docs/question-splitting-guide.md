@@ -9,8 +9,8 @@
 ```
 public/data/questions/
 ├── chapters/                    # 按章节拆分
-│   ├── cst8503-chapter1-knowledge-representation-zh.json
-│   ├── cst8503-chapter1-knowledge-representation-en.json
+│   ├── cst8503-chapter1-kr-zh.json
+│   ├── cst8503-chapter1-kr-en.json
 │   ├── cst8503-chapter2-prolog-basics-zh.json
 │   ├── cst8503-chapter2-prolog-basics-en.json
 │   ├── cst8503-chapter3-prolog-debugging-zh.json
@@ -40,7 +40,7 @@ public/data/questions/
 ### 按章节分布（中文）
 
 - **Prolog 基础** (chapter2-prolog-basics): 28 题
-- **知识表示** (chapter1-knowledge-representation): 5 题
+- **K&R** (chapter1-kr): 5 题
 - **Prolog 调试** (chapter3-prolog-debugging): 9 题
 - **Prolog 列表和操作符** (chapter5-prolog-lists-operators): 4 题
 - **Prolog 否定** (chapter6-prolog-negation): 3 题

@@ -12,7 +12,7 @@ import coursesData from "../modules/course-management/data/courses.json";
 const initialState = {
   user: null,
   isAuthenticated: false,
-  currentLanguage: "zh",
+  currentLanguage: "en", // 默认英文
   courses: coursesData.courses, // 使用课程数据
   currentCourse: null,
   userProgress: {},
@@ -112,7 +112,7 @@ const appReducer = (state, action) => {
         user: action.payload.user,
         isAuthenticated: action.payload.isAuthenticated,
         userProgress: action.payload.userProgress || {},
-        currentLanguage: action.payload.currentLanguage || "zh",
+        currentLanguage: action.payload.currentLanguage || "en",
         isInitialized: true,
       };
 

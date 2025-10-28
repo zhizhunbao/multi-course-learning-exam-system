@@ -1,31 +1,36 @@
 {
   "title": "Learning Center",
-  "videoPlayer": {
-    "play": "Play",
-    "pause": "Pause",
-    "bookmark": "Bookmark",
-    "volume": "Volume",
-    "speed": "Speed",
-    "loading": "Loading video...",
-    "error": "Failed to load video"
+  "selectCourse": {
+    "title": "Select Course",
+    "subtitle": "Please select a course to start learning"
   },
-  "progress": {
-    "completed": "Completed",
-    "inProgress": "In Progress",
-    "notStarted": "Not Started",
-    "lastPosition": "Last Position"
+  "courseSelection": {
+    "chapters": " chapters",
+    "start": "Start Learning"
   },
-  "notes": {
-    "title": "Notes",
-    "addNote": "Add Note",
-    "editNote": "Edit Note",
-    "deleteNote": "Delete Note",
-    "placeholder": "Add your notes here..."
+  "noCourses": {
+    "title": "No Courses Available",
+    "description": "Please contact the administrator to add course content"
   },
-  "bookmarks": {
-    "title": "Bookmarks",
-    "addBookmark": "Add Bookmark",
-    "removeBookmark": "Remove Bookmark",
-    "noBookmarks": "No bookmarks yet"
+  "header": {
+    "back": "Back",
+    "previous": "Previous",
+    "next": "Next",
+    "complete": "Complete"
+  },
+  "loading": {
+    "title": "Loading course content...",
+    "error": "Failed to load course content",
+    "reload": "Reload",
+    "content": "Chapter content is loading..."
+  },
+  "lesson": {
+    "objectives": "Learning Objectives",
+    "summary": "Key Takeaways",
+    "resources": "Related Resources",
+    "duration": " minutes"
+  },
+  "notifications": {
+    "completed": "Chapter marked as completed"
   }
 }

@@ -98,7 +98,7 @@
   },
   "questions": "题",
   "chapters": {
-    "chapter1-knowledge-representation": "第1章：知识表示介绍",
+    "chapter1-kr": "第1章：K&R介绍",
     "chapter2-prolog-basics": "第2章：Prolog基础",
     "chapter3-prolog-debugging": "第3章：Prolog调试",
     "chapter4-prolog-structures": "第4章：Prolog结构与匹配",

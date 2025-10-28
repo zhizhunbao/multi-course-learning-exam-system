@@ -18,7 +18,7 @@ const CONFIG = {
   outputDir: "public/data/questions",
   languages: ["zh", "en"],
   chapters: {
-    "chapter1-knowledge-representation": "知识表示",
+    "chapter1-kr": "K&R",
     "chapter2-prolog-basics": "Prolog基础",
     "chapter3-prolog-debugging": "Prolog调试",
     "chapter5-prolog-lists-operators": "Prolog列表和操作符",
@@ -149,14 +149,11 @@ function createIndexFile(courseId, language, chapters, types) {
   const indexData = {
     courseId,
     language,
-    title:
-      language === "zh"
-        ? "知识表示与推理"
-        : "Knowledge Representation and Reasoning",
+    title: language === "zh" ? "知识表示与推理" : "K&R and Reasoning",
     description:
       language === "zh"
         ? "学习知识表示和推理的基础知识"
-        : "Learn the fundamentals of knowledge representation and reasoning",
+        : "Learn the fundamentals of K&R",
     lastUpdated: new Date().toISOString().split("T")[0],
     chapters: Object.entries(chapters).map(([chapterId, count]) => ({
       chapterId,

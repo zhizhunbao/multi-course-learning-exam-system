@@ -1,5 +1,57 @@
 {
   "title": "实验实验室",
+  "selectCourse": {
+    "title": "选择课程进行实验",
+    "subtitle": "请选择一个课程开始实验",
+    "courseExperiments": "课程实验",
+    "startExperiment": "开始实验"
+  },
+  "loading": {
+    "experimentContent": "实验内容加载中..."
+  },
+  "error": {
+    "loadFailed": "实验数据加载失败",
+    "noContent": "暂无实验内容",
+    "reload": "重新加载"
+  },
+  "module": {
+    "title": "实验模块"
+  },
+  "navigation": {
+    "backToCourse": "返回课程",
+    "experiment": "实验"
+  },
+  "experiment": {
+    "steps": "实验步骤",
+    "hints": "💡 提示"
+  },
+  "codeEditor": {
+    "title": "代码编辑器",
+    "reset": "重置",
+    "running": "运行中...",
+    "runCode": "运行代码",
+    "placeholder": "在这里编写您的代码..."
+  },
+  "testResults": {
+    "title": "测试结果",
+    "empty": "点击\"运行代码\"来查看测试结果",
+    "passed": "通过",
+    "failed": "失败",
+    "expected": "预期输出",
+    "actual": "实际输出",
+    "caseFailed": "组件未正确实现",
+    "useStateIncorrect": "useState 未正确使用"
+  },
+  "navigationButtons": {
+    "previousExperiment": "上一个实验",
+    "nextExperiment": "下一个实验",
+    "submitExperiment": "提交实验",
+    "experimentCompleted": "实验完成！通过 {passed}/{total} 个测试用例"
+  },
+  "notifications": {
+    "loadFailed": "加载实验数据失败",
+    "submitSuccess": "实验已提交"
+  },
   "codeEditor": {
     "run": "运行",
     "save": "保存",

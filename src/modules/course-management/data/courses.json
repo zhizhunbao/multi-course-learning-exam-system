@@ -39,10 +39,10 @@
     {
       "id": "cst8503",
       "name": "知识表示与推理",
-      "nameEn": "Knowledge Representation and Reasoning",
+      "nameEn": "K&R and Reasoning",
       "code": "CST8503",
       "description": "知识表示方法和推理技术",
-      "descriptionEn": "Knowledge Representation Methods and Reasoning Techniques",
+      "descriptionEn": "K&R Methods and Reasoning Techniques",
       "instructor": "Dr. Johnson",
       "credits": 3,
       "duration": "12 weeks",

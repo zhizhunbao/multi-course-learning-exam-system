@@ -15,14 +15,14 @@ class DataService {
   /**
    * 获取课程题目数据
    * @param {string} courseId - 课程ID
-   * @param {string} language - 语言代码 (zh/en)，默认为 zh
+   * @param {string} language - 语言代码 (zh/en)，默认为 en
    * @param {Object} options - 选项参数
    * @param {string} options.chapter - 章节ID (可选)
    * @param {string} options.type - 题型 (可选)
    * @param {string} options.format - 格式类型 'json' | 'markdown' (可选)
    * @returns {Promise<Object>} 题目数据
    */
-  async getQuestions(courseId, language = "zh", options = {}) {
+  async getQuestions(courseId, language = "en", options = {}) {
     const { chapter, type, format } = options;
     const cacheKey = `questions_${courseId}_${language}_${chapter || "all"}_${
       type || "all"
@@ -46,7 +46,7 @@ class DataService {
 
       // 如果指定了章节，尝试加载对应的文件
       if (chapter) {
-        // 尝试新的文件路径格式: questions/cst8503/cst8503-chapter1-knowledge-representation-zh.json
+        // 尝试新的文件路径格式: questions/cst8503/cst8503-chapter1-kr-zh.json
         const chapterFileName = `${courseId}-${chapter}-${language}.json`;
         data = await this.loadDataFromFile(
           `questions/${courseId}/${chapterFileName}`
@@ -96,7 +96,7 @@ class DataService {
    * @param {string} setId - 题库套数 (set1/set2/...)，可选
    * @returns {Promise<Object|null>} 题库数据，包含 markdown 内容
    */
-  async getMarkdownQuestions(courseId, language = "zh", setId = null) {
+  async getMarkdownQuestions(courseId, language = "en", setId = null) {
     try {
       // 构建文件名：根据语言和题库套数选择对应的文件
       const fileNames = [];
@@ -172,7 +172,7 @@ class DataService {
    * @param {string} language - 语言代码 (zh/en)
    * @returns {Promise<Array>} 可用题库列表
    */
-  async getAvailableQuestionSets(courseId, language = "zh") {
+  async getAvailableQuestionSets(courseId, language = "en") {
     const sets = [];
 
     // 尝试加载默认题库（第一套）
@@ -239,7 +239,7 @@ class DataService {
   async collectAllQuestions(courseId, language) {
     try {
       const chapters = [
-        "chapter1-knowledge-representation",
+        "chapter1-kr",
         "chapter2-prolog-basics",
         "chapter3-prolog-debugging",
         "chapter4-prolog-structures-matching",
@@ -304,6 +304,18 @@ class DataService {
           return null; // 文件不存在
         }
         throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const contentType = response.headers.get("content-type");
+      if (contentType && !contentType.includes("application/json")) {
+        // 如果返回的是HTML（通常是404页面），返回null而不是抛出错误
+        const text = await response.text();
+        if (
+          text.trim().startsWith("<!DOCTYPE") ||
+          text.trim().startsWith("<!doctype")
+        ) {
+          return null;
+        }
       }
 
       const data = await response.json();
@@ -397,7 +409,7 @@ class DataService {
    * @param {string} language - 语言代码 (zh/en)，默认为 zh
    * @returns {Promise<Array>} 选中的题目
    */
-  async getExamQuestions(courseId, examId, language = "zh") {
+  async getExamQuestions(courseId, examId, language = "en") {
     const [questionsData, examConfigData] = await Promise.all([
       this.getQuestions(courseId, language),
       this.getExamConfig(courseId),
@@ -419,10 +431,10 @@ class DataService {
   /**
    * 获取课程索引信息
    * @param {string} courseId - 课程ID
-   * @param {string} language - 语言代码 (zh/en)，默认为 zh
+   * @param {string} language - 语言代码 (zh/en)，默认为 en
    * @returns {Promise<Object>} 课程索引数据
    */
-  async getCourseIndex(courseId, language = "zh") {
+  async getCourseIndex(courseId, language = "en") {
     const cacheKey = `courseIndex_${courseId}_${language}`;
 
     if (this.cache.has(cacheKey)) {
@@ -504,7 +516,7 @@ class DataService {
    * @param {string} language - 语言代码 (zh/en)，默认为 zh
    * @returns {Promise<Object>} 章节题目数据
    */
-  async getChapterQuestions(courseId, chapterId, language = "zh") {
+  async getChapterQuestions(courseId, chapterId, language = "en") {
     return this.getQuestions(courseId, language, { chapter: chapterId });
   }
 
@@ -515,17 +527,17 @@ class DataService {
    * @param {string} language - 语言代码 (zh/en)，默认为 zh
    * @returns {Promise<Object>} 题型题目数据
    */
-  async getQuestionsByType(courseId, questionType, language = "zh") {
+  async getQuestionsByType(courseId, questionType, language = "en") {
     return this.getQuestions(courseId, language, { type: questionType });
   }
 
   /**
    * 获取课程内容
    * @param {string} courseId - 课程ID
-   * @param {string} language - 语言代码 (zh/en)，默认为 zh
+   * @param {string} language - 语言代码 (zh/en)，默认为 en
    * @returns {Promise<Object>} 课程内容数据
    */
-  async getCourseContent(courseId, language = "zh") {
+  async getCourseContent(courseId, language = "en") {
     const cacheKey = `courseContent_${courseId}_${language}`;
 
     if (this.cache.has(cacheKey)) {
@@ -590,7 +602,7 @@ class DataService {
    * @param {string} language - 语言代码 (zh/en)，默认为 zh
    * @returns {Promise<Object>} 章节内容数据
    */
-  async getChapterContent(courseId, chapterId, language = "zh") {
+  async getChapterContent(courseId, chapterId, language = "en") {
     const cacheKey = `chapterContent_${courseId}_${chapterId}_${language}`;
 
     if (this.cache.has(cacheKey)) {

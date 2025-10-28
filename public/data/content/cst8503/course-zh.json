@@ -1,134 +1,121 @@
 {
   "courseId": "cst8503",
   "title": "知识表示与推理",
-  "description": "知识表示方法和推理技术",
+  "description": "知识表示与推理基础，重点学习Prolog编程语言",
   "language": "zh",
-  "lastUpdated": "2025-01-16",
+  "lastUpdated": "2025-10-16",
   "chapters": [
     {
       "id": 1,
       "title": "第1章：知识表示介绍",
       "order": 1,
-      "description": "介绍知识表示的基本概念，包括人工智能、机器学习和知识表示的区别，以及声明性知识的重要性",
+      "description": "介绍知识表示的基础概念，包括声明性知识、机器学习与知识表示的区别",
       "duration": "2小时",
       "difficulty": "初级",
-      "lessons": [
-        {
-          "id": 1,
-          "title": "1.1 知识表示 vs 机器学习 vs 人工智能",
-          "type": "theory",
-          "duration": "30分钟",
-          "order": 1,
-          "content": "知识表示是人工智能中如何将现实世界的知识编码为计算机可以处理的形式。学习各种知识表示方法。",
-          "resources": [
-            {
-              "name": "知识表示概述",
-              "type": "text",
-              "url": "https://example.com/kr-overview"
-            }
-          ]
-        },
-        {
-          "id": 2,
-          "title": "1.2 声明性知识 vs 程序性知识",
-          "type": "theory",
-          "duration": "25分钟",
-          "order": 2,
-          "content": "学习一阶谓词逻辑的基本概念、语法和语义，理解如何用逻辑表示知识。",
-          "resources": [
-            {
-              "name": "谓词逻辑教程",
-              "type": "video",
-              "url": "https://example.com/predicate-logic"
-            }
-          ]
-        }
-      ]
+      "markdownFile": "chapter1.md",
+      "objectives": [
+        "理解知识表示的基本概念",
+        "掌握声明性知识与机器学习的关系",
+        "了解声明性编程的特点",
+        "理解事实和规则编程"
+      ],
+      "resources": []
     },
     {
       "id": 2,
       "title": "第2章：Prolog基础",
       "order": 2,
-      "description": "学习Prolog编程语言的基础知识，包括语法、事实、规则和查询",
+      "description": "学习Prolog编程语言基础，包括事实、规则、查询和变量绑定",
       "duration": "3小时",
       "difficulty": "初级",
-      "lessons": [
-        {
-          "id": 3,
-          "title": "2.1 Prolog语法基础",
-          "type": "theory",
-          "duration": "25分钟",
-          "order": 1,
-          "content": "学习Prolog语言的基本语法，包括事实、规则和查询的编写。",
-          "resources": [
-            {
-              "name": "Prolog语法指南",
-              "type": "text",
-              "url": "https://example.com/prolog-syntax"
-            }
-          ]
-        },
-        {
-          "id": 4,
-          "title": "2.2 事实和规则",
-          "type": "theory",
-          "duration": "30分钟",
-          "order": 2,
-          "content": "学习Prolog中列表的表示和操作，包括递归和模式匹配。",
-          "resources": [
-            {
-              "name": "Prolog列表操作",
-              "type": "video",
-              "url": "https://example.com/prolog-lists"
-            }
-          ]
-        }
-      ]
+      "markdownFile": "chapter2.md",
+      "objectives": [
+        "理解Prolog程序的结构",
+        "掌握事实和规则的编写",
+        "学会使用Prolog查询",
+        "理解变量绑定的工作原理"
+      ],
+      "resources": []
     },
     {
       "id": 3,
       "title": "第3章：Prolog调试",
       "order": 3,
-      "description": "学习Prolog程序的调试技巧和常见错误",
+      "description": "学习Prolog程序的调试技巧和跟踪工具",
       "duration": "2小时",
       "difficulty": "中级",
-      "lessons": []
+      "markdownFile": "chapter3.md",
+      "objectives": [
+        "理解声明性意义",
+        "掌握Prolog的执行流程",
+        "学会使用trace和spy工具",
+        "了解图形跟踪功能"
+      ],
+      "resources": []
     },
     {
       "id": 4,
-      "title": "第4章：Prolog结构和匹配",
+      "title": "第4章：Prolog结构与匹配",
       "order": 4,
-      "description": "深入学习Prolog中的复合结构和模式匹配",
-      "duration": "2.5小时",
+      "description": "深入学习Prolog语法、结构、匹配算法和统一操作",
+      "duration": "3小时",
       "difficulty": "中级",
-      "lessons": []
+      "markdownFile": "chapter4.md",
+      "objectives": [
+        "掌握Prolog的原子、数字和变量语法",
+        "理解结构的概念和表示",
+        "学会匹配算法",
+        "理解匹配与统一的区别"
+      ],
+      "resources": []
     },
     {
       "id": 5,
-      "title": "第5章：Prolog列表和操作符",
+      "title": "第5章：Prolog列表、操作符与算术",
       "order": 5,
-      "description": "学习Prolog中列表的表示、操作和操作符的使用",
+      "description": "学习Prolog列表操作、操作符定义和算术运算",
       "duration": "3小时",
       "difficulty": "中级",
-      "lessons": []
+      "markdownFile": "chapter5.md",
+      "objectives": [
+        "掌握列表的各种操作",
+        "学会定义和使用操作符",
+        "理解算术运算的使用",
+        "能够编写递归的列表处理程序"
+      ],
+      "resources": []
     },
     {
       "id": 6,
-      "title": "第6章：Prolog否定",
+      "title": "第6章：Prolog否定与截断",
       "order": 6,
-      "description": "学习Prolog中的否定操作和逻辑编程中的否定处理",
-      "duration": "2小时",
+      "description": "学习Prolog中的否定操作和截断操作符",
+      "duration": "2.5小时",
       "difficulty": "高级",
-      "lessons": []
+      "markdownFile": "chapter6.md",
+      "objectives": [
+        "理解截断操作符的作用",
+        "掌握失败否定的使用",
+        "理解封闭世界假设",
+        "学会避免否定的常见问题"
+      ],
+      "resources": []
     },
     {
       "id": 7,
       "title": "第7章：期中复习",
       "order": 7,
-      "description": "综合复习前六章的内容，准备期中考试",
-      "duration": "3小时",
+      "description": "期中考试复习和总结",
+      "duration": "2小时",
       "difficulty": "综合",
-      "lessons": []
+      "markdownFile": "chapter7.md",
+      "objectives": [
+        "回顾知识表示的核心概念",
+        "复习Prolog语法和语义",
+        "巩固递归编程技巧",
+        "准备期中考试"
+      ],
+      "resources": []
     }
   ]
 }

@@ -150,9 +150,9 @@ const PracticeModule = () => {
   // 如果没有courseId，显示课程选择界面
   if (!courseId) {
     return (
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">
+      <div className="max-w-7xl xl:max-w-none xl:mx-8 mx-auto">
+        <div className="text-left mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">
             {t("selectCourse")}
           </h1>
           <p className="text-gray-600">{t("selectCourseDesc")}</p>
@@ -160,26 +160,34 @@ const PracticeModule = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {courses.map((course) => {
+            const courseTitle =
+              currentLanguage === "en" ? course.nameEn : course.name;
+            const courseDesc =
+              currentLanguage === "en"
+                ? course.descriptionEn
+                : course.description;
             return (
               <div
                 key={course.id}
-                className="card p-6 hover:shadow-lg transition-shadow cursor-pointer"
+                className="card p-6 hover:shadow-lg transition-shadow cursor-pointer flex flex-col h-full"
                 onClick={() => navigate(`/practice/${course.id}`)}
               >
-                <div className="flex items-center mb-4">
-                  <Target className="w-8 h-8 text-algonquin-red mr-3" />
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    {course.title}
+                <div className="flex items-start mb-4">
+                  <Target className="w-8 h-8 text-blue-600 mr-3 flex-shrink-0" />
+                  <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 break-words">
+                    {courseTitle}
                   </h3>
                 </div>
-                <p className="text-gray-600 mb-4">{course.description}</p>
-                <div className="flex items-center justify-between">
+                <p className="text-gray-600 mb-4 line-clamp-3 flex-grow">
+                  {courseDesc}
+                </p>
+                <div className="flex items-center justify-between mt-auto">
                   <span className="text-sm text-gray-500">
                     {t("practiceQuestions")}
                   </span>
-                  <span className="text-algonquin-red font-medium">
-                    {t("actions.startPractice")} →
-                  </span>
+                  <button className="btn-primary text-sm px-4 py-2">
+                    {t("actions.startPractice")}
+                  </button>
                 </div>
               </div>
             );
@@ -192,8 +200,8 @@ const PracticeModule = () => {
   // 如果显示题库选择界面
   if (showSetSelection && availableSets.length > 0) {
     return (
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-6">
+      <div className="max-w-7xl xl:max-w-none xl:mx-8 mx-auto">
+        <div className="text-left mb-8">
           <button
             onClick={() => navigate("/practice")}
             className="btn-outline flex items-center mb-4"
@@ -201,7 +209,7 @@ const PracticeModule = () => {
             <ChevronLeft className="w-4 h-4 mr-2" />
             {t("backToCourse")}
           </button>
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">
             {t("selectQuestionSet")}
           </h1>
           <p className="text-gray-600">{t("selectQuestionSetDesc")}</p>
@@ -212,23 +220,25 @@ const PracticeModule = () => {
             return (
               <div
                 key={set.id}
-                className="card p-6 hover:shadow-lg transition-shadow cursor-pointer"
+                className="card p-6 hover:shadow-lg transition-shadow cursor-pointer flex flex-col h-full"
                 onClick={() => selectSet(set)}
               >
-                <div className="flex items-center mb-4">
-                  <BookOpen className="w-8 h-8 text-algonquin-red mr-3" />
-                  <h3 className="text-lg font-semibold text-gray-900">
+                <div className="flex items-start mb-4">
+                  <BookOpen className="w-8 h-8 text-blue-600 mr-3 flex-shrink-0" />
+                  <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 break-words">
                     {set.title}
                   </h3>
                 </div>
-                <p className="text-gray-600 mb-4">{set.description}</p>
-                <div className="flex items-center justify-between">
+                <p className="text-gray-600 mb-4 line-clamp-3 flex-grow">
+                  {set.description}
+                </p>
+                <div className="flex items-center justify-between mt-auto">
                   <span className="text-sm text-gray-500">
                     {t("questionBank")}
                   </span>
-                  <span className="text-algonquin-red font-medium">
-                    {t("actions.startPractice")} →
-                  </span>
+                  <button className="btn-primary text-sm px-4 py-2">
+                    {t("actions.startPractice")}
+                  </button>
                 </div>
               </div>
             );
@@ -241,9 +251,9 @@ const PracticeModule = () => {
   // 如果是 Markdown 模式，显示 Markdown 内容
   if (viewMode === "markdown" && markdownContent) {
     return (
-      <div className="w-full px-4 md:px-6 lg:px-8">
+      <div className="flex flex-col bg-white shadow-sm rounded-lg overflow-hidden">
         {/* 头部信息 */}
-        <div className="mb-6 flex items-center justify-between max-w-7xl mx-auto">
+        <div className="flex items-center justify-between px-6 py-3">
           <div className="flex items-center space-x-4">
             {availableSets.length > 1 ? (
               <button
@@ -278,8 +288,12 @@ const PracticeModule = () => {
         </div>
 
         {/* Markdown 内容 */}
-        <div className="card p-6 md:p-8 lg:p-12 max-w-7xl mx-auto">
-          <MarkdownRenderer content={markdownContent} showToc={false} />
+        <div className="bg-white">
+          <div className="px-6 py-6 space-y-8">
+            <div className="card p-6 md:p-8 lg:p-12">
+              <MarkdownRenderer content={markdownContent} showToc={false} />
+            </div>
+          </div>
         </div>
       </div>
     );

@@ -98,7 +98,7 @@
   },
   "questions": "questions",
   "chapters": {
-    "chapter1-knowledge-representation": "Chapter 1: Knowledge Representation Introduction",
+    "chapter1-kr": "Chapter 1: K&R Introduction",
     "chapter2-prolog-basics": "Chapter 2: Prolog Basics",
     "chapter3-prolog-debugging": "Chapter 3: Prolog Debugging",
     "chapter4-prolog-structures": "Chapter 4: Prolog Structures & Matching",

@@ -1,31 +1,36 @@
 {
   "title": "学习中心",
-  "videoPlayer": {
-    "play": "播放",
-    "pause": "暂停",
-    "bookmark": "书签",
-    "volume": "音量",
-    "speed": "速度",
-    "loading": "加载视频中...",
-    "error": "视频加载失败"
+  "selectCourse": {
+    "title": "选择课程",
+    "subtitle": "请选择一个课程开始学习"
   },
-  "progress": {
-    "completed": "已完成",
-    "inProgress": "进行中",
-    "notStarted": "未开始",
-    "lastPosition": "上次位置"
+  "courseSelection": {
+    "chapters": "个章节",
+    "start": "开始学习"
   },
-  "notes": {
-    "title": "笔记",
-    "addNote": "添加笔记",
-    "editNote": "编辑笔记",
-    "deleteNote": "删除笔记",
-    "placeholder": "在这里添加您的笔记..."
+  "noCourses": {
+    "title": "暂无可用课程",
+    "description": "请联系管理员添加课程内容"
   },
-  "bookmarks": {
-    "title": "书签",
-    "addBookmark": "添加书签",
-    "removeBookmark": "移除书签",
-    "noBookmarks": "暂无书签"
+  "header": {
+    "back": "返回",
+    "previous": "上一章",
+    "next": "下一章",
+    "complete": "完成"
+  },
+  "loading": {
+    "title": "课程内容加载中...",
+    "error": "课程内容加载失败",
+    "reload": "重新加载",
+    "content": "章节内容正在加载中..."
+  },
+  "lesson": {
+    "objectives": "学习目标",
+    "summary": "知识总结",
+    "resources": "相关资源",
+    "duration": "分钟"
+  },
+  "notifications": {
+    "completed": "章节标记为已完成"
   }
 }

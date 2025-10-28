@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useApp } from "../../context/AppContext";
 import dataService from "../../services/DataService";
 import {
@@ -13,6 +14,7 @@ import {
 } from "lucide-react";
 
 const ExamModule = () => {
+  const { t, i18n } = useTranslation();
   const { courseId } = useParams();
   const navigate = useNavigate();
   const { courses, userProgress, updateProgress, addNotification } = useApp();
@@ -27,7 +29,7 @@ const ExamModule = () => {
   const [examStarted, setExamStarted] = useState(false);
   const [examSubmitted, setExamSubmitted] = useState(false);
   const [showResults, setShowResults] = useState(false);
-  const [language, setLanguage] = useState("zh"); // 默认中文
+  const [language, setLanguage] = useState("en"); // 默认英文
 
   // 加载考试配置数据
   const loadExamConfig = async (courseId) => {
@@ -53,8 +55,8 @@ const ExamModule = () => {
       } else {
         setCurrentCourse({
           id: courseId,
-          title: "知识表示与推理",
-          description: "学习知识表示和推理的基础知识",
+          title: t("title"),
+          description: "",
         });
       }
 
@@ -118,9 +120,10 @@ const ExamModule = () => {
 
     addNotification({
       type: passed ? "success" : "warning",
-      message: `考试完成！得分：${percentage}分 ${
-        passed ? "（通过）" : "（未通过）"
-      }`,
+      message: t("results.completed", {
+        score: percentage,
+        status: passed ? t("status.completed") : t("status.timeUp"),
+      }),
     });
 
     setShowResults(true);
@@ -166,7 +169,7 @@ const ExamModule = () => {
       setUserAnswers({});
     } catch (error) {
       console.error("Failed to load exam questions:", error);
-      addNotification("加载考试题目失败", "error");
+      addNotification(t("errors.loadFailed"), "error");
     }
   };
 
@@ -217,36 +220,48 @@ const ExamModule = () => {
   // 如果没有courseId，显示课程选择界面
   if (!courseId) {
     return (
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">
-            选择课程进行考试
+      <div className="max-w-7xl xl:max-w-none xl:mx-8 mx-auto">
+        <div className="text-left mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            {t("selectCourse.title")}
           </h1>
-          <p className="text-gray-600">请选择一个课程开始考试</p>
+          <p className="text-gray-600">{t("selectCourse.subtitle")}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {courses.map((course) => (
-            <div
-              key={course.id}
-              className="card p-6 hover:shadow-lg transition-shadow cursor-pointer"
-              onClick={() => navigate(`/exam/${course.id}`)}
-            >
-              <div className="flex items-center mb-4">
-                <FileText className="w-8 h-8 text-algonquin-red mr-3" />
-                <h3 className="text-lg font-semibold text-gray-900">
-                  {course.title}
-                </h3>
+          {courses.map((course) => {
+            const courseTitle =
+              i18n.language === "en" ? course.nameEn : course.name;
+            const courseDesc =
+              i18n.language === "en"
+                ? course.descriptionEn
+                : course.description;
+            return (
+              <div
+                key={course.id}
+                className="card p-6 hover:shadow-lg transition-shadow cursor-pointer flex flex-col h-full"
+                onClick={() => navigate(`/exam/${course.id}`)}
+              >
+                <div className="flex items-start mb-4">
+                  <FileText className="w-8 h-8 text-blue-600 mr-3 flex-shrink-0" />
+                  <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 break-words">
+                    {courseTitle}
+                  </h3>
+                </div>
+                <p className="text-gray-600 mb-4 line-clamp-3 flex-grow">
+                  {courseDesc}
+                </p>
+                <div className="flex items-center justify-between mt-auto">
+                  <span className="text-sm text-gray-500">
+                    {t("selectCourse.courseExam")}
+                  </span>
+                  <button className="btn-primary text-sm px-4 py-2">
+                    {t("selectCourse.startExam")}
+                  </button>
+                </div>
               </div>
-              <p className="text-gray-600 mb-4">{course.description}</p>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-500">点击开始考试</span>
-                <span className="text-algonquin-red font-medium">
-                  开始考试 →
-                </span>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     );
@@ -257,7 +272,7 @@ const ExamModule = () => {
       <div className="flex items-center justify-center h-64">
         <div className="text-center">
           <FileText className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-          <p className="text-gray-500">考试内容加载中...</p>
+          <p className="text-gray-500">{t("loading.examContent")}</p>
         </div>
       </div>
     );
@@ -269,7 +284,7 @@ const ExamModule = () => {
     const passed = examResult?.passed || false;
 
     return (
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-7xl xl:max-w-none xl:mx-8 mx-auto">
         <div className="card p-8 text-center">
           <div className="mb-6">
             <div
@@ -284,9 +299,11 @@ const ExamModule = () => {
               )}
             </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              {passed ? "恭喜通过！" : "考试未通过"}
+              {passed ? t("results.title.passed") : t("results.title.failed")}
             </h1>
-            <p className="text-gray-600">{currentExam.title} 考试结果</p>
+            <p className="text-gray-600">
+              {currentExam.title} {t("results.examResult")}
+            </p>
           </div>
 
           {/* 成绩统计 */}
@@ -295,26 +312,30 @@ const ExamModule = () => {
               <div className="text-3xl font-bold text-blue-600 mb-2">
                 {examResult?.score || 0}%
               </div>
-              <div className="text-blue-800">最终得分</div>
+              <div className="text-blue-800">{t("results.score")}</div>
             </div>
             <div className="bg-green-50 p-6 rounded-lg">
               <div className="text-3xl font-bold text-green-600 mb-2">
                 {examResult?.correctAnswers || 0}/
                 {examResult?.totalQuestions || 0}
               </div>
-              <div className="text-green-800">正确题数</div>
+              <div className="text-green-800">
+                {t("results.correctAnswers")}
+              </div>
             </div>
             <div className="bg-purple-50 p-6 rounded-lg">
               <div className="text-3xl font-bold text-purple-600 mb-2">
                 {currentExam.passScore}%
               </div>
-              <div className="text-purple-800">及格分数</div>
+              <div className="text-purple-800">{t("results.passScore")}</div>
             </div>
           </div>
 
           {/* 题目回顾 */}
           <div className="text-left mb-8">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">题目回顾</h2>
+            <h2 className="text-xl font-bold text-gray-900 mb-4">
+              {t("results.questionReview")}
+            </h2>
             <div className="space-y-4">
               {questions.map((question, index) => {
                 const result = getQuestionResult(question.id);
@@ -327,7 +348,8 @@ const ExamModule = () => {
                   >
                     <div className="flex items-start justify-between mb-2">
                       <h3 className="font-medium text-gray-900">
-                        第 {index + 1} 题 ({question.points}分)
+                        {t("results.question")} {index + 1} ({question.points}
+                        {t("results.points")})
                       </h3>
                       <div
                         className={`flex items-center ${
@@ -341,24 +363,28 @@ const ExamModule = () => {
                         ) : (
                           <XCircle className="w-5 h-5 mr-1" />
                         )}
-                        {result === "correct" ? "正确" : "错误"}
+                        {result === "correct"
+                          ? t("results.correct")
+                          : t("results.wrong")}
                       </div>
                     </div>
                     <p className="text-gray-700 mb-3">{question.question}</p>
                     {question.type !== "text" && (
                       <div className="mb-2">
                         <p className="text-sm text-gray-600">
-                          您的答案：{question.options[userAnswer]}
+                          {t("results.yourAnswer")}：
+                          {question.options[userAnswer]}
                         </p>
                         <p className="text-sm text-gray-600">
-                          正确答案：{question.options[question.correctAnswer]}
+                          {t("results.correctAnswer")}：
+                          {question.options[question.correctAnswer]}
                         </p>
                       </div>
                     )}
                     {question.type === "text" && (
                       <div className="mb-2">
                         <p className="text-sm text-gray-600">
-                          您的答案：{userAnswer}
+                          {t("results.yourAnswer")}：{userAnswer}
                         </p>
                       </div>
                     )}
@@ -381,14 +407,14 @@ const ExamModule = () => {
               className="btn-outline flex items-center"
             >
               <RotateCcw className="w-4 h-4 mr-2" />
-              重新考试
+              {t("results.reTakeExam")}
             </button>
             <button
               onClick={() => navigate("/exam")}
               className="btn-primary flex items-center"
             >
               <BookOpen className="w-4 h-4 mr-2" />
-              返回课程
+              {t("results.backToCourse")}
             </button>
           </div>
         </div>
@@ -399,7 +425,7 @@ const ExamModule = () => {
   // 考试开始前
   if (!examStarted && !examSubmitted) {
     return (
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-7xl xl:max-w-none xl:mx-8 mx-auto">
         <div className="card p-8 text-center">
           <div className="mb-6">
             <FileText className="w-16 h-16 text-algonquin-red mx-auto mb-4" />
@@ -415,25 +441,27 @@ const ExamModule = () => {
               <div className="text-2xl font-bold text-blue-600 mb-2">
                 {currentExam.totalQuestions}
               </div>
-              <div className="text-blue-800">题目数量</div>
+              <div className="text-blue-800">{t("preExam.totalQuestions")}</div>
             </div>
             <div className="bg-green-50 p-6 rounded-lg">
               <div className="text-2xl font-bold text-green-600 mb-2">
-                {currentExam.duration} 分钟
+                {currentExam.duration} {t("preExam.minutes")}
               </div>
-              <div className="text-green-800">考试时长</div>
+              <div className="text-green-800">{t("preExam.duration")}</div>
             </div>
             <div className="bg-purple-50 p-6 rounded-lg">
               <div className="text-2xl font-bold text-purple-600 mb-2">
                 {currentExam.passScore}%
               </div>
-              <div className="text-purple-800">及格分数</div>
+              <div className="text-purple-800">{t("preExam.passScore")}</div>
             </div>
           </div>
 
           {/* 语言选择 */}
           <div className="bg-gray-50 p-6 rounded-lg mb-8">
-            <h3 className="font-semibold text-gray-900 mb-3">选择考试语言</h3>
+            <h3 className="font-semibold text-gray-900 mb-3">
+              {t("preExam.selectLanguage")}
+            </h3>
             <div className="flex justify-center space-x-4">
               <button
                 onClick={() => setLanguage("zh")}
@@ -443,7 +471,7 @@ const ExamModule = () => {
                     : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
                 }`}
               >
-                中文
+                {t("preExam.chinese")}
               </button>
               <button
                 onClick={() => setLanguage("en")}
@@ -453,7 +481,7 @@ const ExamModule = () => {
                     : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
                 }`}
               >
-                English
+                {t("preExam.english")}
               </button>
             </div>
           </div>
@@ -462,24 +490,23 @@ const ExamModule = () => {
           <div className="bg-yellow-50 p-6 rounded-lg mb-8 text-left">
             <h3 className="font-semibold text-yellow-900 mb-3 flex items-center">
               <AlertTriangle className="w-5 h-5 mr-2" />
-              考试说明
+              {t("preExam.instructions")}
             </h3>
             <ul className="text-yellow-800 space-y-2">
               <li>
-                • 考试时间为 {currentExam.duration} 分钟，时间到将自动提交
+                • {t("preExam.note.time", { duration: currentExam.duration })}
               </li>
-              <li>• 考试期间请勿关闭浏览器或刷新页面</li>
-              <li>• 每题只能选择一次答案，请仔细思考后作答</li>
+              <li>• {t("preExam.note.browser")}</li>
+              <li>• {t("preExam.note.answers")}</li>
               <li>
-                • 及格分数为 {currentExam.passScore}
-                %，未达到及格分数需要重新考试
+                • {t("preExam.note.pass", { passScore: currentExam.passScore })}
               </li>
             </ul>
           </div>
 
           {/* 开始考试按钮 */}
           <button onClick={startExam} className="btn-primary text-lg px-8 py-3">
-            开始考试
+            {t("preExam.startExam")}
           </button>
         </div>
       </div>
@@ -488,15 +515,15 @@ const ExamModule = () => {
 
   // 考试进行中
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="flex flex-col bg-white shadow-sm rounded-lg overflow-hidden">
       {/* 考试头部 */}
-      <div className="mb-6">
+      <div className="bg-white px-6 py-3">
         <div className="flex items-center justify-between mb-4">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">
               {currentExam.title}
             </h1>
-            <p className="text-gray-600">考试进行中</p>
+            <p className="text-gray-600">{t("inExam.title")}</p>
           </div>
           <div className="flex items-center space-x-4">
             <div
@@ -522,97 +549,105 @@ const ExamModule = () => {
           ></div>
         </div>
         <p className="text-sm text-gray-600 mt-2">
-          第 {currentQuestionIndex + 1} 题，共 {questions.length} 题
+          {t("inExam.progress", {
+            current: currentQuestionIndex + 1,
+            total: questions.length,
+          })}
         </p>
       </div>
 
       {/* 题目内容 */}
-      <div className="card p-6">
-        <div className="mb-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">
-            {currentQuestion.question}
-            <span className="text-sm font-normal text-gray-500 ml-2">
-              ({currentQuestion.points}分)
-            </span>
-          </h2>
+      <div className="bg-white">
+        <div className="px-6 py-6 space-y-8">
+          <div className="card p-6">
+            <div className="mb-6">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">
+                {currentQuestion.question}
+                <span className="text-sm font-normal text-gray-500 ml-2">
+                  ({currentQuestion.points}
+                  {t("inExam.question")})
+                </span>
+              </h2>
 
-          {/* 选择题 */}
-          {currentQuestion.type === "multiple-choice" && (
-            <div className="space-y-3">
-              {currentQuestion.options &&
-                currentQuestion.options.map((option, index) => (
-                  <label
-                    key={index}
-                    className="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"
-                  >
-                    <input
-                      type="radio"
-                      name={`question-${currentQuestion.id}`}
-                      value={index}
-                      checked={userAnswers[currentQuestion.id] === index}
-                      onChange={() => handleAnswerChange(index)}
-                      className="mr-3"
-                    />
-                    <span className="text-gray-700">{option}</span>
-                  </label>
-                ))}
+              {/* 选择题 */}
+              {currentQuestion.type === "multiple-choice" && (
+                <div className="space-y-3">
+                  {currentQuestion.options &&
+                    currentQuestion.options.map((option, index) => (
+                      <label
+                        key={index}
+                        className="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"
+                      >
+                        <input
+                          type="radio"
+                          name={`question-${currentQuestion.id}`}
+                          value={index}
+                          checked={userAnswers[currentQuestion.id] === index}
+                          onChange={() => handleAnswerChange(index)}
+                          className="mr-3"
+                        />
+                        <span className="text-gray-700">{option}</span>
+                      </label>
+                    ))}
+                </div>
+              )}
+
+              {/* 判断题 */}
+              {currentQuestion.type === "true-false" && (
+                <div className="space-y-3">
+                  {currentQuestion.options &&
+                    currentQuestion.options.map((option, index) => (
+                      <label
+                        key={index}
+                        className="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"
+                      >
+                        <input
+                          type="radio"
+                          name={`question-${currentQuestion.id}`}
+                          value={index}
+                          checked={userAnswers[currentQuestion.id] === index}
+                          onChange={() => handleAnswerChange(index)}
+                          className="mr-3"
+                        />
+                        <span className="text-gray-700">{option}</span>
+                      </label>
+                    ))}
+                </div>
+              )}
+
+              {/* 文本题 */}
+              {currentQuestion.type === "text" && (
+                <textarea
+                  value={userAnswers[currentQuestion.id] || ""}
+                  onChange={(e) => handleAnswerChange(e.target.value)}
+                  placeholder={t("inExam.placeholder")}
+                  className="w-full h-32 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-algonquin-red"
+                />
+              )}
             </div>
-          )}
 
-          {/* 判断题 */}
-          {currentQuestion.type === "true-false" && (
-            <div className="space-y-3">
-              {currentQuestion.options &&
-                currentQuestion.options.map((option, index) => (
-                  <label
-                    key={index}
-                    className="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"
-                  >
-                    <input
-                      type="radio"
-                      name={`question-${currentQuestion.id}`}
-                      value={index}
-                      checked={userAnswers[currentQuestion.id] === index}
-                      onChange={() => handleAnswerChange(index)}
-                      className="mr-3"
-                    />
-                    <span className="text-gray-700">{option}</span>
-                  </label>
-                ))}
+            {/* 导航按钮 */}
+            <div className="flex items-center justify-between pt-6 border-t border-gray-200">
+              <button
+                onClick={handlePreviousQuestion}
+                disabled={currentQuestionIndex === 0}
+                className="btn-outline disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {t("inExam.previous")}
+              </button>
+
+              <div className="flex space-x-3">
+                {currentQuestionIndex === questions.length - 1 ? (
+                  <button onClick={handleSubmitExam} className="btn-primary">
+                    {t("inExam.submit")}
+                  </button>
+                ) : (
+                  <button onClick={handleNextQuestion} className="btn-primary">
+                    {t("inExam.next")}
+                  </button>
+                )}
+              </div>
             </div>
-          )}
-
-          {/* 文本题 */}
-          {currentQuestion.type === "text" && (
-            <textarea
-              value={userAnswers[currentQuestion.id] || ""}
-              onChange={(e) => handleAnswerChange(e.target.value)}
-              placeholder="请输入您的答案..."
-              className="w-full h-32 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-algonquin-red"
-            />
-          )}
-        </div>
-
-        {/* 导航按钮 */}
-        <div className="flex items-center justify-between pt-6 border-t border-gray-200">
-          <button
-            onClick={handlePreviousQuestion}
-            disabled={currentQuestionIndex === 0}
-            className="btn-outline disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            上一题
-          </button>
-
-          <div className="flex space-x-3">
-            {currentQuestionIndex === questions.length - 1 ? (
-              <button onClick={handleSubmitExam} className="btn-primary">
-                提交考试
-              </button>
-            ) : (
-              <button onClick={handleNextQuestion} className="btn-primary">
-                下一题
-              </button>
-            )}
           </div>
         </div>
       </div>

@@ -1,5 +1,60 @@
 {
   "title": "考试中心",
+  "selectCourse": {
+    "title": "选择课程进行考试",
+    "subtitle": "请选择一个课程开始考试",
+    "courseExam": "课程考试",
+    "startExam": "开始考试"
+  },
+  "loading": {
+    "examContent": "考试内容加载中..."
+  },
+  "results": {
+    "title": {
+      "passed": "恭喜通过！",
+      "failed": "考试未通过"
+    },
+    "score": "最终得分",
+    "correctAnswers": "正确题数",
+    "passScore": "及格分数",
+    "questionReview": "题目回顾",
+    "question": "第",
+    "points": "分",
+    "correct": "正确",
+    "wrong": "错误",
+    "yourAnswer": "您的答案",
+    "correctAnswer": "正确答案",
+    "reTakeExam": "重新考试",
+    "backToCourse": "返回课程",
+    "examResult": "考试结果",
+    "completed": "考试完成！得分：{score}分 {status}"
+  },
+  "preExam": {
+    "totalQuestions": "题目数量",
+    "duration": "考试时长",
+    "minutes": "分钟",
+    "passScore": "及格分数",
+    "selectLanguage": "选择考试语言",
+    "chinese": "中文",
+    "english": "English",
+    "instructions": "考试说明",
+    "note": {
+      "time": "• 考试时间为 {duration} 分钟，时间到将自动提交",
+      "browser": "• 考试期间请勿关闭浏览器或刷新页面",
+      "answers": "• 每题只能选择一次答案，请仔细思考后作答",
+      "pass": "• 及格分数为 {passScore}%，未达到及格分数需要重新考试"
+    },
+    "startExam": "开始考试"
+  },
+  "inExam": {
+    "title": "考试进行中",
+    "progress": "第 {current} 题，共 {total} 题",
+    "question": "分",
+    "placeholder": "请输入您的答案...",
+    "previous": "上一题",
+    "next": "下一题",
+    "submit": "提交考试"
+  },
   "examPaper": {
     "timeRemaining": "剩余时间",
     "question": "题目",
@@ -22,12 +77,7 @@
     "completed": "已完成",
     "timeUp": "时间到"
   },
-  "results": {
-    "score": "分数",
-    "correct": "正确",
-    "incorrect": "错误",
-    "timeSpent": "用时",
-    "passed": "通过",
-    "failed": "未通过"
+  "errors": {
+    "loadFailed": "加载考试题目失败"
   }
 }

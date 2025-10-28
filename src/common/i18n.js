@@ -68,7 +68,8 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: "zh-CN",
+    lng: "en", // 默认英文
+    fallbackLng: "en",
     defaultNS: "login",
     ns: [
       "login",
@@ -84,7 +85,7 @@ i18n
       "exam",
       "admin",
     ],
-    debug: true,
+    debug: false,
 
     interpolation: {
       escapeValue: false,

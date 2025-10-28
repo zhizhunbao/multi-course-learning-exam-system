@@ -1,7 +1,7 @@
 {
   "courseId": "cst8503",
   "title": "知识表示与推理",
-  "description": "Knowledge Representation and Reasoning",
+  "description": "K&R and Reasoning",
   "exams": [
     {
       "id": "midterm",
@@ -15,7 +15,7 @@
         "count": 20,
         "filters": {
           "difficulty": ["easy", "medium"],
-          "tags": ["prolog", "basics", "knowledge-representation"]
+          "tags": ["prolog", "basics", "kr"]
         }
       },
       "instructions": [
@@ -37,12 +37,7 @@
         "count": 40,
         "filters": {
           "difficulty": ["easy", "medium", "hard"],
-          "tags": [
-            "prolog",
-            "knowledge-representation",
-            "machine-learning",
-            "ai"
-          ]
+          "tags": ["prolog", "kr", "machine-learning", "ai"]
         }
       },
       "instructions": [
@@ -86,7 +81,7 @@
         "count": 15,
         "filters": {
           "difficulty": ["easy", "medium"],
-          "tags": ["knowledge-representation", "ai"]
+          "tags": ["kr", "ai"]
         }
       },
       "instructions": [

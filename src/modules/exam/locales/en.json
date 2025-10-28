@@ -1,5 +1,59 @@
 {
   "title": "Exam Center",
+  "selectCourse": {
+    "title": "Select a course to take an exam",
+    "subtitle": "Please select a course to start the exam",
+    "courseExam": "Course Exam",
+    "startExam": "Start Exam"
+  },
+  "loading": {
+    "examContent": "Loading exam content..."
+  },
+  "results": {
+    "title": {
+      "passed": "Congratulations! You Passed!",
+      "failed": "Exam Not Passed"
+    },
+    "score": "Final Score",
+    "correctAnswers": "Correct Answers",
+    "passScore": "Passing Score",
+    "questionReview": "Question Review",
+    "question": "Question",
+    "points": "points",
+    "correct": "Correct",
+    "yourAnswer": "Your Answer",
+    "correctAnswer": "Correct Answer",
+    "reTakeExam": "Retake Exam",
+    "backToCourse": "Back to Courses"
+  },
+  "preExam": {
+    "title": "Exam Information",
+    "totalQuestions": "Total Questions",
+    "duration": "Duration",
+    "minutes": "minutes",
+    "passScore": "Passing Score",
+    "selectLanguage": "Select Exam Language",
+    "chinese": "中文",
+    "english": "English",
+    "instructions": "Exam Instructions",
+    "note": {
+      "time": "• Exam time is {duration} minutes, will be submitted automatically when time is up",
+      "browser": "• Please do not close browser or refresh page during the exam",
+      "answers": "• Each question can only be answered once, please think carefully",
+      "pass": "• Passing score is {passScore}%, you need to retake if not meeting the requirement"
+    },
+    "startExam": "Start Exam"
+  },
+  "inExam": {
+    "title": "Exam in Progress",
+    "timer": "Time Remaining",
+    "progress": "Question {current} of {total}",
+    "question": "points",
+    "placeholder": "Please enter your answer...",
+    "previous": "Previous Question",
+    "next": "Next Question",
+    "submit": "Submit Exam"
+  },
   "examPaper": {
     "timeRemaining": "Time Remaining",
     "question": "Question",
@@ -22,12 +76,7 @@
     "completed": "Completed",
     "timeUp": "Time Up"
   },
-  "results": {
-    "score": "Score",
-    "correct": "Correct",
-    "incorrect": "Incorrect",
-    "timeSpent": "Time Spent",
-    "passed": "Passed",
-    "failed": "Failed"
+  "errors": {
+    "loadFailed": "Failed to load exam questions"
   }
 }

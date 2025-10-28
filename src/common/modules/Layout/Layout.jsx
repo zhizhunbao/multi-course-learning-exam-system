@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useApp } from "../../../context/AppContext";
+import { PageProvider } from "./PageContext";
 import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
 
@@ -49,7 +50,9 @@ const Layout = () => {
 
           {/* 页面内容 */}
           <main className="flex-1 p-6 overflow-auto relative scrollbar-hide">
-            <Outlet />
+            <PageProvider>
+              <Outlet />
+            </PageProvider>
           </main>
         </div>
       </div>

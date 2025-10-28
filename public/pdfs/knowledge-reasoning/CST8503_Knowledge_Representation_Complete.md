@@ -20,7 +20,7 @@ _从 PDF 文档转换生成并整理_
 
 ### 课程信息
 
-- **课程代码**: CST8503: Knowledge Representation and Reasoning
+- **课程代码**: CST8503: K&R and Reasoning
 - **教授**: Todd Kelley
 - **办公室**: T315
 - **电话**: 613-727-4723 x7474
