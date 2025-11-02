@@ -1,0 +1,58 @@
+% ============================================================
+% CST8503 Lab 3 - Prolog Programming
+% Author: Wang Peng (041107730)
+% File: 041107730_Lab3.pl
+% ============================================================
+
+% ============================================================
+% FACTS
+% ============================================================
+% point_exists/1
+% point_exists(P) means P = point(X,Y) is an existing point.
+
+point_exists(point(1,1)).
+point_exists(point(2,3)).
+point_exists(point(3,2)).
+point_exists(point(4,5)).
+point_exists(point(2,6)).
+point_exists(point(4,3)).
+point_exists(point(4,6)).
+
+
+% ============================================================
+% RULES
+% ============================================================
+
+% seg_exists/1
+% seg_exists(S) is true if S = seg(P1,P2) and P1,P2 are different existing points.
+seg_exists(seg(P1,P2)) :-
+    point_exists(P1),
+    point_exists(P2),
+    dif(P1,P2).
+
+% triangle_exists/1
+% triangle_exists(T) is true if T = triangle(P1,P2,P3) and all three are different existing points.
+triangle_exists(triangle(A,B,C)) :-
+    seg_exists(seg(A,B)),
+    seg_exists(seg(B,C)),
+    seg_exists(seg(A,C)).
+
+% rectangle_exists/1
+% rectangle_exists(R) is true if R = rectangle(S1,S2) where S1 and S2 are vertical,
+% their bottom points are aligned, and their top points are aligned (same length).rectangle_exists(rectangle(
+    seg(point(X1,Y1), point(X1,Y2)),
+    seg(point(X2,Y1), point(X2,Y2))
+)) :-
+    dif(X1,X2),
+    dif(Y1,Y2),
+    point_exists(point(X1,Y1)),
+    point_exists(point(X1,Y2)),
+    point_exists(point(X2,Y1)),
+    point_exists(point(X2,Y2)).
+
+rectangle_exists(S1,S2):-
+    S1 = seg(point(X1,Y1), point(X1,Y2)),
+    S2 = seg(point(X2,Y1), point(X2,Y2)),
+    seg_exists(S1),
+    seg_exists(S2),
+    dif(S1,S2).

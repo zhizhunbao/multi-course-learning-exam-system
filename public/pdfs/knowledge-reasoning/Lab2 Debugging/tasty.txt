@@ -1,0 +1,15 @@
+% vegetables/1, bread/1, cake/1 describe simple categories.
+% tasty/1 is true if something is BOTH a vegetable AND a cake.
+
+% ---------- facts ----------
+vegetables(carrot).
+vegetables(cucumber).
+
+bread(rye).
+bread(wheat).
+
+cake(carrot).
+cake(chocolate).
+
+% ---------- rule ----------
+tasty(X) :- vegetables(X), cake(X).

@@ -1,0 +1,15 @@
+% successor/2: the first argument is exactly one larger than the second.
+
+successor(two,   one).
+successor(three, two).
+successor(four,  three).
+successor(five,  four).
+successor(six,   five).
+successor(seven, six).
+successor(eight, seven).
+
+% greater(Y, X) is true if Y is the successor of X,
+% or if Y is greater than the successor of X (recursive step).
+
+greater(Y, X) :- successor(Y, X).
+greater(Y, X) :- successor(Z, X), greater(Y, Z).

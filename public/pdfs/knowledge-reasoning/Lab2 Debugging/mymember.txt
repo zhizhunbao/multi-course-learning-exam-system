@@ -1,0 +1,7 @@
+% mymember(X,L) is true if X is an element of list L.
+
+% H is a member if its the head of the list.
+mymember(H, [H|_]).
+
+% Otherwise, H is a member if it's in the tail.
+mymember(H, [_|T]) :- mymember(H, T).

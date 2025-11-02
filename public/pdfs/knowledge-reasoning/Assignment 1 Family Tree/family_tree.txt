@@ -1,0 +1,49 @@
+% ==========================================
+% CST8503 Assignment 1 - Family Tree
+% Author: Frank
+% Date:   2025-09-14
+% Description:
+%   This file defines a family tree knowledge base.
+%   Facts include parent/2 and gender information.
+%   Rules define grandparent, grandchild, sister, aunt,
+%   and ancestor relationships.
+% ==========================================
+
+% ----- Parent relationships -----
+% parent(X, Y) means X is the parent of Y
+parent(henry, joe).     % Henry is the parent of Joe
+parent(henry, susan).   % Henry is the parent of Susan
+parent(joe, brad).      % Joe is the parent of Brad
+parent(susan, jeff).    % Susan is the parent of Jeff
+parent(julie, henry).   % Julie is the parent of Henry
+
+% ----- Gender facts -----
+% male(X) means X is male
+% female(X) means X is female
+male(henry).
+male(joe).
+male(brad).
+male(jeff).
+
+female(susan).
+female(julie).
+
+% ----- Derived rules -----
+% grandparent(X, Z): X is the grandparent of Z
+grandparent(X, Z) :- parent(X, Y), parent(Y, Z).
+
+% grandchild(Z, X): Z is the grandchild of X
+grandchild(Z, X) :- parent(X, Y), parent(Y, Z).
+
+% sister(X, Y): X is the sister of Y (same parent, female, not the same person)
+sister(X, Y) :- parent(Z, X), parent(Z, Y), female(X), X \= Y.
+
+% aunt(X, Z): X is the aunt of Z (X is sister of a parent of Z)
+aunt(X, Z) :- sister(X, Y), parent(Y, Z).
+
+% ancestor(X, Z): X is an ancestor of Z
+% base case: X is a parent of Z
+ancestor(X, Z) :- parent(X, Z).
+
+% recursive case: X is a parent of Y, and Y is an ancestor of Z
+ancestor(X, Z) :- parent(X, Y), ancestor(Y, Z).

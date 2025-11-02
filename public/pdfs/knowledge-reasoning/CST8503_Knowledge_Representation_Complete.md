@@ -1,37 +1,41 @@
 # CST8503 知识表示与推理 - 完整课程资料
 
-_从 PDF 文档转换生成并整理_
+# CST8503 Knowledge Representation and Reasoning - Complete Course Materials
+
+_从 PDF 文档转换生成并整理 | Converted and compiled from PDF documents_
 
 ---
 
-## 📚 目录
+## 📚 目录 | Table of Contents
 
-- [第 1 章：知识表示介绍](#第1章知识表示介绍)
-- [第 2 章：Prolog 基础](#第2章prolog基础)
-- [第 3 章：Prolog 调试](#第3章prolog调试)
-- [第 4 章：Prolog 结构与匹配](#第4章prolog结构与匹配)
-- [第 5 章：Prolog 列表、操作符与算术](#第5章prolog列表操作符与算术)
-- [第 6 章：Prolog 否定与截断](#第6章prolog否定与截断)
-- [第 7 章：期中复习](#第7章期中复习)
+- [第 1 章：知识表示介绍 | Chapter 1: Introduction to Knowledge Representation](#第1章知识表示介绍-chapter-1-introduction-to-knowledge-representation)
+- [第 2 章：Prolog 基础 | Chapter 2: Prolog Fundamentals](#第2章prolog基础-chapter-2-prolog-fundamentals)
+- [第 3 章：Prolog 调试 | Chapter 3: Prolog Debugging](#第3章prolog调试-chapter-3-prolog-debugging)
+- [第 4 章：Prolog 结构与匹配 | Chapter 4: Prolog Structures and Matching](#第4章prolog结构与匹配-chapter-4-prolog-structures-and-matching)
+- [第 5 章：Prolog 列表、操作符与算术 | Chapter 5: Prolog Lists, Operators and Arithmetic](#第5章prolog列表操作符与算术-chapter-5-prolog-lists-operators-and-arithmetic)
+- [第 6 章：Prolog 否定与截断 | Chapter 6: Prolog Negation and Cut](#第6章prolog否定与截断-chapter-6-prolog-negation-and-cut)
+- [第 7 章：期中复习 | Chapter 7: Midterm Review](#第7章期中复习-chapter-7-midterm-review)
 
 ---
 
 ## 第 1 章：知识表示介绍
 
-### 课程信息
+## Chapter 1: Introduction to Knowledge Representation
 
-- **课程代码**: CST8503: K&R and Reasoning
-- **教授**: Todd Kelley
-- **办公室**: T315
-- **电话**: 613-727-4723 x7474
-- **邮箱**: kelleyt@algonquincollege.com
+### 课程信息 | Course Information
 
-### 课程安排
+- **课程代码 | Course Code**: CST8503: K&R and Reasoning
+- **教授 | Professor**: Todd Kelley
+- **办公室 | Office**: T315
+- **电话 | Phone**: 613-727-4723 x7474
+- **邮箱 | Email**: kelleyt@algonquincollege.com
 
-- **讲座**: 周四 2-4pm (A1120)
-- **实验课 301**: 周四 11:30am-1:30pm (J210)
-- **实验课 302**: 周二 5:00-7:00pm (B220)
-- **异步活动**: 平均每周 1 小时
+### 课程安排 | Course Schedule
+
+- **讲座 | Lecture**: 周四 2-4pm (A1120) | Thursday 2-4pm (A1120)
+- **实验课 301 | Lab 301**: 周四 11:30am-1:30pm (J210) | Thursday 11:30am-1:30pm (J210)
+- **实验课 302 | Lab 302**: 周二 5:00-7:00pm (B220) | Tuesday 5:00-7:00pm (B220)
+- **异步活动 | Asynchronous Activities**: 平均每周 1 小时 | Average 1 hour per week
 
 ### 1.1 知识表示 vs 机器学习 vs 人工智能
 
@@ -226,11 +230,20 @@ Prolog 根据封闭世界假设操作：只有我们陈述的事物以及我们�
 
 变量以大写字母开头，或单个下划线是匿名变量。
 
+**查询结果展示**：
+
 ```prolog
 ?- parent(P,joan).
-P=jack ;
-P=jill
+P=jack ;      % 第一个解：jack 是 joan 的父母
+P=jill        % 按分号 ; 后显示第二个解：jill 是 joan 的父母
 ```
+
+**说明**：
+
+- 当查询有多个解时，Prolog 先显示第一个解
+- 按 `;`（分号）继续搜索下一个解
+- 按 Enter 键停止搜索并接受当前解
+- 分号 `;` 在 Prolog 查询中表示"或者查看下一个解"
 
 **匿名变量**：
 
@@ -262,6 +275,7 @@ ancestor(X,Z) :- parent(X,Y), ancestor(Y,Z).
 - 规则如"if P then Q"在 Prolog 中写为相反的方式：`Q :- P`
 - 我们读作"Q if P"，意味着当我们试图证明 Q 为真时，我们可以通过证明 P 为真来成功
 - 逗号","在 Prolog 中表示"and"
+- 分号";"在 Prolog 中表示"or"（在查询结果中用于展示多个解）
 - 变量的作用域是单个子句
 
 ---
@@ -977,20 +991,22 @@ X = b, \+ X = a.
 
 ---
 
-## 📝 总结
+## 📝 总结 | Summary
 
 本课程涵盖了知识表示与推理的核心概念，从基础的声明性编程概念到 Prolog 语言的深入应用。通过学习这些材料，你将能够：
+This course covers the core concepts of Knowledge Representation and Reasoning, from foundational declarative programming concepts to in-depth applications of the Prolog language. By studying these materials, you will be able to:
 
-1. **理解知识表示与机器学习的区别**
-2. **掌握 Prolog 编程基础**
-3. **学会调试 Prolog 程序**
-4. **熟练使用 Prolog 数据结构和匹配**
-5. **应用列表、操作符和算术操作**
-6. **理解否定和截断的概念**
+1. **理解知识表示与机器学习的区别** | **Understand the differences between knowledge representation and machine learning**
+2. **掌握 Prolog 编程基础** | **Master Prolog programming fundamentals**
+3. **学会调试 Prolog 程序** | **Learn to debug Prolog programs**
+4. **熟练使用 Prolog 数据结构和匹配** | **Proficiently use Prolog data structures and matching**
+5. **应用列表、操作符和算术操作** | **Apply lists, operators, and arithmetic operations**
+6. **理解否定和截断的概念** | **Understand concepts of negation and cut**
 
 这些技能为后续的知识表示和推理应用奠定了坚实的基础。
+These skills lay a solid foundation for subsequent knowledge representation and reasoning applications.
 
 ---
 
-_文档生成时间: 2024 年_
-_来源: CST8503 课程 PDF 材料转换整理_
+_文档生成时间: 2024 年 | Document generated: 2024_
+_来源: CST8503 课程 PDF 材料转换整理 | Source: Converted and compiled from CST8503 course PDF materials_
