@@ -52,34 +52,118 @@ class PDFToMarkdownConverter:
             print(f"错误：无法读取PDF文件 {pdf_path}: {e}")
             return []
 
-    def clean_text(self, text: str) -> str:
+    def format_text_with_markdown(self, text: str) -> str:
         """
-        清理和格式化文本
+        格式化文本为Markdown格式，包括列表、链接等
 
         Args:
             text: 原始文本
 
         Returns:
-            str: 清理后的文本
+            str: 格式化后的Markdown文本
         """
-        # 移除多余的空白字符
-        text = re.sub(r'\s+', ' ', text)
-
-        # 移除页眉页脚（通常包含页码等）
+        # 先按行分割，保留原始结构
         lines = text.split('\n')
-        cleaned_lines = []
+        formatted_lines = []
+        in_list = False
+        prev_was_list = False
+        prev_was_text = False
 
         for line in lines:
             line = line.strip()
+
+            # 跳过空行和过短的行
+            if not line or len(line) < 2:
+                if in_list:
+                    formatted_lines.append('')  # 列表结束
+                    in_list = False
+                    prev_was_list = True
+                    prev_was_text = False
+                elif prev_was_text:
+                    formatted_lines.append('')  # 段落分隔
+                    prev_was_text = False
+                continue
+
             # 跳过可能是页码的行（只包含数字）
             if re.match(r'^\d+$', line):
                 continue
-            # 跳过过短的行（可能是页眉页脚）
-            if len(line) < 3:
-                continue
-            cleaned_lines.append(line)
 
-        return '\n'.join(cleaned_lines)
+            # 转换URL为Markdown链接
+            line = re.sub(r'(https?://[^\s]+)', r'[\1](\1)', line)
+
+            # 先处理行内的列表符号（不在行首的）
+            line = re.sub(r'▪([^\s])', r'  - \1', line)  # 行内的▪符号
+
+            # 检测列表项（❑、▪、■、•、-、* 等）
+            list_patterns = [
+                (r'^❑\s+', '- '),  # 空心方块
+                (r'^▪\s+', '  - '),  # 实心方块（二级列表）
+                (r'^■\s+', '- '),  # 实心方块
+                (r'^•\s+', '- '),  # 圆点
+                (r'^[-*]\s+', '- '),  # 减号或星号
+                (r'^\d+\.\s+', r'\g<0>'),  # 数字编号（保留）
+            ]
+
+            is_list_item = False
+            for pattern, replacement in list_patterns:
+                if re.match(pattern, line):
+                    # 移除列表符号，用Markdown列表符号替换
+                    line = re.sub(pattern, replacement, line)
+                    is_list_item = True
+                    break
+
+            # 处理列表嵌套
+            if is_list_item:
+                if not in_list and prev_was_text:
+                    formatted_lines.append('')  # 在列表前添加空行
+                if not in_list:
+                    in_list = True
+                formatted_lines.append(line)
+                prev_was_list = True
+                prev_was_text = False
+            else:
+                if in_list:
+                    formatted_lines.append('')  # 列表结束
+                    in_list = False
+
+                # 普通文本行 - 尝试合并短行到前一行（如果它们看起来是同一段落）
+                if prev_was_text and formatted_lines and formatted_lines[-1].strip():
+                    last_line = formatted_lines[-1].strip()
+                    # 判断是否应该合并：
+                    # 1. 上一行不以句号、问号、冒号、感叹号结尾
+                    # 2. 上一行不是全大写（可能是标题）
+                    # 3. 当前行不是以大写字母开头的新句子（且上一行已经有足够长度）
+                    # 4. 当前行不是独立的短行（可能是标题）
+                    # 判断是否应该合并
+                    ends_with_punctuation = last_line.endswith(('.', '?', ':', '!'))
+                    is_uppercase_title = last_line.isupper()
+                    is_short_line = len(last_line) < 120
+                    is_new_sentence = (line and len(line) > 5 and line[0].isupper() and
+                                      (last_line.endswith((':', '-')) or len(last_line) > 50))
+
+                    should_merge = (
+                        not ends_with_punctuation and
+                        not is_uppercase_title and
+                        is_short_line and
+                        not is_new_sentence
+                    )
+
+                    if should_merge and not line.strip().startswith('-'):
+                        formatted_lines[-1] = last_line + ' ' + line.strip()
+                    else:
+                        formatted_lines.append(line)
+                else:
+                    if prev_was_list:
+                        formatted_lines.append('')  # 列表后添加空行
+                    formatted_lines.append(line)
+                prev_was_list = False
+                prev_was_text = True
+
+        # 如果最后还在列表中，添加空行结束
+        if in_list:
+            formatted_lines.append('')
+
+        return '\n'.join(formatted_lines)
 
     def format_as_markdown(self, pages_text: List[Tuple[int, str]], title: str) -> str:
         """
@@ -120,11 +204,11 @@ class PDFToMarkdownConverter:
 
         # 添加正文内容
         for page_num, text in pages_text:
-            cleaned_text = self.clean_text(text)
-            if cleaned_text.strip():
+            formatted_text = self.format_text_with_markdown(text)
+            if formatted_text.strip():
                 markdown_content.append(f"## 第 {page_num} 页\n")
-                markdown_content.append(cleaned_text)
-                markdown_content.append("\n---\n")
+                markdown_content.append(formatted_text)
+                markdown_content.append("\n\n---\n")
 
         return '\n'.join(markdown_content)
 
