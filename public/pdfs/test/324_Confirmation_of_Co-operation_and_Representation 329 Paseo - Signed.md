@@ -1,0 +1,140 @@
+# 324 Confirmation of Co operation and Representation 329 Paseo   Signed
+
+*从PDF文档转换生成*
+
+---
+
+## 目录
+
+- 329 Paseo Private, South of Baseline to Knoxdale, ON K2G 3N1
+- 1. LANDLORD BROKERAGE (Single Representation)
+- Brokerage and there is no multiple representation.
+- 2. LANDLORD BROKERAGE (Multiple Representation)
+- 3. PROPERTY LEASED BY TENANT BROKERAGE
+- 4. CO-OPERATING BROKERAGE
+- HRY PW TL GK
+- TODD LAVIGNE
+- CONSENT FOR MULTIPLE REPRESENTATION
+- The Tenant and Landlord confirm that they have previously consented to Multiple Representation.
+
+---
+
+## 第 1 页
+
+DigiSign Verified - cde22961-6214-4f24-a057-91782b31f704
+Confirmation of Co-operation and Representation Form 324
+Tenant/Landlord for use in the Province of Ontario Hye Ran Yoo, Peng Wang
+TENANT: ........................................................................................................................................................................................................
+Rajiv Kalra LANDLORD: ...................................................................................................................................................................................................
+329 Paseo Private, South of Baseline to Knoxdale, ON K2G 3N1
+For the transaction on the property known as: ........................................................................................................................................................
+DEFINITIONS AND INTERPRETATIONS: For the purposes of this Confirmation of Co-operation and Representation:
+“Landlord” includes a lessor, seller or vendor, or a prospective landlord or lessor, seller or vendor and “Tenant” includes a lessee, buyer or purchaser or
+a prospective tenant, lessee, buyer or purchaser and “lease“ includes a sale, and “Agreement to Lease” includes an Agreement of Purchase and Sale.
+Commission shall be deemed to include other remuneration.
+The following information is confirmed by the undersigned salesperson/broker representative(s) of the Brokerage(s). If a Co-operating Brokerage is involved
+in the transaction, the Brokerages agree to co-operate, in consideration of, and on the terms and conditions as set out below.
+DECLARATION OF INSURANCE: The undersigned salesperson/broker representative(s) of the Brokerage(s) hereby declare that he/she is insured as
+required by the Trust in Real Estate Services Act, 2002 (TRESA).
+
+1. LANDLORD BROKERAGE (Single Representation)
+
+
+a) The Landlord Brokerage or a Designated Representative of the Landlord Brokerage represents the interests of the Landlord in this transaction.
+It is further understood and agreed that:
+
+1) Neither the Landlord Brokerage nor a Designated Representative of the Landlord Brokerage is representing the Tenant and has
+not entered into a representation agreement with the Tenant.
+2) The Landlord Brokerage or a Designated Representative of the Landlord Brokerage is providing assistance to the Tenant and the
+Tenant is a self-represented party.
+3) The Landlord client and Tenant client are each separately represented by different designated representatives of the same
+Brokerage and there is no multiple representation.
+
+2. LANDLORD BROKERAGE (Multiple Representation)
+
+
+a) The Landlord Brokerage has entered into Representation Agreement with the Tenant and there is Multiple Representation.
+b) The Designated Representative who represents the Landlord also represents the Tenant and there is Multiple Representation.
+Additional comments and/or disclosures by Landlord Brokerage: (e.g., The Landlord Brokerage represents more than one Tenant offering on this property.)
+................................................................................................................................................................................................................
+................................................................................................................................................................................................................
+
+3. PROPERTY LEASED BY TENANT BROKERAGE
+
+
+a) The Brokerage or a Designated Representative of the Brokerage represents the Tenant and the Brokerage will be paid by the Tenant directly.
+
+4. CO-OPERATING BROKERAGE
+
+
+a) CO-OPERATING BROKERAGE – REPRESENTATION:
+
+1) The Co-operating Brokerage or a Designated Representative of the Co-operating Brokerage represents the interests of the Tenant
+in this transaction.
+
+b) CO-OPERATING BROKERAGE – COMMISSION:
+
+1) The Landlord Brokerage will pay the Co-operating Brokerage the commission as indicated in the MLS® information for the property
+0.5 month rent + HST in the amount of ………………………….......................... to be paid from the amount paid by the Landlord to the Landlord Brokerage.
+(Commission As Indicated In MLS® Information) 2) The Co-operating Brokerage will be paid as follows:
+.................................................................................................................................................................................
+.................................................................................................................................................................................
+Additional comments and/or disclosures by Co-operating Brokerage: (e.g., The Co-operating Brokerage represents more than one Tenant offering on this property.)
+................................................................................................................................................................................................................
+................................................................................................................................................................................................................
+INITIALS OF TENANT(S)/LANDLORD(S)/BROKERAGE REPRESENTATIVE(S) (Where applicable)
+HRY PW TL GK
+J3dsKRKkZEri0hUgFcd+RQ== TENANT CO-OPERATING/TENANT BROKERAGE LANDLORD LANDLORD BROKERAGE
+The trademarks REALTOR®, REALTORS®, MLS®, Multiple Listing Services® and associated logos are owned or controlled by
+The Canadian Real Estate Association (CREA) and identify the real estate professionals who are members of CREA and the quality of services they provide. Used under license.
+© 2025, Ontario Real Estate Association (“OREA”). All rights reserved. This form was developed by OREA for the use and reproduction
+by its members and licensees only. Any other use or reproduction is prohibited except with prior written consent of OREA. Do not alter
+when printing or reproducing the standard pre-set portion. OREA bears no liability for your use of this form. Form 324 Revised 2025 Page 1 of 2
+Created by TODD LAVIGNE with SkySlope® Forms a857f571efee-859a-f364-1dd2-94f858de :dI noisseS
+LdZngjDczuHC1KP5wyt1pA== a857f571efee-859a-f364-1dd2-94f858de :dI noisseS
+
+
+---
+
+## 第 2 页
+
+DigiSign Verified - cde22961-6214-4f24-a057-91782b31f704
+Commission will be payable as described above, plus applicable taxes.
+COMMISSION TRUST AGREEMENT: If the above Co-operating Brokerage is receiving payment of commission from the Landlord Brokerage, then the
+agreement between Landlord Brokerage and Co-operating Brokerage further includes a Commission Trust Agreement, the consideration for which is the
+Co-operating Brokerage procuring an offer for a trade of the property, acceptable to the Landlord. This Commission Trust Agreement shall be subject to
+and governed by the MLS® rules and regulations pertaining to commission trusts of the Landlord Brokerage’s local real estate board, if the local board’s
+MLS® rules and regulations so provide. Otherwise, the provisions of the OREA recommended MLS® rules and regulations shall apply to this Commission
+Trust Agreement. For the purpose of this Commission Trust Agreement, the Commission Trust Amount shall be the amount noted in Section 4 above. The
+Landlord Brokerage hereby declares that all monies received in connection with the trade shall constitute a Commission Trust and shall be held, in trust, for
+the Co-operating Brokerage under the terms of the applicable MLS® rules and regulations.
+SIGNED BY THE BROKER/SALESPERSON REPRESENTATIVE(S) OF THE BROKERAGE(S) (Where applicable)
+ROYAL LEPAGE INTEGRITY REALTY ROYAL LEPAGE TEAM REALTY
+........................................................................................................ ........................................................................................................
+(Name of Co-operating/Tenant Brokerage) (Name of Landlord Brokerage)
+Carling Ave. UNIT 6 Ottawa ON K2A1H1 ........................................................................................................ ........................................................................................................
+(613) 829-1818 (613) 592-6400 Tel.: ......................................... Fax: ................................................ Tel.: ......................................... Fax: ................................................
+........................................................................................................ ........................................................................................................
+Nov 03, 2025, 05:12 PM EST TODD LAVIGNE ..................................................................... .1..0../..3..0../..2..0.2..5.............. ......J.3.d.s.K..R.K.k.Z..E.r.i0.h.U..g.F.c.d.+..R.Q..=.=.................................... ................................
+Nov03,2025,05:12PMEST (Authorized to bind the Co-operating/Tenant Brokerage) (Date) (Authorized to bind the Landlord Brokerage) (Date)
+TODD LAVIGNE, Gina Kim Brian Rochester ........................................................................................................ ........................................................................................................
+(Print Name of Salesperson/Broker/Broker of Record) (Print Name of Salesperson/Broker/Broker of Record)
+CONSENT FOR MULTIPLE REPRESENTATION
+The Tenant and Landlord confirm that they have previously consented to Multiple Representation.
+The Tenant and Landlord consent with their initials Multiple Representation for this transaction.
+INITIALS OF TENANT(S) INITIALS OF LANDLORD(S)
+ACKNOWLEDGEMENT
+I have received, read, and understand the above information.
+Hye Ran Yoo ......................................................... .1..0../..3..0../..2..0.2..5.............................. ................................................... ....................................... (Signature of Tenant) H y e R a n Y o o (Date) (Signature of Landlord) R a j i v K a l r a (Date)
+Peng Wang ......................................................... .1..0../..3..0./..2..0..2..5.............................. ................................................... .......................................
+(Signature of Tenant) P e n g W a n g (Date) (Signature of Landlord) (Date)
+The trademarks REALTOR®, REALTORS®, MLS®, Multiple Listing Services® and associated logos are owned or controlled by
+The Canadian Real Estate Association (CREA) and identify the real estate professionals who are members of CREA and the quality of services they provide. Used under license.
+© 2025, Ontario Real Estate Association (“OREA”). All rights reserved. This form was developed by OREA for the use and reproduction
+by its members and licensees only. Any other use or reproduction is prohibited except with prior written consent of OREA. Do not alter
+when printing or reproducing the standard pre-set portion. OREA bears no liability for your use of this form. Form 324 Revised 2025 Page 2 of 2
+a857f571efee-859a-f364-1dd2-94f858de :dI noisseS Nov 03, 2025, 05:15 PM EST
+LdZngjDczuHC1KP5wyt1pA== Nov03,2025,05:15PMEST a857f571efee-859a-f364-1dd2-94f858de :dI noisseS
+
+
+---
