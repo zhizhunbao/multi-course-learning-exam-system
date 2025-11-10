@@ -112,6 +112,20 @@ X_dt_encoded = pd.get_dummies(X_dt, columns=['Pclass', 'Sex', 'AgeGroup', 'Relat
 # STEP 7: Train-test split
 # ============================================================================
 # Explanation: Split data into 80% training and 20% testing sets with stratification.
+#
+# Parameters:
+# - X_dt_encoded: Feature matrix (independent variables after one-hot encoding)
+# - y_dt: Target vector (Survived class labels)
+# - test_size=0.2: Proportion for test set (20% test, 80% train)
+# - random_state=2025: Random seed for reproducibility
+# - stratify=y_dt: Preserve class distribution in train/test splits
+#
+# Returns:
+# - X_train_dt: Training features (80% of data)
+# - X_test_dt: Testing features (20% of data)
+# - y_train_dt: Training labels (80% of data)
+# - y_test_dt: Testing labels (20% of data)
+# ============================================================================
 X_train_dt, X_test_dt, y_train_dt, y_test_dt = train_test_split(
     X_dt_encoded, y_dt, test_size=0.2, random_state=2025, stratify=y_dt
 )
@@ -127,8 +141,26 @@ dt_classifier.fit(X_train_dt, y_train_dt)
 # STEP 9: Prediction, accuracy, confusion matrix
 # ============================================================================
 # Explanation: Evaluate model performance using accuracy and confusion matrix (TP, FP, TN, FN).
+
+# predict() parameters:
+# - X_test_dt: Testing features to make predictions on
+# Returns: y_pred_dt - Predicted class labels for test set
 y_pred_dt = dt_classifier.predict(X_test_dt)
+
+# accuracy_score() parameters:
+# - y_test_dt: True labels from test set
+# - y_pred_dt: Predicted labels from model
+# Returns: accuracy_dt - Proportion of correct predictions (0.0 to 1.0)
 accuracy_dt = accuracy_score(y_test_dt, y_pred_dt)
+
+# confusion_matrix() parameters:
+# - y_test_dt: True labels from test set
+# - y_pred_dt: Predicted labels from model
+# Returns: cm_dt - 2x2 matrix [[TN, FP], [FN, TP]]
+#   TN (True Negative): Correctly predicted as Not Survived
+#   FP (False Positive): Incorrectly predicted as Survived
+#   FN (False Negative): Incorrectly predicted as Not Survived
+#   TP (True Positive): Correctly predicted as Survived
 cm_dt = confusion_matrix(y_test_dt, y_pred_dt)
 
 print(f"Accuracy: {accuracy_dt:.4f}")
@@ -267,6 +299,19 @@ df_knn = df_knn[['Pclass', 'Sex', 'Age', 'Relatives', 'Fare', 'Embarked', 'Survi
 
 X_knn = df_knn.drop('Survived', axis=1)
 y_knn = df_knn['Survived']
+
+# Train-test split parameters:
+# - X_knn: Feature matrix (with Relatives, including Name column for title extraction)
+# - y_knn: Target vector (Survived class labels)
+# - test_size=0.2: Proportion for test set (20% test, 80% train)
+# - random_state=2025: Random seed for reproducibility
+# - stratify=y_knn: Preserve class distribution in train/test splits
+#
+# Returns:
+# - X_train_knn: Training features (80% of data, includes Name for title extraction)
+# - X_test_knn: Testing features (20% of data, includes Name for title extraction)
+# - y_train_knn: Training labels (80% of data)
+# - y_test_knn: Testing labels (20% of data)
 X_train_knn, X_test_knn, y_train_knn, y_test_knn = train_test_split(
     X_knn, y_knn, test_size=0.2, random_state=2025, stratify=y_knn
 )
@@ -403,6 +448,19 @@ df_bonus = df_bonus[['Pclass', 'Sex', 'Age', 'Relatives', 'Fare', 'Embarked', 'S
 # ------------------------------------------------------------------------
 X_bonus = df_bonus.drop('Survived', axis=1)
 y_bonus = df_bonus['Survived']
+
+# Train-test split parameters:
+# - X_bonus: Feature matrix (with Relatives, including Name for title extraction)
+# - y_bonus: Target vector (Survived class labels)
+# - test_size=0.2: Proportion for test set (20% test, 80% train)
+# - random_state=2025: Random seed for reproducibility
+# - stratify=y_bonus: Preserve class distribution in train/test splits
+#
+# Returns:
+# - X_train_bonus: Training features (80% of data, includes Name for title extraction)
+# - X_test_bonus: Testing features (20% of data, includes Name for title extraction)
+# - y_train_bonus: Training labels (80% of data)
+# - y_test_bonus: Testing labels (20% of data)
 X_train_bonus, X_test_bonus, y_train_bonus, y_test_bonus = train_test_split(
     X_bonus, y_bonus, test_size=0.2, random_state=2025, stratify=y_bonus
 )

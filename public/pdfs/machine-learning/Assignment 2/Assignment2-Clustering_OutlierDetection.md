@@ -1,14 +1,10 @@
-# Assignment 2: Clustering & Outlier Detection
+# Assignment2 Clustering OutlierDetection
 
-**Course**: CST8502
-**Tool**: RapidMiner
-**Due Date**: Check Brightspace for due dates
-
-_Generated from PDF document_
+_从 PDF 文档转换生成_
 
 ---
 
-## Table of Contents
+## 目录
 
 - [Introduction](#introduction)
 - [Data Preparation](#data-preparation)
@@ -17,223 +13,82 @@ _Generated from PDF document_
 - [Loop Parameters](#loop-parameters)
 - [Outlier Detection by Clustering](#outlier-detection-by-clustering)
 - [Common Outliers](#common-outliers)
-- [Submission Requirements](#submission-requirements)
+- [In Order to Get Grades](#in-order-to-get-grades)
 
 ---
+
+_注: 共提取了 1 张图片_
+
+## 第 1 页
+
+CST8502 – Assignment 2 Outlier Detection & Clustering - RapidMiner
+Due Date: Check Brightspace for due dates.
 
 ## Introduction
 
-### Assignment Objective
+The goal of this assignment is to cluster the Heart Failure dataset using kMeans and find outliers using “Detect Outlier (LOF)”, “Detect Outlier (Distances)” and by clustering approach. Every operator should be named like <`<firstname>`>\_<`<operator>`> (Ex: Anu_Normalize). As you are not creating tables in this assignment, there will be specific marks for following the naming conventions.
 
-The goal of this assignment is to cluster the **Heart Failure dataset** using kMeans and find outliers using:
+### The general template of the full process must look like this
 
-- "Detect Outlier (LOF)"
-- "Detect Outlier (Distances)"
-- Clustering approach
+Once you get outliers from outlier detection methods and clustering approaches, you should join them to see the instances flagged as outliers by all approaches (the final join and filtering is not shown in the above template). You must have subprocesses named GeneralPrep and DistancePrep for data preparation and subprocesses named Outliers, ClusteringResults, LoopParameters and OutliersByClustering for various modeling.
 
-### Naming Convention
-
-**Important**: Every operator should be named like `<<firstname>>_<<operator>>` (Example: `Anu_Normalize`).
-
-As you are not creating tables in this assignment, there will be specific marks for following the naming conventions.
-
-### Process Template
-
-The general template of the full process must look like this:
-
-```
-[Data Input] → [GeneralPrep] → [DistancePrep]
-                                    ↓
-            [Outliers] ← [DistancePrep] → [ClusteringResults]
-                                    ↓              ↓
-                         [OutliersByClustering] ← [LoopParameters]
-```
-
-Once you get outliers from outlier detection methods and clustering approaches, you should join them to see the instances flagged as outliers by all approaches (the final join and filtering is not shown in the above template).
-
-### Required Subprocesses
-
-You must have subprocesses named:
-
-- `GeneralPrep` - Data preparation
-- `DistancePrep` - Distance-based preparation
-- `Outliers` - Outlier detection
-- `ClusteringResults` - Clustering results
-- `LoopParameters` - Loop parameters
-- `OutliersByClustering` - Outlier detection by clustering
+![图片](./Assignment2-Clustering_OutlierDetection_images/page_001_img_01.png)
 
 ---
+
+## 第 2 页
 
 ## Data Preparation
 
-### 1. Load the Data
-
-Load the data into RapidMiner.
-
-### 2. GeneralPrep
-
-As part of **GeneralPrep**, perform the following steps:
-
-1. Remove any duplicates
-2. Generate an ID
-3. Set the correct data types for each attribute
-4. Set the role if you have any special attributes (like class etc.)
-
-Now, we have the original data ready to apply model-specific preparation steps.
-
-**Multiply it** so that we can use the original data to join with various results.
-
-### 3. DistancePrep
-
-We will be using **distance-based methods** for clustering and outlier detection. So, make sure to prepare your data accordingly:
-
-- **Numerical columns** should be **normalized**
-- **Nominal columns** should be **one-hot encoded** (must use "Nominal to Numerical" operator)
-
-### 4. Attribute Lists
-
-Include the list of attributes that you have:
-
-- **Normalized**
-- **One-hot encoded**
-
-### 5. Multiply Prepared Data
-
-Multiple the prepared data so that we can use it for various analyses.
-
-### 6. Screenshot Requirements
-
-Take a screenshot of the current process and subprocesses – **GeneralPrep** and **DistancePrep** and paste them in the answer document.
-
----
+1. Load the data into RapidMiner.
+2. As part of GeneralPrep, remove any duplicates, generate an ID, set the correct data types for each attribute and set the role if you have any special attributes (like class etc.). Now, we have the original data ready to apply model-specific preparation steps. Multiply it so that we can use the original data to join with various results.
+3. DistancePrep: We will be using distance-based methods for clustering and outlier detection. So, make sure to prepare your data accordingly. Numerical columns should be normalized and nominal columns should be one-hot encoded (must use Nominal to Numerical operator).
+4. Include the list of attributes that you have normalized and the list of attributes that you have one-hot encoded.
+5. Multiple the prepared data so that we can use it for various analyses.
+6. Take a screenshot of the current process and subprocesses – GeneralPrep and DistancePrep and paste them in the answer document.
 
 ## Outlier Detection
 
-### 7. LOF Outlier Detection
-
-Do outlier detection using **LOF (Local Outlier Factor)**:
-
-1. Use "Generate Outlier Flag" operator to convert outlier score to an outlier flag
-2. When you generate a flag, you can keep the contamination factor as **5% (0.05)**
-3. Join this result with the original data to see original attributes
-
-### 8. Distance-based Outlier Detection
-
-Use **Detect Outliers (distances)** operator to detect outliers:
-
-1. This will create a new column named `outlier`
-2. Set the number of outliers as **45**, which is around 5% of the total number of instances
-3. Join with the original data to see original attributes
-
-### 9. Rename Outlier Columns
-
-1. Rename outlier columns as:
-   - `LOF_Outlier`
-   - `Distances_Outlier`
-2. As we cannot keep more than one column with the role "Outlier", change the role of `Distances_outlier` to **"Interpretation"**
-
-### 10. Join Both Results
-
-Join both results and filter those instances flagged as outliers by both methods.
-
-Take a screenshot of the filtered instances and paste it in the answer document.
-
-### 11. Subprocess Screenshot
-
-Take a screenshot of the subprocess and paste it in the answer document.
-
----
+7. Do outlier detection using LOF. Use “Generate Outlier Flag” operator to convert outlier score to an outlier flag. When you generate a flag, you can keep the contamination factor as 5% (0.05). Now, join this result with the original data to see original attributes.
+8. Now, Use Detect Outliers (distances) operator to detect outliers. This will create a new column named outlier. Set the number of outliers as 45, which is around 5% of the total number of instances. Now, join with the original data to see original attributes.
+9. Rename outlier columns as LOF_Outlier and Distances_Outlier. As we cannot keep more than one column with the role “Outlier”, change the role of Distances_outlier to “Interpretation”.
+10. Join both results and filter those instances flagged as outliers by both methods. Take a screenshot of the filtered instances and paste it in the answer document.
+11. Take a screenshot of the subprocess and paste it in the answer document.
 
 ## Clustering
 
-### 12. kMeans Clustering
-
-Run **kMeans** with **k=8** and join the clustered results with the original attributes.
-
-### 13. Cluster Pattern Analysis
-
-Find the patterns of each cluster (why those instances are clustered together):
-
-- If you have a **Cluster Model Visualizer** operator, use it to get more details about the patterns in each cluster
-- If not, do a manual analysis
-
-### 14. Cluster Interpretations
-
-Include your interpretations for each cluster in the answer document.
-
-### 15. Subprocess Screenshot
-
-Take a screenshot of the subprocess and paste it in the answer document.
-
----
+12. Run kMeans with k=8 and join the clustered results with the original attributes.
+13. Find the patterns of each cluster (why those instances are clustered together). If you have a Cluster Model Visualizer operator, use it to get more details about the patterns in each cluster. If not, do a manual analysis.
+14. Include your interpretations for each cluster in the answer document.
+15. Take a screenshot of the subprocess and paste it in the answer document.
 
 ## Loop Parameters
 
-### 16. Parameter Loop
-
-Use **"Loop parameters"** operator to run kMeans multiple times:
-
-1. Once you get the result, from the **"plot view"** tab
-2. Plot the **elbow diagram**
-3. Paste it in the answer document
-
-### 17. Subprocess Screenshot
-
-Take a screenshot of the subprocess and paste it in the answer document.
-
----
+16. Use “Loop parameters” operator to run kMeans multiple times. Once you get the result, from the “plot view” tab, plot the elbow diagram and paste it in the answer document.
+17. Take a screenshot of the subprocess and paste it in the answer document.
 
 ## Outlier Detection by Clustering
 
-### 18. Redo Clustering
-
-Redo clustering with **k=20** to see outliers.
-
-### 19. Filter Small Clusters
-
-Filter those clusters with **less than 10 instances** in it:
-
-1. Filter the instances in those small clusters
-2. You must use **aggregate**, **filter examples** and **join** operators for this task
-3. Paste a screenshot of the filtered instances in the answer document
-
-### 20. Subprocess Screenshot
-
-Paste a screenshot of the subprocess and paste it in the answer document.
+18. Redo clustering with k=20 to see outliers.
+19. Filter those clusters with less than 10 instances in it. Now, filter the instances in those small clusters. You must use aggregate, filter examples and join operators for this task. Paste a screenshot of the filtered instances in the answer document.
+20. Paste a screenshot of the subprocess and paste it in the answer document.
 
 ---
+
+## 第 3 页
 
 ## Common Outliers
 
-### 21. Join Outlier Results
+21. Join the results from Outliers and OutliersByClustering subprocesses to get the outliers flagged by all three approaches.
+22. Take a screenshot of the outliers and paste it in the answer document.
+23. Interpret why they are outliers and include your reasoning in the answer document
+24. Paste the screenshot of the process where you do the final join and filtering.
+25. Now, take a screenshot of the entire process and paste it in the answer document.
 
-Join the results from **Outliers** and **OutliersByClustering** subprocesses to get the outliers flagged by all three approaches.
+## In Order to Get Grades
 
-### 22. Outliers Screenshot
-
-Take a screenshot of the outliers and paste it in the answer document.
-
-### 23. Outlier Interpretation
-
-Interpret why they are outliers and include your reasoning in the answer document.
-
-### 24. Final Join Process Screenshot
-
-Paste the screenshot of the process where you do the final join and filtering.
-
-### 25. Complete Process Screenshot
-
-Now, take a screenshot of the entire process and paste it in the answer document.
-
----
-
-## Submission Requirements
-
-In order to get grades:
-
-1. **For the demo**: You should be ready with your **rmp file** in RapidMiner
-2. **Submit**: The **rmp file AND the answer document** to Brightspace
-   - ⚠️ Your lab will **not be graded** if you miss the rmp file OR the answer document
-3. **File format**: Don't zip files. Zipped files will not be graded
+1. For the demo, you should be ready with your rmp file in RapidMiner.
+2. Submit the rmp file AND the answer document to Brightspace. Your lab will not be graded if you miss the rmp file OR the answer document.
+3. Don’t zip files. Zipped files will not be graded.
 
 ---
