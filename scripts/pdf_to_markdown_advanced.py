@@ -18,6 +18,7 @@ from pathlib import Path
 import pdfplumber
 import re
 from typing import List, Tuple, Optional
+from urllib.parse import quote
 
 # 尝试导入图片处理库
 PIL_AVAILABLE = False
@@ -275,34 +276,16 @@ class PDFToMarkdownConverterAdvanced:
         """
         markdown_content = []
 
-        # 添加标题
+        # 添加标题和说明
         markdown_content.append(f"# {title}\n")
-        markdown_content.append("*从PDF文档转换生成*\n")
-        markdown_content.append("---\n")
-
-        # 添加目录（基于标题）
-        markdown_content.append("## 目录\n")
-        toc_items = []
-
-        for page_num, text, _ in pages_text:
-            # 查找可能的标题（以数字开头或全大写的行）
-            lines = text.split('\n')
-            for line in lines:
-                line = line.strip()
-                if self.is_likely_heading(line):
-                    toc_items.append(f"- {line}")
-
-        if toc_items:
-            markdown_content.extend(toc_items[:10])  # 限制目录项数量
-        else:
-            markdown_content.append("- 文档内容")
-
-        markdown_content.append("\n---\n")
+        markdown_content.append("_从 PDF 文档转换生成_\n")
 
         # 添加正文内容
         total_images = sum(len(image_paths) for _, _, image_paths in pages_text)
         if total_images > 0:
-            markdown_content.append(f"\n*注: 共提取了 {total_images} 张图片*\n\n")
+            markdown_content.append(f"\n_注: 共提取了 {total_images} 张图片_\n")
+
+        markdown_content.append("\n")
 
         for page_num, text, image_paths in pages_text:
             formatted_text = self.format_text_with_markdown(text)
@@ -321,7 +304,8 @@ class PDFToMarkdownConverterAdvanced:
                     if formatted_text.strip():
                         markdown_content.append("\n")  # 文本和图片之间添加空行
                     for img_path in image_paths:
-                        markdown_content.append(f"\n![图片]({img_path})\n")
+                        sanitized_path = quote(img_path, safe="/._-")
+                        markdown_content.append(f"\n![图片](<{sanitized_path}>)\n")
 
                 markdown_content.append("\n\n---\n")
 
