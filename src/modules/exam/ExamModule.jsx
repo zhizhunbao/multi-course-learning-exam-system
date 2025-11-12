@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useApp } from "../../context/AppContext";
@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 
 const ExamModule = () => {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation("exam");
   const { courseId } = useParams();
   const navigate = useNavigate();
   const { courses, userProgress, updateProgress, addNotification } = useApp();
@@ -29,7 +29,14 @@ const ExamModule = () => {
   const [examStarted, setExamStarted] = useState(false);
   const [examSubmitted, setExamSubmitted] = useState(false);
   const [showResults, setShowResults] = useState(false);
-  const [language, setLanguage] = useState("en"); // 默认英文
+  const [language, setLanguage] = useState(() =>
+    i18n.language?.toLowerCase().startsWith("zh") ? "zh" : "en"
+  );
+
+  const isEnglishLocale = useMemo(
+    () => i18n.language?.toLowerCase().startsWith("en"),
+    [i18n.language]
+  );
 
   // 加载考试配置数据
   const loadExamConfig = async (courseId) => {
@@ -66,7 +73,13 @@ const ExamModule = () => {
     };
 
     initializeExam();
-  }, [courseId, courses]);
+  }, [courseId, courses, t]);
+
+  useEffect(() => {
+    if (!examStarted) {
+      setLanguage(i18n.language?.toLowerCase().startsWith("zh") ? "zh" : "en");
+    }
+  }, [i18n.language, examStarted]);
 
   const currentQuestion = questions[currentQuestionIndex];
   const currentExam = exams[currentExamIndex];
@@ -135,6 +148,7 @@ const ExamModule = () => {
     courseId,
     updateProgress,
     addNotification,
+    t,
   ]);
 
   // 考试计时器
@@ -231,11 +245,16 @@ const ExamModule = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {courses.map((course) => {
             const courseTitle =
-              i18n.language === "en" ? course.nameEn : course.name;
+              (isEnglishLocale ? course.nameEn : course.name) ??
+              course.name ??
+              course.nameEn ??
+              course.title ??
+              "";
             const courseDesc =
-              i18n.language === "en"
-                ? course.descriptionEn
-                : course.description;
+              (isEnglishLocale ? course.descriptionEn : course.description) ??
+              course.description ??
+              course.descriptionEn ??
+              "";
             return (
               <div
                 key={course.id}
@@ -348,7 +367,7 @@ const ExamModule = () => {
                   >
                     <div className="flex items-start justify-between mb-2">
                       <h3 className="font-medium text-gray-900">
-                        {t("results.question")} {index + 1} ({question.points}
+                        {t("results.question")} {index + 1} ({question.points}{" "}
                         {t("results.points")})
                       </h3>
                       <div
@@ -564,8 +583,7 @@ const ExamModule = () => {
               <h2 className="text-xl font-bold text-gray-900 mb-4">
                 {currentQuestion.question}
                 <span className="text-sm font-normal text-gray-500 ml-2">
-                  ({currentQuestion.points}
-                  {t("inExam.question")})
+                  ({currentQuestion.points} {t("inExam.question")})
                 </span>
               </h2>
 

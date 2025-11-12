@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useApp } from "../../context/AppContext";
@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 
 const ExperimentModule = () => {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation("experiment");
   const { courseId } = useParams();
   const navigate = useNavigate();
   const { courses, userProgress, updateProgress, addNotification } = useApp();
@@ -67,7 +67,7 @@ const ExperimentModule = () => {
     };
 
     loadExperimentData();
-  }, [courseId, courses, addNotification]);
+  }, [courseId, courses, addNotification, t]);
 
   // 计时器
   useEffect(() => {
@@ -80,6 +80,18 @@ const ExperimentModule = () => {
   }, [startTime]);
 
   const currentExperiment = experiments[currentExperimentIndex];
+
+  const isEnglishLocale = useMemo(
+    () => i18n.language?.toLowerCase().startsWith("en"),
+    [i18n.language]
+  );
+
+  const resolvedCourseTitle = useMemo(() => {
+    if (!currentCourse) return "";
+    return isEnglishLocale
+      ? currentCourse.nameEn || currentCourse.title || currentCourse.name
+      : currentCourse.name || currentCourse.title || currentCourse.nameEn;
+  }, [currentCourse, isEnglishLocale]);
 
   const handleCodeChange = (newCode) => {
     setUserCode(newCode);
@@ -162,7 +174,10 @@ const ExperimentModule = () => {
 
     addNotification({
       type: "success",
-      message: t("navigationButtons.experimentCompleted", { passed: passedTests, total: totalTests }),
+      message: t("navigationButtons.experimentCompleted", {
+        passed: passedTests,
+        total: totalTests,
+      }),
     });
   };
 
@@ -188,11 +203,16 @@ const ExperimentModule = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {courses.map((course) => {
             const courseTitle =
-              i18n.language === "en" ? course.nameEn : course.name;
+              (isEnglishLocale ? course.nameEn : course.name) ??
+              course.name ??
+              course.nameEn ??
+              course.title ??
+              "";
             const courseDesc =
-              i18n.language === "en"
-                ? course.descriptionEn
-                : course.description;
+              (isEnglishLocale ? course.descriptionEn : course.description) ??
+              course.description ??
+              course.descriptionEn ??
+              "";
             return (
               <div
                 key={course.id}
@@ -209,7 +229,9 @@ const ExperimentModule = () => {
                   {courseDesc}
                 </p>
                 <div className="flex items-center justify-between mt-auto">
-                  <span className="text-sm text-gray-500">{t("selectCourse.courseExperiments")}</span>
+                  <span className="text-sm text-gray-500">
+                    {t("selectCourse.courseExperiments")}
+                  </span>
                   <button className="btn-primary text-sm px-4 py-2">
                     {t("selectCourse.startExperiment")}
                   </button>
@@ -263,7 +285,7 @@ const ExperimentModule = () => {
         <div className="flex items-center justify-between mb-4">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">
-              {currentCourse.title}
+              {resolvedCourseTitle}
             </h1>
             <p className="text-gray-600">{t("module.title")}</p>
           </div>
@@ -334,7 +356,9 @@ const ExperimentModule = () => {
 
                 {/* 提示 */}
                 <div className="bg-blue-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-blue-900 mb-2">{t("experiment.hints")}</h4>
+                  <h4 className="font-semibold text-blue-900 mb-2">
+                    {t("experiment.hints")}
+                  </h4>
                   <ul className="text-sm text-blue-800 space-y-1">
                     {currentExperiment.hints.map((hint, index) => (
                       <li key={index}>• {hint}</li>
@@ -364,7 +388,9 @@ const ExperimentModule = () => {
                       className="btn-primary text-sm flex items-center"
                     >
                       <Play className="w-4 h-4 mr-1" />
-                      {isRunning ? t("codeEditor.running") : t("codeEditor.runCode")}
+                      {isRunning
+                        ? t("codeEditor.running")
+                        : t("codeEditor.runCode")}
                     </button>
                   </div>
                 </div>
@@ -382,7 +408,9 @@ const ExperimentModule = () => {
             <div className="space-y-6">
               {/* 测试结果 */}
               <div className="card p-6">
-                <h3 className="font-semibold text-gray-900 mb-4">{t("testResults.title")}</h3>
+                <h3 className="font-semibold text-gray-900 mb-4">
+                  {t("testResults.title")}
+                </h3>
 
                 {testResults.length === 0 ? (
                   <div className="text-center py-8 text-gray-500">
@@ -414,16 +442,22 @@ const ExperimentModule = () => {
                             ) : (
                               <XCircle className="w-5 h-5 mr-1" />
                             )}
-                            {result.passed ? t("testResults.passed") : t("testResults.failed")}
+                            {result.passed
+                              ? t("testResults.passed")
+                              : t("testResults.failed")}
                           </div>
                         </div>
                         <div className="text-sm space-y-1">
                           <p>
-                            <span className="font-medium">{t("testResults.expected")}:</span>{" "}
+                            <span className="font-medium">
+                              {t("testResults.expected")}:
+                            </span>{" "}
                             {result.expected}
                           </p>
                           <p>
-                            <span className="font-medium">{t("testResults.actual")}:</span>{" "}
+                            <span className="font-medium">
+                              {t("testResults.actual")}:
+                            </span>{" "}
                             {result.actual}
                           </p>
                         </div>

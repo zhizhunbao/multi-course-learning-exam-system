@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { Button, Alert, Card } from "../../../common/modules/Elements";
 import "./CodeEditor.css";
 
@@ -11,11 +12,17 @@ const CodeEditor = ({
   readOnly = false,
   theme = "light",
 }) => {
+  const { t } = useTranslation("experiment");
   const [code, setCode] = useState(initialCode);
   const [output, setOutput] = useState("");
   const [isRunning, setIsRunning] = useState(false);
   const [error, setError] = useState("");
   const [lineNumbers, setLineNumbers] = useState([]);
+
+  const languageLabel = useMemo(
+    () => t(`languages.${language}`, { defaultValue: language }),
+    [language, t]
+  );
 
   useEffect(() => {
     setCode(initialCode);
@@ -34,7 +41,7 @@ const CodeEditor = ({
 
   const handleRun = async () => {
     if (!code.trim()) {
-      setError("Please enter some code to run");
+      setError(t("codeEditor.emptyError"));
       return;
     }
 
@@ -60,7 +67,7 @@ const CodeEditor = ({
         setError(result.error);
       }
     } catch (err) {
-      setError("Failed to execute code");
+      setError(t("codeEditor.executeError"));
     } finally {
       setIsRunning(false);
     }
@@ -86,7 +93,7 @@ const CodeEditor = ({
         setCode(formatted);
         onCodeChange?.(formatted);
       } catch (err) {
-        setError("Failed to format code");
+        setError(t("codeEditor.formatError"));
       }
     }
   };
@@ -118,8 +125,10 @@ const CodeEditor = ({
       <Card className="editor-container">
         <div className="editor-header">
           <div className="editor-info">
-            <span className="language-badge">{language}</span>
-            <span className="line-count">{lineNumbers.length} lines</span>
+            <span className="language-badge">{languageLabel}</span>
+            <span className="line-count">
+              {t("codeEditor.lineCount", { count: lineNumbers.length })}
+            </span>
           </div>
 
           <div className="editor-actions">
@@ -129,7 +138,7 @@ const CodeEditor = ({
               onClick={handleFormat}
               disabled={readOnly}
             >
-              Format
+              {t("codeEditor.format")}
             </Button>
             <Button
               variant="secondary"
@@ -137,7 +146,7 @@ const CodeEditor = ({
               onClick={handleClear}
               disabled={readOnly}
             >
-              Clear
+              {t("codeEditor.clear")}
             </Button>
             <Button
               variant="primary"
@@ -145,7 +154,7 @@ const CodeEditor = ({
               onClick={handleSave}
               disabled={readOnly}
             >
-              Save
+              {t("codeEditor.save")}
             </Button>
             <Button
               variant="success"
@@ -154,7 +163,7 @@ const CodeEditor = ({
               loading={isRunning}
               disabled={readOnly}
             >
-              Run
+              {t("codeEditor.run")}
             </Button>
           </div>
         </div>
@@ -173,7 +182,9 @@ const CodeEditor = ({
             onChange={handleCodeChange}
             readOnly={readOnly}
             className={`code-textarea ${theme}`}
-            placeholder={`Enter your ${language} code here...`}
+            placeholder={t("codeEditor.languagePlaceholder", {
+              language: languageLabel,
+            })}
             spellCheck={false}
           />
         </div>
@@ -182,7 +193,7 @@ const CodeEditor = ({
       {(output || error) && (
         <Card className="output-container">
           <div className="output-header">
-            <h4>Output</h4>
+            <h4>{t("codeEditor.outputTitle")}</h4>
           </div>
 
           <div className="output-content">

@@ -23,14 +23,25 @@
   },
   "experiment": {
     "steps": "实验步骤",
-    "hints": "💡 提示"
+    "hints": "提示"
   },
   "codeEditor": {
     "title": "代码编辑器",
     "reset": "重置",
     "running": "运行中...",
     "runCode": "运行代码",
-    "placeholder": "在这里编写您的代码..."
+    "placeholder": "在这里编写您的代码...",
+    "format": "格式化",
+    "clear": "清空",
+    "save": "保存",
+    "run": "运行",
+    "outputTitle": "输出",
+    "emptyError": "请输入要运行的代码",
+    "executeError": "执行代码失败",
+    "formatError": "格式化代码失败",
+    "lineCount_one": "{{count}} 行",
+    "lineCount_other": "{{count}} 行",
+    "languagePlaceholder": "请输入您的 {{language}} 代码..."
   },
   "testResults": {
     "title": "测试结果",
@@ -51,15 +62,6 @@
   "notifications": {
     "loadFailed": "加载实验数据失败",
     "submitSuccess": "实验已提交"
-  },
-  "codeEditor": {
-    "run": "运行",
-    "save": "保存",
-    "format": "格式化",
-    "clear": "清空",
-    "output": "输出",
-    "error": "错误",
-    "placeholder": "在这里输入您的代码..."
   },
   "languages": {
     "javascript": "JavaScript",

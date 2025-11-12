@@ -39,10 +39,10 @@
     "english": "English",
     "instructions": "考试说明",
     "note": {
-      "time": "• 考试时间为 {duration} 分钟，时间到将自动提交",
-      "browser": "• 考试期间请勿关闭浏览器或刷新页面",
-      "answers": "• 每题只能选择一次答案，请仔细思考后作答",
-      "pass": "• 及格分数为 {passScore}%，未达到及格分数需要重新考试"
+      "time": "考试时间为 {duration} 分钟，时间到将自动提交",
+      "browser": "考试期间请勿关闭浏览器或刷新页面",
+      "answers": "每题只能选择一次答案，请仔细思考后作答",
+      "pass": "及格分数为 {passScore}%，未达到及格分数需要重新考试"
     },
     "startExam": "开始考试"
   },

@@ -30,7 +30,18 @@
     "reset": "Reset",
     "running": "Running...",
     "runCode": "Run Code",
-    "placeholder": "Enter your code here..."
+    "placeholder": "Enter your code here...",
+    "format": "Format",
+    "clear": "Clear",
+    "save": "Save",
+    "run": "Run",
+    "outputTitle": "Output",
+    "emptyError": "Please enter some code to run",
+    "executeError": "Failed to execute code",
+    "formatError": "Failed to format code",
+    "lineCount_one": "{{count}} line",
+    "lineCount_other": "{{count}} lines",
+    "languagePlaceholder": "Enter your {{language}} code here..."
   },
   "testResults": {
     "title": "Test Results",
@@ -51,15 +62,6 @@
   "notifications": {
     "loadFailed": "Failed to load experiment data",
     "submitSuccess": "Experiment submitted successfully"
-  },
-  "codeEditor": {
-    "run": "Run",
-    "save": "Save",
-    "format": "Format",
-    "clear": "Clear",
-    "output": "Output",
-    "error": "Error",
-    "placeholder": "Enter your code here..."
   },
   "languages": {
     "javascript": "JavaScript",

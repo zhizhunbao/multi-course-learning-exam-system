@@ -21,10 +21,13 @@
     "question": "Question",
     "points": "points",
     "correct": "Correct",
+    "wrong": "Incorrect",
     "yourAnswer": "Your Answer",
     "correctAnswer": "Correct Answer",
     "reTakeExam": "Retake Exam",
-    "backToCourse": "Back to Courses"
+    "backToCourse": "Back to Courses",
+    "examResult": "Exam Result",
+    "completed": "Exam completed! Score: {score}% {status}"
   },
   "preExam": {
     "title": "Exam Information",
@@ -37,10 +40,10 @@
     "english": "English",
     "instructions": "Exam Instructions",
     "note": {
-      "time": "• Exam time is {duration} minutes, will be submitted automatically when time is up",
-      "browser": "• Please do not close browser or refresh page during the exam",
-      "answers": "• Each question can only be answered once, please think carefully",
-      "pass": "• Passing score is {passScore}%, you need to retake if not meeting the requirement"
+      "time": "Exam time is {duration} minutes and will be submitted automatically when time is up",
+      "browser": "Please do not close the browser or refresh the page during the exam",
+      "answers": "Each question can only be answered once, please think carefully",
+      "pass": "The passing score is {passScore}%. You need to retake the exam if the score is not met"
     },
     "startExam": "Start Exam"
   },

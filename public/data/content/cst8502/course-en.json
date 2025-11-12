@@ -1,0 +1,129 @@
+{
+  "courseId": "cst8502",
+  "title": "Machine Learning",
+  "description": "Fundamentals of machine learning theory and practice",
+  "language": "en",
+  "lastUpdated": "2025-10-16",
+  "chapters": [
+    {
+      "id": 1,
+      "title": "Chapter 1: Introduction to Machine Learning",
+      "order": 1,
+      "description": "Introduce the basic concepts, definitions, learning paradigms, and historical milestones of machine learning",
+      "duration": "2 hours",
+      "difficulty": "Beginner",
+      "markdownFile": "chapter1-en.md",
+      "objectives": [
+        "Understand the core definition and concepts of machine learning",
+        "Differentiate supervised, unsupervised, and reinforcement learning",
+        "Recognize the historical milestones that shaped the discipline",
+        "Identify real-world application scenarios of machine learning"
+      ],
+      "resources": [
+        {
+          "name": "Introduction to Machine Learning (Slides)",
+          "type": "pdf",
+          "url": "/pdfs/machine-learning/01_CST8502_Introduction_AI_ML.pdf"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Chapter 2: Data Preprocessing and k-Nearest Neighbors",
+      "order": 2,
+      "description": "Learn essential data preprocessing techniques and the k-nearest neighbors classification algorithm",
+      "duration": "3 hours",
+      "difficulty": "Beginner",
+      "markdownFile": "chapter2-en.md",
+      "objectives": [
+        "Master the foundational techniques of data preprocessing",
+        "Understand how the k-nearest neighbors algorithm works",
+        "Select appropriate distance metrics for different scenarios",
+        "Implement the k-NN algorithm in Python"
+      ],
+      "resources": [
+        {
+          "name": "k-NN Algorithm Lecture Notes",
+          "type": "pdf",
+          "url": "/pdfs/machine-learning/02_CST8502_kNN.pdf"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Chapter 3: Classification and Decision Trees",
+      "order": 3,
+      "description": "Dive into decision tree algorithms, information metrics, and pruning techniques",
+      "duration": "3 hours",
+      "difficulty": "Intermediate",
+      "markdownFile": "chapter3-en.md",
+      "objectives": [
+        "Explain the structure and mechanics of decision trees",
+        "Calculate entropy, Gini impurity, and information gain",
+        "Build and prune decision tree models effectively",
+        "Apply scikit-learn to train decision trees"
+      ],
+      "resources": [
+        {
+          "name": "Decision Tree Theory",
+          "type": "pdf",
+          "url": "/pdfs/machine-learning/03_CST8502_Classification_DecisionTrees1.pdf"
+        },
+        {
+          "name": "Weather Dataset Practice",
+          "type": "pdf",
+          "url": "/pdfs/machine-learning/WeatherDataset_DecisionTree_Creation.pdf"
+        },
+        {
+          "name": "Pruning Technique Comparison",
+          "type": "pdf",
+          "url": "/pdfs/machine-learning/A_Comparative_analysis_of_methods_for_pruning_decision_trees.pdf"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Chapter 5: Outlier Detection",
+      "order": 5,
+      "description": "Explore methods and techniques for detecting outliers",
+      "duration": "2.5 hours",
+      "difficulty": "Intermediate",
+      "markdownFile": "chapter5-en.md",
+      "objectives": [
+        "Define outliers and distinguish their different types",
+        "Apply statistical and machine-learning approaches for anomaly detection",
+        "Utilize Isolation Forest and Local Outlier Factor algorithms",
+        "Evaluate the performance of outlier detection models"
+      ],
+      "resources": [
+        {
+          "name": "Outlier Detection Lecture Notes",
+          "type": "pdf",
+          "url": "/pdfs/machine-learning/05_CST8502_OutlierDetection.pdf"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Chapter 6: Clustering and the k-Means Algorithm",
+      "order": 6,
+      "description": "Study clustering algorithms and the principles and applications of k-means",
+      "duration": "3 hours",
+      "difficulty": "Intermediate",
+      "markdownFile": "chapter6-en.md",
+      "objectives": [
+        "Understand the fundamentals and applications of cluster analysis",
+        "Explain how the k-means algorithm operates",
+        "Apply the elbow method and silhouette score to choose k",
+        "Compare k-means with hierarchical clustering and DBSCAN"
+      ],
+      "resources": [
+        {
+          "name": "Clustering Algorithm Lecture Notes",
+          "type": "pdf",
+          "url": "/pdfs/machine-learning/06_CST8502_Clustering.pdf"
+        }
+      ]
+    }
+  ]
+}
