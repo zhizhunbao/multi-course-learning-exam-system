@@ -1,7 +1,0 @@
-{
-  "memoryLimitMB": 32768,
-  "memoryLimit": "32GB",
-  "mcp": {
-    "maxConcurrentServers": 4
-  }
-}
