@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Card, Button, Loading, Alert } from "../../../common/modules/Elements";
 import "./CourseList.css";
 
 const CourseList = ({ onEdit, onDelete, onView }) => {
+  const { t } = useTranslation("course-management");
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -19,38 +21,38 @@ const CourseList = ({ onEdit, onDelete, onView }) => {
       const data = await response.json();
       setCourses(data);
     } catch (err) {
-      setError("Failed to load courses");
+      setError("errors.loadCourses");
     } finally {
       setLoading(false);
     }
   };
 
   const handleDelete = async (courseId) => {
-    if (window.confirm("Are you sure you want to delete this course?")) {
+    if (window.confirm(t("messages.confirm.delete"))) {
       try {
         // TODO: Replace with actual API call
         await fetch(`/api/courses/${courseId}`, { method: "DELETE" });
         setCourses(courses.filter((course) => course.id !== courseId));
       } catch (err) {
-        setError("Failed to delete course");
+        setError("errors.deleteCourse");
       }
     }
   };
 
   if (loading) {
-    return <Loading text="Loading courses..." />;
+    return <Loading text={t("loading.courses")} />;
   }
 
   if (error) {
-    return <Alert type="error" message={error} dismissible />;
+    return <Alert type="error" message={t(error)} dismissible />;
   }
 
   return (
     <div className="course-list">
       <div className="course-list-header">
-        <h2>Course Management</h2>
+        <h2>{t("title")}</h2>
         <Button variant="primary" onClick={() => onEdit(null)}>
-          Add New Course
+          {t("buttons.addCourse")}
         </Button>
       </div>
 
@@ -64,13 +66,13 @@ const CourseList = ({ onEdit, onDelete, onView }) => {
           >
             <div className="course-meta">
               <p>
-                <strong>Category:</strong> {course.category}
+                <strong>{t("labels.category")}:</strong> {course.category}
               </p>
               <p>
-                <strong>Duration:</strong> {course.duration}
+                <strong>{t("labels.courseDuration")}:</strong> {course.duration}
               </p>
               <p>
-                <strong>Students:</strong> {course.studentCount}
+                <strong>{t("labels.students")}:</strong> {course.studentCount}
               </p>
             </div>
 
@@ -80,21 +82,21 @@ const CourseList = ({ onEdit, onDelete, onView }) => {
                 size="small"
                 onClick={() => onView(course.id)}
               >
-                View
+                {t("buttons.view")}
               </Button>
               <Button
                 variant="primary"
                 size="small"
                 onClick={() => onEdit(course.id)}
               >
-                Edit
+                {t("buttons.edit")}
               </Button>
               <Button
                 variant="danger"
                 size="small"
                 onClick={() => handleDelete(course.id)}
               >
-                Delete
+                {t("buttons.delete")}
               </Button>
             </div>
           </Card>
@@ -103,7 +105,7 @@ const CourseList = ({ onEdit, onDelete, onView }) => {
 
       {courses.length === 0 && (
         <div className="empty-state">
-          <p>No courses found. Create your first course to get started.</p>
+          <p>{t("messages.empty.noCourses")}</p>
         </div>
       )}
     </div>

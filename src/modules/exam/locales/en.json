@@ -73,6 +73,11 @@
     "pause": "Pause",
     "resume": "Resume"
   },
+  "comingSoon": {
+    "title": "Exam Module Under Development",
+    "description": "We're preparing the assessment experience for this platform.",
+    "note": "Please check back soon for practice and mock exams."
+  },
   "status": {
     "notStarted": "Not Started",
     "inProgress": "In Progress",

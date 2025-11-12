@@ -14,9 +14,19 @@
   },
   "header": {
     "back": "返回",
+    "backToChapters": "返回章节列表",
     "previous": "上一章",
     "next": "下一章",
     "complete": "完成"
+  },
+  "chapterList": {
+    "subtitle": "选择一个章节开始学习",
+    "overallProgress": "整体进度",
+    "completed": "已完成",
+    "startChapter": "开始学习",
+    "reviewChapter": "复习",
+    "noChapters": "暂无章节",
+    "noChaptersDesc": "该课程暂无可用章节"
   },
   "loading": {
     "title": "课程内容加载中...",

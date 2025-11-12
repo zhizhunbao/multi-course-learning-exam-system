@@ -71,6 +71,11 @@
     "pause": "暂停",
     "resume": "继续"
   },
+  "comingSoon": {
+    "title": "考试模块开发中",
+    "description": "我们正在完善考试与评估体验。",
+    "note": "敬请期待，模拟考试将很快上线。"
+  },
   "status": {
     "notStarted": "未开始",
     "inProgress": "进行中",

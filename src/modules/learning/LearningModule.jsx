@@ -24,7 +24,8 @@ const LearningModule = () => {
     i18n.language === "zh-CN" ? "zh" : "en"
   );
   const [courseContent, setCourseContent] = useState(null);
-  const [currentChapter, setCurrentChapter] = useState(0);
+  const [currentChapter, setCurrentChapter] = useState(null);
+  const [showChapterList, setShowChapterList] = useState(true);
   const [loading, setLoading] = useState(false);
   const [completedChapters, setCompletedChapters] = useState([]);
   const [courseChapterCounts, setCourseChapterCounts] = useState({});
@@ -102,6 +103,16 @@ const LearningModule = () => {
   }, [i18n.language, language]);
 
   // 处理函数
+  const handleSelectChapter = (chapterIndex) => {
+    setCurrentChapter(chapterIndex);
+    setShowChapterList(false);
+  };
+
+  const handleBackToChapterList = () => {
+    setCurrentChapter(null);
+    setShowChapterList(true);
+  };
+
   const handlePreviousChapter = () => {
     if (currentChapter > 0) {
       setCurrentChapter(currentChapter - 1);
@@ -227,9 +238,135 @@ const LearningModule = () => {
     );
   }
 
-  const currentChapterData = courseContent.chapters?.[currentChapter];
-  const totalChapters = courseContent.chapters.length;
+  // 获取当前课程信息
+  const currentCourse = courses.find((c) => c.id === courseId);
+  const courseTitle =
+    language === "en" ? currentCourse?.nameEn : currentCourse?.name;
+  const totalChapters = courseContent.chapters?.length || 0;
   const progress = Math.round((completedChapters.length / totalChapters) * 100);
+
+  // 如果显示章节列表
+  if (showChapterList) {
+    return (
+      <div className="max-w-7xl xl:max-w-none xl:mx-8 mx-auto">
+        {/* 返回按钮和标题 */}
+        <div className="mb-6">
+          <button
+            onClick={() => navigate("/learning")}
+            className="text-sm text-gray-600 hover:text-gray-900 flex items-center transition-colors mb-4"
+          >
+            <ChevronLeft className="w-4 h-4 mr-0.5" />
+            {t("header.back")}
+          </button>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            {courseTitle}
+          </h1>
+          <p className="text-gray-600">{t("chapterList.subtitle")}</p>
+
+          {/* 总体进度 */}
+          <div className="mt-4 bg-white rounded-lg p-4 shadow-sm">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-medium text-gray-700">
+                {t("chapterList.overallProgress")}
+              </span>
+              <span className="text-sm font-medium text-gray-900">
+                {completedChapters.length} / {totalChapters}{" "}
+                {t("chapterList.completed")}
+              </span>
+            </div>
+            <div className="bg-gray-200 rounded-full h-2 overflow-hidden">
+              <div
+                className="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full transition-all duration-500"
+                style={{ width: `${progress}%` }}
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        {/* 章节列表 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {courseContent.chapters.map((chapter, index) => {
+            const chapterKey = `chapter-${index}`;
+            const isCompleted = completedChapters.includes(chapterKey);
+
+            return (
+              <div
+                key={chapter.id}
+                className="card p-6 hover:shadow-lg transition-shadow cursor-pointer flex flex-col h-full relative overflow-hidden"
+                onClick={() => handleSelectChapter(index)}
+              >
+                {/* 完成标记 */}
+                {isCompleted && (
+                  <div className="absolute top-3 right-3">
+                    <CheckCircle className="w-6 h-6 text-green-500" />
+                  </div>
+                )}
+
+                {/* 章节标题 */}
+                <div className="flex items-start mb-4">
+                  <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                    <span className="text-blue-600 font-bold">{index + 1}</span>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 break-words">
+                      {chapter.title}
+                    </h3>
+                  </div>
+                </div>
+
+                {/* 章节描述 */}
+                <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">
+                  {chapter.description}
+                </p>
+
+                {/* 章节信息 */}
+                <div className="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+                  <div className="flex items-center text-xs text-gray-500">
+                    <Clock className="w-3 h-3 mr-1" />
+                    <span>{chapter.duration}</span>
+                  </div>
+                  <span
+                    className={`text-xs px-2 py-1 rounded-full ${
+                      chapter.difficulty === "初级" ||
+                      chapter.difficulty === "Beginner"
+                        ? "bg-green-100 text-green-700"
+                        : chapter.difficulty === "中级" ||
+                          chapter.difficulty === "Intermediate"
+                        ? "bg-yellow-100 text-yellow-700"
+                        : "bg-red-100 text-red-700"
+                    }`}
+                  >
+                    {chapter.difficulty}
+                  </span>
+                </div>
+
+                {/* 开始学习按钮 */}
+                <button className="btn-primary text-sm px-4 py-2 mt-4 w-full">
+                  {isCompleted
+                    ? t("chapterList.reviewChapter")
+                    : t("chapterList.startChapter")}
+                </button>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* 没有章节 */}
+        {(!courseContent.chapters || courseContent.chapters.length === 0) && (
+          <div className="text-center py-12">
+            <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-gray-900 mb-2">
+              {t("chapterList.noChapters")}
+            </h3>
+            <p className="text-gray-600">{t("chapterList.noChaptersDesc")}</p>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // 显示具体章节内容
+  const currentChapterData = courseContent.chapters?.[currentChapter];
   const canGoPrevious = currentChapter > 0;
   const canGoNext = currentChapter < courseContent.chapters.length - 1;
 
@@ -238,11 +375,11 @@ const LearningModule = () => {
       {/* 顶部导航栏 */}
       <div className="bg-white px-6 py-3">
         <button
-          onClick={() => navigate("/learning")}
+          onClick={handleBackToChapterList}
           className="text-sm text-gray-600 hover:text-gray-900 flex items-center transition-colors"
         >
           <ChevronLeft className="w-4 h-4 mr-0.5" />
-          {t("header.back")}
+          {t("header.backToChapters")}
         </button>
       </div>
 

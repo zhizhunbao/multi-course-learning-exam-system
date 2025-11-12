@@ -108,5 +108,12 @@
   },
   "time": {
     "format": "{{minutes}}:{{seconds}}"
+  },
+  "chapterList": {
+    "subtitle": "选择一个题库开始练习",
+    "practice": "练习",
+    "startPractice": "开始练习",
+    "noQuestions": "暂无题库",
+    "noQuestionsDesc": "该课程暂时没有可用的练习题库"
   }
 }

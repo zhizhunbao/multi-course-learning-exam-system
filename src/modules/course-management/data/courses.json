@@ -2,105 +2,184 @@
   "courses": [
     {
       "id": "cst8502",
+      "title": "Machine Learning",
       "name": "机器学习",
       "nameEn": "Machine Learning",
       "code": "CST8502",
-      "description": "机器学习基础理论与实践",
-      "descriptionEn": "Machine Learning Fundamentals and Practice",
+      "description": "Machine Learning Fundamentals and Practice",
+      "descriptionCn": "机器学习基础理论与实践",
       "instructor": "Dr. Smith",
       "credits": 3,
       "duration": "12 weeks",
+      "difficulty": "intermediate",
+      "status": "published",
       "level": "graduate",
       "prerequisites": ["CST8101", "MAT8001"],
       "topics": [
-        "数据预处理",
-        "监督学习",
-        "无监督学习",
-        "模型评估",
-        "深度学习基础"
-      ],
-      "topicsEn": [
         "Data Preprocessing",
         "Supervised Learning",
         "Unsupervised Learning",
         "Model Evaluation",
         "Deep Learning Fundamentals"
       ],
+      "topicsCn": [
+        "数据预处理",
+        "监督学习",
+        "无监督学习",
+        "模型评估",
+        "深度学习基础"
+      ],
       "resources": {
         "lectures": 12,
         "labs": 8,
         "assignments": 4,
         "exams": 2
       },
+      "materials": [
+        "/pdfs/machine-learning/01_CST8502_Course_Introduction2.pdf",
+        "/pdfs/machine-learning/01_CST8502_Introduction_to_MachineLearning.pdf",
+        "/pdfs/machine-learning/01_CST8502_Statistics_SelfStudyMaterial1.pdf",
+        "/pdfs/machine-learning/02_CST8502_Preprocessing_kNN.pdf",
+        "/pdfs/machine-learning/03_CST8502_Classification_DecisionTrees1.pdf",
+        "/pdfs/machine-learning/05_CST8502_OutlierDetection1.pdf",
+        "/pdfs/machine-learning/06_CST8502_Clustering_kMeans1.pdf",
+        "/pdfs/machine-learning/WeatherDataset_DecisionTree_Creation.pdf",
+        "/pdfs/machine-learning/A_Comparative_analysis_of_methods_for_pruning_decision_trees.pdf",
+        "/pdfs/machine-learning/Fundamentals_of_Machine_Learning_for_Predictive_Data_Analytics_2nd.pdf",
+        "/pdfs/machine-learning/weather1.csv"
+      ],
+      "modules": {
+        "learning": 12,
+        "practice": 8,
+        "experiment": 4,
+        "exam": 2
+      },
+      "progress": 0,
       "isActive": true,
       "startDate": "2024-01-15",
-      "endDate": "2024-04-15"
+      "endDate": "2024-04-15",
+      "createdAt": "2024-01-10T08:00:00.000Z",
+      "updatedAt": "2024-01-12T15:30:00.000Z"
     },
     {
       "id": "cst8503",
+      "title": "Knowledge Representation and Reasoning",
       "name": "知识表示与推理",
-      "nameEn": "K&R and Reasoning",
+      "nameEn": "Knowledge Representation and Reasoning",
       "code": "CST8503",
-      "description": "知识表示方法和推理技术",
-      "descriptionEn": "K&R Methods and Reasoning Techniques",
+      "description": "Knowledge Representation Methods and Reasoning Techniques",
+      "descriptionCn": "知识表示方法和推理技术",
       "instructor": "Dr. Johnson",
       "credits": 3,
       "duration": "12 weeks",
+      "difficulty": "advanced",
+      "status": "published",
       "level": "graduate",
       "prerequisites": ["CST8101", "LOG8001"],
-      "topics": ["谓词逻辑", "Prolog编程", "知识图谱", "推理引擎", "专家系统"],
-      "topicsEn": [
+      "topics": [
         "Predicate Logic",
         "Prolog Programming",
         "Knowledge Graphs",
         "Inference Engines",
         "Expert Systems"
       ],
+      "topicsCn": [
+        "谓词逻辑",
+        "Prolog编程",
+        "知识图谱",
+        "推理引擎",
+        "专家系统"
+      ],
       "resources": {
         "lectures": 12,
         "labs": 8,
         "assignments": 4,
         "exams": 2
       },
+      "materials": [
+        "/pdfs/knowledge-reasoning/CST8503_01_KR_Intro.pdf",
+        "/pdfs/knowledge-reasoning/CST8503_02_Prolog_Intro.pdf",
+        "/pdfs/knowledge-reasoning/CST8503_03_Prolog_Debugging.pdf",
+        "/pdfs/knowledge-reasoning/CST8503_04_Prolog_Structures_Matching.pdf",
+        "/pdfs/knowledge-reasoning/CST8503_05_Prolog_Lists_Ops_Arith.pdf",
+        "/pdfs/knowledge-reasoning/CST8503_06_Prolog_Negation_Cut.pdf",
+        "/pdfs/knowledge-reasoning/CST8503_07_Midterm_Review.pdf",
+        "/pdfs/knowledge-reasoning/CST8503_Knowledge_Representation_Complete.md",
+        "/pdfs/knowledge-reasoning/CST8503_Knowledge_Representation_Complete_EN.md"
+      ],
+      "modules": {
+        "learning": 12,
+        "practice": 8,
+        "experiment": 4,
+        "exam": 2
+      },
+      "progress": 0,
       "isActive": true,
       "startDate": "2024-01-15",
-      "endDate": "2024-04-15"
+      "endDate": "2024-04-15",
+      "createdAt": "2024-01-10T08:00:00.000Z",
+      "updatedAt": "2024-01-12T15:30:00.000Z"
     },
     {
       "id": "cst8504",
+      "title": "AI Techniques",
       "name": "人工智能技术",
       "nameEn": "AI Techniques",
       "code": "CST8504",
-      "description": "人工智能核心技术和应用",
-      "descriptionEn": "Core AI Technologies and Applications",
+      "description": "Core AI Technologies and Applications",
+      "descriptionCn": "人工智能核心技术和应用",
       "instructor": "Dr. Brown",
       "credits": 3,
       "duration": "12 weeks",
+      "difficulty": "beginner",
+      "status": "published",
       "level": "graduate",
       "prerequisites": ["CST8502", "CST8503"],
       "topics": [
-        "Python编程",
-        "NumPy和Pandas",
-        "数据可视化",
-        "算法优化",
-        "AI应用开发"
-      ],
-      "topicsEn": [
         "Python Programming",
         "NumPy and Pandas",
         "Data Visualization",
         "Algorithm Optimization",
         "AI Application Development"
       ],
+      "topicsCn": [
+        "Python编程",
+        "NumPy和Pandas",
+        "数据可视化",
+        "算法优化",
+        "AI应用开发"
+      ],
       "resources": {
         "lectures": 12,
         "labs": 8,
         "assignments": 4,
         "exams": 2
       },
+      "materials": [
+        "/pdfs/ai-techniques/CST8504_02_Python_Primer.pdf",
+        "/pdfs/ai-techniques/CST8504_03_Numpy_Pandas.pdf",
+        "/pdfs/ai-techniques/CST8504_04_Midterm_Review.pdf",
+        "/pdfs/ai-techniques/CST8504_05_ROS2.pdf",
+        "/pdfs/ai-techniques/CST8504_05_ROS2.md",
+        "/pdfs/ai-techniques/CST8504_05_Create3_Project.pdf",
+        "/pdfs/ai-techniques/CST8504_05_Create3_Project.md",
+        "/pdfs/ai-techniques/CST8504_07_CNN_Mediapipe.pdf",
+        "/pdfs/ai-techniques/CST8504_08_Cont_ROS2_Basics.pdf",
+        "/pdfs/ai-techniques/CST8504_08_Cont_ROS2_Basics.md",
+        "/pdfs/ai-techniques/Intro to Python forComputer Science and Data Science  Learning to Program with AI,.pdf"
+      ],
+      "modules": {
+        "learning": 12,
+        "practice": 8,
+        "experiment": 4,
+        "exam": 2
+      },
+      "progress": 0,
       "isActive": true,
       "startDate": "2024-01-15",
-      "endDate": "2024-04-15"
+      "endDate": "2024-04-15",
+      "createdAt": "2024-01-10T08:00:00.000Z",
+      "updatedAt": "2024-01-12T15:30:00.000Z"
     }
   ]
 }

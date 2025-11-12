@@ -27,6 +27,116 @@
     "courseUpdated": "课程更新成功",
     "courseDeleted": "课程删除成功",
     "confirmDelete": "您确定要删除这个课程吗？",
-    "noCourses": "未找到课程。创建您的第一个课程开始使用。"
+    "noCourses": "未找到课程。创建您的第一个课程开始使用。",
+    "validation": {
+      "titleAndDescriptionRequired": "请填写课程标题和描述"
+    },
+    "success": {
+      "courseCreated": "课程创建成功",
+      "courseUpdated": "课程更新成功",
+      "courseDeleted": "课程删除成功"
+    },
+    "confirm": {
+      "delete": "您确定要删除这个课程吗？",
+      "deleteWithWarning": "确定要删除这个课程吗？此操作不可撤销。"
+    },
+    "empty": {
+      "noCourses": "未找到课程。创建您的第一个课程开始使用。"
+    }
+  },
+  "filters": {
+    "searchPlaceholder": "搜索课程...",
+    "status": {
+      "all": "所有状态"
+    }
+  },
+  "status": {
+    "draft": "草稿",
+    "published": "已发布",
+    "archived": "已归档",
+    "unknown": "未知"
+  },
+  "buttons": {
+    "addCourse": "添加新课程",
+    "createCourse": "创建课程",
+    "saveChanges": "保存更改",
+    "cancel": "取消",
+    "close": "关闭",
+    "view": "查看",
+    "edit": "编辑",
+    "delete": "删除"
+  },
+  "table": {
+    "headers": {
+      "courseId": "课程编号",
+      "courseName": "课程名称",
+      "instructor": "讲师",
+      "status": "状态",
+      "materials": "课程资料",
+      "actions": "操作"
+    }
+  },
+  "tooltips": {
+    "view": "查看详情",
+    "edit": "编辑课程",
+    "delete": "删除课程"
+  },
+  "modals": {
+    "create": {
+      "title": "创建新课程"
+    },
+    "edit": {
+      "title": "编辑课程"
+    },
+    "view": {
+      "title": "课程详情"
+    }
+  },
+  "form": {
+    "labels": {
+      "courseTitle": "课程标题",
+      "instructor": "讲师",
+      "description": "课程描述",
+      "duration": "课程时长",
+      "difficulty": "难度级别",
+      "status": "状态"
+    },
+    "placeholders": {
+      "courseTitle": "请输入课程标题",
+      "instructor": "请输入讲师姓名",
+      "description": "请输入课程描述",
+      "duration": "如：40小时"
+    }
+  },
+  "materials": {
+    "more": "+{{count}} 更多...",
+    "showLess": "收起",
+    "empty": "暂无资料"
+  },
+  "placeholders": {
+    "notAssigned": "未指定",
+    "notSet": "未设置",
+    "unknown": "未知"
+  },
+  "labels": {
+    "courseId": "课程编号",
+    "courseTitle": "课程标题",
+    "instructor": "讲师",
+    "status": "状态",
+    "courseDuration": "课程时长",
+    "difficulty": "难度级别",
+    "courseDescription": "课程描述",
+    "materials": "课程资料",
+    "createdAt": "创建时间",
+    "updatedAt": "更新时间",
+    "category": "分类",
+    "students": "学生人数"
+  },
+  "loading": {
+    "courses": "课程加载中..."
+  },
+  "errors": {
+    "loadCourses": "加载课程失败",
+    "deleteCourse": "删除课程失败"
   }
 }

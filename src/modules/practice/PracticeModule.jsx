@@ -19,10 +19,11 @@ const PracticeModule = () => {
   const [markdownContent, setMarkdownContent] = useState(null);
   const [availableSets, setAvailableSets] = useState([]);
   const [selectedSet, setSelectedSet] = useState(null);
-  const [showSetSelection, setShowSetSelection] = useState(false);
+  const [showSetSelection, setShowSetSelection] = useState(true);
   const [currentLanguage, setCurrentLanguage] = useState(
     i18n.language === "zh-CN" ? "zh" : "en"
   );
+  const [courseSetsCount, setCourseSetsCount] = useState({});
 
   // 用 ref 来跟踪已加载的课程和语言，避免重复加载
   const loadedRef = useRef({ courseId: null, language: null });
@@ -36,6 +37,29 @@ const PracticeModule = () => {
     setStartTime(Date.now());
     setTimeSpent(0);
   };
+
+  // 加载所有课程的题库数量
+  useEffect(() => {
+    const loadCourseSetsCount = async () => {
+      const counts = {};
+      for (const course of courses) {
+        try {
+          const sets = await dataService.getAvailableQuestionSets(
+            course.id,
+            currentLanguage
+          );
+          counts[course.id] = sets.length;
+        } catch (error) {
+          counts[course.id] = 0;
+        }
+      }
+      setCourseSetsCount(counts);
+    };
+
+    if (!courseId && courses.length > 0) {
+      loadCourseSetsCount();
+    }
+  }, [courses, currentLanguage, courseId]);
 
   // 监听语言变化
   useEffect(() => {
@@ -74,9 +98,6 @@ const PracticeModule = () => {
       });
     }
 
-    // 保存当前选中的题库 ID（用于语言切换时保持选择）
-    const previousSelectedSetId = selectedSet?.id;
-
     // 加载题库
     const loadData = async () => {
       try {
@@ -86,35 +107,12 @@ const PracticeModule = () => {
         );
         setAvailableSets(sets);
 
-        // 如果之前有选中的题库，尝试在新语言中找到对应的题库
-        if (previousSelectedSetId) {
-          const matchingSet = sets.find(
-            (set) => set.id === previousSelectedSetId
-          );
-          if (matchingSet) {
-            setSelectedSet(matchingSet);
-            setMarkdownContent(matchingSet.content);
-            setViewMode("markdown");
-            setShowSetSelection(false);
-            return;
-          }
-        }
-
-        // 如果只有一套题库，直接加载
-        if (sets.length === 1) {
-          setSelectedSet(sets[0]);
-          setMarkdownContent(sets[0].content);
-          setViewMode("markdown");
-          setShowSetSelection(false);
-        } else if (sets.length > 1) {
-          // 如果有多套题库，显示选择界面
-          setShowSetSelection(true);
-          // 清空之前的选择
-          if (!previousSelectedSetId) {
-            setSelectedSet(null);
-            setMarkdownContent(null);
-          }
-        }
+        // 始终显示题库选择界面，即使只有一套题库或之前有选中的题库
+        setShowSetSelection(true);
+        // 清空之前的选择，让用户重新选择
+        setSelectedSet(null);
+        setMarkdownContent(null);
+        setViewMode("markdown");
       } catch (error) {
         console.warn(`No questions found for course ${courseId}:`, error);
       }
@@ -166,6 +164,7 @@ const PracticeModule = () => {
               currentLanguage === "en"
                 ? course.descriptionEn
                 : course.description;
+            const setsCount = courseSetsCount[course.id] || 0;
             return (
               <div
                 key={course.id}
@@ -182,8 +181,9 @@ const PracticeModule = () => {
                   {courseDesc}
                 </p>
                 <div className="flex items-center justify-between mt-auto">
-                  <span className="text-sm text-gray-500">
-                    {t("practiceQuestions")}
+                  <span className="text-sm text-gray-500 flex items-center gap-2">
+                    <BookOpen className="w-4 h-4" />
+                    {setsCount} {t("chapterList.practice")}
                   </span>
                   <button className="btn-primary text-sm px-4 py-2">
                     {t("actions.startPractice")}
@@ -197,53 +197,84 @@ const PracticeModule = () => {
     );
   }
 
+  // 获取当前课程信息
+  const course = courses.find((c) => c.id === courseId);
+  const courseTitle = currentLanguage === "en" ? course?.nameEn : course?.name;
+
   // 如果显示题库选择界面
   if (showSetSelection && availableSets.length > 0) {
     return (
       <div className="max-w-7xl xl:max-w-none xl:mx-8 mx-auto">
-        <div className="text-left mb-8">
+        {/* 返回按钮和标题 */}
+        <div className="mb-6">
           <button
             onClick={() => navigate("/practice")}
-            className="btn-outline flex items-center mb-4"
+            className="text-sm text-gray-600 hover:text-gray-900 flex items-center transition-colors mb-4"
           >
-            <ChevronLeft className="w-4 h-4 mr-2" />
+            <ChevronLeft className="w-4 h-4 mr-0.5" />
             {t("backToCourse")}
           </button>
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            {t("selectQuestionSet")}
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            {courseTitle}
           </h1>
-          <p className="text-gray-600">{t("selectQuestionSetDesc")}</p>
+          <p className="text-gray-600">{t("chapterList.subtitle")}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {availableSets.map((set) => {
+        {/* 题库列表 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {availableSets.map((set, index) => {
             return (
               <div
                 key={set.id}
-                className="card p-6 hover:shadow-lg transition-shadow cursor-pointer flex flex-col h-full"
+                className="card p-6 hover:shadow-lg transition-shadow cursor-pointer flex flex-col h-full relative overflow-hidden"
                 onClick={() => selectSet(set)}
               >
+                {/* 题库标题 */}
                 <div className="flex items-start mb-4">
-                  <BookOpen className="w-8 h-8 text-blue-600 mr-3 flex-shrink-0" />
-                  <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 break-words">
-                    {set.title}
-                  </h3>
+                  <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                    <span className="text-blue-600 font-bold">{index + 1}</span>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 break-words">
+                      {set.title}
+                    </h3>
+                  </div>
                 </div>
-                <p className="text-gray-600 mb-4 line-clamp-3 flex-grow">
+
+                {/* 题库描述 */}
+                <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">
                   {set.description}
                 </p>
-                <div className="flex items-center justify-between mt-auto">
-                  <span className="text-sm text-gray-500">
+
+                {/* 题库信息 */}
+                <div className="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+                  <span className="text-xs text-gray-500">
                     {t("questionBank")}
                   </span>
-                  <button className="btn-primary text-sm px-4 py-2">
-                    {t("actions.startPractice")}
-                  </button>
+                  <span className="text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-700">
+                    {t("chapterList.practice")}
+                  </span>
                 </div>
+
+                {/* 开始练习按钮 */}
+                <button className="btn-primary text-sm px-4 py-2 mt-4 w-full">
+                  {t("chapterList.startPractice")}
+                </button>
               </div>
             );
           })}
         </div>
+
+        {/* 没有题库 */}
+        {availableSets.length === 0 && (
+          <div className="text-center py-12">
+            <Target className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-gray-900 mb-2">
+              {t("chapterList.noQuestions")}
+            </h3>
+            <p className="text-gray-600">{t("chapterList.noQuestionsDesc")}</p>
+          </div>
+        )}
       </div>
     );
   }

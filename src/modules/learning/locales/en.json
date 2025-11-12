@@ -14,9 +14,19 @@
   },
   "header": {
     "back": "Back",
+    "backToChapters": "Back to Chapters",
     "previous": "Previous",
     "next": "Next",
     "complete": "Complete"
+  },
+  "chapterList": {
+    "subtitle": "Select a chapter to start learning",
+    "overallProgress": "Overall Progress",
+    "completed": "Completed",
+    "startChapter": "Start Learning",
+    "reviewChapter": "Review",
+    "noChapters": "No Chapters Available",
+    "noChaptersDesc": "This course has no available chapters"
   },
   "loading": {
     "title": "Loading course content...",

@@ -17,6 +17,11 @@
   "module": {
     "title": "Experiment Module"
   },
+  "comingSoon": {
+    "title": "Experiment Module Under Development",
+    "description": "We're building hands-on labs and interactive coding experiences.",
+    "note": "Thanks for your patience while we finalize this feature."
+  },
   "navigation": {
     "backToCourse": "Back to Courses",
     "experiment": "Experiment"

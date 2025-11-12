@@ -1,10 +1,42 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useApp } from "../../context/AppContext";
-import { Plus, Eye, FileText, Edit, Trash2, Upload } from "lucide-react";
+import { Plus, Eye, FileText, Edit, Trash2 } from "lucide-react";
+
+const DIFFICULTY_KEYS = ["beginner", "intermediate", "advanced"];
+const STATUS_KEYS = ["draft", "published", "archived"];
+
+const difficultyKeyMap = {
+  beginner: "beginner",
+  intermediate: "intermediate",
+  advanced: "advanced",
+  初级: "beginner",
+  中级: "intermediate",
+  高级: "advanced",
+};
+
+const normalizeDifficulty = (value) =>
+  difficultyKeyMap[value] || value || "beginner";
+
+const createEmptyCourse = () => ({
+  title: "",
+  description: "",
+  instructor: "",
+  duration: "",
+  difficulty: "beginner",
+  status: "draft",
+});
+
+const withNormalizedDifficulty = (course) =>
+  course
+    ? {
+        ...course,
+        difficulty: normalizeDifficulty(course.difficulty),
+      }
+    : course;
 
 const CourseManagement = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("course-management");
   const { courses, setCourses, addNotification } = useApp();
 
   const [filterStatus, setFilterStatus] = useState("all");
@@ -13,14 +45,8 @@ const CourseManagement = () => {
   const [showViewModal, setShowViewModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
-  const [newCourse, setNewCourse] = useState({
-    title: "",
-    description: "",
-    instructor: "",
-    duration: "",
-    difficulty: "初级",
-    status: "draft",
-  });
+  const [newCourse, setNewCourse] = useState(createEmptyCourse);
+  const [expandedMaterials, setExpandedMaterials] = useState({});
 
   const filteredCourses = (Array.isArray(courses) ? courses : []).filter(
     (course) => {
@@ -41,7 +67,7 @@ const CourseManagement = () => {
     if (!newCourse.title || !newCourse.description) {
       addNotification({
         type: "error",
-        message: "请填写课程标题和描述",
+        message: t("messages.validation.titleAndDescriptionRequired"),
       });
       return;
     }
@@ -49,6 +75,7 @@ const CourseManagement = () => {
     const course = {
       id: `CST${Date.now().toString().slice(-6)}`,
       ...newCourse,
+      difficulty: normalizeDifficulty(newCourse.difficulty),
       progress: 0,
       modules: {
         learning: 0,
@@ -62,19 +89,12 @@ const CourseManagement = () => {
     };
 
     setCourses((prev) => [...(Array.isArray(prev) ? prev : []), course]);
-    setNewCourse({
-      title: "",
-      description: "",
-      instructor: "",
-      duration: "",
-      difficulty: "初级",
-      status: "draft",
-    });
+    setNewCourse(createEmptyCourse());
     setShowCreateModal(false);
 
     addNotification({
       type: "success",
-      message: "课程创建成功",
+      message: t("messages.success.courseCreated"),
     });
   };
 
@@ -86,7 +106,7 @@ const CourseManagement = () => {
     ) {
       addNotification({
         type: "error",
-        message: "请填写课程标题和描述",
+        message: t("messages.validation.titleAndDescriptionRequired"),
       });
       return;
     }
@@ -94,7 +114,11 @@ const CourseManagement = () => {
     setCourses((prev) =>
       prev.map((course) =>
         course.id === selectedCourse.id
-          ? { ...selectedCourse, updatedAt: new Date().toISOString() }
+          ? {
+              ...selectedCourse,
+              difficulty: normalizeDifficulty(selectedCourse.difficulty),
+              updatedAt: new Date().toISOString(),
+            }
           : course
       )
     );
@@ -104,27 +128,27 @@ const CourseManagement = () => {
 
     addNotification({
       type: "success",
-      message: "课程更新成功",
+      message: t("messages.success.courseUpdated"),
     });
   };
 
   const handleDeleteCourse = (courseId) => {
-    if (window.confirm("确定要删除这个课程吗？此操作不可撤销。")) {
+    if (window.confirm(t("messages.confirm.deleteWithWarning"))) {
       setCourses((prev) => prev.filter((course) => course.id !== courseId));
       addNotification({
         type: "success",
-        message: "课程删除成功",
+        message: t("messages.success.courseDeleted"),
       });
     }
   };
 
   const handleViewCourse = (course) => {
-    setSelectedCourse(course);
+    setSelectedCourse(withNormalizedDifficulty(course));
     setShowViewModal(true);
   };
 
   const handleEditCourseClick = (course) => {
-    setSelectedCourse({ ...course });
+    setSelectedCourse(withNormalizedDifficulty(course));
     setShowEditModal(true);
   };
 
@@ -141,17 +165,32 @@ const CourseManagement = () => {
     }
   };
 
-  const getStatusText = (status) => {
-    switch (status) {
-      case "published":
-        return "已发布";
-      case "draft":
-        return "草稿";
-      case "archived":
-        return "已归档";
-      default:
-        return "未知";
+  const getStatusText = (status) =>
+    t(`status.${status}`, { defaultValue: t("status.unknown") });
+
+  const getDifficultyLabel = (difficulty) => {
+    const key = normalizeDifficulty(difficulty);
+    if (DIFFICULTY_KEYS.includes(key)) {
+      return t(`difficultyLevels.${key}`);
     }
+    return difficulty || t("placeholders.notSet");
+  };
+
+  const handleMaterialClick = (materialPath) => {
+    // 构建完整的URL路径
+    const fullPath = materialPath.startsWith("/")
+      ? materialPath
+      : `/${materialPath}`;
+
+    // 在新标签页中打开PDF
+    window.open(fullPath, "_blank");
+  };
+
+  const toggleMaterialsExpanded = (courseId) => {
+    setExpandedMaterials((prev) => ({
+      ...prev,
+      [courseId]: !prev[courseId],
+    }));
   };
 
   return (
@@ -162,7 +201,7 @@ const CourseManagement = () => {
           <div className="relative">
             <input
               type="text"
-              placeholder="搜索课程..."
+              placeholder={t("filters.searchPlaceholder")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="input-field w-64"
@@ -173,28 +212,23 @@ const CourseManagement = () => {
             onChange={(e) => setFilterStatus(e.target.value)}
             className="input-field"
           >
-            <option value="all">所有状态</option>
-            <option value="published">已发布</option>
-            <option value="draft">草稿</option>
-            <option value="archived">已归档</option>
+            <option value="all">{t("filters.status.all")}</option>
+            {STATUS_KEYS.map((status) => (
+              <option key={status} value={status}>
+                {t(`status.${status}`)}
+              </option>
+            ))}
           </select>
         </div>
         <button
           onClick={() => {
-            setNewCourse({
-              title: "",
-              description: "",
-              instructor: "",
-              duration: "",
-              difficulty: "初级",
-              status: "draft",
-            });
+            setNewCourse(createEmptyCourse());
             setShowCreateModal(true);
           }}
           className="btn-primary flex items-center"
         >
           <Plus className="w-4 h-4 mr-2" />
-          创建课程
+          {t("buttons.createCourse")}
         </button>
       </div>
 
@@ -205,22 +239,22 @@ const CourseManagement = () => {
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  课程编号
+                  {t("table.headers.courseId")}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  课程名称
+                  {t("table.headers.courseName")}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  讲师
+                  {t("table.headers.instructor")}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  状态
+                  {t("table.headers.status")}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  课程资料
+                  {t("table.headers.materials")}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  操作
+                  {t("table.headers.actions")}
                 </th>
               </tr>
             </thead>
@@ -234,7 +268,7 @@ const CourseManagement = () => {
                     {course.title}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {course.instructor || "未指定"}
+                    {course.instructor || t("placeholders.notAssigned")}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span
@@ -249,25 +283,47 @@ const CourseManagement = () => {
                     <div className="max-w-xs">
                       {course.materials && course.materials.length > 0 ? (
                         <div className="space-y-1">
-                          {course.materials
-                            .slice(0, 2)
-                            .map((material, index) => (
-                              <div
-                                key={index}
-                                className="text-xs text-blue-600 hover:text-blue-800 cursor-pointer flex items-center"
-                              >
-                                <FileText className="w-3 h-3 mr-1" />
-                                {material.split("/").pop()}
-                              </div>
-                            ))}
-                          {course.materials.length > 2 && (
-                            <div className="text-xs text-gray-500">
-                              +{course.materials.length - 2} 更多...
+                          {(expandedMaterials[course.id]
+                            ? course.materials
+                            : course.materials.slice(0, 2)
+                          ).map((material, index) => (
+                            <div
+                              key={index}
+                              onClick={() => handleMaterialClick(material)}
+                              className="text-xs text-blue-600 hover:text-blue-800 hover:underline cursor-pointer flex items-center"
+                              role="button"
+                              tabIndex={0}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter" || e.key === " ") {
+                                  e.preventDefault();
+                                  handleMaterialClick(material);
+                                }
+                              }}
+                            >
+                              <FileText className="w-3 h-3 mr-1" />
+                              {material.split("/").pop()}
                             </div>
+                          ))}
+                          {course.materials.length > 2 && (
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                toggleMaterialsExpanded(course.id);
+                              }}
+                              className="text-xs text-blue-600 hover:text-blue-800 hover:underline cursor-pointer font-medium"
+                            >
+                              {expandedMaterials[course.id]
+                                ? t("materials.showLess")
+                                : t("materials.more", {
+                                    count: course.materials.length - 2,
+                                  })}
+                            </button>
                           )}
                         </div>
                       ) : (
-                        <span className="text-gray-400">暂无资料</span>
+                        <span className="text-gray-400">
+                          {t("materials.empty")}
+                        </span>
                       )}
                     </div>
                   </td>
@@ -276,21 +332,24 @@ const CourseManagement = () => {
                       <button
                         onClick={() => handleViewCourse(course)}
                         className="text-blue-600 hover:text-blue-900"
-                        title="查看详情"
+                        title={t("tooltips.view")}
+                        aria-label={t("tooltips.view")}
                       >
                         <Eye className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleEditCourseClick(course)}
                         className="text-green-600 hover:text-green-900"
-                        title="编辑课程"
+                        title={t("tooltips.edit")}
+                        aria-label={t("tooltips.edit")}
                       >
                         <Edit className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleDeleteCourse(course.id)}
                         className="text-red-600 hover:text-red-900"
-                        title="删除课程"
+                        title={t("tooltips.delete")}
+                        aria-label={t("tooltips.delete")}
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -308,14 +367,15 @@ const CourseManagement = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">
-              创建新课程
+              {t("modals.create.title")}
             </h3>
 
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    课程标题 *
+                    <span>{t("form.labels.courseTitle")}</span>
+                    <span className="text-red-500"> *</span>
                   </label>
                   <input
                     type="text"
@@ -327,12 +387,12 @@ const CourseManagement = () => {
                       }))
                     }
                     className="input-field"
-                    placeholder="请输入课程标题"
+                    placeholder={t("form.placeholders.courseTitle")}
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    讲师
+                    {t("form.labels.instructor")}
                   </label>
                   <input
                     type="text"
@@ -344,14 +404,15 @@ const CourseManagement = () => {
                       }))
                     }
                     className="input-field"
-                    placeholder="请输入讲师姓名"
+                    placeholder={t("form.placeholders.instructor")}
                   />
                 </div>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  课程描述 *
+                  <span>{t("form.labels.description")}</span>
+                  <span className="text-red-500"> *</span>
                 </label>
                 <textarea
                   value={newCourse.description}
@@ -362,14 +423,14 @@ const CourseManagement = () => {
                     }))
                   }
                   className="input-field h-24"
-                  placeholder="请输入课程描述"
+                  placeholder={t("form.placeholders.description")}
                 />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    课程时长
+                    {t("form.labels.duration")}
                   </label>
                   <input
                     type="text"
@@ -381,12 +442,12 @@ const CourseManagement = () => {
                       }))
                     }
                     className="input-field"
-                    placeholder="如：40小时"
+                    placeholder={t("form.placeholders.duration")}
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    难度级别
+                    {t("form.labels.difficulty")}
                   </label>
                   <select
                     value={newCourse.difficulty}
@@ -398,14 +459,16 @@ const CourseManagement = () => {
                     }
                     className="input-field"
                   >
-                    <option value="初级">初级</option>
-                    <option value="中级">中级</option>
-                    <option value="高级">高级</option>
+                    {DIFFICULTY_KEYS.map((difficulty) => (
+                      <option key={difficulty} value={difficulty}>
+                        {t(`difficultyLevels.${difficulty}`)}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    状态
+                    {t("form.labels.status")}
                   </label>
                   <select
                     value={newCourse.status}
@@ -417,9 +480,11 @@ const CourseManagement = () => {
                     }
                     className="input-field"
                   >
-                    <option value="draft">草稿</option>
-                    <option value="published">已发布</option>
-                    <option value="archived">已归档</option>
+                    {STATUS_KEYS.map((status) => (
+                      <option key={status} value={status}>
+                        {t(`status.${status}`)}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -430,10 +495,10 @@ const CourseManagement = () => {
                 onClick={() => setShowCreateModal(false)}
                 className="btn-outline"
               >
-                取消
+                {t("buttons.cancel")}
               </button>
               <button onClick={handleCreateCourse} className="btn-primary">
-                创建课程
+                {t("buttons.createCourse")}
               </button>
             </div>
           </div>
@@ -445,14 +510,15 @@ const CourseManagement = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">
-              编辑课程
+              {t("modals.edit.title")}
             </h3>
 
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    课程标题 *
+                    <span>{t("form.labels.courseTitle")}</span>
+                    <span className="text-red-500"> *</span>
                   </label>
                   <input
                     type="text"
@@ -464,12 +530,12 @@ const CourseManagement = () => {
                       }))
                     }
                     className="input-field"
-                    placeholder="请输入课程标题"
+                    placeholder={t("form.placeholders.courseTitle")}
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    讲师
+                    {t("form.labels.instructor")}
                   </label>
                   <input
                     type="text"
@@ -481,14 +547,15 @@ const CourseManagement = () => {
                       }))
                     }
                     className="input-field"
-                    placeholder="请输入讲师姓名"
+                    placeholder={t("form.placeholders.instructor")}
                   />
                 </div>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  课程描述 *
+                  <span>{t("form.labels.description")}</span>
+                  <span className="text-red-500"> *</span>
                 </label>
                 <textarea
                   value={selectedCourse.description}
@@ -499,14 +566,14 @@ const CourseManagement = () => {
                     }))
                   }
                   className="input-field h-24"
-                  placeholder="请输入课程描述"
+                  placeholder={t("form.placeholders.description")}
                 />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    课程时长
+                    {t("form.labels.duration")}
                   </label>
                   <input
                     type="text"
@@ -518,15 +585,15 @@ const CourseManagement = () => {
                       }))
                     }
                     className="input-field"
-                    placeholder="如：40小时"
+                    placeholder={t("form.placeholders.duration")}
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    难度级别
+                    {t("form.labels.difficulty")}
                   </label>
                   <select
-                    value={selectedCourse.difficulty || "初级"}
+                    value={normalizeDifficulty(selectedCourse.difficulty)}
                     onChange={(e) =>
                       setSelectedCourse((prev) => ({
                         ...prev,
@@ -535,14 +602,16 @@ const CourseManagement = () => {
                     }
                     className="input-field"
                   >
-                    <option value="初级">初级</option>
-                    <option value="中级">中级</option>
-                    <option value="高级">高级</option>
+                    {DIFFICULTY_KEYS.map((difficulty) => (
+                      <option key={difficulty} value={difficulty}>
+                        {t(`difficultyLevels.${difficulty}`)}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    状态
+                    {t("form.labels.status")}
                   </label>
                   <select
                     value={selectedCourse.status || "draft"}
@@ -554,9 +623,11 @@ const CourseManagement = () => {
                     }
                     className="input-field"
                   >
-                    <option value="draft">草稿</option>
-                    <option value="published">已发布</option>
-                    <option value="archived">已归档</option>
+                    {STATUS_KEYS.map((status) => (
+                      <option key={status} value={status}>
+                        {t(`status.${status}`)}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -567,10 +638,10 @@ const CourseManagement = () => {
                 onClick={() => setShowEditModal(false)}
                 className="btn-outline"
               >
-                取消
+                {t("buttons.cancel")}
               </button>
               <button onClick={handleEditCourse} className="btn-primary">
-                保存更改
+                {t("buttons.saveChanges")}
               </button>
             </div>
           </div>
@@ -582,20 +653,20 @@ const CourseManagement = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">
-              课程详情
+              {t("modals.view.title")}
             </h3>
 
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    课程编号
+                    {t("labels.courseId")}
                   </label>
                   <p className="text-sm text-gray-900">{selectedCourse.id}</p>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    课程名称
+                    {t("labels.courseTitle")}
                   </label>
                   <p className="text-sm text-gray-900">
                     {selectedCourse.title}
@@ -603,15 +674,15 @@ const CourseManagement = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    讲师
+                    {t("labels.instructor")}
                   </label>
                   <p className="text-sm text-gray-900">
-                    {selectedCourse.instructor || "未指定"}
+                    {selectedCourse.instructor || t("placeholders.notAssigned")}
                   </p>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    状态
+                    {t("labels.status")}
                   </label>
                   <span
                     className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(
@@ -623,25 +694,25 @@ const CourseManagement = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    课程时长
+                    {t("labels.courseDuration")}
                   </label>
                   <p className="text-sm text-gray-900">
-                    {selectedCourse.duration || "未设置"}
+                    {selectedCourse.duration || t("placeholders.notSet")}
                   </p>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    难度级别
+                    {t("labels.difficulty")}
                   </label>
                   <p className="text-sm text-gray-900">
-                    {selectedCourse.difficulty || "初级"}
+                    {getDifficultyLabel(selectedCourse.difficulty)}
                   </p>
                 </div>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  课程描述
+                  {t("labels.courseDescription")}
                 </label>
                 <p className="text-sm text-gray-900">
                   {selectedCourse.description}
@@ -650,7 +721,7 @@ const CourseManagement = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  课程资料
+                  {t("labels.materials")}
                 </label>
                 {selectedCourse.materials &&
                 selectedCourse.materials.length > 0 ? (
@@ -658,7 +729,16 @@ const CourseManagement = () => {
                     {selectedCourse.materials.map((material, index) => (
                       <div
                         key={index}
-                        className="flex items-center text-sm text-blue-600"
+                        onClick={() => handleMaterialClick(material)}
+                        className="flex items-center text-sm text-blue-600 hover:text-blue-800 hover:underline cursor-pointer"
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            handleMaterialClick(material);
+                          }
+                        }}
                       >
                         <FileText className="w-4 h-4 mr-2" />
                         {material.split("/").pop()}
@@ -666,29 +746,31 @@ const CourseManagement = () => {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-sm text-gray-400">暂无资料</p>
+                  <p className="text-sm text-gray-400">
+                    {t("materials.empty")}
+                  </p>
                 )}
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    创建时间
+                    {t("labels.createdAt")}
                   </label>
                   <p className="text-sm text-gray-900">
                     {selectedCourse.createdAt
                       ? new Date(selectedCourse.createdAt).toLocaleString()
-                      : "未知"}
+                      : t("placeholders.unknown")}
                   </p>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    更新时间
+                    {t("labels.updatedAt")}
                   </label>
                   <p className="text-sm text-gray-900">
                     {selectedCourse.updatedAt
                       ? new Date(selectedCourse.updatedAt).toLocaleString()
-                      : "未知"}
+                      : t("placeholders.unknown")}
                   </p>
                 </div>
               </div>
@@ -699,7 +781,7 @@ const CourseManagement = () => {
                 onClick={() => setShowViewModal(false)}
                 className="btn-outline"
               >
-                关闭
+                {t("buttons.close")}
               </button>
             </div>
           </div>

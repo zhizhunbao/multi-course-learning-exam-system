@@ -108,5 +108,12 @@
   },
   "time": {
     "format": "{{minutes}}:{{seconds}}"
+  },
+  "chapterList": {
+    "subtitle": "Select a question bank to start practicing",
+    "practice": "Practice",
+    "startPractice": "Start Practice",
+    "noQuestions": "No Question Banks",
+    "noQuestionsDesc": "There are no practice question banks available for this course yet"
   }
 }

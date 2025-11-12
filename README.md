@@ -1,178 +1,245 @@
-# 多课程学习与考试系统
+# Multi-Course Learning and Examination System
 
-一个支持多课程的学习与考试平台，包含学习、练习、实验、考试四个核心模块。
+A comprehensive learning and examination platform supporting multiple courses with four core modules: Learning, Practice, Experiment, and Exam.
 
-## 项目概述
+## Project Overview
 
-- **项目名称**: 多课程学习与考试系统
-- **GitHub 项目名**: multi-course-learning-exam-system
-- **项目描述**: 一个支持多课程的学习与考试平台，包含学习、练习、实验、考试四个核心模块
-- **目标用户**: 学生、教师、教育机构
-- **使用场景**: 在线教育、课程学习、技能培训、考试评估
-- **部署地址**: https://zhizhunbao.github.io/multi-course-learning-exam-system/
+- **Project Name**: Multi-Course Learning and Examination System
+- **GitHub Repository**: multi-course-learning-exam-system
+- **Description**: A comprehensive platform supporting multiple courses with integrated learning, practice, experiment, and examination modules
+- **Target Users**: Students, Teachers, Educational Institutions
+- **Use Cases**: Online Education, Course Learning, Skills Training, Exam Assessment
+- **Live Demo**: https://zhizhunbao.github.io/multi-course-learning-exam-system/
 
-## 技术栈
+## Tech Stack
 
-- **前端框架**: React 18
-- **构建工具**: Vite
-- **样式方案**: Tailwind CSS
-- **状态管理**: React Context + useReducer
-- **路由**: React Router v6
-- **国际化**: react-i18next
-- **部署**: GitHub Pages
-- **其他依赖**:
-  - lucide-react (图标)
-  - framer-motion (动画)
-  - react-pdf、pdfjs-dist (PDF 处理)
-  - react-dropzone (文件上传)
+- **Frontend Framework**: React 18
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **State Management**: React Context + useReducer
+- **Routing**: React Router v6
+- **Internationalization**: react-i18next (English & Chinese)
+- **Deployment**: GitHub Pages
+- **Key Dependencies**:
+  - lucide-react (Icons)
+  - framer-motion (Animations)
+  - react-pdf, pdfjs-dist (PDF Processing)
+  - react-markdown (Markdown Rendering)
+  - markmap-lib, markmap-view (Mind Mapping)
+  - katex (Mathematical Expressions)
+  - d3 (Data Visualization)
 
-## 功能特性
+## Features
 
-### 核心模块
+### Core Modules
 
-- **学习模块**: 课程内容展示、进度跟踪、笔记功能
-- **练习模块**: 练习题集、答题记录、错题本
-- **实验模块**: 实验指导、代码编辑器、结果验证
-- **考试模块**: 在线考试、计时功能、成绩统计
+- **Learning Module**:
 
-### 用户系统
+  - Course content display with Markdown/PDF support
+  - Progress tracking with visual indicators
+  - Interactive note-taking functionality
+  - Multi-language support (English/Chinese)
+  - Mind map visualization for course structures
 
-- 简化登录（仅需姓名）
-- 角色管理（管理员/普通用户）
-- 本地状态存储
-- 个人中心
+- **Practice Module**:
 
-### 课程管理
+  - Dynamic question bank with multiple sets per course
+  - Real-time answer recording and validation
+  - Display of available practice sets per course
+  - Time tracking for practice sessions
+  - Wrong answer collection for review
 
-- 课程列表、课程详情、章节导航
-- 支持动态添加新课程
-- 模块化课程结构
+- **Experiment Module**:
 
-### 管理员功能
+  - Interactive experiment guides
+  - Built-in code editor with syntax highlighting
+  - Result validation and feedback
+  - Support for multiple programming languages
 
-- 课程创建、PDF 上传、内容管理
-- 用户权限控制
-- PDF 资料管理：批量上传 PDF 文件、PDF 预览、内容提取
-- AI 内容生成：基于 PDF 自动生成课程内容、练习题、考试题目
+- **Exam Module**:
+  - Timed online examinations
+  - Multiple question types (Multiple Choice, Fill-in-the-Blank, Short Answer, Programming)
+  - Automatic scoring and statistics
+  - Exam history and performance analytics
 
-## 项目结构
+### User System
+
+- Simplified login (name-based authentication)
+- Role-based access control (Admin/Student/Teacher)
+- Local state persistence
+- User profile management
+
+### Course Management
+
+- Comprehensive course listing with metadata
+- Dynamic course addition support
+- Modular course structure
+- Course progress tracking
+- Chapter navigation and bookmarking
+
+### Admin Features
+
+- Course creation and management
+- PDF upload and content management
+- User permission control
+- Batch PDF processing with preview
+- Content extraction and organization
+
+## Current Courses
+
+The system currently supports three graduate-level AI courses:
+
+1. **CST8502 - Machine Learning**
+
+   - 12 lectures, 8 labs, 4 assignments, 2 exams
+   - Topics: Data Preprocessing, Supervised/Unsupervised Learning, Model Evaluation, Deep Learning
+
+2. **CST8503 - Knowledge Representation and Reasoning**
+
+   - 12 lectures, 8 labs, 4 assignments, 2 exams
+   - Topics: Predicate Logic, Prolog Programming, Knowledge Graphs, Inference Engines
+
+3. **CST8504 - AI Techniques**
+   - 12 lectures, 8 labs, 4 assignments, 2 exams
+   - Topics: Python Programming, NumPy/Pandas, Data Visualization, Algorithm Optimization
+
+## Project Structure
 
 ```
 src/
-├── components/          # 组件目录
-│   ├── common/         # 通用组件
-│   ├── learning/       # 学习模块组件
-│   ├── practice/       # 练习模块组件
-│   ├── experiment/     # 实验模块组件
-│   ├── exam/          # 考试模块组件
-│   └── admin/         # 管理员组件
-├── context/           # React Context
-├── hooks/             # 自定义 Hooks
-├── utils/             # 工具函数
-├── data/              # 数据文件
-│   └── courses/       # 课程数据
-├── assets/            # 静态资源
-└── i18n.js           # 国际化配置
+├── common/                  # Common utilities
+│   ├── modules/            # Shared modules
+│   │   ├── Layout/        # Main layout
+│   │   ├── Login/         # Authentication
+│   │   └── Markdown/      # Markdown renderer
+│   └── i18n.js            # Internationalization config
+├── modules/                # Feature modules
+│   ├── admin/             # Admin management
+│   ├── course-management/ # Course CRUD operations
+│   ├── learning/          # Learning module
+│   ├── practice/          # Practice module
+│   ├── experiment/        # Experiment module
+│   └── exam/             # Exam module
+├── context/               # React Context providers
+├── services/              # API and data services
+└── App.jsx               # Main application component
+
+public/
+└── pdfs/                  # Course materials
+    ├── machine-learning/
+    ├── knowledge-reasoning/
+    └── ai-techniques/
 ```
 
-## 安装和运行
+## Installation and Setup
 
-### 环境要求
+### Prerequisites
 
 - Node.js 18+
-- npm 或 yarn
+- npm or yarn
 
-### 安装依赖
+### Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 开发环境运行
+### Development Server
 
 ```bash
 npm run dev
 ```
 
-### 构建生产版本
+Server runs on `http://localhost:3000`
+
+### Build for Production
 
 ```bash
 npm run build
 ```
 
-### 预览生产版本
+### Preview Production Build
 
 ```bash
 npm run preview
 ```
 
-## 部署
+## Deployment
 
-项目使用 GitHub Pages 进行部署，通过 GitHub Actions 自动构建和部署。
+The project uses GitHub Pages with automated deployment via GitHub Actions.
 
-### 部署步骤
+### Deployment Process
 
-1. 将代码推送到 main 分支
-2. GitHub Actions 会自动构建项目
-3. 构建完成后自动部署到 GitHub Pages
+1. Push code to the `main` branch
+2. GitHub Actions automatically builds the project
+3. Built artifacts are deployed to GitHub Pages
+4. Site is accessible at the deployment URL
 
-### 访问地址
+### Access URL
 
-- 在线访问: https://zhizhunbao.github.io/multi-course-learning-exam-system/
+- Live Site: https://zhizhunbao.github.io/multi-course-learning-exam-system/
 
-## 使用说明
+## User Guide
 
-### 用户登录
+### Logging In
 
-1. 访问系统首页
-2. 输入姓名和选择角色（学生/教师/管理员）
-3. 点击登录进入系统
+1. Navigate to the system homepage
+2. Enter your name and select a role (Student/Teacher/Admin)
+3. Click login to access the system
 
-### 学习流程
+### Learning Workflow
 
-1. 在仪表板选择课程
-2. 进入学习模块查看课程内容
-3. 完成练习和实验
-4. 参加考试评估
+1. Select a course from the dashboard
+2. Enter the Learning module to view course content
+3. Complete practice exercises and experiments
+4. Take exams for assessment
 
-### 管理员功能
+### Admin Workflow
 
-1. 使用管理员账户登录
-2. 进入管理面板
-3. 创建和管理课程
-4. 上传 PDF 文件生成课程内容
+1. Login with admin credentials
+2. Access the admin panel
+3. Create and manage courses
+4. Upload PDF materials to generate course content
 
-## 开发规范
+## Development Guidelines
 
-- 使用 JSX 文件格式，不使用 TypeScript
-- 遵循 React 最佳实践
-- 使用 Tailwind CSS 进行样式设计
-- 保持代码简洁和可读性
-- 使用 MCP 工具进行代码生成和文件操作
+- Use JSX file format (no TypeScript)
+- Follow React best practices and hooks conventions
+- Style with Tailwind CSS utility classes
+- Maintain code readability and modularity
+- Leverage React Context for state management
+- Implement proper error handling and loading states
 
-## 贡献指南
+## Contributing
 
-1. Fork 项目
-2. 创建功能分支
-3. 提交更改
-4. 推送到分支
-5. 创建 Pull Request
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 许可证
+## License
 
-本项目采用 MIT 许可证。
+This project is licensed under the MIT License.
 
-## 联系方式
+## Contact
 
-如有问题或建议，请通过以下方式联系：
+For questions or suggestions, please contact us through:
 
-- GitHub Issues: [项目 Issues 页面]
-- 邮箱: [联系邮箱]
+- GitHub Issues: [Project Issues Page](https://github.com/zhizhunbao/multi-course-learning-exam-system/issues)
+- Email: wang1059@algonquinlive.com
 
-## 更新日志
+## Changelog
 
-- **2024-12-19**: 修复了 ExamModule 中 undefined options 导致的 map 错误，提升了系统稳定性
+### Recent Updates
+
+- **2025-11-12**: Updated README to English version with comprehensive documentation
+- **2025-11-10**: Added practice set count display in course selection
+- **2025-11-08**: Enhanced Practice Module with dynamic question bank loading
+- **2025-11-05**: Fixed undefined options error in ExamModule, improved system stability
+- **2025-10-28**: Implemented multi-language support with English and Chinese locales
+- **2025-10-20**: Integrated Markdown rendering with KaTeX support for mathematical expressions
 
 ---
 
-© 2024 亚岗昆学院. All rights reserved.
+© 2025 Algonquin College. All rights reserved.

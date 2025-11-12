@@ -17,6 +17,11 @@
   "module": {
     "title": "实验模块"
   },
+  "comingSoon": {
+    "title": "实验模块开发中",
+    "description": "我们正在构建动手实验和交互式编程体验。",
+    "note": "感谢您的耐心等待，功能即将上线。"
+  },
   "navigation": {
     "backToCourse": "返回课程",
     "experiment": "实验"
