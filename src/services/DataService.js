@@ -175,28 +175,67 @@ class DataService {
   async getAvailableQuestionSets(courseId, language = "en") {
     const sets = [];
 
-    // 尝试加载默认题库（第一套）
-    const set1 = await this.getMarkdownQuestions(courseId, language);
-    if (set1) {
-      sets.push({
-        id: "set1",
-        title: language === "en" ? "Question Set 1" : "第一套题",
-        description:
-          language === "en" ? "Original exam questions" : "原始考试题库",
-        ...set1,
-      });
-    }
+    // 定义所有可能的题库文件名（不包含语言后缀）
+    const possibleSets = [
+      {
+        fileNames: ["exam-questions"],
+        id: "exam-questions",
+        titleEn: "Comprehensive Exam Questions",
+        titleZh: "综合考试题库",
+        descEn: "Complete exam question bank covering all topics",
+        descZh: "涵盖所有主题的完整考试题库",
+      },
+      {
+        fileNames: ["situation-calculus-planning-questions"],
+        id: "situation-calculus-planning",
+        titleEn: "Situation Calculus & Planning",
+        titleZh: "情境演算与规划",
+        descEn: "Questions about situation calculus and planning in Prolog",
+        descZh: "关于Prolog中的情境演算和规划的题目",
+      },
+    ];
 
-    // 尝试加载第二套题库
-    const set2 = await this.getMarkdownQuestions(courseId, language, "set2");
-    if (set2) {
-      sets.push({
-        id: "set2",
-        title: language === "en" ? "Question Set 2" : "第二套题",
-        description:
-          language === "en" ? "Additional exam questions" : "新增考试题库",
-        ...set2,
-      });
+    // 遍历所有可能的题库
+    for (const setConfig of possibleSets) {
+      let content = null;
+
+      // 尝试加载该题库的不同文件名变体
+      for (const baseName of setConfig.fileNames) {
+        // 构建文件路径
+        const fileNames = [];
+        if (language === "en") {
+          fileNames.push(
+            `questions/${courseId}/${baseName}-en.md`,
+            `questions/${courseId}/${baseName}.md`
+          );
+        } else {
+          fileNames.push(
+            `questions/${courseId}/${baseName}.md`,
+            `questions/${courseId}/${baseName}-en.md`
+          );
+        }
+
+        // 尝试加载文件
+        for (const fileName of fileNames) {
+          content = await this.loadMarkdownFile(fileName);
+          if (content) break;
+        }
+
+        if (content) break;
+      }
+
+      // 如果找到内容，添加到题库列表
+      if (content) {
+        sets.push({
+          id: setConfig.id,
+          title: language === "en" ? setConfig.titleEn : setConfig.titleZh,
+          description: language === "en" ? setConfig.descEn : setConfig.descZh,
+          courseId,
+          language,
+          format: "markdown",
+          content,
+        });
+      }
     }
 
     return sets;

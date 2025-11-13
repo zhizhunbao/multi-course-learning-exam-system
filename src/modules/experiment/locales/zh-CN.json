@@ -72,7 +72,8 @@
     "javascript": "JavaScript",
     "python": "Python",
     "java": "Java",
-    "cpp": "C++"
+    "cpp": "C++",
+    "prolog": "Prolog"
   },
   "experiments": {
     "title": "实验",

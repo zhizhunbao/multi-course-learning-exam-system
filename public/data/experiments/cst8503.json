@@ -67,6 +67,76 @@
           "expected": "flu"
         }
       ]
+    },
+    {
+      "id": 3,
+      "title": "情境演算与规划",
+      "description": "使用Prolog实现情境演算和规划系统",
+      "order": 3,
+      "instructions": [
+        "理解情境演算的基本概念",
+        "实现前提条件公理",
+        "编写后继状态公理",
+        "实现广度优先规划算法",
+        "测试积木世界规划问题"
+      ],
+      "hints": [
+        "情境用列表表示：[]表示初始情境",
+        "流元必须包含情境参数",
+        "前提条件检查行动是否可执行",
+        "后继状态公理描述行动效果",
+        "广度优先搜索避免无限循环"
+      ],
+      "template": "% 情境演算与规划 - 积木世界\n\n% ===== 对象定义 =====\nblock_exists(block(a)).\nblock_exists(block(b)).\nblock_exists(block(c)).\n\nlocation_exists(location(1)).\nlocation_exists(location(2)).\nlocation_exists(location(3)).\nlocation_exists(location(4)).\n\n% ===== 初始状态 =====\n% 初始情境用空列表 [] 表示\nclear(location(2), []).\nclear(location(4), []).\nclear(block(b), []).\nclear(block(c), []).\n\non(block(a), location(1), []).\non(block(b), location(3), []).\non(block(c), block(a), []).\n\n% ===== 前提条件公理 =====\n% 定义何时可以执行 move(Block,From,To) 行动\nposs([move(Block,From,To)|S]) :-\n    block_exists(Block),\n    clear(Block, S),\n    (location_exists(To) ; block_exists(To)),\n    Block \\= To,\n    clear(To, S),\n    (location_exists(From) ; block_exists(From)),\n    on(Block, From, S).\n\n% ===== 后继状态公理 =====\n% clear(X,S) - 位置X在情境S中是清空的\n\n% 规则1：如果从X移走某物，X变为清空\nclear(X, [move(Z,X,Y)|S]) :-\n    poss([move(Z,X,Y)|S]).\n\n% 规则2：如果X已经清空且没有东西移动到X上，X保持清空\nclear(X, [A|S]) :-\n    poss([A|S]),\n    A \\= move(_,_,X),\n    clear(X, S).\n\n% on(X,Y,S) - 积木X在情境S中位于位置Y上\n\n% 规则1：如果将X移动到Y，则X在Y上\non(X, Y, [move(X,Z,Y)|S]) :-\n    poss([move(X,Z,Y)|S]).\n\n% 规则2：如果X已经在Y上且没有从Y移走，X保持在Y上\non(X, Y, [A|S]) :-\n    poss([A|S]),\n    A \\= move(X,Y,_),\n    on(X, Y, S).\n\n% ===== 规划算法 =====\n% 广度优先规划\nplan(Goal, Plan) :-\n    bposs(Plan),\n    Goal.\n\nbposs(S) :-\n    tryposs([], S).\n\n% 基础情况：S是一个有效的计划\ntryposs(S, S) :-\n    poss(S).\n\n% 递归情况：尝试增加一个行动\ntryposs(X, S) :-\n    tryposs([_|X], S).\n\n% ===== 查询示例 =====\n% 1. 测试单步移动\n% ?- on(block(b), location(2), S).\n% 预期结果: S = [move(block(b), location(3), location(2))]\n\n% 2. 测试清空位置\n% ?- clear(location(3), S).\n% 预期结果: S = [move(block(b), location(3), location(2))] 或其他有效计划\n\n% 3. 测试多步规划\n% ?- plan(on(block(a), block(b), S), S).\n% 预期结果: 一个将block(a)移到block(b)上的行动序列\n\n% 4. 测试复杂目标\n% ?- plan((on(block(a), block(b), S), on(block(b), block(c), S)), S).\n% 预期结果: 构建塔 c-b-a 的行动序列",
+      "testCases": [
+        {
+          "description": "测试单步移动 - 将block(b)移到location(2)",
+          "input": { "query": "on(block(b), location(2), S)" },
+          "expected": "S = [move(block(b), location(3), location(2))]"
+        },
+        {
+          "description": "测试清空位置 - 清空location(3)",
+          "input": { "query": "clear(location(3), S)" },
+          "expected": "S = [move(block(b), location(3), _)]"
+        },
+        {
+          "description": "测试前提条件检查 - 不能移动有东西在上面的积木",
+          "input": {
+            "query": "poss([move(block(a), location(1), location(2))|[]])"
+          },
+          "expected": "false"
+        },
+        {
+          "description": "测试后继状态 - 移动后位置变为清空",
+          "input": {
+            "query": "clear(block(a), [move(block(c), block(a), location(2))])"
+          },
+          "expected": "true"
+        },
+        {
+          "description": "测试规划算法 - 找到将block(c)移到location(2)的计划",
+          "input": { "query": "plan(on(block(c), location(2), S), S)" },
+          "expected": "S = [move(block(c), block(a), location(2))]"
+        }
+      ],
+      "references": [
+        {
+          "title": "情境演算讲义",
+          "path": "/pdfs/knowledge-reasoning/Course 10/CST8503_10_SituationCalculus.pdf"
+        },
+        {
+          "title": "规划讲义",
+          "path": "/pdfs/knowledge-reasoning/Course 8 Planning/CST8503_08_Planning.pdf"
+        },
+        {
+          "title": "积木世界规划代码",
+          "path": "/pdfs/knowledge-reasoning/Lab5 KR Blocks/blocks_world_planning.pl"
+        },
+        {
+          "title": "情境演算与规划考试题库",
+          "path": "/data/questions/cst8503/situation-calculus-planning-questions.md"
+        }
+      ]
     }
   ]
 }

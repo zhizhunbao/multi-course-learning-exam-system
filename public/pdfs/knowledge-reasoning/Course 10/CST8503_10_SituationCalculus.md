@@ -2,23 +2,6 @@
 
 _从 PDF 文档转换生成_
 
----
-
-## 目录
-
-- Note: first-order predicate calculus is actually an infinite family of
-- we want to do, for example
-- Example actions:
-- 3 blocks, 4 positions in the blocks world of this course
-- Examples of Fluents being used to make statements:
-- • Example situations
-- 1. This represents a course of action consisting of three actions, in order: pick_up(block(block1)),
-- 2. Similarity to peano number theory:
-- 3. Similarity to prolog lists, using the dot (.) functor notation
-- 1. The special situation where nothing has happened, S will be
-
----
-
 _注: 共提取了 1 张图片_
 
 ## 第 1 页
@@ -40,32 +23,19 @@ Note: first-order predicate calculus is actually an infinite family of languages
 
 First introduced by John McCarthy in 1963. Developed further by the KR group at the University of Toronto: see papers/books by Ray Reiter, Hector Levesque
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**什么是情境演算（Situation Calculus）？**
+**What is Situation Calculus?**
 
-- 情境演算是一种特殊的"语言"或"工具"，用来描述和推理会变化的世界
-- 就像用数学公式描述物理规律一样，情境演算用逻辑公式来描述"世界如何变化"
-- 它专门用来处理"动态世界"，也就是会随着时间或动作而改变的世界（比如积木世界、机器人世界等）
+Situation calculus is a formal language for describing and reasoning about dynamic worlds - environments where things change over time due to actions. Traditional logic can only describe static facts, but situation calculus allows us to express "what happens after performing an action."
 
-**为什么叫"一阶谓词语言"？**
+**Why "First-Order Predicate Language"?**
 
-- "一阶谓词"是一种逻辑表达方式，可以表示"某个东西具有某个属性"或"某些东西之间有某种关系"
-- 比如"积木 b1 在积木 b2 上面"就是一个谓词
-- "一阶"意思是我们可以描述对象和它们的属性，但不能描述"关于属性的属性"（那是二阶逻辑）
-- 一阶谓词演算实际上是一个语言家族，有很多变体，我们课程中用的是其中一种
+First-order predicate logic can express properties of objects and relationships between them (e.g., "block b1 is on block b2"). "First-order" means we describe objects and their properties, but not properties of properties (that would be second-order logic). The situation calculus we use is one member of this language family.
 
-**历史背景：**
+**Historical Context:**
 
-- 1963 年由 John McCarthy（人工智能领域的先驱之一）首次提出
-- 后来由多伦多大学的知识表示（KR）研究组进一步发展，特别是 Ray Reiter 和 Hector Levesque 等人的工作
-- 这是人工智能中知识表示和推理的重要理论基础
-
-**为什么需要情境演算？**
-
-- 在真实世界中，事物会变化：积木会被移动，机器人会改变位置，状态会随时间改变
-- 传统的逻辑只能描述"静态"的事实，无法表达"做了某个动作后会发生什么"
-- 情境演算解决了这个问题，让我们能够描述和推理动态变化的世界
+Introduced by AI pioneer John McCarthy in 1963, then further developed by the Knowledge Representation (KR) group at the University of Toronto, particularly Ray Reiter and Hector Levesque. It's a foundational theory for knowledge representation and reasoning in AI.
 
 ---
 
@@ -86,46 +56,25 @@ A domain is formalized by a number of axioms, namely:
 - Axioms describing the initial state of the world
 - The foundational axioms of the situation calculus
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**情境演算的三个基本元素：**
+**Three Basic Elements:**
 
-1. **动作（Actions）**
+1. **Actions** - Operations that can be performed in the world (e.g., "pick up block", "move block"). Actions are the only way to change the world.
 
-   - 就是在世界中可以执行的操作
-   - 比如"拿起积木"、"移动积木"、"放下积木"
-   - 动作是改变世界的唯一方式
-2. **流式谓词（Fluents）**
+2. **Fluents** - Predicates describing world state. Called "fluent" because their truth values flow/change as actions are executed (e.g., "block b1 is on block b2" may become false after a move action).
 
-   - 用来描述世界状态的谓词（逻辑表达式）
-   - "流式"的意思是这些谓词的真假值会随着动作的执行而改变
-   - 比如"积木 b1 在积木 b2 上面"这个状态，执行"移动"动作后可能会变成假
-3. **情境（Situations）**
+3. **Situations** - Action histories representing sequences of executed actions (e.g., "pick up, then move, then put down"). Situations record "what happened" to determine "what the current state is."
 
-   - 表示一系列动作的执行历史，也就是"动作序列"
-   - 比如"先拿起积木，再移动，再放下"就是一个情境
-   - 情境记录了"发生了什么"，从而决定了"现在是什么状态"
+**Formalizing a Domain with Axioms:**
 
-**如何形式化一个领域（用公理描述）：**
+1. **Action Precondition Axioms** - Specify "when can this action be executed" (e.g., can only move a block if nothing is on top of it).
 
-1. **动作前提条件公理（Action Precondition Axioms）**
+2. **Successor State Axioms** - Specify "how does a fluent change after an action" (e.g., after moving b1, `on(b1, b2)` becomes false, `on(b1, b3)` becomes true).
 
-   - 每个动作都需要一个前提条件公理
-   - 说明"在什么情况下可以执行这个动作"
-   - 比如"只有积木上面没有其他积木时，才能移动它"
-2. **后继状态公理（Successor State Axioms）**
+3. **Initial State Axioms** - Describe the world before any actions occur (the starting point for reasoning).
 
-   - 每个流式谓词都需要一个后继状态公理
-   - 说明"执行某个动作后，这个谓词会变成真还是假"
-   - 比如"移动积木 b1 后，'b1 在 b2 上'会变成假，'b1 在 b3 上'会变成真"
-3. **初始状态公理（Initial State Axioms）**
-
-   - 描述"在没有任何动作发生之前，世界是什么样子的"
-   - 这是推理的起点
-4. **基础公理（Foundational Axioms）**
-
-   - 情境演算本身的基础规则
-   - 这些是隐含的，我们主要关注上面的三种公理
+4. **Foundational Axioms** - Implicit rules of situation calculus itself (we focus on the above three types).
 
 ---
 
@@ -146,43 +95,25 @@ A domain is formalized by a number of axioms, namely:
 - Initial State axioms: what is true before any action happens?
 - Foundational Axioms: implicit for us -- we concentrate on the above
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**基本元素的更详细说明：**
+**Detailed Element Descriptions:**
 
-1. **动作（Actions）是"东西"**
+1. **Actions are "things"** - Actions are concrete entities that can be referenced like objects (e.g., `pick_up(block(b1))` is a specific action object).
 
-   - 动作是具体的实体，可以像对象一样被操作和引用
-   - 比如 `pick_up(block(b1))` 就是一个具体的动作对象
-2. **流式谓词（Fluents）依赖于情境**
+2. **Fluents depend on situations** - A fluent's truth value depends on which situation we're in. For example, `on(b1, b2, s)` means "in situation s, block b1 is on block b2." The same fluent may have different truth values in different situations.
 
-   - 流式谓词是描述世界状态的谓词，但它的真假值取决于"在哪个情境下"
-   - 比如 `on(b1, b2, s)` 表示"在情境 s 中，积木 b1 在积木 b2 上面"
-   - 同一个谓词在不同情境下可能有不同的真假值
-3. **情境（Situations）本质上是动作列表（从右到左读）**
+3. **Situations are essentially action lists (read right to left)** - For example, `do(put_down(b1), do(move(x,y), do(pick_up(b1), S)))` represents: starting from S, first execute pick_up(b1), then move(x,y), finally put_down(b1). Note: written outside-in, but read inside-out.
 
-   - 情境实际上就是一系列动作的列表
-   - 比如 `do(put_down(b1), do(move(x,y), do(pick_up(b1), S)))` 表示：
-     - 从初始状态 S 开始
-     - 先执行 pick_up(b1)
-     - 然后执行 move(x,y)
-     - 最后执行 put_down(b1)
-   - **注意**：虽然写的时候是从外到内（从后往前），但读的时候要从内到外（从前往后）
+**Understanding the Four Axiom Types:**
 
-**四种公理的通俗理解：**
+1. **Precondition Axioms** - Answer "when can this action be performed?" Like game rules specifying required conditions.
 
-1. **动作前提条件公理**：回答"什么时候可以做这个动作？"
+2. **Successor State Axioms** - Answer "what becomes true after this action?" Describe action effects and how they change world state.
 
-   - 就像游戏规则：只有满足某些条件才能执行某个操作
-2. **后继状态公理**：回答"做了这个动作后，什么会变成真？"
+3. **Initial State Axioms** - Answer "what is the world like initially?" The starting point for all reasoning.
 
-   - 描述动作的"效果"，也就是动作如何改变世界状态
-3. **初始状态公理**：回答"一开始世界是什么样子的？"
-
-   - 这是所有推理的起点，就像游戏的初始状态
-4. **基础公理**：情境演算的内在规则
-
-   - 这些规则是隐含的，我们不需要显式地写出来，但它们是整个系统的基础
+4. **Foundational Axioms** - The intrinsic rules of situation calculus itself (implicit, we don't write them explicitly).
 
 ---
 
@@ -199,24 +130,19 @@ A domain is a part of the world that's relevant to the reasoning we want to do, 
 - In a block-stacking domain, we would write down everything we can about blocks, stacking, moving, putting down, and so
 - If we want to represent a bigger subset of the world, there is more we need to write down to represent that world
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**什么是公理（Axioms）？**
+**What are Axioms?**
 
-- 公理就像是游戏规则或说明书中的基础设定。比如在象棋游戏中，"车只能走直线"就是一条公理
-- 它们是我们在描述某个领域时，一开始就确定下来的基本事实和规则
-- 不需要证明，而是作为推理的起点和基础
+Axioms are the foundational statements and rules we establish when describing a domain - like the basic rules in a game manual (e.g., "rooks move in straight lines" in chess). They don't need proof; they serve as the starting point for reasoning.
 
-**什么是领域（Domain）？**
+**What is a Domain?**
 
-- 领域就是我们关注的那个"小世界"。就像你玩积木游戏时，你只关心积木的摆放，不关心天气如何
-- 比如"积木世界"就是一个领域，我们只关心积木的位置、能否移动等，不关心积木的颜色、价格等其他信息
-- 领域越大，需要描述的内容就越多；领域越小，描述就越简单
+A domain is the specific "small world" we're focusing on. For example, in a blocks world domain, we care about block positions and movements, but not their colors or prices. The larger the domain, the more we need to describe; the smaller, the simpler the description.
 
-**为什么需要公理？**
+**Why Do We Need Axioms?**
 
-- 有了公理，计算机才能知道"什么情况下可以做什么"、"做了某个动作后会发生什么"
-- 就像给机器人一本操作手册，告诉它在这个领域里应该遵循什么规则
+Axioms allow computers to know "what can be done under what conditions" and "what happens after an action." They're like an operations manual for a robot, specifying the rules to follow in that domain.
 
 ---
 
@@ -234,31 +160,21 @@ Example actions:
 - `move_to(location(x),location(y))`
 - `put_down(block(block1))`
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**什么是动作（Actions）？**
+**What are Actions?**
 
-- 动作就是能够改变世界状态的操作。就像你在游戏中点击"移动"按钮，角色就会从一个位置走到另一个位置
-- 动作是连接"现在是什么样"和"接下来会变成什么样"的桥梁
-- 每个动作执行后，世界会从一个状态转换到另一个状态
+Actions are operations that change world state - the bridge between "what is" and "what becomes." Each action execution transitions the world from one state to another. Actions are the only mechanism for change; without them, the world stays unchanged.
 
-**为什么只关注简单动作？**
+**Why Focus on Simple Actions?**
 
-- 我们这里只研究"简单动作"，意思是动作的效果不随时间变化
-- 比如"拿起积木"这个动作，无论什么时候执行，效果都是一样的：积木从桌上到了你手里
-- 虽然这个理论也能处理复杂动作（比如同时做多个动作）或随时间变化的动作，但为了便于理解，我们先从简单的开始
+We study simple actions whose effects don't depend on time. For example, "pick up block" has the same effect whenever executed. While the formalism can handle complex/concurrent actions, we start simple for clarity.
 
-**动作的作用：**
+**Example Actions:**
 
-- 动作是改变领域的唯一方式。如果没有动作，世界就会永远保持原样
-- 就像积木游戏：如果没有"拿起"、"移动"、"放下"这些动作，积木就永远在原地不动
-- 通过定义动作，我们告诉系统"可以做什么"以及"做了之后会发生什么"
-
-**示例动作的含义：**
-
-- `pick_up(block(block1))`：拿起积木 1（从桌上或其他地方拿起）
-- `move_to(location(x),location(y))`：移动到位置 x 到位置 y（改变位置）
-- `put_down(block(block1))`：放下积木 1（把积木放到某个位置）
+- `pick_up(block(block1))` - Pick up block 1
+- `move_to(location(x),location(y))` - Move from location x to y
+- `put_down(block(block1))` - Put down block 1
 
 ---
 
@@ -282,45 +198,31 @@ move(block(b1),block(b1),position(p1))
 …. etc …. etc …
 ```
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**什么是动作模式（Action Schema）？**
+**What is an Action Schema?**
 
-- 动作模式就像一个"模板"或"公式"，用一个表达式就能代表很多个具体的动作
-- 就像数学中的函数 `f(x)` 可以代表无数个具体的值一样，`move(Block,Src,Dst)` 可以代表所有可能的移动动作
-- 这样做的好处是：不用一个一个地列出所有动作，用一个模式就能概括所有情况
+An action schema is a template representing many individual actions with a single expression. Like a mathematical function `f(x)` representing countless values, `move(Block,Src,Dst)` represents all possible move actions.
 
-**为什么使用动作模式？**
+**Why Use Action Schemas?**
 
-- **节省空间**：如果积木世界有 3 个积木和 4 个位置，可能的移动动作有 147 种（3×7×7），如果都列出来会非常长
-- **更清晰**：用一个模式 `move(Block,Src,Dst)` 就能清楚地表达"移动积木"这个动作的本质
-- **更灵活**：当积木或位置数量变化时，不需要重新定义所有动作，只需要修改参数
+- **Space efficient**: With 3 blocks and 4 positions, there are 147 possible moves (3×7×7). Listing all would be lengthy.
+- **Clarity**: One pattern `move(Block,Src,Dst)` captures the essence of "moving a block."
+- **Flexibility**: When blocks or positions change, only parameters need updating, not all actions.
 
-**如何理解 `move(Block,Src,Dst)`？**
+**Understanding `move(Block,Src,Dst)`:**
 
-- `Block`：要移动的积木（比如 b1, b2, b3）
-- `Src`：源位置，积木现在在哪里（可以是另一个积木的上面，或者某个位置）
-- `Dst`：目标位置，积木要移动到哪里（可以是另一个积木的上面，或者某个位置）
+- `Block` - The block to move (b1, b2, b3)
+- `Src` - Source position where block currently is (another block or a position)
+- `Dst` - Destination where block moves to (another block or a position)
 
-**为什么是 3×7×7 = 147 种组合？**
+**Why 3×7×7 = 147 combinations?**
 
-- **3 个积木**：b1, b2, b3（第一个参数有 3 种选择）
-- **7 个源位置**：3 个积木 + 4 个位置 = 7 个可能的位置（第二个参数有 7 种选择）
-  - 积木可以放在：block(b1)上、block(b2)上、block(b3)上、position(p1)、position(p2)、position(p3)、position(p4)
-- **7 个目标位置**：同样，积木可以移动到 7 个位置中的任何一个（第三个参数有 7 种选择）
-- 所以总共有：3 × 7 × 7 = 147 种可能的移动动作
+- 3 blocks to move
+- 7 source positions (3 blocks + 4 positions)
+- 7 destination positions (3 blocks + 4 positions)
 
-**示例动作的含义：**
-
-- `move(block(b1),block(b1),block(b1))`：把积木 b1 从 b1 上移动到 b1 上（实际上就是不动，但这是理论上可能的动作）
-- `move(block(b1),block(b1),block(b2))`：把积木 b1 从 b1 上移动到 b2 上
-- `move(block(b1),block(b1),block(b3))`：把积木 b1 从 b1 上移动到 b3 上
-- `move(block(b1),block(b1),position(p1))`：把积木 b1 从 b1 上移动到位置 p1
-
-**实际应用：**
-
-- 在实际的积木世界中，并不是所有 147 种组合都是有效的（比如不能把积木放在自己上面）
-- 但动作模式帮我们系统地思考所有可能性，然后通过"前提条件"来筛选出哪些动作是真正可以执行的
+**Note:** Not all 147 combinations are valid (e.g., can't move block onto itself). Action schemas help us systematically consider all possibilities, then use preconditions to filter which actions are actually executable.
 
 ---
 
@@ -338,55 +240,29 @@ Examples of Fluents being used to make statements:
 - `holding(block(block3),s)`
 - `position(location(x),location(y),s)`
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**什么是流式谓词（Fluents）？**
+**What are Fluents?**
 
-- **"流式"的含义**：流式谓词的真假值会"流动"变化，不是固定不变的
-- 就像水会流动一样，这些谓词描述的状态会随着动作的执行而改变
-- 它们之所以叫"流式"，是因为它们的真值会变化（fluent 在英文中有"流动的"意思）
+Fluents are predicates that take a situation argument. Called "fluent" because their truth values flow/change with actions (Latin "fluere" = to flow). Unlike static predicates (e.g., "2+2=4"), fluents are dynamic - they may be true now but false after an action.
 
-**流式谓词的特点：**
+**Fluent Characteristics:**
 
-1. **必须包含情境参数**
+1. **Must include situation parameter** - The last argument is always the situation, because the same fluent may have different truth values in different situations.
 
-   - 流式谓词的最后一个参数总是情境（situation）
-   - 因为同一个谓词在不同情境下可能有不同的真假值
-   - 比如"积木 b1 在 b2 上面"在初始状态可能是假的，但执行某些动作后可能变成真的
-2. **描述依赖于情境的世界状态**
+2. **Describe situation-dependent world state** - Fluents cannot exist independently; they must specify "in which situation" the state holds.
 
-   - 流式谓词用来描述"在某个情境下，世界是什么样子的"
-   - 它们不能单独存在，必须说明"在哪个情境下"这个状态才成立
+**Example Fluents:**
 
-**示例流式谓词的含义：**
+1. `on(block(block1),block(block2),s)` - In situation s, block1 is on block2. This binary relation may change after move actions.
 
-1. `on(block(block1),block(block2),s)`
+2. `holding(block(block3),s)` - In situation s, holding block3. Becomes true after pick_up, false after put_down.
 
-   - 含义：在情境 s 中，积木 block1 在积木 block2 上面
-   - 这是一个二元关系，描述两个积木之间的位置关系
-   - 执行移动动作后，这个谓词的真假值可能会改变
-2. `holding(block(block3),s)`
+3. `position(location(x),location(y),s)` - In situation s, position is from location x to y. Changes after move actions.
 
-   - 含义：在情境 s 中，正在拿着积木 block3
-   - 描述"持有"这个状态
-   - 执行 pick_up 动作后可能变成真，执行 put_down 动作后可能变成假
-3. `position(location(x),location(y),s)`
+**Why Fluents?**
 
-   - 含义：在情境 s 中，位置是 location(x)到 location(y)
-   - 描述位置或坐标信息
-   - 执行移动动作后，这个谓词的值会改变
-
-**流式谓词 vs 普通谓词：**
-
-- **普通谓词**：比如"2+2=4"，这个永远是真的，不依赖于任何情境
-- **流式谓词**：比如"积木 b1 在 b2 上"，这个可能现在是真，执行动作后就变成假了
-- 流式谓词是"动态的"，普通谓词是"静态的"
-
-**为什么需要流式谓词？**
-
-- 在动态世界中，我们需要描述"会变化的状态"
-- 流式谓词让我们能够说"在做了某些动作之后，世界变成了什么样子"
-- 这是推理和规划的基础：我们需要知道"如果执行这个动作序列，最终会达到什么状态"
+In dynamic worlds, we need to describe changing states. Fluents enable us to express "what the world becomes after performing actions" - the foundation for reasoning and planning.
 
 ---
 
@@ -405,60 +281,35 @@ Example situations:
 - `do(pick_up(block(block1)),S)`
 - `do(put_down(block(block1)),do(move(location(x),location(y)),do(pick_up(block(block1)),S)))`
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**什么是情境（Situations）？**
+**What are Situations?**
 
-**重要区别：情境 ≠ 状态**
+**Important: Situation ≠ State**
 
-- 很多人会误以为情境就是"状态"（比如"积木 b1 在 b2 上"），但实际上不是
-- 在现代的情境演算中，情境是**动作历史**，也就是"做了什么动作的序列"
-- 状态是"世界现在是什么样子"，情境是"我们是怎么到达这个状态的"
+In modern situation calculus, a situation is an **action history** (what actions were performed in what order), not a state (what the world looks like now). States describe "what is," situations describe "how we got here."
 
-**情境的本质：**
+**Situation Essentials:**
 
-1. **情境是动作历史（Action History）**
+1. **Situation as Action History** - Records which actions were executed and in what order, like a game replay showing player operations.
 
-   - 情境记录的是"执行了哪些动作，按什么顺序执行的"
-   - 就像游戏的回放记录，记录了"玩家做了什么操作"
-   - 比如"先拿起积木，再移动，再放下"就是一个情境
-2. **特殊符号 S：初始情境**
+2. **Special Symbol S** - Represents the initial situation where no actions have occurred yet (the starting point for all action histories).
 
-   - `S`（或写作 `S₀`）表示"还没有执行任何动作"的情境
-   - 这是所有动作历史的起点
-   - 就像游戏的初始状态，还没有任何操作
-3. **函数符号 `do(a,s)`：执行动作后的新情境**
+3. **Function Symbol `do(a,s)`** - Represents the new situation resulting from performing action a in situation s (appending a new operation to the history).
 
-   - `do(a,s)` 表示"在情境 s 中执行动作 a 后得到的新情境"
-   - 可以理解为"在 s 的基础上，再执行 a"
-   - 这就像在游戏历史记录后面追加一个新的操作
+**Example Situations:**
 
-**示例情境的解读：**
+1. `do(pick_up(block(block1)),S)` - The situation after picking up block1 from the initial state. Action history = [pick_up(block(block1))].
 
-1. `do(pick_up(block(block1)),S)`
+2. `do(put_down(block(block1)),do(move(location(x),location(y)),do(pick_up(block(block1)),S)))` - Read inside-out: first pick_up(block1), then move(x,y), finally put_down(block1). Action history = [pick_up, move, put_down].
 
-   - 含义：在初始情境 S 中执行"拿起积木 block1"后得到的新情境
-   - 这个情境记录了：从初始状态开始，执行了一次"拿起积木 block1"的动作
-   - 可以理解为：动作历史 = [pick_up(block(block1))]
-2. `do(put_down(block(block1)),do(move(location(x),location(y)),do(pick_up(block(block1)),S)))`
+**Why Action History Instead of State?**
 
-   - 这个比较复杂，让我们从内到外读（从先到后）：
-   - 最内层：`do(pick_up(block(block1)),S)` - 先拿起积木 block1
-   - 中间层：`do(move(location(x),location(y)),...)` - 然后从位置 x 移动到位置 y
-   - 最外层：`do(put_down(block(block1)),...)` - 最后放下积木 block1
-   - 动作历史 = [pick_up(block(block1)), move(location(x),location(y)), put_down(block(block1))]
+- **Uniqueness**: The same state may be reached by different action sequences, but each sequence is unique.
+- **Traceability**: Action history tells us "how we got here."
+- **Inference**: From action history we can deduce current state; from state alone we cannot deduce history.
 
-**为什么用动作历史而不是状态？**
-
-- **唯一性**：同一个状态可能通过不同的动作序列达到，但每个动作序列都是唯一的
-- **可追溯**：通过动作历史，我们可以知道"是怎么到达这个状态的"
-- **可推理**：知道动作历史，我们可以推导出当前状态；但只知道状态，无法知道历史
-
-**类比理解：**
-
-- **状态**：就像照片，只显示"现在是什么样子"
-- **情境**：就像视频，记录了"从开始到现在发生了什么"
-- 情境包含了更多信息，因为它记录了"如何到达当前状态"
+Think of state as a photograph (what things look like now) vs. situation as a video (what happened from start to now).
 
 ---
 
@@ -474,67 +325,37 @@ do(put_down(block(block1)),do(move(location(x),location(y)),do(pick_up(block(blo
 2. Similarity to peano number theory:
 
    - `succ(succ(succ(0)))` is the formal representation of 3
+
 3. Similarity to prolog lists, using the dot (.) functor notation:
 
    - `. (put_down(block(block1)),.(move(location(x),location(y)),.(pick_up(block(block1)),[ ])))`
    - or in prolog regular notation for lists: `[put_down(block(block1)),move(location(x),location(y)),pick_up(block(block1))]`
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**情境的观察和理解：**
+**Understanding Situation Representation:**
 
-**1. 动作序列的解读**
+**1. Reading the Action Sequence**
 
-- 这个情境表示一个由三个动作组成的动作序列，按顺序是：
-  1. `pick_up(block(block1))` - 拿起积木 block1
-  2. `move(location(x),location(y))` - 从位置 x 移动到位置 y
-  3. `put_down(block(block1))` - 放下积木 block1
-- **重要**：虽然写的时候是从外到内（最后执行的动作在最外面），但读的时候要从内到外（最先执行的动作在最里面）
-- 这就像剥洋葱，最外层是最后做的，最内层是最先做的
+This situation represents three actions in order: pick_up(block1), then move(x,y), then put_down(block1). Written outside-in but read inside-out - like peeling an onion, the outermost layer is the last action, innermost is the first.
 
-**2. 与皮亚诺数论的相似性**
+**2. Similarity to Peano Number Theory**
 
-- **皮亚诺数论**：用 `succ`（successor，后继）函数来定义自然数
+- Peano numbers use `succ` (successor) function: `0`, `succ(0)` = 1, `succ(succ(0))` = 2, `succ(succ(succ(0)))` = 3
+- Situation calculus parallels this: `do` is like `succ`, `S` is like `0`, `do(a,S)` is like `succ(0)`, `do(a2, do(a1, S))` is like `succ(succ(0))`
+- Both build larger structures by repeatedly applying a function
 
-  - `0` 表示数字 0
-  - `succ(0)` 表示数字 1（0 的后继）
-  - `succ(succ(0))` 表示数字 2（1 的后继）
-  - `succ(succ(succ(0)))` 表示数字 3（2 的后继）
-- **相似之处**：
+**3. Similarity to Prolog Lists**
 
-  - 情境演算中的 `do` 函数就像数论中的 `succ` 函数
-  - `S`（初始情境）就像 `0`（初始数字）
-  - `do(a,S)` 就像 `succ(0)`，表示"在初始基础上执行一个动作"
-  - `do(a2, do(a1, S))` 就像 `succ(succ(0))`，表示"执行了两个动作"
-- **类比理解**：
+- Empty list `[]` represents initial situation S
+- List `[a1, a2, a3]` represents a sequence of three actions
+- Dot notation `.` is the internal list representation
+- `do(put_down(...), do(move(...), do(pick_up(...), S)))` equals Prolog list `[put_down(...), move(...), pick_up(...)]`
+- Note: List written left-to-right, but executed right-to-left (rightmost action executes first)
 
-  - 数论：通过不断应用 `succ` 来构建更大的数字
-  - 情境演算：通过不断应用 `do` 来构建更长的动作历史
+**Practical Use:**
 
-**3. 与 Prolog 列表的相似性**
-
-- **Prolog 列表表示法**：
-
-  - 空列表 `[]` 表示初始情境 S（还没有任何动作）
-  - 列表 `[a1, a2, a3]` 表示执行了三个动作的序列
-  - 点号表示法 `.` 是列表的内部表示方式
-- **对应关系**：
-
-  - `do(put_down(...), do(move(...), do(pick_up(...), S)))`
-  - 等价于 Prolog 列表：`[put_down(...), move(...), pick_up(...)]`
-  - 注意：列表的**书写顺序**是从左到右，但**执行顺序**是从右到左（先执行的在后/右边）
-  - `do` 嵌套是从内到外（先执行的在内），列表是从右到左（先执行的在右）
-- **为什么用列表表示？**
-
-  - 列表是 Prolog 中表示序列的自然方式
-  - 更容易读写和理解
-  - 可以直接用 Prolog 的列表操作来处理情境
-
-**实际应用：**
-
-- 在 Prolog 程序中，我们通常用列表 `[a1, a2, a3]` 来表示情境，而不是嵌套的 `do` 函数
-- 这样更简洁，也更符合 Prolog 的编程习惯
-- 但两种表示方式是等价的，可以互相转换
+In Prolog programs, we typically use list notation `[a1, a2, a3]` instead of nested `do` functions - more concise and idiomatic. Both representations are equivalent and interconvertible.
 
 ---
 
@@ -559,68 +380,46 @@ The above situation becomes a Prolog list, read RIGHT to LEFT:
 [put_down(block(block1)),move(location(x),location(y)),pick_up(block(block1))]
 ```
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**Prolog 中的情境表示约定：**
+**Prolog Situation Representation Convention:**
 
-**为什么要在 Prolog 中用列表表示情境？**
+**Why Use Lists in Prolog?**
 
-- 在理论中，我们用 `do(a,s)` 来表示情境，但在实际编程中，嵌套的 `do` 函数写起来很麻烦
-- Prolog 的列表是表示序列的自然方式，更简洁易读
-- 我们可以建立一个约定，把理论中的 `do` 表示法转换成 Prolog 的列表表示法
+Nested `do` functions are cumbersome in practice. Prolog lists are the natural way to represent sequences - more concise and readable. We establish a convention to convert theoretical `do` notation to Prolog list notation.
 
-**转换规则：**
+**Conversion Rules:**
 
-1. **初始情境 S → 空列表 `[]`**
+1. **Initial situation S → empty list `[]`** - Represents "no actions yet," like 0 in counting.
 
-   - 初始情境（还没有任何动作）用空列表表示
-   - `[]` 是 Prolog 中表示"什么都没有"的标准方式
-   - 就像数字 0，是计数的起点
-2. **`do` 函数 → 列表构造符**
+2. **`do` function → list constructor** - `do(a,s)` becomes `[a|s]`, meaning "prepend element a to list s."
 
-   - 在 Prolog 中，列表的构造符（cons operator）是 `|` 或直接用 `[...]`
-   - `do(a,s)` 可以写成 `[a|s]`，意思是"在列表 s 的前面加上元素 a"
-3. **单个动作的情境**
+3. **Single action** - `do(a,S)` becomes `[a]` or `[a|[]]` (equivalent).
 
-   - `do(a,S)` 可以写成 `[a]` 或 `[a|[]]`
-   - 两者等价：`[a]` 是 `[a|[]]` 的简写
-   - 表示"只执行了一个动作 a"
-4. **多个动作的情境**
+4. **Multiple actions** - `do(a, do(b, S))` becomes `[a|[b|[]]]` = `[a,b]`.
 
-   - `do(a,s)` 写成 `[a|s]`
-   - 如果 s 本身也是 `do(b,S)`，那么 `do(a, do(b, S))` 就变成 `[a|[b|[]]]`，也就是 `[a,b]`
+**Example Conversion:**
 
-**示例转换：**
+- Theoretical: `do(put_down(...),do(move(...),do(pick_up(...),S)))`
+- Prolog list: `[put_down(...), move(...), pick_up(...)]`
 
-- 理论表示：`do(put_down(block(block1)),do(move(location(x),location(y)),do(pick_up(block(block1)),S)))`
-- Prolog 列表：`[put_down(block(block1)),move(location(x),location(y)),pick_up(block(block1))]`
+**Understanding "Read Right to Left":**
 
-**如何理解"从右到左读"？**
+In `do` nesting, innermost is first; in lists, **execution order is right-to-left** (first action is rightmost).
 
-- 在 `do` 嵌套表示中，最内层是最先执行的动作
-- 在列表表示中，**执行顺序是从右到左**（先执行的在后/右边）
-- 具体示例：
-  - `do(put_down(...), do(move(...), do(pick_up(...), S)))`
-  - 转换成列表：`[put_down(...), move(...), pick_up(...)]`
-  - **执行顺序**（从右到左）：
-    1. 最先执行：`pick_up(...)`（在列表右边）
-    2. 然后执行：`move(...)`（在中间）
-    3. 最后执行：`put_down(...)`（在列表左边）
-  - **列表的书写顺序**：从左到右 `[put_down, move, pick_up]`
-  - **列表的执行顺序**：从右到左（先执行 pick_up，再执行 move，最后执行 put_down）
+Example: `[put_down(...), move(...), pick_up(...)]`
 
-**实际编程中的优势：**
+- Execution order: pick_up (right) → move (middle) → put_down (left)
+- Written left-to-right, executed right-to-left
 
-- **更简洁**：`[put_down(...), move(...), pick_up(...)]` 比 `do(put_down(...), do(move(...), do(pick_up(...), S)))` 短得多
-- **更易读**：列表的线性结构比嵌套的函数调用更容易理解
-- **更易操作**：Prolog 提供了丰富的列表操作（如 `append`, `member` 等）
-- **更符合习惯**：Prolog 程序员习惯用列表表示序列
+**Advantages in Practice:**
 
-**注意事项：**
+- **Concise**: List notation is much shorter
+- **Readable**: Linear structure easier to understand than nested functions
+- **Operable**: Rich Prolog list operations available (`append`, `member`, etc.)
+- **Idiomatic**: Prolog programmers naturally use lists for sequences
 
-- 这个约定只是表示方式的不同，语义是等价的
-- 在写 Prolog 程序时，要始终使用列表表示法
-- 但在理解理论时，要能理解 `do` 函数和列表之间的对应关系
+**Note:** Convention differs in representation only; semantics are equivalent.
 
 ---
 
@@ -637,48 +436,39 @@ General form of precondition axiom:
 - `A(x⃗)` is an action, where `x⃗` represents all the arguments of the action
 - `Φ(x⃗, s)` is a logical formula involving fluents, characterizing the state where `A(x⃗)` is possible
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**什么是动作前提条件公理（Action Precondition Axioms）？**
+**What are Precondition Axioms?**
 
-- 前提条件公理告诉我们"在什么情况下可以执行某个动作"
-- 就像游戏规则：只有满足某些条件才能执行某个操作
-- 对于每个动作，我们都需要明确说明：在哪些情境下可以执行，在哪些情境下不能执行
+Precondition axioms specify "under what conditions an action can be executed" - like game rules defining when operations are valid. For each action, we must clearly state in which situations it can or cannot be executed.
 
-**"where"的含义：**
+**Understanding "where":**
 
-- "where"在这里不是指"物理位置"，而是指"在哪个情境下"
-- 更准确地说："在执行了哪些动作序列之后，可以执行这个动作？"
-- 或者："在哪个情境（动作历史）中，这个动作是可能的？"
+"Where" here doesn't mean physical location, but rather "in which situation" or "after which action sequences" the action becomes possible.
 
-**前提条件公理的一般形式：**
+**General Form: Poss(A(x⃗), s) ≡ Φ(x⃗, s)**
 
-**Poss(A(x⃗), s) ≡ Φ(x⃗, s)**
+- **Poss(A(x⃗), s)** - "In situation s, action A(x⃗) is possible (can be executed)"
 
-- **Poss(A(x⃗), s)**：表示"在情境 s 中，动作 A(x⃗)是可能的（可以执行的）"
+  - `A(x⃗)` is an action with arguments `x⃗`
+  - `s` is the current situation (action history)
 
-  - `A(x⃗)` 是一个动作，`x⃗` 表示动作的所有参数
-  - 比如 `move(block(b1), block(b2), block(b3))` 中，`x⃗` 就是 `(b1, b2, b3)`
-  - `s` 是当前的情境（动作历史）
-- **≡**：表示"当且仅当"（if and only if），意思是"充要条件"
-- **Φ(x⃗, s)**：一个逻辑公式，描述"在什么状态下动作 A(x⃗)是可能的"
+- **≡** - "if and only if" (biconditional/necessary and sufficient condition)
 
-  - 这个公式使用流式谓词来描述当前世界的状态
-  - 比如"积木 b1 是 clear 的"、"积木 b3 是 clear 的"、"积木 b1 在 b2 上"等
+- **Φ(x⃗, s)** - A logical formula using fluents to characterize the state where A(x⃗) is possible
+  - Examples: "block b1 is clear," "block b3 is clear," "block b1 is on b2"
 
-**通俗理解：**
+**Example for Moving Blocks:**
 
-- 前提条件公理就像"使用说明书"：告诉你什么时候可以用这个动作
-- 比如"移动积木"的前提条件可能是：
-  - 要移动的积木上面没有其他积木（clear）
-  - 目标位置是空的（clear）
-  - 积木确实在源位置上（on）
+Preconditions might include:
 
-**为什么需要前提条件？**
+- Block to move has nothing on top (clear)
+- Destination position is empty (clear)
+- Block is actually at source position (on)
 
-- 防止执行无效或不可能的动作
-- 比如不能移动一个不存在的积木，不能把积木放到已经有积木的位置上
-- 前提条件确保我们只考虑"合理"的动作序列
+**Why Preconditions?**
+
+Prevent invalid/impossible actions (e.g., can't move non-existent block, can't place block on occupied position). Preconditions ensure we only consider "reasonable" action sequences.
 
 ---
 
@@ -692,45 +482,35 @@ Example Precondition axiom (next slide)
 - `on(x,y,s)` means that Block x is on Position or Block y in Situation S
 - `clear(x,s)` means that Block x is clear in Situation s
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**示例前提条件公理的符号说明：**
+**Understanding the Notation:**
 
-在理解具体的前提条件公理之前，我们需要先理解这些符号的含义：
+Before examining the specific precondition axiom, understand these symbols:
 
-1. **`move(x,y,z)` - 移动动作**
+1. **`move(x,y,z)`** - Move action: "move block x from position y to position z"
 
-   - 表示"把积木 x 从位置 y 移动到位置 z"
-   - `x`：要移动的积木（Block）
-   - `y`：源位置（Source），积木现在在哪里（可以是另一个积木或位置）
-   - `z`：目标位置（Destination），积木要移动到哪里（可以是另一个积木或位置）
-   - 比如 `move(b1, b2, b3)` 表示"把积木 b1 从 b2 上移动到 b3 上"
-2. **`on(x,y,s)` - 位置关系流式谓词**
+   - `x` - Block to move
+   - `y` - Source position (another block or location)
+   - `z` - Destination position (another block or location)
+   - Example: `move(b1, b2, b3)` moves block b1 from b2 to b3
 
-   - 表示"在情境 s 中，积木 x 在位置 y 上面"
-   - `x`：积木（Block）
-   - `y`：位置（可以是另一个积木或位置）
-   - `s`：情境（动作历史）
-   - 比如 `on(b1, b2, s)` 表示"在情境 s 中，积木 b1 在积木 b2 上面"
-3. **`clear(x,s)` - 清除状态流式谓词**
+2. **`on(x,y,s)`** - Position relation fluent: "in situation s, block x is on position y"
 
-   - 表示"在情境 s 中，积木 x 是 clear 的（上面没有其他积木）"
-   - `x`：积木或位置
-   - `s`：情境
-   - 比如 `clear(b1, s)` 表示"在情境 s 中，积木 b1 上面没有其他积木，可以移动"
+   - Example: `on(b1, b2, s)` means block b1 is on block b2 in situation s
 
-**这些符号在前提条件中的作用：**
+3. **`clear(x,s)`** - Clear state fluent: "in situation s, block x is clear (nothing on top)"
+   - Example: `clear(b1, s)` means block b1 has nothing on top and can be moved
 
-- 前提条件公理会使用这些流式谓词来描述"执行动作前世界必须是什么样子"
-- 比如要执行 `move(x,y,z)`，前提条件可能包括：
-  - `on(x,y,s)` - 积木 x 确实在位置 y 上
-  - `clear(x,s)` - 积木 x 上面没有其他积木（可以移动）
-  - `clear(z,s)` - 目标位置 z 是空的（可以放置）
+**Role in Preconditions:**
 
-**下一步：**
+These fluents describe what must be true before executing an action. For `move(x,y,z)`, preconditions might include:
 
-- 下一张幻灯片会展示具体的前提条件公理代码
-- 我们会看到如何用 Prolog 代码来表达这些条件
+- `on(x,y,s)` - Block x is actually at position y
+- `clear(x,s)` - Block x has nothing on top
+- `clear(z,s)` - Destination z is empty
+
+Next slide shows the actual Prolog precondition axiom code.
 
 ---
 
@@ -750,65 +530,42 @@ poss([move(Block,From,To)|S]):-
     on(Block,From,S).
 ```
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**Prolog 中的前提条件公理代码解析：**
+**Prolog Precondition Axiom Code:**
 
-这个 Prolog 代码定义了"移动积木"动作的前提条件。让我们逐行解释：
+This code defines preconditions for the "move block" action. Let's examine each condition:
 
-**整体结构：**
+**Overall Structure:**
 
-- `poss([move(Block,From,To)|S]):-` 表示"在情境 `[move(Block,From,To)|S]` 中，移动动作是可能的"
-- 注意：这里使用了列表表示法，`[move(...)|S]` 表示"在情境 S 的基础上执行 move 动作"
-- 前提条件写在 `:-` 后面，所有条件都必须满足（用逗号连接，表示"且"）
+`poss([move(Block,From,To)|S]):-` means "the move action is possible in situation `[move(...)|S]`"
 
-**逐行条件解释：**
+- Uses list notation: `[move(...)|S]` represents executing move on top of situation S
+- All conditions after `:-` must be satisfied (comma = AND)
 
-1. **`block_exists(Block)`**
+**Condition Breakdown:**
 
-   - 含义：要移动的 Block 必须存在
-   - 就像检查"这个积木真的存在吗？"
-   - 防止移动不存在的积木
-2. **`clear(Block,S)`**
+1. **`block_exists(Block)`** - The block to move must exist (can't move non-existent block)
 
-   - 含义：在情境 S 中，要移动的积木 Block 上面必须没有其他积木
-   - 这是移动积木的基本要求：如果积木上面有其他积木，就不能移动它
-   - 就像"要拿一个盒子，必须先拿走它上面的东西"
-3. **`(location_exists(To) ; block_exists(To))`**
+2. **`clear(Block,S)`** - Block must be clear (nothing on top). Like "to pick up a box, remove what's on top first"
 
-   - 含义：目标位置 To 必须存在，要么是一个位置（location），要么是一个积木（block）
-   - `;` 表示"或"（or）
-   - 确保目标位置是有效的（不能移动到不存在的地方）
-4. **`Block \= To`**
+3. **`(location_exists(To) ; block_exists(To))`** - Destination must exist (either a location OR a block). Semicolon = OR. Ensures valid destination.
 
-   - 含义：要移动的积木不能等于目标位置
-   - `\=` 表示"不等于"
-   - 防止"把积木移动到它自己上面"这种无意义的操作
-5. **`clear(To,S)`**
+4. **`Block \= To`** - Block cannot equal destination (`\=` = not equal). Prevents moving block onto itself.
 
-   - 含义：在情境 S 中，目标位置 To 必须是空的（clear）
-   - 如果目标位置上已经有积木，就不能再放一个积木上去
-   - 就像"桌子上已经有东西了，就不能再放东西"
-6. **`(location_exists(From);block_exists(From))`**
+5. **`clear(To,S)`** - Destination must be clear/empty. Can't place block where something already exists.
 
-   - 含义：源位置 From 必须存在，要么是一个位置，要么是一个积木
-   - 确保源位置是有效的
-7. **`on(Block,From,S)`**
+6. **`(location_exists(From);block_exists(From))`** - Source must exist (location or block). Ensures valid source.
 
-   - 含义：在情境 S 中，积木 Block 确实在源位置 From 上
-   - 这是最重要的条件：要移动积木，它必须确实在源位置上
-   - 就像"要移动一个盒子，它必须确实在那里"
+7. **`on(Block,From,S)`** - Block must actually be at source position. Most important: can only move what's actually there.
 
-**整体逻辑：**
+**Logic:**
 
-- 所有这些条件必须**同时满足**（用逗号连接），移动动作才是可能的
-- 如果任何一个条件不满足，动作就不能执行
-- 这确保了只有"合理"的移动动作才会被考虑
+All conditions must be **simultaneously satisfied** (commas = AND). If any fails, action cannot execute. This ensures only "reasonable" moves are considered.
 
-**实际应用：**
+**Practical Use:**
 
-- 当规划系统想要执行 `move(b1, b2, b3)` 时，会检查这些前提条件
-- 如果所有条件都满足，动作可以执行；否则，需要先执行其他动作来满足条件
+When a planning system wants to execute `move(b1, b2, b3)`, it checks these preconditions. If all satisfied, action executes; otherwise, other actions must first establish the preconditions.
 
 ---
 
@@ -841,67 +598,47 @@ poss([move(BlockA,BlockB)|S]) :-  % one argument for poss
 
 Whether to use `poss/2` or `poss/1` is arbitrary, but we must be consistent!
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**前提条件公理的两种表示方式：**
+**Two Ways to Represent Preconditions:**
 
-**回顾：情境的列表表示法**
+Recall that situations can be represented as Prolog lists: `[]` for initial situation S, `[A|S]` for executing A on situation S.
 
-- 我们已经知道，情境可以用 Prolog 列表表示：
-  - 空列表 `[]` 表示初始情境 S
-  - `[A|S]` 表示在情境 S 的基础上执行动作 A 后的新情境
-
-**前提条件公理的两种写法：**
-
-**方式 1：两个参数 `poss/2`**
+**Approach 1: Two arguments `poss/2`**
 
 ```prolog
 poss(move(BlockA,BlockB), S) :- ...
 ```
 
-- 第一个参数：动作本身 `move(BlockA,BlockB)`
-- 第二个参数：情境 `S`
-- 含义：在情境 S 中，动作 move(BlockA,BlockB)是可能的
+- First argument: action itself
+- Second argument: situation S
+- Meaning: "action is possible in situation S"
 
-**方式 2：一个参数 `poss/1`（使用列表表示法）**
+**Approach 2: One argument `poss/1` (list notation)**
 
 ```prolog
 poss([move(BlockA,BlockB)|S]) :- ...
 ```
 
-- 只有一个参数：`[move(BlockA,BlockB)|S]`，这是一个列表，表示"在情境 S 的基础上执行 move 动作"
-- 含义：在情境 `[move(BlockA,BlockB)|S]` 中，这个动作是可能的
-- 注意：这里动作已经"嵌入"到情境中了
+- Single argument: `[move(...)|S]` (action embedded in situation)
+- Meaning: "this action is possible in situation `[move(...)|S]`"
 
-**两种方式的等价性：**
+**Equivalence:**
 
-- 两种写法在逻辑上是等价的
-- `poss(a, s)` 和 `poss([a|s])` 表达的是同一个意思
-- 只是表示方式不同：一种是分离的（动作和情境分开），一种是组合的（动作在情境中）
+Both are logically equivalent - `poss(a, s)` and `poss([a|s])` express the same thing. One separates action and situation, the other combines them.
 
-**为什么有两种方式？**
+**Why Two Approaches?**
 
-- **`poss/2`**：更直观，明确区分"动作"和"情境"
-- **`poss/1`**：更简洁，符合 Prolog 列表的习惯用法，与情境的表示方式一致
+- `poss/2` - More intuitive, clearly distinguishes action from situation
+- `poss/1` - More concise, consistent with list notation for situations, more idiomatic Prolog
 
-**重要原则：一致性！**
+**Critical: Be Consistent!**
 
-- 无论选择哪种方式，在整个程序中必须保持一致
-- 不能混用：如果选择了 `poss/1`，所有地方都用 `poss/1`；如果选择了 `poss/2`，所有地方都用 `poss/2`
-- 混用会导致程序逻辑错误
+Choose one approach and use it throughout your entire program. Mixing them causes logic errors.
 
-**实际建议：**
+**Practical Recommendation:**
 
-- 在课程中，通常使用 `poss/1`（列表表示法），因为：
-  - 与情境的列表表示法一致
-  - 代码更简洁
-  - 更符合 Prolog 的编程习惯
-
-**示例对比：**
-
-- `poss/2`：`poss(move(b1,b2,b3), [])` - "在初始情境中，移动动作是可能的"
-- `poss/1`：`poss([move(b1,b2,b3)])` - "在只执行了 move 动作的情境中，这个动作是可能的"
-- 注意：这两种写法在语义上略有不同，但在实际使用中，我们通常用 `poss/1` 来检查"执行这个动作是否可能"
+This course typically uses `poss/1` (list notation) because it's consistent with situation representation, more concise, and more idiomatic in Prolog.
 
 ---
 
@@ -920,50 +657,44 @@ where:
 - `γ(y⃗, A(x⃗), s)` represents the conditions under which `R(y⃗, do(A(x⃗), s))` is true
 - `γ(y⃗, A(x⃗), s)` represent the conditions under which `R(y⃗, do(A(x⃗), s))` is false
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**什么是后继状态公理（Successor State Axioms）？**
+**What are Successor State Axioms?**
 
-- 后继状态公理描述"执行动作后，世界状态如何变化"
-- 对于每个流式谓词，我们需要说明：在什么条件下它会变成真、变成假，或者保持不变
-- 这是动作的"效果"描述：告诉我们"做了这个动作后会发生什么"
+Successor state axioms describe "how world state changes after executing an action." For each fluent, we specify: under what conditions it becomes true, becomes false, or remains unchanged. This describes action "effects" - what happens after performing the action.
 
-**为什么需要后继状态公理？**
+**Why Successor State Axioms?**
 
-- 前提条件公理告诉我们"什么时候可以做动作"
-- 后继状态公理告诉我们"做了动作后会发生什么"
-- 两者配合，才能完整描述一个动作：既能判断能否执行，又能预测执行后的结果
+- Precondition axioms tell us "when can we perform an action"
+- Successor state axioms tell us "what happens after performing the action"
+- Together they completely describe an action: both executability and effects
 
-**后继状态公理的一般形式：**
+**General Form: Poss(A(x⃗), s) ⊃ R(y⃗, do(A(x⃗), s)) ≡ γ(y⃗, A(x⃗), s) ∨ R(y⃗, s) ∧ ¬γ(y⃗, A(x⃗), s)**
 
-**Poss(A(x⃗), s) ⊃ R(y⃗, do(A(x⃗), s)) ≡ γ(y⃗, A(x⃗), s) ∨ R(y⃗, s) ∧ ¬γ(y⃗, A(x⃗), s)**
+Breaking down the formula:
 
-让我们分解这个公式：
+- **Poss(A(x⃗), s) ⊃** - If action A is possible in situation s (preconditions satisfied)
+- **R(y⃗, do(A(x⃗), s))** - Fluent R after executing action A
+- **≡** - If and only if (biconditional)
+- **γ(y⃗, A(x⃗), s)** - Conditions under which A makes R true
+- **∨** - Or
+- **R(y⃗, s) ∧ ¬γ(y⃗, A(x⃗), s)** - R was already true AND A doesn't make R false
 
-- **Poss(A(x⃗), s) ⊃**：如果动作 A 在情境 s 中是可能的（前提条件满足）
-- **R(y⃗, do(A(x⃗), s))**：流式谓词 R 在执行动作 A 后的新情境中
-- **≡**：当且仅当（充要条件）
-- **γ(y⃗, A(x⃗), s)**：动作 A 使 R 变成真的条件
-- **∨**：或者（or）
-- **R(y⃗, s) ∧ ¬γ(y⃗, A(x⃗), s)**：R 在情境 s 中已经是真的，并且动作 A 不会使 R 变成假
+**Plain Language:**
 
-**通俗理解：**
+Fluent R becomes true after executing A if and only if:
 
-- 流式谓词 R 在执行动作 A 后变成真，当且仅当：
-  - **情况 1**：动作 A 本身使 R 变成真（γ 条件满足）
-  - **情况 2**：R 在动作前就已经是真，并且动作 A 不会使 R 变成假
+- **Case 1**: Action A makes R true (positive effect), OR
+- **Case 2**: R was already true AND A doesn't make R false (persistence)
 
-**符号说明：**
+**Notation:**
 
-- `γ(y⃗, A(x⃗), s)`：使 R 变成真的条件（positive effect）
-- `γ(y⃗, A(x⃗), s)`：使 R 变成假的条件（negative effect，注意这里可能是印刷错误，应该是不同的符号）
-- `R(y⃗, s)`：R 在动作前的状态
+- γ⁺ - Conditions making R true (positive effect)
+- γ⁻ - Conditions making R false (negative effect)
 
-**实际意义：**
+**Significance:**
 
-- 这个公式确保我们能够准确预测：执行动作后，每个流式谓词会变成什么状态
-- 它考虑了三种情况：变成真、变成假、保持不变
-- 这是推理和规划的基础：我们需要知道"如果执行这个动作，世界会变成什么样子"
+This formula enables accurate prediction of fluent states after action execution, considering three scenarios: becomes true, becomes false, remains unchanged. This is foundational for reasoning and planning.
 
 ---
 
@@ -973,7 +704,7 @@ where:
 
 In English, we would read the Successor State Axiom as:
 
-If Action A is possible in s, then 
+If Action A is possible in s, then
 
     R is true after performing A in s if and only if the conditions are such that A makes R become true,
 
@@ -981,60 +712,51 @@ If Action A is possible in s, then
 
     R was already true, and conditions are such that A does not make R false.
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**后继状态公理的英文解读：**
+**Reading the Successor State Axiom:**
 
-让我们用更通俗的语言来理解这个公理：
+"If action A is possible in s, then R is true after performing A if and only if: A makes R become true, OR R was already true and A does not make R false."
 
-**完整表述：**
-"如果动作 A 在情境 s 中是可能的，那么流式谓词 R 在执行 A 后的新情境中为真，当且仅当：要么动作 A 使 R 变成真，要么 R 在动作前就已经是真，并且动作 A 不会使 R 变成假。"
+**Step-by-Step:**
 
-**分步理解：**
+1. **Precondition**: "If action A is possible in s" - Action's preconditions are satisfied; we only care about effects of executable actions.
 
-1. **前提条件**："如果动作 A 在情境 s 中是可能的"
+2. **Conclusion**: "R is true after A if and only if..."
 
-   - 这意味着动作的前提条件都满足了
-   - 只有能执行的动作，我们才关心它的效果
-2. **结论**："R 在执行 A 后为真，当且仅当..."
-3. **三种情况（满足其一即可）：**
+3. **Two Cases** (at least one must hold):
 
-   **情况 1：动作 A 使 R 变成真**
+   **Case 1: A makes R true (positive effect)**
 
-   - 动作 A 的"正面效果"（positive effect）
-   - 比如：执行"移动积木 b1 到 b2 上"后，`on(b1, b2, s)` 变成真
-   - 这是动作的"直接效果"
+   - Action's direct effect
+   - Example: After "move b1 to b2," `on(b1, b2, s)` becomes true
 
-   **情况 2：R 在动作前就已经是真，并且动作 A 不会使 R 变成假**
+   **Case 2: R persists (persistence)**
 
-   - 这是"保持效果"（persistence）
-   - R 在动作前是真，动作 A 不会改变它，所以动作后还是真
-   - 比如：`on(b1, b2, s)` 在动作前是真，执行"移动积木 b3"后，`on(b1, b2, s)` 仍然为真（因为移动 b3 不影响 b1 和 b2 的关系）
+   - R was true before, and A doesn't make R false
+   - Example: `on(b1, b2, s)` true before "move b3 to b4," still true after (moving b3 doesn't affect b1-b2 relationship)
 
-**关键点：**
+**Key Points:**
 
-- **"当且仅当"**：这意味着这是充要条件，没有其他情况
-- **"或"**：两种情况满足其一即可
-- **"并且"**：在情况 2 中，两个条件必须同时满足（R 已经是真，且 A 不会使 R 变假）
+- **"If and only if"** - Necessary and sufficient; no other cases exist
+- **"OR"** - Either case suffices
+- **"AND"** in Case 2 - Both conditions must hold (R already true AND A doesn't falsify R)
 
-**实际例子：**
+**Example: `on(b1, b2, s)`**
 
-假设我们有一个流式谓词 `on(b1, b2, s)`（积木 b1 在 b2 上）：
+After `move(b1, b2, b3)`:
 
-- **执行 `move(b1, b2, b3)` 后**：
+- Case 1: Makes `on(b1, b3, s)` true
+- Case 2 doesn't apply: `on(b1, b2, s)` becomes false
 
-  - 情况 1：这个动作使 `on(b1, b3, s)` 变成真（b1 现在在 b3 上）
-  - 情况 2 不适用，因为 `on(b1, b2, s)` 在动作后会变成假（b1 不在 b2 上了）
-- **执行 `move(b3, b4, b5)` 后**（移动其他积木）：
+After `move(b3, b4, b5)`:
 
-  - 情况 1 不适用：这个动作不会使 `on(b1, b2, s)` 变成真
-  - 情况 2：如果 `on(b1, b2, s)` 在动作前是真，并且这个动作不会使 `on(b1, b2, s)` 变成假，那么动作后 `on(b1, b2, s)` 仍然为真
+- Case 1 doesn't apply: Doesn't make `on(b1, b2, s)` true
+- Case 2: If `on(b1, b2, s)` was true and this action doesn't falsify it, it remains true
 
-**为什么这样设计？**
+**Design Rationale:**
 
-- 这个设计遵循"框架问题"（Frame Problem）的解决方案
-- 它明确说明了什么会改变，什么不会改变
-- 避免了需要列出所有"不会改变"的东西（那会非常多）
+This addresses the Frame Problem by explicitly stating what changes and what persists, avoiding the need to list everything that doesn't change (which would be vast).
 
 ---
 
@@ -1053,67 +775,44 @@ where:
 - `γ(y⃗, A(x⃗), s)` represent the conditions under which `R(y⃗, do(A(x⃗), s))` is false
   - `A(x⃗) = move(BlockA, BlockC, Someblock)`
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**`on(X,Y,S)` 流式谓词的后继状态公理：**
+**Successor State Axiom for `on(X,Y,S)`:**
 
-这个公理专门描述"积木 X 在位置 Y 上"这个流式谓词在执行动作后如何变化。
+This axiom specifically describes how the fluent "block X is on position Y" changes after action execution.
 
-**公理公式解读：**
+**Formula: Poss(A(x⃗), s) ⊃ on(BlockA, BlockC, do(A(x⃗), s)) ≡ A(x⃗) = move(BlockA, BlockB, BlockC) ∨ on(BlockA, BlockC, s) ∧ ¬(A(x⃗) = move(BlockA, BlockC, Someblock))**
 
-**Poss(A(x⃗), s) ⊃ on(BlockA, BlockC, do(A(x⃗), s)) ≡ A(x⃗) = move(BlockA, BlockB, BlockC) ∨ on(BlockA, BlockC, s) ∧ ¬(A(x⃗) = move(BlockA, BlockC, Someblock))**
+Breaking down:
 
-让我们分解这个公式：
+- **Left side**: `on(BlockA, BlockC, do(A(x⃗), s))` - After executing A, BlockA is on BlockC
+- **Right side**: Two cases (at least one must hold)
 
-- **左边**：`on(BlockA, BlockC, do(A(x⃗), s))` - 在执行动作 A 后，积木 BlockA 在位置 BlockC 上
-- **右边**：两种情况（满足其一即可）
+**Case 1: `A(x⃗) = move(BlockA, BlockB, BlockC)` (positive effect)**
 
-**情况 1：`A(x⃗) = move(BlockA, BlockB, BlockC)`**
+- The action is moving BlockA to BlockC
+- Makes `on(BlockA, BlockC, s)` true
+- Example: After `move(b1, b2, b3)`, `on(b1, b3, s)` becomes true
 
-- 含义：执行的动作就是把 BlockA 从 BlockB 移动到 BlockC
-- 这是使 `on(BlockA, BlockC, s)` 变成真的条件
-- 比如：执行 `move(b1, b2, b3)` 后，`on(b1, b3, s)` 变成真
+**Case 2: `on(BlockA, BlockC, s) ∧ ¬(A(x⃗) = move(BlockA, BlockC, Someblock))` (persistence)**
 
-**情况 2：`on(BlockA, BlockC, s) ∧ ¬(A(x⃗) = move(BlockA, BlockC, Someblock))`**
+- BlockA was already on BlockC, and the action doesn't move BlockA away from BlockC
+- Example: `on(b1, b2, s)` was true; after `move(b3, b4, b5)`, still true (moving b3 doesn't affect b1-b2)
 
-- 含义：BlockA 在动作前就已经在 BlockC 上，并且执行的动作不是把 BlockA 从 BlockC 移走
-- 这是"保持"条件：如果 BlockA 已经在 BlockC 上，并且动作不会把它移走，那么动作后它仍然在 BlockC 上
-- 比如：`on(b1, b2, s)` 在动作前是真，执行 `move(b3, b4, b5)` 后，`on(b1, b2, s)` 仍然为真（因为移动 b3 不影响 b1 和 b2）
+**Notation:**
 
-**符号说明：**
+- **γ⁺ (makes R true)**: `A(x⃗) = move(BlockA, BlockB, BlockC)` - Moving BlockA to BlockC
+- **γ⁻ (makes R false)**: `A(x⃗) = move(BlockA, BlockC, Someblock)` - Moving BlockA away from BlockC to anywhere else
 
-- **γ（使 R 变成真的条件）**：`A(x⃗) = move(BlockA, BlockB, BlockC)`
+**Examples for `on(b1, b2, s)`:**
 
-  - 当执行的动作是"把 BlockA 移动到 BlockC"时，`on(BlockA, BlockC, s)` 变成真
-- **γ（使 R 变成假的条件）**：`A(x⃗) = move(BlockA, BlockC, Someblock)`
+1. After `move(b1, table, b2)`: Case 1 satisfied → `on(b1, b2, s)` true
+2. After `move(b1, b2, b3)`: Neither case satisfied (Case 2 fails because b1 is moved away from b2) → `on(b1, b2, s)` false
+3. After `move(b3, b4, b5)`: Case 2 satisfied (if `on(b1, b2, s)` was true and b1 isn't moved) → `on(b1, b2, s)` remains true
 
-  - 当执行的动作是"把 BlockA 从 BlockC 移走"时，`on(BlockA, BlockC, s)` 变成假
-  - `Someblock` 表示"某个位置"（可以是任何位置，只要不是 BlockC）
+**Design:**
 
-**实际例子：**
-
-假设我们想知道执行动作后 `on(b1, b2, s)` 的状态：
-
-1. **执行 `move(b1, table, b2)` 后**：
-
-   - 情况 1 满足：这个动作使 `on(b1, b2, s)` 变成真
-   - 结果：`on(b1, b2, s)` 为真
-2. **执行 `move(b1, b2, b3)` 后**：
-
-   - 情况 1 不满足：这个动作不是把 b1 移动到 b2
-   - 情况 2：如果 `on(b1, b2, s)` 在动作前是真，但这个动作会把 b1 从 b2 移走，所以情况 2 不满足
-   - 结果：`on(b1, b2, s)` 变成假
-3. **执行 `move(b3, b4, b5)` 后**（移动其他积木）：
-
-   - 情况 1 不满足：这个动作不影响 b1 和 b2
-   - 情况 2：如果 `on(b1, b2, s)` 在动作前是真，并且这个动作不会把 b1 从 b2 移走，所以情况 2 满足
-   - 结果：`on(b1, b2, s)` 仍然为真
-
-**为什么这样设计？**
-
-- 这个公理明确说明了：什么动作会使 `on` 变成真，什么动作会使 `on` 变成假
-- 其他动作不会影响 `on` 的状态（保持原样）
-- 这避免了需要列出所有"不会改变 on 状态"的动作
+Explicitly states what makes `on` true/false. Other actions don't affect `on` (persist). Avoids listing all actions that don't change `on` state.
 
 ---
 
@@ -1140,86 +839,74 @@ on(X,Y,[A|S]):-
     on(X,Y,S).
 ```
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**Prolog 中的后继状态公理代码解析：**
+**Prolog Successor State Axiom Code:**
 
-这个代码实现了两个流式谓词的后继状态公理：`clear` 和 `on`。让我们逐个解释：
+This code implements successor state axioms for two fluents: `clear` and `on`.
 
-**1. `clear(X,S)` 的后继状态公理：**
+**1. `clear(X,S)` Successor State Axiom:**
 
-**第一条规则：**
-
-```prolog
-clear(X,[move(_,X,_)|S]):-
-    poss([move(_,X,_)|S]).
-```
-
-- 含义：如果执行的动作是把某个积木移动到 X 上（`move(_,X,_)`），并且这个动作是可能的，那么 X 变成 clear
-- `_` 是 Prolog 的通配符，表示"任何值"
-- `move(_,X,_)` 表示"把某个积木移动到 X 上"（源位置和目标积木可以是任何值）
-- 这看起来有点反直觉，但实际上：当有积木被移动到 X 上时，X 就不再是 clear 了
-- **注意**：这个规则实际上描述的是"什么情况下 X 不是 clear"，但这里可能是代码逻辑的问题
-
-**第二条规则（更可能是正确的）：**
+**Rule 1:**
 
 ```prolog
-clear(X,[A|S]):-
-    poss([A|S]),
-    A \= move(_,_,X),
-    clear(X,S).
+clear(X,[move(_,X,_)|S]):- poss([move(_,X,_)|S]).
 ```
 
-- 含义：如果执行的动作不是把积木放到 X 上（`A \= move(_,_,X)`），并且 X 在动作前是 clear 的，那么 X 在动作后仍然是 clear
-- 这是"保持"规则：如果动作不会使 X 变成不 clear，并且 X 之前是 clear 的，那么 X 保持 clear
+- If the action moves something FROM X (indicated by `move(_,X,_)` where X is the source), then X becomes clear
+- `_` is Prolog wildcard meaning "any value"
+- When a block is moved away from X, X becomes clear
 
-**2. `on(X,Y,S)` 的后继状态公理：**
-
-**第一条规则：**
+**Rule 2:**
 
 ```prolog
-on(X,Y,[move(X,Z,Y)|S]):-
-    poss([move(X,Z,Y)|S]).
+clear(X,[A|S]):- poss([A|S]), A \= move(_,_,X), clear(X,S).
 ```
 
-- 含义：如果执行的动作是把 X 从某个位置 Z 移动到 Y（`move(X,Z,Y)`），并且这个动作是可能的，那么 X 在 Y 上
-- 这是"变成真"的规则：执行移动动作后，X 确实在 Y 上
+- If action doesn't place anything onto X (`A \= move(_,_,X)`) AND X was clear before, then X remains clear
+- Persistence rule: X stays clear unless something moves onto it
 
-**第二条规则：**
+**2. `on(X,Y,S)` Successor State Axiom:**
+
+**Rule 1:**
 
 ```prolog
-on(X,Y,[A|S]):-
-    poss([A|S]),
-    A \= move(X,Y,_),
-    on(X,Y,S).
+on(X,Y,[move(X,Z,Y)|S]):- poss([move(X,Z,Y)|S]).
 ```
 
-- 含义：如果执行的动作不是把 X 从 Y 移走（`A \= move(X,Y,_)`），并且 X 在动作前就在 Y 上，那么 X 在动作后仍然在 Y 上
-- 这是"保持"规则：如果动作不会破坏 X 在 Y 上的关系，并且 X 之前就在 Y 上，那么 X 保持 in Y 上
+- If action moves X from Z to Y, then X is on Y after the action
+- "Becomes true" rule: direct effect of moving X to Y
 
-**整体逻辑：**
+**Rule 2:**
 
-对于每个流式谓词，都有两条规则：
+```prolog
+on(X,Y,[A|S]):- poss([A|S]), A \= move(X,Y,_), on(X,Y,S).
+```
 
-1. **第一条规则**：描述"什么动作会使这个谓词变成真"
-2. **第二条规则**：描述"什么情况下这个谓词会保持原样"
+- If action doesn't move X away from Y (`A \= move(X,Y,_)`) AND X was on Y before, then X remains on Y
+- Persistence rule: X stays on Y unless explicitly moved away
 
-**Prolog 的执行顺序：**
+**Overall Logic:**
 
-- Prolog 会从上到下尝试匹配规则
-- 如果第一条规则匹配成功，就使用第一条；否则尝试第二条
-- 这实现了"或"的逻辑：要么变成真，要么保持原样
+Each fluent has two rules:
 
-**实际应用：**
+1. **Rule 1**: Describes "what action makes this fluent true"
+2. **Rule 2**: Describes "when this fluent persists (stays true)"
 
-- 当我们需要查询"在情境 `[move(b1,b2,b3)|S]` 中，`on(b1,b3,S)` 是否为真"时：
+**Prolog Execution:**
 
-  - 第一条规则匹配：`move(b1,b2,b3)` 确实是把 b1 移动到 b3
-  - 如果 `poss([move(b1,b2,b3)|S])` 为真，那么 `on(b1,b3,S)` 为真
-- 当我们需要查询"在情境 `[move(b3,b4,b5)|S]` 中，`on(b1,b2,S)` 是否为真"时：
+Prolog tries rules top-to-bottom. If Rule 1 succeeds, use it; otherwise try Rule 2. This implements OR logic: either becomes true or persists.
 
-  - 第一条规则不匹配：这个动作不是把 b1 移动到 b2
-  - 第二条规则匹配：这个动作不是把 b1 从 b2 移走，如果 `on(b1,b2,S)` 在 S 中为真，那么在新情境中仍然为真
+**Example Queries:**
+
+- Query: "Is `on(b1,b3,S)` true in `[move(b1,b2,b3)|S]`?"
+
+  - Rule 1 matches: `move(b1,b2,b3)` moves b1 to b3
+  - If `poss([move(b1,b2,b3)|S])` true, then `on(b1,b3,S)` true
+
+- Query: "Is `on(b1,b2,S)` true in `[move(b3,b4,b5)|S]`?"
+  - Rule 1 doesn't match: action doesn't move b1 to b2
+  - Rule 2 matches: action doesn't move b1 from b2; if `on(b1,b2,S)` was true in S, remains true
 
 ---
 
@@ -1236,67 +923,55 @@ on(X,Y,[A|S]):-
   - Kitchen domain: a robot makes dinner in a kitchen
   - Cardiology domain: a doctor sees heart patients, interviews them, conducts tests, and diagnoses them
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**什么是领域公理化（Axiomatizing a Domain）？**
+**What is Axiomatizing a Domain?**
 
-- **公理化**：用逻辑公式（公理）来描述一个领域
-- **公理化者（Axiomatizer）**：就是你！你需要写出定义领域的所有公理
-- 就像写一本"规则手册"，告诉计算机这个领域里有什么、可以做什么、做了之后会发生什么
+Axiomatizing means writing down logical statements (axioms) that define what is true about a domain - like creating a "rulebook" telling the computer what exists, what can be done, and what happens after actions.
 
-**什么是领域（Domain）？**
+**What is a Domain?**
 
-- **领域**：一个特定的知识领域、专业领域或主题领域
-- 是 AI 系统或知识库设计用来理解和推理的特定范围
-- 就像"积木世界"、"出租车世界"、"厨房世界"等
+A domain is a specific area of knowledge or subject matter that an AI system is designed to understand and reason about (e.g., blocks world, taxi world, kitchen world).
 
-**领域的特点：**
+**Domain Characteristics:**
 
-- **有边界**：只关注这个领域内的事情，不关心领域外的事情
-- **有规则**：领域内的对象、动作、状态都有特定的规则
-- **可推理**：通过公理，我们可以推理出领域内的新知识
+- **Bounded**: Focuses only on what's relevant, ignoring outside concerns
+- **Ruled**: Objects, actions, and states follow specific rules
+- **Reason-able**: Axioms enable inferring new knowledge within the domain
 
-**领域示例：**
+**Domain Examples:**
 
-1. **出租车领域（Taxi Domain）**
+1. **Taxi Domain**
 
-   - 对象：出租车、乘客、目的地
-   - 动作：接乘客、送乘客到目的地
-   - 状态：出租车在哪里、乘客在哪里、是否在车上
-   - 规则：只有出租车在乘客位置时才能接乘客，只有乘客在车上时才能送到目的地
-2. **厨房领域（Kitchen Domain）**
+   - Objects: taxis, passengers, destinations
+   - Actions: pick up passenger, drop off passenger
+   - States: taxi location, passenger location, whether passenger is in taxi
+   - Rules: can only pick up if at passenger location; can only drop off if passenger is in taxi
 
-   - 对象：机器人、食材、厨具、菜品
-   - 动作：拿食材、切菜、烹饪、装盘
-   - 状态：食材在哪里、是否已切、是否已烹饪
-   - 规则：只有拿到食材才能切，只有切好才能烹饪
-3. **心脏病学领域（Cardiology Domain）**
+2. **Kitchen Domain**
 
-   - 对象：医生、病人、症状、检查、诊断
-   - 动作：看病人、询问症状、做检查、诊断
-   - 状态：病人的症状、检查结果、诊断结果
-   - 规则：只有做了检查才能诊断，某些症状组合可能表示特定疾病
+   - Objects: robot, ingredients, utensils, dishes
+   - Actions: get ingredient, chop, cook, plate
+   - States: ingredient location, whether chopped/cooked
+   - Rules: must have ingredient to chop; must chop before cooking
 
-**为什么需要公理化？**
+3. **Cardiology Domain**
+   - Objects: doctor, patients, symptoms, tests, diagnoses
+   - Actions: see patient, interview, conduct tests, diagnose
+   - States: patient symptoms, test results, diagnosis
+   - Rules: must test before diagnosing; certain symptom combinations indicate specific diseases
 
-- **让计算机理解**：通过公理，计算机可以理解领域内的规则和关系
-- **支持推理**：有了公理，计算机可以推导出新的事实
-- **支持规划**：有了公理，计算机可以规划如何达到目标状态
+**Why Axiomatize?**
 
-**公理化的挑战：**
+- **Computer understanding**: Axioms enable computers to understand domain rules and relationships
+- **Support reasoning**: Enable deducing new facts
+- **Support planning**: Enable planning how to reach goal states
 
-- **完整性**：需要涵盖领域内所有重要的规则和关系
-- **准确性**：公理必须准确反映领域的真实情况
-- **简洁性**：既要完整，又要避免冗余
+**Axiomatization Challenges:**
 
-**实际应用：**
-
-- 在课程中，我们主要关注"积木世界"这个领域
-- 我们需要写出：
-  - 积木、位置等对象
-  - 移动、拿起、放下等动作
-  - 位置关系、清除状态等流式谓词
-  - 前提条件公理和后继状态公理
+- **Completeness**: Must cover all important rules and relationships
+- **Accuracy**: Must accurately reflect domain reality
+- **Conciseness**: Complete yet avoiding redundancy
 
 ---
 
@@ -1313,86 +988,68 @@ In the following steps, the word "determine" implies "write down"
 5. Determine the successor state axiom for each fluent
 6. Determine the fluent values in the initial situation s0 (we use `[]` for s0).
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**领域公理化的步骤：**
+**Steps to Axiomatize a Domain:**
 
-这是一个系统化的过程，帮助你完整地描述一个领域。注意："determine"在这里的意思是"确定并写下来"。
+A systematic process to completely describe a domain. "Determine" means "identify and write down."
 
-**步骤 1：理解领域**
+**Step 1: Understand the domain**
 
-- **做什么**：通过阅读、学习和思考，深入理解这个领域
-- **为什么重要**：只有真正理解领域，才能准确描述它
-- **怎么做**：
-  - 阅读相关文档、资料
-  - 观察实际场景（如果有）
-  - 思考领域内的对象、关系、规则
-  - 与领域专家交流（如果有）
+- Read, study, and think deeply about the domain
+- Read documentation, observe scenarios, think about objects/relationships/rules
+- Consult domain experts if available
 
-**步骤 2：确定流式谓词集合**
+**Step 2: Determine fluent set**
 
-- **做什么**：确定一组流式谓词，这些谓词足以表示领域内的任何状态
-- **为什么重要**：流式谓词是描述世界状态的"语言"，必须足够表达所有重要信息
-- **怎么做**：
-  - 思考"什么信息需要被跟踪？"
-  - 比如积木世界：需要知道"哪个积木在哪个位置"（`on`）、"哪个积木是 clear 的"（`clear`）
-  - 确保这些谓词能够完整描述领域状态，不多不少
+- Identify fluents sufficient to represent any domain state
+- Think: "What information needs tracking?"
+- Example (blocks world): `on` (which block on which position), `clear` (which block/position is clear)
+- Ensure complete state representation
 
-**步骤 3：确定动作集合**
+**Step 3: Determine action set**
 
-- **做什么**：确定所有能够改变状态（流式谓词的真假值）的动作
-- **为什么重要**：动作是改变世界的唯一方式，必须列出所有可能的动作
-- **怎么做**：
-  - 思考"可以执行哪些操作？"
-  - 比如积木世界：移动积木（`move`）、拿起积木（`pick_up`）、放下积木（`put_down`）
-  - 确保涵盖所有重要的动作
+- Identify all actions that can change state (fluent truth values)
+- Think: "What operations can be performed?"
+- Example (blocks world): `move`, `pick_up`, `put_down`
 
-**步骤 4：确定动作的前提条件公理**
+**Step 4: Determine precondition axioms for actions**
 
-- **做什么**：为每个动作写出前提条件公理，用流式谓词来描述"什么时候可以执行这个动作"
-- **为什么重要**：前提条件确保只有"合理"的动作才会被执行
-- **怎么做**：
-  - 对每个动作，思考"执行这个动作需要满足什么条件？"
-  - 用流式谓词来表达这些条件
-  - 比如：移动积木的前提是积木是 clear 的、目标位置是 clear 的等
+- For each action, write precondition axiom using fluents describing "when can this action execute"
+- Think: "What conditions must hold to execute this action?"
+- Example: moving block requires block is clear, destination is clear, etc.
 
-**步骤 5：确定每个流式谓词的后继状态公理**
+**Step 5: Determine successor state axiom for each fluent**
 
-- **做什么**：为每个流式谓词写出后继状态公理，描述"执行动作后，这个谓词如何变化"
-- **为什么重要**：后继状态公理让我们能够预测动作的效果
-- **怎么做**：
-  - 对每个流式谓词，思考"什么动作会使它变成真？什么动作会使它变成假？"
-  - 写出完整的后继状态公理公式
-  - 比如：`on(X,Y,S)` 在 `move(X,Z,Y)` 后变成真，在 `move(X,Y,W)` 后变成假
+- For each fluent, write successor state axiom describing "how does this fluent change after actions"
+- Think: "What actions make it true? What actions make it false?"
+- Example: `on(X,Y,S)` becomes true after `move(X,Z,Y)`, false after `move(X,Y,W)`
 
-**步骤 6：确定初始状态**
+**Step 6: Determine initial state**
 
-- **做什么**：确定初始情境 s0（我们用 `[]` 表示）中所有流式谓词的值
-- **为什么重要**：初始状态是推理的起点，必须明确定义
-- **怎么做**：
-  - 列出初始情境中所有流式谓词的真假值
-  - 比如：`on(b1, table, [])` 为真，`on(b1, b2, [])` 为假等
-  - 确保初始状态是完整和一致的
+- Specify all fluent values in initial situation s0 (we use `[]`)
+- List truth values of all fluents initially
+- Ensure initial state is complete and consistent
 
-**整体流程：**
+**Process Flow:**
 
-1. 理解 → 2. 确定状态描述（流式谓词）→ 3. 确定改变方式（动作）→ 4. 确定执行条件（前提条件）→ 5. 确定变化规律（后继状态）→ 6. 确定起始点（初始状态）
+Understand → State Description (fluents) → Change Mechanisms (actions) → Execution Conditions (preconditions) → Change Laws (successor states) → Starting Point (initial state)
 
-**实际建议：**
+**Practical Tips:**
 
-- **迭代过程**：这些步骤不是一次完成的，可能需要多次迭代和修改
-- **从简单开始**：先处理核心的对象和动作，再逐步扩展
-- **验证**：写完公理后，用一些例子来验证是否正确
-- **文档化**：记录你的决策和理由，方便后续修改
+- **Iterative**: Not done in one pass; expect multiple iterations
+- **Start simple**: Handle core objects/actions first, expand gradually
+- **Validate**: Test axioms with examples
+- **Document**: Record decisions and rationale
 
-**完成后的检查清单：**
+**Completion Checklist:**
 
-- [ ] 所有重要的状态信息都能用流式谓词表达
-- [ ] 所有重要的动作都已列出
-- [ ] 每个动作都有前提条件公理
-- [ ] 每个流式谓词都有后继状态公理
-- [ ] 初始状态已完整定义
-- [ ] 公理之间没有矛盾
+- [ ] All important state information expressible with fluents
+- [ ] All important actions listed
+- [ ] Each action has precondition axiom
+- [ ] Each fluent has successor state axiom
+- [ ] Initial state completely defined
+- [ ] No contradictions among axioms
 
 ---
 
@@ -1406,47 +1063,45 @@ Let's see how many key concepts from Situation Calculus you recall by answering 
 2. In plain English, what is being specified when Successor State Axioms are written down for a domain?
 3. What is meant by "domain" in the above two questions?
 
-**通俗解释：**
+**Plain English Explanation:**
 
-**学习检查：**
+**Knowledge Check Questions:**
 
-这是对情境演算核心概念的回顾和检查。让我们用通俗的语言来理解这些问题：
+**Question 1: What do Precondition Axioms specify?**
 
-**问题 1：前提条件公理指定了什么？**
+- **Answer**: Precondition axioms specify "under what conditions an action can be executed"
+- **Like**: Game rules telling you "when you can perform this operation"
+- **Specifically**: Using fluents to describe what the world must be like before the action
+- **Example**: To move a block, the block must be clear, destination must be clear, block must be at source position
 
-- **答案要点**：前提条件公理指定了"在什么情况下可以执行某个动作"
-- **通俗理解**：就像游戏规则，告诉你"什么时候可以做这个操作"
-- **具体内容**：用流式谓词来描述执行动作前世界必须是什么样子
-- **例子**：移动积木的前提是积木是 clear 的、目标位置是 clear 的、积木确实在源位置上
+**Question 2: What do Successor State Axioms specify?**
 
-**问题 2：后继状态公理指定了什么？**
+- **Answer**: Successor state axioms specify "how world state changes after executing an action"
+- **Like**: Describing action "effects" - "what happens after doing this action"
+- **Specifically**: For each fluent, stating which actions make it true, false, or leave it unchanged
+- **Example**: After `move(b1, b2, b3)`, `on(b1, b3, s)` becomes true, `on(b1, b2, s)` becomes false
 
-- **答案要点**：后继状态公理指定了"执行动作后，世界状态如何变化"
-- **通俗理解**：描述动作的"效果"，告诉你"做了这个动作后会发生什么"
-- **具体内容**：对于每个流式谓词，说明什么动作会使它变成真、变成假，或者保持不变
-- **例子**：执行 `move(b1, b2, b3)` 后，`on(b1, b3, s)` 变成真，`on(b1, b2, s)` 变成假
+**Question 3: What is meant by "domain"?**
 
-**问题 3：什么是"领域"？**
+- **Answer**: A domain is a specific area of knowledge or subject matter
+- **Like**: The "small world" we're focusing on (e.g., blocks world, taxi world)
+- **Characteristics**:
+  - Bounded: Focuses only on what's within the domain
+  - Ruled: Objects, actions, and states follow specific rules
+  - Reason-able: Axioms enable inferring new knowledge
+- **Examples**: blocks world, kitchen world, cardiology domain
 
-- **答案要点**：领域是一个特定的知识领域、专业领域或主题领域
-- **通俗理解**：就是我们关注的那个"小世界"，比如"积木世界"、"出租车世界"等
-- **特点**：
-  - 有边界：只关注领域内的事情
-  - 有规则：领域内的对象、动作、状态都有特定规则
-  - 可推理：通过公理可以推理出新知识
-- **例子**：积木世界、厨房世界、心脏病学领域等
+**How to Answer:**
 
-**如何回答这些问题？**
+- Use your own words in plain English
+- No need for complex logical symbols
+- Use examples to illustrate
+- Show you understand core concepts
 
-- 用你自己的话，用简单的英语（或中文）解释
-- 不需要使用复杂的逻辑符号
-- 可以举例子来说明
-- 重点是要展示你理解了核心概念
+**Review Summary:**
 
-**复习要点：**
-
-- **前提条件公理** = "什么时候可以做"
-- **后继状态公理** = "做了之后会发生什么"
-- **领域** = "我们关注的那个小世界"
+- **Precondition axioms** = "when can we do it"
+- **Successor state axioms** = "what happens after we do it"
+- **Domain** = "the small world we're focusing on"
 
 ---

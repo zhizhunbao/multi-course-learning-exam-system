@@ -66,9 +66,8 @@ on(block(b), location(3), []).
 on(block(c), block(a), []).
 
 % ============================================================================
-% Move Rules: When blocks can be moved
+% Precondition Axioms: When blocks can be moved
 % ============================================================================
-% This section defines what conditions must be met to execute a "move block" action.
 %
 % Note: move(Block, From, To) is a structure representing "move block Block from From to To"
 %      move does not need to be defined separately; it is defined here through poss rules
@@ -109,7 +108,7 @@ poss([move(Block,From,To)|S]):-
 
 
 % ============================================================================
-% State Change Rules: How block positions change after moves
+% Successor State Axioms: How block positions change after moves
 % ============================================================================
 % This section defines how the blocks world changes after executing move actions.
 
@@ -188,14 +187,14 @@ tryposs(X, S) :-
 % Example 4: Plan to achieve a goal state
 %   ?- plan(on(block(c), location(2), Plan), Plan).
 %   Plan = [move(block(c), block(a), location(2))] ;
-%   Plan = [move(block(c), block(a), location(2)), move(block(a), location(1), location(2))] ;
 %   ...
-%
-%   This will find the shortest plan (first solution) to put block c on location 2.
 %
 % Example 5: Plan to stack blocks
 %   ?- plan(on(block(b), block(c), Plan), Plan).
-%   Plan = [move(block(c), block(a), location(2)), move(block(b), location(3), block(c))] ;
+%   Plan = [move(block(b), location(3), block(c))] ;
 %   ...
 %
-%   This finds a plan to put block b on top of block c.
+% Example 6: Plan requiring multiple steps
+%   ?- plan(on(block(a), block(b), Plan), Plan).
+%   Plan = [move(block(a), location(1), block(b)), move(block(c), block(a), location(2))] ;
+%   ...
