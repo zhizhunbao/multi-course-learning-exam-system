@@ -21,9 +21,11 @@
 
 访问以下链接即可使用起始代码（`aisd_msgs` 软件包）创建 GitHub 仓库：https://classroom.github.com/a/DUgO71X9
 
+**我的 GitHub 仓库**: https://github.com/gitalg/aisd-vision-zhizhunbao
+
 要在 Linux 命令行访问你的 GitHub 仓库，需要配置 SSH 密钥。请在任意一台 Ubuntu 服务器（借用笔记本或 VirtualBox 虚拟机）上运行以下命令生成公钥/私钥对。系统会提示你输入密码短语，为了更好的安全性，建议设置。如果使用密码短语，可选地配置 `ssh-agent` 来管理它（否则每次访问 GitHub 使用密钥时都需要输入）。
 
-`ssh-keygen -t ed25519 -C "<your email>@algonquinlive.com"`
+`ssh-keygen -t ed25519 -C "wang1059@algonquinlive.com"`
 
 关于 SSH 密钥和 `ssh-agent` 的更多信息可参考：https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 
@@ -37,13 +39,13 @@
 
 ```
 cd ros2_ws/src
-git clone git@github.com:gitalg/...
-cd assignment-2-ros-2-and-vision-<yourGitHubname>
+git clone git@github.com:gitalg/aisd-vision-zhizhunbao.git
+cd aisd-vision-zhizhunbao
 ```
 
-在 `assignment-2-ros-2-and-vision-<yourname>` 仓库目录（执行上面命令后所在位置）中，根据页面：https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Creating-Your-First-ROS2-Package.html 的 Python 指引（不是 C++）创建 `aisd_vision` 和 `aisd_motion` 软件包。
+在 `aisd-vision-zhizhunbao` 仓库目录（执行上面命令后所在位置）中，根据页面：https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Creating-Your-First-ROS2-Package.html 的 Python 指引（不是 C++）创建 `aisd_vision` 和 `aisd_motion` 软件包。
 
-两个新软件包初始只是空骨架，但此时我们要提交并推送到 GitHub 仓库。使用 Git 命令时需要位于 `~/ros2_ws/src/assignment-2-ros-2-and-vision-<yourname>` 目录或其子目录，并在该目录下运行以下命令：
+两个新软件包初始只是空骨架，但此时我们要提交并推送到 GitHub 仓库。使用 Git 命令时需要位于 `~/ros2_ws/src/aisd-vision-zhizhunbao` 目录或其子目录，并在该目录下运行以下命令：
 
 ```
 git add aisd-vision aisd-motion

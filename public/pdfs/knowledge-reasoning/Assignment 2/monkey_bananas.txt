@@ -26,15 +26,49 @@
 :- discontiguous has_bananas/2.
 
 % ============================================================================
-% Initial State: Starting configuration
+% Domain Elements: Locations
 % ============================================================================
 
 location_exists(location(1)).
 location_exists(location(2)).
 location_exists(location(3)).
 
+% ============================================================================
+% Fluents: State-dependent predicates
+% ============================================================================
+%
+% The following fluents completely represent the state of the monkey world:
+%
+% 1. at(monkey, Location, S) - monkey is at Location in situation S
+% 2. at(box, Location, S) - box is at Location in situation S
+% 3. at(bananas, Location) - bananas are at Location (constant, doesn't change)
+% 4. on_box(monkey, S) - monkey is on the box in situation S
+% 5. has_bananas(monkey, S) - monkey has the bananas in situation S
+%
+% Note: We use at/3 for both monkey and box since both can move.
+%       Bananas location is constant, so we use at/2 without situation parameter.
+%
+% Goal State: has_bananas(monkey, S) = true
+%
+% ============================================================================
+
+% ============================================================================
+% Initial State: Starting configuration
+% ============================================================================
+
+% Monkey starts at location 1
 at(monkey, location(1), []).
+
+% Monkey is not on the box initially
+% (represented by the absence of on_box(monkey, []))
+
+% Monkey doesn't have bananas initially
+% (represented by the absence of has_bananas(monkey, []))
+
+% Box starts at location 2
 at(box, location(2), []).
+
+% Bananas are at location 3 (constant, doesn't need situation parameter)
 at(bananas, location(3)).
 
 % ============================================================================
@@ -170,6 +204,10 @@ has_bananas(monkey, [A | S]) :-
 % ============================================================================
 % Automatic Planning: Find shortest action sequence
 % ============================================================================
+% plan(Goal, Plan) is true when:
+%   - Plan is a sequence of possible actions
+%   - Goal is true in the situation resulting from executing Plan
+%   - Searches for shortest plan first (breadth-first)
 
 plan(Goal, Plan) :-
     bposs(Plan),
@@ -188,9 +226,41 @@ tryposs(X, S) :-
 % Usage Examples
 % ============================================================================
 %
-% Example: Plan to grab the bananas (MAIN GOAL)
+% Example 1: Query initial state
+%   ?- at(monkey, location(1), []).
+%   true.
+%
+%   ?- at(box, location(2), []).
+%   true.
+%
+%   ?- at(bananas, location(3)).
+%   true.
+%
+% Example 2: Check if an action is possible
+%   ?- poss([go(location(2))]).
+%   true.
+%
+%   ?- poss([climb_on]).
+%   false.  % Monkey not at box location
+%
+% Example 3: Query state after an action
+%   ?- at(monkey, location(2), [go(location(2))]).
+%   true.
+%
+% Example 4: Plan to grab the bananas (MAIN GOAL)
 %   ?- plan(has_bananas(monkey, S), S).
 %   S = [grab, climb_on, push(location(3)), go(location(2))]
+%
+% Example 5: Verify the plan works
+%   ?- has_bananas(monkey, [grab, climb_on, push(location(3)), go(location(2))]).
+%   true.
+%
+% Example 6: Check intermediate states
+%   ?- on_box(monkey, [climb_on, push(location(3)), go(location(2))]).
+%   true.
+%
+%   ?- at(box, location(3), [push(location(3)), go(location(2))]).
+%   true.
 %
 % ============================================================================
 

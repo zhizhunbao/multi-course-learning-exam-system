@@ -1,0 +1,14 @@
+network:
+  version: 2
+  wifis:
+    wlp1s0:
+      access-points:
+        "WP-COMPUTER 6129":
+          password: "wangpeng123"
+        # "ACSecure":
+        #   auth:
+        #     key-management: eap
+        #     method: peap
+        #     identity: "wang1059"
+        #     password: "yA226506"
+      dhcp4: true

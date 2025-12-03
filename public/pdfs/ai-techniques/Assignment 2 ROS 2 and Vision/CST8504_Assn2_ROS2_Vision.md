@@ -21,9 +21,11 @@ We will use GitHub Classroom to create your git repository for this assignment. 
 
 You can get started by visiting the following link to create your GitHub repository with the starter code (aisd_msgs package): https://classroom.github.com/a/DUgO71X9
 
-To access your GitHub repository from the Linux command line, you will set up an SSH key for GitHub access. To generate a public/private key pair, run the following command on one of your Ubuntu-server machines (loaner laptop, or VirtualBox VM). You will be prompted to enter a passphrase, which is recommended for better security. If you use a passphrase, you can optionally set up ssh-agent to manage the passphrase for you (if not, you’ll need to type the passphrase each time you access GitHub and use the key).
+**My GitHub Repository**: https://github.com/gitalg/aisd-vision-zhizhunbao
 
-`ssh-keygen -t ed25519 -C "<your email>@algonquinlive.com"`
+To access your GitHub repository from the Linux command line, you will set up an SSH key for GitHub access. To generate a public/private key pair, run the following command on one of your Ubuntu-server machines (loaner laptop, or VirtualBox VM). You will be prompted to enter a passphrase, which is recommended for better security. If you use a passphrase, you can optionally set up ssh-agent to manage the passphrase for you (if not, you'll need to type the passphrase each time you access GitHub and use the key).
+
+`ssh-keygen -t ed25519 -C "wang1059@algonquinlive.com"`
 
 More details about ssh keys and the process as well as ssh-agent can be found here: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 
@@ -37,13 +39,13 @@ To clone your GitHub repository into the ROS 2 workspace, go to your repository 
 
 ```
 cd ros2_ws/src
-git clone git@github.com:gitalg/...
-cd assignment-2-ros-2-and-vision-<yourGitHubname>
+git clone git@github.com:gitalg/aisd-vision-zhizhunbao.git
+cd aisd-vision-zhizhunbao
 ```
 
-In the assignment-2-ros-2-and-vision-<yourname> repository directory, which will be your current directory after running the above commands, create the aisd_vision and aisd_motion packages, by following the python-specific (not cpp) instructions on this page: https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Creating-Your-First-ROS2-Package.html
+In the aisd-vision-zhizhunbao repository directory, which will be your current directory after running the above commands, create the aisd_vision and aisd_motion packages, by following the python-specific (not cpp) instructions on this page: https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Creating-Your-First-ROS2-Package.html
 
-The two new packages will be just empty skeletons at first, but we will commit them at this point and push them to the GitHub repository. You need to be in the ~/ros2_ws/src/assignment-2-ros-2-and-vision-<yourname> directory or below when using git commands for this repository in general, and you need to be in ~/ros2_ws/src/assignment-2-ros-2-and-vision-<yourname> when you run these commands:
+The two new packages will be just empty skeletons at first, but we will commit them at this point and push them to the GitHub repository. You need to be in the ~/ros2_ws/src/aisd-vision-zhizhunbao directory or below when using git commands for this repository in general, and you need to be in ~/ros2_ws/src/aisd-vision-zhizhunbao when you run these commands:
 
 ```
 git add aisd-vision aisd-motion
