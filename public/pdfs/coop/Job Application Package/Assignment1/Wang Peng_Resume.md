@@ -55,3 +55,11 @@ Wuhan, China | _September 2008 – June 2012_
 | **Programming Languages** | Java, Python, Scala, SQL, Shell, React, Vue                              |
 | **Databases**             | MySQL, SQL Server, MongoDB, PostgreSQL                                   |
 | **Tools**                 | Git, SVN, Jenkins, Nexus                                                 |
+
+## WORK CERTIFICATE
+
+### Employment & Income Certificate
+
+![Income Certificate](image/WangPeng_Resume/1764780286108.png)
+
+![Income Certificate](image/WangPeng_Resume/image.png)

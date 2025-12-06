@@ -599,7 +599,7 @@ FIELD_DEFINITIONS = [
     ('Latitude',                 'float64',       "Latitude coordinate of the stop location"),
     ('Longitude',                'float64',       "Longitude coordinate of the stop location"),
     ('Accident',                 'bool',          "Whether an accident was involved"),
-    ('Belts',                    'bool',          "Whether seat belts were used"),
+    ('Belts',                    'bool',          "Whether seat belt violation occurred"),
     ('Personal Injury',          'bool',          "Whether there was personal injury"),
     ('Property Damage',          'bool',          "Whether there was property damage"),
     ('Fatal',                    'bool',          "Whether the incident was fatal"),
@@ -2441,17 +2441,17 @@ modeling_features_count = None  # Count of modeling features (excluding auxiliar
 # ----------------------------------------------------------------------------
 # Logic Calculation
 # ----------------------------------------------------------------------------
-# Define feature groups (10+ modeling attributes required)
+# Define feature groups (19 modeling features + 1 deduplication field)
 feature_groups = {
     'Geographic':   ['Latitude', 'Longitude'],
     'Temporal':     ['Date Of Stop', 'Time Of Stop'],
-    'Severity':     ['Accident', 'Personal Injury', 'Property Damage', 'Fatal'],  # KEY
+    'Severity':     ['Accident', 'Personal Injury', 'Property Damage', 'Fatal'],
     'Risk':         ['Alcohol', 'Work Zone'],
     'Vehicle':      ['Year', 'VehicleType', 'Commercial Vehicle', 'HAZMAT'],
     'Safety':       ['Belts', 'Contributed To Accident'],
     'Demographics': ['Gender', 'Race'],
     'Enforcement':  ['SubAgency'],
-    'Auxiliary':    ['SeqID', 'Location', 'Violation Type']  # Non-modeling
+    'Auxiliary':    ['SeqID']  # Used only for deduplication, not for modeling
 }
 
 # Extract feature lists
@@ -2482,22 +2482,41 @@ modeling_features_count = len(selected_features) - len(auxiliary_features)
 # ----------------------------------------------------------------------------
 print(f"\nOutlier detection setup: {df_outlier.shape[0]:,} rows × {df_outlier.shape[1]} columns, {modeling_features_count} modeling features")
 
-# Visualize feature selection for outlier detection
-fig, ax = plt.subplots(figsize=(10, 6))
+# Create a dictionary mapping field names to their descriptions
+field_descriptions = {field_name: description for field_name, _, description in FIELD_DEFINITIONS}
+
+# Prepare data for table
 feature_categories_od = ['Geographic', 'Temporal', 'Severity', 'Risk', 'Vehicle', 'Safety', 'Demographics', 'Enforcement']
-feature_counts_od = [len(feature_groups['Geographic']), len(feature_groups['Temporal']),
-                     len(feature_groups['Severity']), len(feature_groups['Risk']),
-                     len(feature_groups['Vehicle']), len(feature_groups['Safety']),
-                     len(feature_groups['Demographics']), len(feature_groups['Enforcement'])]
-ax.barh(feature_categories_od, feature_counts_od, color='#e74c3c', edgecolor='black', alpha=0.7)
-ax.set_xlabel('Number of Features', fontsize=12)
-ax.set_title(f'Feature Selection for Outlier Detection (Total: {modeling_features_count})', fontsize=13, fontweight='bold')
-ax.grid(True, alpha=0.3, axis='x')
-ax.invert_yaxis()
-for i, val in enumerate(feature_counts_od):
-    ax.text(val, i, f' {val}', va='center', fontsize=10, fontweight='bold')
-plt.tight_layout()
-plt.show()
+table_data = []
+
+for category in feature_categories_od:
+    features = feature_groups[category]
+    for feature in features:
+        description = field_descriptions.get(feature, "Description not available")
+        table_data.append({
+            'Feature': feature,
+            'Description': description
+        })
+
+# Create DataFrame and display as table
+df_features_table = pd.DataFrame(table_data)
+print("\n" + "="*100)
+print("Feature Explanations for Outlier Detection")
+print("="*100)
+print(f"\nTotal features: {len(table_data)}")
+
+# Format table with left alignment
+max_feature_len = max(df_features_table['Feature'].str.len().max(), len('Feature'))
+max_desc_len = max(df_features_table['Description'].str.len().max(), len('Description'))
+total_width = max_feature_len + max_desc_len + 7  # 7 for separators and spacing
+
+print("\n" + "-" * total_width)
+print(f"{'Feature':<{max_feature_len}}  {'Description':<{max_desc_len}}")
+print("-" * total_width)
+for _, row in df_features_table.iterrows():
+    print(f"{row['Feature']:<{max_feature_len}}  {row['Description']:<{max_desc_len}}")
+print("-" * total_width)
+print("\n" + "="*100)
 
 # ============================================================================
 # 6.1.2. Clean Data
@@ -2525,9 +2544,8 @@ invalid_year       = None  # Count of invalid year values
 invalid_date       = None  # Count of invalid date values
 invalid_date_range = None  # Count of dates out of range
 invalid_time       = None  # Count of invalid time values
-binary_fields      = None  # List of binary fields
-invalid_binary     = None  # Count of invalid binary values
 rows_before_val    = None  # Rows before validation
+rows_after_val     = None  # Rows after validation (before sampling)
 valid_mask         = None  # Boolean mask for valid rows
 rows_removed       = None  # Number of rows removed
 total_invalid      = None  # Total count of invalid values
@@ -2587,14 +2605,6 @@ invalid_date_range = ((df_outlier['Date Of Stop'] < '2015-01-01') | (df_outlier[
 df_outlier['Time Of Stop Parsed'] = pd.to_datetime(df_outlier['Time Of Stop'], format='%H:%M:%S', errors='coerce')
 invalid_time = df_outlier['Time Of Stop Parsed'].isnull().sum()
 
-# Binary fields validation
-binary_fields = [
-    'Accident', 'Personal Injury', 'Property Damage', 'Fatal',
-    'Alcohol', 'Work Zone', 'Belts', 'Contributed To Accident',
-    'Commercial Vehicle', 'HAZMAT'
-]
-invalid_binary = sum((~df_outlier[field].isin([True, False])).sum() for field in binary_fields)
-
 # Remove invalid records
 rows_before_val = df_outlier.shape[0]
 valid_mask = (
@@ -2605,13 +2615,12 @@ valid_mask = (
     (df_outlier['Date Of Stop'] >= '2015-01-01') & (df_outlier['Date Of Stop'] <= '2025-12-31') &
     (df_outlier['Time Of Stop Parsed'].notnull())
 )
-for field in binary_fields:
-    valid_mask &= df_outlier[field].isin([True, False])
 
 df_outlier = df_outlier[valid_mask]
 df_outlier.drop('Time Of Stop Parsed', axis=1, inplace=True)
-rows_removed = rows_before_val - df_outlier.shape[0]
-total_invalid = invalid_lat + invalid_lon + invalid_year + invalid_date + invalid_date_range + invalid_time + invalid_binary
+rows_after_val = df_outlier.shape[0]
+rows_removed = rows_before_val - rows_after_val
+total_invalid = invalid_lat + invalid_lon + invalid_year + invalid_date + invalid_date_range + invalid_time
 
 # 4. Apply stratified sampling
 original_size = len(df_outlier)
@@ -2692,11 +2701,8 @@ if total_invalid > 0:
         print(f"     • Date out of range: {invalid_date_range:,} (not in [2015-01-01, 2025-12-31])")
     if invalid_time > 0:
         print(f"     • Invalid Time Of Stop: {invalid_time:,} (format: HH:MM:SS)")
-    if invalid_binary > 0:
-        print(f"     • Invalid binary field values: {invalid_binary:,} (not True/False)")
-    print(f"   - Total invalid values: {total_invalid:,}")
     print(f"   - Records removed: {rows_removed:,}")
-    print(f"   - Records after validation: {df_outlier.shape[0]:,}")
+    print(f"   - Records after validation: {rows_after_val:,}")
 else:
     print(f"   - No invalid values detected")
     print(f"   - All records passed validation")
@@ -2805,34 +2811,6 @@ df_outlier['VehicleAge'] = current_year - df_outlier['Year']
 # Handle outliers: cap at reasonable maximum (50 years for very old vehicles)
 df_outlier['VehicleAge'] = df_outlier['VehicleAge'].clip(lower=0, upper=50)
 
-# 3. Create binning features (optional)
-# VehicleAge binning using if conditions
-def bin_vehicle_age(age):
-    if age <= 3:
-        return 'New'
-    elif age <= 7:
-        return 'Recent'
-    elif age <= 15:
-        return 'Middle'
-    else:
-        return 'Old'
-
-df_outlier['VehicleAge_Binned'] = df_outlier['VehicleAge'].apply(bin_vehicle_age)
-
-# Hour binning using if conditions
-def bin_hour(hour):
-    if hour <= 6:
-        return 'Night'
-    elif hour <= 12:
-        return 'Morning'
-    elif hour <= 18:
-        return 'Afternoon'
-    else:
-        return 'Evening'
-
-df_outlier['Hour_Binned'] = df_outlier['Hour'].apply(bin_hour)
-
-
 # ----------------------------------------------------------------------------
 # Result Display
 # ----------------------------------------------------------------------------
@@ -2843,20 +2821,13 @@ print(f"- Month (1-12): {df_outlier['Month'].min()}-{df_outlier['Month'].max()}"
 print(f"- DayOfWeek (0=Mon, 6=Sun): {df_outlier['DayOfWeek'].min()}-{df_outlier['DayOfWeek'].max()}")
 print(f"- IsWeekend: {df_outlier['IsWeekend'].sum():,} weekend records ({df_outlier['IsWeekend'].mean()*100:.1f}%)")
 time_of_day_counts = df_outlier['TimeOfDay'].value_counts()
-print(f"- TimeOfDay: {dict(time_of_day_counts)}")
+time_of_day_dict = {k: int(v) for k, v in time_of_day_counts.items()}
+print(f"- TimeOfDay: {time_of_day_dict}")
 
 print("\n✓ Vehicle Age Feature:")
 
 print(f"- Mean: {df_outlier['VehicleAge'].mean():.1f} years")
 print(f"- Range: {df_outlier['VehicleAge'].min():.0f}-{df_outlier['VehicleAge'].max():.0f} years")
-vehicle_age_binned_counts = df_outlier['VehicleAge_Binned'].value_counts()
-print(f"- Distribution: {dict(vehicle_age_binned_counts)}")
-
-print("\n✓ Binning Features Created:")
-
-hour_binned_counts = df_outlier['Hour_Binned'].value_counts()
-print(f"- Hour_Binned: {dict(hour_binned_counts)}")
-print(f"- VehicleAge_Binned: {dict(vehicle_age_binned_counts)}")
 
 # Display missing value information if available
 if missing_info:
@@ -2930,7 +2901,6 @@ print_step_header("6.1.4", "Integrate Data")
 numerical_features       = None  # List of numerical features
 boolean_features         = None  # List of boolean features
 categorical_features     = None  # List of categorical features
-optional_binned_features = None  # List of optional binned features
 total_features           = None  # Total number of features
 
 # ----------------------------------------------------------------------------
@@ -2946,9 +2916,6 @@ boolean_features = [
 ]
 
 categorical_features = ['VehicleType', 'SubAgency', 'Gender', 'Race', 'TimeOfDay']
-
-# Optional binned features (not included in main modeling)
-optional_binned_features = ['VehicleAge_Binned', 'Hour_Binned']
 
 total_features = len(numerical_features) + len(boolean_features) + len(categorical_features)
 
@@ -3154,17 +3121,17 @@ print("Test Design Summary")
 
 print(f"\nTest Design Configuration:")
 print(f"• LOF Parameters:")
-print(f"  - n_neighbors: 20 (number of neighbors to consider for local density)")
-print(f"  - contamination: 0.01 (expected proportion of outliers, 1% of dataset)")
-print(f"  - Rationale: Small contamination rate ensures only high-confidence outliers are detected")
+print(f"  - n_neighbors: 20 (0.2% of dataset; balances local vs global detection)")
+print(f"  - contamination: 0.01 (1% outlier rate; conservative strategy for high-confidence detection)")
+print(f"  - Rationale: Small contamination rate reduces false positives, suitable for rare anomalies")
 print(f"• Distance-based Parameters:")
-print(f"  - k_neighbors: 20 (number of nearest neighbors for distance calculation)")
-print(f"  - Threshold: 99th percentile (top 1% of distances considered outliers)")
-print(f"  - Rationale: Matches LOF contamination rate for consistent comparison")
+print(f"  - k_neighbors: 20 (matches LOF for consistent comparison)")
+print(f"  - Threshold: 99th percentile (top 1% of distances; aligns with contamination=0.01)")
+print(f"  - Rationale: Data-driven threshold based on actual distance distribution")
 print(f"• Common Outlier Strategy:")
 print(f"  - Approach: Identify outliers detected by both methods")
-print(f"  - Rationale: High-confidence outliers require agreement from both detection methods")
-print(f"  - Expected Outcome: More reliable outlier detection with reduced false positives")
+print(f"  - Rationale: Agreement from both methods increases confidence and reduces false positives")
+print(f"  - Expected Outcome: ~100 high-confidence outliers from 10,000 samples")
 
 # ============================================================================
 # 6.2.3. Build model
@@ -3190,78 +3157,67 @@ avg_distances        = None  # Average distances to k nearest neighbors
 # ----------------------------------------------------------------------------
 # Logic Calculation
 # ----------------------------------------------------------------------------
-# 1. Build LOF Model
-n_neighbors_lof = 20 # Parameter for LOF
+# 1. LOF Model
+n_neighbors_lof = 20
 lof = LocalOutlierFactor(n_neighbors=n_neighbors_lof, contamination=0.01, novelty=False)
 lof_labels = lof.fit_predict(X_outlier_scaled)
-
-# -1 for outliers, 1 for inliers
 outliers_lof = (lof_labels == -1)
-
-# Get LOF scores (negative outlier factor)
 lof_scores = lof.negative_outlier_factor_
 df_outlier['LOF_score'] = lof_scores
 df_outlier['LOF_outlier'] = outliers_lof
 
-# 2. Build Distance-based Outlier Detection Model
-# Method: Calculate average distance to k nearest neighbors
-# Points with high average distance are considered outliers
-k_neighbors_dist = 20  # Number of neighbors to consider
-nn = NearestNeighbors(n_neighbors=k_neighbors_dist + 1)  # +1 because point itself is included
+# 2. Distance-based Outlier Detection
+k_neighbors_dist = 20
+nn = NearestNeighbors(n_neighbors=k_neighbors_dist + 1)
 nn.fit(X_outlier_scaled)
 distances, indices = nn.kneighbors(X_outlier_scaled)
-
-# Calculate average distance to k nearest neighbors (excluding the point itself)
-# The first column is the point itself (distance = 0), so we take columns 1 to k+1
 avg_distances = distances[:, 1:].mean(axis=1)
-
-# Use percentile-based threshold (top 1% as outliers, matching contamination=0.01)
 distance_threshold = np.percentile(avg_distances, 99)
 distance_outliers = avg_distances > distance_threshold
-
-# Store results
-distance_scores = avg_distances
-df_outlier['Distance_score'] = distance_scores
+df_outlier['Distance_score'] = avg_distances
 df_outlier['Distance_outlier'] = distance_outliers
 
 # ----------------------------------------------------------------------------
 # Result Display
 # ----------------------------------------------------------------------------
-print("Model Building Summary")
+print(f"\n{'='*100}")
+print(f"{'Outlier Detection Models Comparison':^100}")
+print(f"{'='*100}")
 
-print(f"\n[Step 1] LOF Model Construction:")
-print(f"• Dataset size: {len(X_outlier_scaled):,} samples × {X_outlier_scaled.shape[1]} features")
-print(f"• Model parameters:")
-print(f"  - n_neighbors: {n_neighbors_lof}")
-print(f"  - contamination: 0.01 (1% of data expected as outliers)")
-print(f"  - novelty: False (fit_predict mode)")
-print(f"• Model training: LOF model fitted on scaled feature matrix")
-print(f"• Output: Outlier labels (-1 for outliers, 1 for inliers) and LOF scores")
-print(f"• Results stored: LOF_score and LOF_outlier columns added to dataframe")
+# Prepare data for table
+input_info = f"{len(X_outlier_scaled):,} samples × {X_outlier_scaled.shape[1]} features (scaled)"
+lof_params = f"n_neighbors={n_neighbors_lof}, contamination=0.01"
+lof_results = f"{outliers_lof.sum()} outliers ({outliers_lof.sum()/len(outliers_lof)*100:.2f}%)"
 
-print(f"\n[Step 2] Distance-based Model Construction:")
-print(f"• Distance calculation method: k-nearest neighbors average distance")
-print(f"• Model parameters:")
-print(f"  - k_neighbors: {k_neighbors_dist} (excluding the point itself)")
-print(f"  - Threshold method: 99th percentile (top 1% as outliers)")
-print(f"• Distance computation:")
-print(f"  - NearestNeighbors fitted on scaled feature matrix")
-print(f"  - Average distance to k nearest neighbors calculated for each point")
-print(f"  - Threshold: {distance_threshold:.4f} (99th percentile)")
-print(f"• Output: Distance scores and outlier labels")
-print(f"• Results stored: Distance_score and Distance_outlier columns added to dataframe")
+# Get example values and thresholds for output columns
+lof_score_example = df_outlier['LOF_score'].iloc[0] if len(df_outlier) > 0 else 0
+lof_outlier_example = df_outlier['LOF_outlier'].iloc[0] if len(df_outlier) > 0 else False
+# Calculate LOF threshold: max LOF_score among outliers (more negative = more anomalous)
+lof_threshold = df_outlier[outliers_lof]['LOF_score'].max() if outliers_lof.sum() > 0 else 0
+lof_output_line1 = f"LOF_score ({lof_score_example:.4f}), outlier if <= {lof_threshold:.4f}"
+lof_output_line2 = f"LOF_outlier ({lof_outlier_example})"
 
-print(f"\n[Step 3] Model Integration:")
-print(f"• Both models successfully trained on {len(X_outlier_scaled):,} samples")
-print(f"• Feature matrix: {X_outlier_scaled.shape[1]} scaled features")
-print(f"• Scaling: StandardScaler applied (mean=0, std=1)")
+dist_params = f"k_neighbors={k_neighbors_dist}, threshold=99th percentile"
+dist_threshold = f"{distance_threshold:.4f}"
+dist_results = f"{distance_outliers.sum()} outliers ({distance_outliers.sum()/len(distance_outliers)*100:.2f}%)"
 
-print(f"\nSummary: Successfully built two outlier detection models")
-print(f"• LOF model: Trained with n_neighbors={n_neighbors_lof}, contamination=0.01")
-print(f"• Distance-based model: Trained with k={k_neighbors_dist}, threshold=99th percentile")
-print(f"• Both models ready for outlier detection and comparison")
+dist_score_example = df_outlier['Distance_score'].iloc[0] if len(df_outlier) > 0 else 0
+dist_outlier_example = df_outlier['Distance_outlier'].iloc[0] if len(df_outlier) > 0 else False
+dist_output_line1 = f"Distance_score ({dist_score_example:.4f}), outlier if > {distance_threshold:.4f}"
+dist_output_line2 = f"Distance_outlier ({dist_outlier_example})"
 
-# Visualize model building summary
+# Print comparison table
+col_width = 45
+print(f"\n{'Item':<25} {'LOF Model':<{col_width}} {'Distance-based Model':<{col_width}}")
+print(f"{'-'*25} {'-'*col_width} {'-'*col_width}")
+print(f"{'Input Data':<25} {input_info:<{col_width}} {input_info:<{col_width}}")
+print(f"{'Model Parameters':<25} {lof_params:<{col_width}} {dist_params:<{col_width}}")
+print(f"{'Threshold Value':<25} {'N/A (contamination-based)':<{col_width}} {dist_threshold:<{col_width}}")
+print(f"{'Detection Results':<25} {lof_results:<{col_width}} {dist_results:<{col_width}}")
+print(f"{'Output Columns':<25} {lof_output_line1:<{col_width}} {dist_output_line1:<{col_width}}")
+print(f"{'':<25} {lof_output_line2:<{col_width}} {dist_output_line2:<{col_width}}")
+print(f"{'='*100}")
+
 fig, ax = plt.subplots(figsize=(8, 5))
 models = ['LOF', 'Distance-based']
 model_params = [n_neighbors_lof, k_neighbors_dist]
@@ -3435,6 +3391,7 @@ if n_common_outliers > 0:
     print(f"  - Normal cases: {normal_vehicle_age:.1f} years average")
     print(f"  - Difference: {abs(outlier_vehicle_age - normal_vehicle_age):.1f} years")
 else:
+    normal_df = None
     print(f"• No common outliers detected for detailed characteristics analysis")
 
 print(f"\nSummary: Evaluation completed for outlier detection")
@@ -3480,8 +3437,6 @@ plt.show()
 
 # Visualization: Step 3 - Outlier Characteristics Analysis
 if n_common_outliers > 0:
-    normal_df = df_outlier[~common_outliers]
-
     fig3, ax3 = plt.subplots(figsize=(10, 6))
 
     # Prepare comparison data
